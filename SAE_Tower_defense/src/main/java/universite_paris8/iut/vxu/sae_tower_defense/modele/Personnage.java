@@ -33,7 +33,11 @@ public class Personnage {
         return x;
     }
 
-    public void setXProperty(int x) {
+    public int getX(){
+        return this.x.getValue();
+    }
+
+    public void setX(int x) {
         this.x.setValue(x);
     }
 
@@ -41,7 +45,11 @@ public class Personnage {
         return y;
     }
 
-    public void setYProperty(int y) {
+    public int getY(){
+        return this.y.getValue();
+    }
+
+    public void setY(int y) {
         this.y.setValue(y);
     }
 
