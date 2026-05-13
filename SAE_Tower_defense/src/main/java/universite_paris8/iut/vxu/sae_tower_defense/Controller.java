@@ -16,26 +16,21 @@ public class Controller implements Initializable {
     private Map map;
 
     @FXML
-    private Pane terrain;
+    private TilePane terrain;
 
 
     public void créerTerrain() {
-        HBox ligne;
         Rectangle tuille;
-        VBox v= new VBox();
         for(int i=0; i<map.getMap().length; i++){
-            ligne = new HBox();
             for(int j=0; j<map.getMap().length; j++){
                 tuille= new Rectangle(100,100);
                 switch (map.getMap()[i][j]){
                     case 1: tuille.setFill(Color.BROWN); break;
                     default: tuille.setFill(Color.GREEN); break;
                 }
-                ligne.getChildren().add(tuille);
+                terrain.getChildren().add(tuille);
             }
-            v.getChildren().add(ligne);
         }
-        terrain.getChildren().add(v);
     }
 
     @Override
