@@ -76,4 +76,16 @@ public class Personnage {
     public void setDegat(int degat) {
         this.degat = degat;
     }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "pv=" + pv +
+                ", x=" + x +
+                ", y=" + y +
+                ", dx=" + dx +
+                ", dy=" + dy +
+                ", degat=" + degat +
+                '}';
+    }
 }
