@@ -4,7 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Personnage {
-    private int compteur;
+    private static int compteur;
     private String id;
     private int pv;
     private IntegerProperty x;
