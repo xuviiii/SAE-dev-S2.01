@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.vxu.sae_tower_defense.Controller">
    <center>
       <TilePane fx:id="terrain" maxHeight="500" maxWidth="500.0" BorderPane.alignment="CENTER" />
    </center>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="tour" layoutX="14.0" layoutY="37.0" prefHeight="62.0" prefWidth="61.0">
+               <children>
+                  <Polygon fill="DODGERBLUE" layoutX="29.0" layoutY="14.0" points="-10.0, 18.666664123535156, 14.0, 18.666664123535156, 2.0, -0.33333587646484375" stroke="BLACK" strokeType="INSIDE" />
+                  <Label layoutX="10.0" layoutY="34.0" prefHeight="17.0" prefWidth="46.0" text="999999" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </right>
 </BorderPane>
