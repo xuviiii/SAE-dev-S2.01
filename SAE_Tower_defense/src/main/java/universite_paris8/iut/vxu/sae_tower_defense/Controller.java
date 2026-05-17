@@ -55,7 +55,7 @@ public class Controller implements Initializable {
             }
         });
 
-        tile.setOnDragOver(new EventHandler<DragEvent>() {
+        terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 if (db.hasString()) {
@@ -65,7 +65,7 @@ public class Controller implements Initializable {
             }
         });
 
-        tile.setOnDragDropped(new EventHandler<DragEvent>() {
+        terrain.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
                 Rectangle t;
