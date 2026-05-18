@@ -4,7 +4,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Personnage {
-
+    private static int compteur;
+    private String id;
     private int pv;
     private IntegerProperty x;
     private IntegerProperty y;
@@ -13,12 +14,18 @@ public class Personnage {
     private int degat;
 
     public Personnage(int pv, int x, int y, int dx, int dy, int degat){
+        compteur++;
+        id= String.valueOf(compteur);
         this.pv = pv;
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.dx = dx;
         this.dy = dy;
         this.degat = degat;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public int getPv() {
@@ -76,6 +83,8 @@ public class Personnage {
     public void setDegat(int degat) {
         this.degat = degat;
     }
+
+    public boolean estMort(){return pv<=0;}
 
     @Override
     public String toString() {
