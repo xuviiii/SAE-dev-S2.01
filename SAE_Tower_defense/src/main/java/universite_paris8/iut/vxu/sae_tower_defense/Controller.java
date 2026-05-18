@@ -28,7 +28,10 @@ public class Controller implements Initializable {
     private Map map;
 
     @FXML
-    private TilePane terrain;
+    private TilePane tile;
+
+    @FXML
+    private Pane terrain;
 
     @FXML
     private Pane tour;
@@ -46,7 +49,7 @@ public class Controller implements Initializable {
                     case 1: tuille.setFill(Color.BROWN); break;
                     default: tuille.setFill(Color.GREEN); break;
                 }
-                terrain.getChildren().add(tuille);
+                tile.getChildren().add(tuille);
             }
         }
     }
@@ -133,7 +136,13 @@ public class Controller implements Initializable {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
-                    System.out.println(db.getString());
+                    if(db.getString().equals("flêche")){
+                        t = new Rectangle(10,10,Color.BLACK);
+                        terrain.getChildren().add(t);
+                        t.setTranslateX(event.getX());
+                        t.setTranslateY(event.getY());
+
+                    }
                 }
                 event.setDropCompleted(success);
                 event.consume();
