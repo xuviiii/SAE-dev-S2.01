@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -94,7 +96,12 @@ public class Controller implements Initializable {
             }
         });
 
+        map.getPersonnages().addListener(new ObsPerso(terrain));
+        map.getTours().addListener(new ObsTour(terrain));
 
+        GameLoop gameLoop = new GameLoop(map);
+        gameLoop.initAnimation();
+        gameLoop.lancer();
     }
 
 
