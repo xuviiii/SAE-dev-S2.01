@@ -18,6 +18,8 @@ public class Controller implements Initializable {
 
     private Map map;
 
+    private Drag drag;
+
     @FXML
     private TilePane tile;
 
@@ -25,7 +27,7 @@ public class Controller implements Initializable {
     private Pane terrain;
 
     @FXML
-    private Pane tour;
+    private Pane flêche;
 
     private GameLoop loop;
 
@@ -47,23 +49,16 @@ public class Controller implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Map();
         créerTerrain();
+        drag = new Drag();
 
+        flêche.setOnDragDetected(e ->  drag.handle(e));
 
-        tour.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Dragboard db = tour.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent content = new ClipboardContent();
-                content.putString("flêche");
-                db.setContent(content);
-                event.consume();
-            }
-        });
-
+        /*
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
@@ -73,26 +68,9 @@ public class Controller implements Initializable {
                 event.consume();
             }
         });
+         */
 
-        terrain.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Rectangle t;
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    if(db.getString().equals("flêche")){
-                        t = new Rectangle(10,10,Color.BLACK);
-                        terrain.getChildren().add(t);
-                        t.setTranslateX(event.getX());
-                        t.setTranslateY(event.getY());
 
-                    }
-                }
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        });
 
 
     }
