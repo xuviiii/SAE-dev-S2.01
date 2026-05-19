@@ -1,9 +1,6 @@
-package universite_paris8.iut.vxu.sae_tower_defense;
+package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.event.Event;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,19 +8,13 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.util.Duration;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.security.cert.CertificateNotYetValidException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    private Timeline gameLoop;
-
-    private int temps;
 
     private Map map;
 
@@ -36,8 +27,9 @@ public class Controller implements Initializable {
     @FXML
     private Pane tour;
 
-    private Personnage perso_test;
-    private Tour tour_test;
+    private GameLoop loop;
+
+
 
 
     public void créerTerrain() {
@@ -60,53 +52,6 @@ public class Controller implements Initializable {
         map = new Map();
         créerTerrain();
 
-        perso_test = new Personnage(20, 3, 3, 1, 1, 0);
-        tour_test = new Tour("azerty",240,240,3,2);
-
-        initAnimation();
-        // demarre l'animation
-        gameLoop.play();
-
-
-    }
-
-    private void initAnimation() {
-
-        ArrayList<Personnage> ennemis = new ArrayList<>();
-        ennemis.add(perso_test);
-        Circle tour = new Circle(240,240,10,Color.BLUE);
-        Circle cercle = new Circle(10,10,10);
-        cercle.translateXProperty().bind(perso_test.getXProperty());
-        cercle.translateYProperty().bind(perso_test.getYProperty());
-        terrain.getChildren().add(cercle);
-        terrain.getChildren().add(tour);
-
-
-        gameLoop = new Timeline();
-        temps=0;
-        gameLoop.setCycleCount(Timeline.INDEFINITE);
-
-        KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.017),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
-                (ev ->{
-                    if (temps%5==0){    // A modifier pour les persos
-                        // cercle.setTranslateX(cercle.getTranslateX()+10);
-                        perso_test.setX((perso_test.getX() + 10) % 500);
-                        perso_test.setY((perso_test.getY() + 10) % 500);
-
-                        if (tour_test.ennemiACible(ennemis)!=null)
-                            tour_test.attaquer(tour_test.ennemiACible(ennemis));
-
-                        System.out.println("\ntour à cibler : "+tour_test.ennemiACible(ennemis)+"\nperso test : "+perso_test+"\n");
-
-                    }
-                    temps++;
-                })
-        );
-        gameLoop.getKeyFrames().add(kf);
 
         tour.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
@@ -148,5 +93,9 @@ public class Controller implements Initializable {
                 event.consume();
             }
         });
+
+
     }
+
+
 }
