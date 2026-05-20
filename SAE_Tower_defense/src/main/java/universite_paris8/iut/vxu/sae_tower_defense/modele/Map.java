@@ -5,28 +5,36 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class Map {
-    private int[][] map;
+    private int longueurMap;
+    private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
 
     public Map(){
-        map = new int[5][5];
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
-                if (j==2){
-                    map[i][j] = 1;
-                }
-                else {
-                    map[i][j] = 0;
-                }
-            }
-        }
+        map = FXCollections.observableArrayList(List.of(
+                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
+                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
+        longueurMap =18;
     }
 
-    public int[][] getMap() {
+    public int getLongueurMap() {
+        return longueurMap;
+    }
+
+    public ObservableList<Integer> getMap() {
         return map;
     }
 

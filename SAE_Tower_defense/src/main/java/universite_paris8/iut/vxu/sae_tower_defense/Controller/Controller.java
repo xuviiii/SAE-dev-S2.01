@@ -40,15 +40,15 @@ public class Controller implements Initializable {
 
     public void créerTerrain() {
         Rectangle tuille;
-        for(int i=0; i<map.getMap().length; i++){
-            for(int j=0; j<map.getMap().length; j++){
-                tuille= new Rectangle(100,100);
-                switch (map.getMap()[i][j]){
-                    case 1: tuille.setFill(Color.BROWN); break;
-                    default: tuille.setFill(Color.GREEN); break;
-                }
-                tile.getChildren().add(tuille);
+
+        tile.setMinWidth(map.getLongueurMap()*60);
+        for(int i=0; i<map.getMap().size(); i++){
+            tuille= new Rectangle(60,60);
+            switch (map.getMap().get(i)){
+                case 1: tuille.setFill(Color.BROWN); break;
+                default: tuille.setFill(Color.GREEN); break;
             }
+            tile.getChildren().add(tuille);
         }
     }
 
