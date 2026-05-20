@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Map {
     private int longueurMap;
+    private int tailleTile;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
@@ -28,7 +29,10 @@ public class Map {
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
         longueurMap =18;
+        tailleTile = 60;
     }
+
+    public int getTailleTile() {return tailleTile;}
 
     public int getLongueurMap() {
         return longueurMap;
