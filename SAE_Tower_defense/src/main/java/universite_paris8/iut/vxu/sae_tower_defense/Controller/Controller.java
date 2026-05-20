@@ -8,6 +8,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
@@ -19,6 +20,9 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     private Map map;
+    private Achat achat;
+    private Drag drag;
+    private Drop drop;
 
     @FXML
     private TilePane tile;
@@ -27,7 +31,7 @@ public class Controller implements Initializable {
     private Pane terrain;
 
     @FXML
-    private Pane tour;
+    private Pane flêche;
 
     private GameLoop loop;
 
@@ -49,22 +53,19 @@ public class Controller implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Map();
+        achat = new Achat(map);
         créerTerrain();
+        drag = new Drag();
+        drop = new Drop(achat, terrain);
+        map.getTours().addListener(new ObsTour(terrain));
 
+        flêche.setOnDragDetected(e ->  drag.handle(e));
+        terrain.setOnDragDropped(e -> drop.handle(e));
 
-        tour.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Dragboard db = tour.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent content = new ClipboardContent();
-                content.putString("flêche");
-                db.setContent(content);
-                event.consume();
-            }
-        });
 
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
@@ -76,32 +77,7 @@ public class Controller implements Initializable {
             }
         });
 
-        terrain.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Rectangle t;
-                Dragboard db = event.getDragboard();
-                boolean success = false;
-                if (db.hasString()) {
-                    if(db.getString().equals("flêche")){
-                        t = new Rectangle(10,10,Color.BLACK);
-                        terrain.getChildren().add(t);
-                        t.setTranslateX(event.getX());
-                        t.setTranslateY(event.getY());
 
-                    }
-                }
-                event.setDropCompleted(success);
-                event.consume();
-            }
-        });
-
-        map.getPersonnages().addListener(new ObsPerso(terrain));
-        map.getTours().addListener(new ObsTour(terrain));
-
-        GameLoop gameLoop = new GameLoop(map);
-        gameLoop.initAnimation();
-        gameLoop.lancer();
     }
 
 
