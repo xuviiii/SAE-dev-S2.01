@@ -8,6 +8,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 
@@ -17,8 +18,9 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     private Map map;
-
+    private Achat achat;
     private Drag drag;
+    private Drop drop;
 
     @FXML
     private TilePane tile;
@@ -53,12 +55,15 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Map();
+        achat = new Achat(map);
         créerTerrain();
         drag = new Drag();
+        drop = new Drop(achat, terrain);
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
+        terrain.setOnDragDropped(e -> drop.handle(e));
 
-        /*
+
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
@@ -68,9 +73,6 @@ public class Controller implements Initializable {
                 event.consume();
             }
         });
-         */
-
-
 
 
     }
