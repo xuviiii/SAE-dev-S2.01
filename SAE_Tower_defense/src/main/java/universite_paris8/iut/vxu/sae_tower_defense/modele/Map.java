@@ -31,6 +31,7 @@ public class Map {
         longueurMap =18;
         tailleTile = 60;
     }
+    
 
     public int getTailleTile() {return tailleTile;}
 

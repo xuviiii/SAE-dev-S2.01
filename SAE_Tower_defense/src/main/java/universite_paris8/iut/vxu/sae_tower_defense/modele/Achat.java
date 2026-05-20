@@ -7,8 +7,20 @@ public class Achat {
         this.map = map;
     }
 
-    public Boolean placerTour(String id, double x, double y){
+    public boolean horsChemin(double x,double y, int taille){
+        if(map.getMap().get((int)(((x-(x%map.getTailleTile()))/ map.getTailleTile())+((y-y%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1
+            || map.getMap().get((int)((((x+taille)-((x+taille)%map.getTailleTile()))/ map.getTailleTile())+(((y+taille)-(y+taille)%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean placerTour(String id, double x, double y){
         Tour nvTour;
+
+        //vérifie si il y deja une tour a ces cordonnée
         for (Tour t:map.getTours()){
             if(x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1)){
                 return false;
@@ -16,7 +28,12 @@ public class Achat {
         }
         if (id.equals("flêche")){
             nvTour = new Tour("a", x, y, 100,10,10);
-            map.ajouterTour(nvTour);
+            if (horsChemin(x,y,nvTour.getTaille())) {
+                map.ajouterTour(nvTour);
+            }
+            else {
+                return false;
+            }
         }
         else {
             return false;
