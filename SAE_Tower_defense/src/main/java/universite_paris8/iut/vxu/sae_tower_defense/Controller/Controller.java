@@ -61,6 +61,7 @@ public class Controller implements Initializable {
         créerTerrain();
         drag = new Drag();
         drop = new Drop(achat, terrain);
+        map.getTours().addListener(new ObsTour(terrain));
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));

@@ -24,24 +24,10 @@ public class Drop implements EventHandler<DragEvent> {
     @Override
     public void handle(DragEvent event) {
         Shape t;
-        Tour tour;
         Dragboard db = event.getDragboard();
-        boolean success = false;
+        boolean success;
         String id = ((Node)event.getGestureSource()).getId();
-        tour = achat.placerTour(id, event.getX(), event.getY());
-        if (tour != null){
-            System.out.println("ok");
-            if (id.equals("flêche")) {
-                t = new Rectangle(10,10,Color.BLUE);
-            }
-            else {
-                t = new Rectangle(10,10,Color.BLACK);
-            }
-            terrain.getChildren().add(t);
-            t.translateXProperty().bind(tour.xProperty());
-            t.translateYProperty().bind(tour.yProperty());
-            success = true;
-        }
+        success = achat.placerTour(id, event.getX(), event.getY());
         if (!success){
             System.out.println("raté");
         }

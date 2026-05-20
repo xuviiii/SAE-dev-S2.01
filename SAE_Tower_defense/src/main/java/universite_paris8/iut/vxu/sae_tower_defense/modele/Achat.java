@@ -7,17 +7,15 @@ public class Achat {
         this.map = map;
     }
 
-    public Tour placerTour(String id, double x, double y){
+    public Boolean placerTour(String id, double x, double y){
         Tour nvTour;
-        System.out.println(id);
         if (id.equals("flêche")){
-            System.out.println(x+" "+y);
-            nvTour = new Tour("a", x, y, 100,10);
-            System.out.println("i");
+            nvTour = new Tour("a", x, y, 100,10,10);
+            map.ajouterTour(nvTour);
         }
         else {
-            nvTour = null;
+            return false;
         }
-        return nvTour;
+        return true;
     }
 }
