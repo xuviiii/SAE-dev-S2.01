@@ -12,6 +12,7 @@ public class Personnage {
     private int dx;
     private int dy;
     private int degat;
+    private int indiceTerrain; // indice de la tuile / position du perso
 
     public Personnage(int pv, int x, int y, int dx, int dy, int degat){
         compteur++;
@@ -22,6 +23,7 @@ public class Personnage {
         this.dx = dx;
         this.dy = dy;
         this.degat = degat;
+        indiceTerrain = (Math.random() < 0.5) ? 90 : 0;
     }
 
     public String getId() {
@@ -82,6 +84,22 @@ public class Personnage {
 
     public void setDegat(int degat) {
         this.degat = degat;
+    }
+
+    public int getIndiceTerrain(){
+        return indiceTerrain;
+    }
+
+    public void setIndiceTerrain(int indiceTerrain) {
+        this.indiceTerrain = indiceTerrain;
+    }
+
+    public void seDeplace(Environnement env){
+
+        System.out.println("POSITION : " + indiceTerrain + " --> CHEMIN : " + env.cheminVersCible(indiceTerrain));
+        indiceTerrain = (env.cheminVersCible(indiceTerrain).size() > 1)
+                ? env.cheminVersCible(indiceTerrain).get(1)
+                : env.cheminVersCible(indiceTerrain).get(0);
     }
 
     public boolean estMort(){return pv<=0;}
