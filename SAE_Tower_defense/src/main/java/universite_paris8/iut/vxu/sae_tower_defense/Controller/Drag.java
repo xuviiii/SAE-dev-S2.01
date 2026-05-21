@@ -13,7 +13,7 @@ public class Drag implements EventHandler<MouseEvent> {
     public void handle(MouseEvent event) {
         Dragboard db = ((Node)event.getSource()).startDragAndDrop(TransferMode.ANY);
         ClipboardContent content = new ClipboardContent();
-        content.putString("flêche");
+        content.putString("");
         db.setContent(content);
         event.consume();
     }

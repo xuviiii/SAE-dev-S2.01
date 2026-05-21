@@ -13,9 +13,9 @@ public class Tour {
     private DoubleProperty y;
     private int portée;
     private int dégât;
-    private double taille;
+    private int taille;
 
-    public Tour(String id, double x, double y, int portée, int dégât, double taille) {
+    public Tour(String id, double x, double y, int portée, int dégât, int taille) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
@@ -24,7 +24,7 @@ public class Tour {
         this.taille = taille;
     }
 
-    public double getTaille() {return taille;}
+    public int getTaille() {return taille;}
 
     public String getId() {
         return id;
