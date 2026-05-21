@@ -1,29 +1,31 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Personnage {
     private static int compteur;
     private String id;
     private int pv;
-    private IntegerProperty x;
-    private IntegerProperty y;
+    private DoubleProperty x;
+    private DoubleProperty y;
     private int dx;
     private int dy;
     private int degat;
-    private int indiceTerrain; // indice de la tuile / position du perso
+    private double taille;
 
-    public Personnage(int pv, int x, int y, int dx, int dy, int degat){
+    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille){
         compteur++;
         id= String.valueOf(compteur);
         this.pv = pv;
-        this.x = new SimpleIntegerProperty(x);
-        this.y = new SimpleIntegerProperty(y);
+        this.x = new SimpleDoubleProperty(x);
+        this.y = new SimpleDoubleProperty(y);
         this.dx = dx;
         this.dy = dy;
         this.degat = degat;
-        indiceTerrain = (Math.random() < 0.5) ? 90 : 0;
+        this.taille = taille;
     }
 
     public String getId() {
@@ -38,11 +40,11 @@ public class Personnage {
         this.pv = pv;
     }
 
-    public IntegerProperty getXProperty() {
+    public DoubleProperty getXProperty() {
         return x;
     }
 
-    public int getX(){
+    public double getX(){
         return this.x.getValue();
     }
 
@@ -50,11 +52,11 @@ public class Personnage {
         this.x.setValue(x);
     }
 
-    public IntegerProperty getYProperty() {
+    public DoubleProperty getYProperty() {
         return y;
     }
 
-    public int getY(){
+    public double getY(){
         return this.y.getValue();
     }
 
@@ -86,23 +88,11 @@ public class Personnage {
         this.degat = degat;
     }
 
-    public int getIndiceTerrain(){
-        return indiceTerrain;
-    }
-
-    public void setIndiceTerrain(int indiceTerrain) {
-        this.indiceTerrain = indiceTerrain;
-    }
-
-    public void seDeplace(Environnement env){
-
-        System.out.println("POSITION : " + indiceTerrain + " --> CHEMIN : " + env.cheminVersCible(indiceTerrain));
-        indiceTerrain = (env.cheminVersCible(indiceTerrain).size() > 1)
-                ? env.cheminVersCible(indiceTerrain).get(1)
-                : env.cheminVersCible(indiceTerrain).get(0);
-    }
-
     public boolean estMort(){return pv<=0;}
+
+    public void action(){
+
+    }
 
     @Override
     public String toString() {
