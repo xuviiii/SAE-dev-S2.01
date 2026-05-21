@@ -10,7 +10,7 @@ public class Achat {
     public Boolean placerTour(String id, double x, double y){
         Tour nvTour;
         if (id.equals("flêche")){
-            nvTour = new Tour("a", x, y, 100,10,10);
+            nvTour = new Tour("a", x, y, 100,10,10,map);
             map.ajouterTour(nvTour);
         }
         else {

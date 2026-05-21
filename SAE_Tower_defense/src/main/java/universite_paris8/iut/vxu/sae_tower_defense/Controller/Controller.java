@@ -23,6 +23,7 @@ public class Controller implements Initializable {
     private Achat achat;
     private Drag drag;
     private Drop drop;
+    GameLoop gameLoop;
 
     @FXML
     private TilePane tile;
@@ -62,6 +63,8 @@ public class Controller implements Initializable {
         drag = new Drag();
         drop = new Drop(achat, terrain);
         map.getTours().addListener(new ObsTour(terrain));
+        map.getPersonnages().addListener(new ObsPerso(terrain));
+        map.getProjectiles().addListener(new ObsProjectile(map,terrain));
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
@@ -77,8 +80,8 @@ public class Controller implements Initializable {
             }
         });
 
-
+        gameLoop=new GameLoop(map);
+        gameLoop.initAnimation();
+        gameLoop.lancer();
     }
-
-
 }

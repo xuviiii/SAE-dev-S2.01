@@ -9,6 +9,7 @@ public class Map {
     private int[][] map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
+    private ObservableList<Projectile> projectiles;
 
     public Map(){
         map = new int[5][5];
@@ -24,6 +25,7 @@ public class Map {
         }
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
+        projectiles = FXCollections.observableArrayList();
     }
 
     public int[][] getMap() {
@@ -38,6 +40,10 @@ public class Map {
         return tours;
     }
 
+    public ObservableList<Projectile> getProjectiles() {
+        return projectiles;
+    }
+
     public void ajouterPersonnage(Personnage p){
         personnages.add(p);
     }
@@ -46,13 +52,16 @@ public class Map {
         tours.add(t);
     }
 
-    public void faireUnTour(){
-        System.out.println("Un tour ---------------------------------------------------------\n");
+    public void faireUnTour(int temps){
         for (int i=0;i<personnages.size();i++){
             personnages.get(i).action();
         }
-        for (int i=0;i<tours.size();i++){
-            tours.get(i).action();
+        if (temps%100==0)
+            for (int i=0;i<tours.size();i++){
+                tours.get(i).action();
+            }
+        for (int i=0;i<projectiles.size();i++){
+            projectiles.get(i).avancer();
         }
     }
 }
