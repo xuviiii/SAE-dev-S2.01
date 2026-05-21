@@ -28,8 +28,9 @@ public class Achat {
         }
         if (id.equals("flêche")){
             nvTour = new Tour("a", x, y, 100,10,10);
-            if (horsChemin(x,y,nvTour.getTaille())) {
+            if (horsChemin(x,y,nvTour.getTaille()) && map.getArgent() >= 100) {
                 map.ajouterTour(nvTour);
+                map.enleverArgent(100);
             }
             else {
                 return false;
