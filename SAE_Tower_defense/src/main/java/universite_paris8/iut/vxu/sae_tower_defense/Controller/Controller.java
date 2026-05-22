@@ -4,6 +4,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -11,8 +13,6 @@ import javafx.scene.shape.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,6 +79,25 @@ public class Controller implements Initializable {
                 event.consume();
             }
         });
+
+
+        /*Pane menu = new Pane();
+        terrain.getChildren().add(menu);
+        Label stats = new Label("Stats");
+        Button améliorer = new Button("Améliorer");
+        Button vendre = new Button("Vendre");
+        VBox menuContenu = new VBox(stats,améliorer,vendre);
+        menu.getChildren().add(menuContenu);
+        menu.setStyle("-fx-background-color: #c19a9a;");
+        menu.setDisable(true);
+        menu.setOpacity(0);
+
+        terrain.setOnMouseClicked(new Menu(map,menu,stats));*/
+
+
+        terrain.setOnMouseClicked(new Menu2(map,terrain));
+
+
 
         gameLoop=new GameLoop(map);
         gameLoop.initAnimation();

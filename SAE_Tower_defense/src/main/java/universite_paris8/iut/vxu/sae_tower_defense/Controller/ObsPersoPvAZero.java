@@ -2,7 +2,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 

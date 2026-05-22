@@ -50,6 +50,18 @@ public class Tour {
         return portée;
     }
 
+    public int getDégât() {
+        return dégât;
+    }
+
+    public double getTaille() {
+        return taille;
+    }
+
+    public void ameliorer(){
+        dégât+=1;
+    }
+
     public Personnage ennemiACible(){
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
         Personnage ennemiACible;
@@ -79,7 +91,6 @@ public class Tour {
     }
 
     public void attaquer(Personnage ennemi){
-        //if (ennemi!=null) ennemi.setPv(ennemi.getPv()-dégât);
         if (ennemi!=null) creerProjectile(ennemi);
     }
 

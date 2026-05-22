@@ -2,10 +2,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Projectile;
 
 public class ObsIntersectProjectilePerso implements ChangeListener<Number> {
@@ -23,13 +21,14 @@ public class ObsIntersectProjectilePerso implements ChangeListener<Number> {
         boolean arret=false;
         while (i<map.getPersonnages().size()&&!arret){
             if (map.getPersonnages().get(i).estTouché(projectile.getX(), projectile.getY())){
-                System.out.println(map.getPersonnages().get(i));
                 map.getPersonnages().get(i).subirDegat(projectile.getDegat());
-                System.out.println(map.getPersonnages().get(i)+"\n-----------------------------------------------------------------------");
                 map.getProjectiles().remove(projectile);
+                arret=true;
             }
-            if (projectile.horsPortee())
+            if (projectile.horsPortee()){
                 map.getProjectiles().remove(projectile);
+                arret=true;
+            }
             i++;
         }
     }

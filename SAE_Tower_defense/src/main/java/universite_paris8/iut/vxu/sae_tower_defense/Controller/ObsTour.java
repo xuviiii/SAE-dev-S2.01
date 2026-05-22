@@ -22,7 +22,7 @@ public class ObsTour implements ListChangeListener<Tour> {
         if (change.wasAdded()){
             for (Tour tour : change.getAddedSubList()){
                 Rectangle sprite;
-                sprite =new Rectangle(10,10);
+                sprite =new Rectangle(tour.getTaille(),tour.getTaille());
                 sprite.setFill (Color.BLACK);
                 sprite.translateXProperty().bind(tour.getXProperty());
                 sprite.translateYProperty().bind(tour.getYProperty());
