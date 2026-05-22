@@ -25,7 +25,7 @@ public class ObsTour implements ListChangeListener<Tour> {
             for (Tour tour : change.getAddedSubList()){
                 ImageView sprite;
                 sprite =new ImageView();
-                sprite.setImage(new Image(getClass().getResourceAsStream("/image/tour/archer/archer1.png")));
+                sprite.setImage(new Image(getClass().getResourceAsStream("/image/tour/archer/archer.gif")));
                 sprite.setFitWidth(tour.getTaille());
                 sprite.setPreserveRatio(true);
                 sprite.translateXProperty().bind(tour.getXProperty());

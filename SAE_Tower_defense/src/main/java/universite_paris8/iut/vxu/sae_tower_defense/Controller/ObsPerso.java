@@ -25,7 +25,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
             for (Personnage personnage : change.getAddedSubList()){
                 ImageView sprite;
                 sprite =new ImageView();
-                sprite.setImage(new Image(getClass().getResourceAsStream("/image/perso/gobelin_vert/gobelin-4.png")));
+                sprite.setImage(new Image(getClass().getResourceAsStream("/image/perso/gobelin_vert/gobelin.gif")));
                 sprite.setFitWidth(personnage.getTaille());
                 sprite.setPreserveRatio(true);
                 sprite.translateXProperty().bind(personnage.getXProperty());
