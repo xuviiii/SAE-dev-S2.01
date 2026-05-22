@@ -67,6 +67,7 @@ public class Controller implements Initializable {
         drag = new Drag();
         drop = new Drop(achat, terrain);
         map.getTours().addListener(new ObsTour(terrain));
+        map.getPersonnages().addListener(new ObsPerso(terrain));
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
@@ -83,6 +84,9 @@ public class Controller implements Initializable {
             }
         });
 
+        loop = new GameLoop(map);
+        loop.initAnimation();
+        loop.lancer();
 
     }
 
