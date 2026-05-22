@@ -1,15 +1,20 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
 
 import java.util.List;
 
 public class Map {
     private int longueurMap;
     private int tailleTile;
+    private IntegerProperty argent;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
@@ -30,8 +35,33 @@ public class Map {
         tours=FXCollections.observableArrayList();
         longueurMap =18;
         tailleTile = 60;
+        argent = new SimpleIntegerProperty();
+
     }
-    
+
+    public void argentDeBase(){
+        argent.set(999999999);
+    }
+
+    public void ajouterArgent(int ajout) {
+        if(argent.get()+ajout > 0) {
+            argent.set(argent.get() + ajout);
+        }
+    }
+
+    public void enleverArgent(int enlever) {
+        if(argent.get()-enlever > 0) {
+            argent.set(argent.get() - enlever);
+        }
+    }
+
+    public int getArgent() {
+        return argent.get();
+    }
+
+    public IntegerProperty argentProperty() {
+        return argent;
+    }
 
     public int getTailleTile() {return tailleTile;}
 
