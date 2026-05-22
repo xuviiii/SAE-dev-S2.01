@@ -95,7 +95,7 @@ public class Controller implements Initializable {
         terrain.setOnMouseClicked(new Menu(map,menu,stats));*/
 
 
-        terrain.setOnMouseClicked(new Menu2(map,terrain));
+        terrain.setOnMouseClicked(new Menu(map,terrain));
 
 
 
