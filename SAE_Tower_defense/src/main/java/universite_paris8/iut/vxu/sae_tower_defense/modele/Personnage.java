@@ -4,6 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import java.util.List;
 
 public class Personnage {
     private static int compteur;
@@ -15,8 +16,9 @@ public class Personnage {
     private int dy;
     private int degat;
     private double taille;
+    private IntegerProperty indiceTerrain;
 
-    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille){
+    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille, int indiceTerrain){
         compteur++;
         id= String.valueOf(compteur);
         this.pv = pv;
@@ -26,6 +28,7 @@ public class Personnage {
         this.dy = dy;
         this.degat = degat;
         this.taille = taille;
+        this.indiceTerrain = new SimpleIntegerProperty(indiceTerrain);
     }
 
     public String getId() {
@@ -90,8 +93,25 @@ public class Personnage {
 
     public boolean estMort(){return pv<=0;}
 
-    public void action(){
+    public void action(Map env){
+        seDeplace(env);
+    }
 
+    private void seDeplace(Map env){
+        List<Integer> chemin = env.cheminVersCible(indiceTerrain.getValue());
+        indiceTerrain.setValue((chemin.size() == 1) ? chemin.get(0) : chemin.get(1));
+    }
+
+    public IntegerProperty getIndiceTerrainProperty() {
+        return indiceTerrain;
+    }
+
+    public int getIndiceTerrain(){
+        return indiceTerrain.getValue();
+    }
+
+    public void setIndiceTerrain(int indiceTerrain) {
+        this.indiceTerrain.setValue(indiceTerrain);
     }
 
     @Override

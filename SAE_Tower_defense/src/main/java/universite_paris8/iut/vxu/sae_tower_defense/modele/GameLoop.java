@@ -18,10 +18,10 @@ public class GameLoop {
         temps=0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-        Personnage p_test = new Personnage(10,230,230,3,2,10,5);
+        // Personnage p_test = new Personnage(10,230,230,3,2,10,5);
         Tour t_test = new Tour("a",240,240,50,1,5);
 
-        map.ajouterPersonnage(p_test);
+        // map.ajouterPersonnage(p_test);
         map.ajouterTour(t_test);
 
         KeyFrame kf = new KeyFrame(
