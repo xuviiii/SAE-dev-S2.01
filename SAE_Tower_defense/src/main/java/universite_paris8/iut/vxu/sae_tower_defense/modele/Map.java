@@ -1,34 +1,77 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
+
+import java.util.List;
 
 public class Map {
-    private int[][] map;
+    private int longueurMap;
+    private int tailleTile;
+    private IntegerProperty argent;
+    private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
 
     public Map(){
-        map = new int[5][5];
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
-                if (j==2){
-                    map[i][j] = 1;
-                }
-                else {
-                    map[i][j] = 0;
-                }
-            }
-        }
+        map = FXCollections.observableArrayList(List.of(
+                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
+                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
         projectiles = FXCollections.observableArrayList();
+        longueurMap =18;
+        tailleTile = 60;
+        argent = new SimpleIntegerProperty();
+
     }
 
-    public int[][] getMap() {
+    public void argentDeBase(){
+        argent.set(999999999);
+    }
+
+    public void ajouterArgent(int ajout) {
+        if(argent.get()+ajout > 0) {
+            argent.set(argent.get() + ajout);
+        }
+    }
+
+    public void enleverArgent(int enlever) {
+        if(argent.get()-enlever > 0) {
+            argent.set(argent.get() - enlever);
+        }
+    }
+
+    public int getArgent() {
+        return argent.get();
+    }
+
+    public IntegerProperty argentProperty() {
+        return argent;
+    }
+
+    public int getTailleTile() {return tailleTile;}
+
+    public int getLongueurMap() {
+        return longueurMap;
+    }
+
+    public ObservableList<Integer> getMap() {
         return map;
     }
 

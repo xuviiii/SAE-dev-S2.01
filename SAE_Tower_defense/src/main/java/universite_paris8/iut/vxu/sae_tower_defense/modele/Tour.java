@@ -13,10 +13,10 @@ public class Tour {
     private DoubleProperty y;
     private int portée;
     private int dégât;
-    private double taille;
     private Map map;
+    private int taille;
 
-    public Tour(String id, double x, double y, int portée, int dégât, double taille, Map map) {
+    public Tour(String id, double x, double y, int portée, int dégât, int taille, Map map) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
@@ -54,7 +54,7 @@ public class Tour {
         return dégât;
     }
 
-    public double getTaille() {
+    public int getTaille() {
         return taille;
     }
 

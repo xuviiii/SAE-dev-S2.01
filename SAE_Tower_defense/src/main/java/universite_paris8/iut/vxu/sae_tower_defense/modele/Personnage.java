@@ -84,7 +84,7 @@ public class Personnage {
         return degat;
     }
 
-    public double getTaille() {
+    public int getTaille() {
         return taille;
     }
 

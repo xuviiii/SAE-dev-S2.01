@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.skin.LabelSkin;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -34,20 +35,22 @@ public class Controller implements Initializable {
     @FXML
     private Pane flêche;
 
+    @FXML
+    private Label labelArgent;
 
 
 
     public void créerTerrain() {
         Rectangle tuille;
-        for(int i=0; i<map.getMap().length; i++){
-            for(int j=0; j<map.getMap().length; j++){
-                tuille= new Rectangle(100,100);
-                switch (map.getMap()[i][j]){
-                    case 1: tuille.setFill(Color.BROWN); break;
-                    default: tuille.setFill(Color.GREEN); break;
-                }
-                tile.getChildren().add(tuille);
+
+        tile.setMinWidth(map.getLongueurMap()*map.getTailleTile());
+        for(int i=0; i<map.getMap().size(); i++){
+            tuille= new Rectangle(map.getTailleTile(),map.getTailleTile());
+            switch (map.getMap().get(i)){
+                case 1: tuille.setFill(Color.BROWN); break;
+                default: tuille.setFill(Color.GREEN); break;
             }
+            tile.getChildren().add(tuille);
         }
     }
 
@@ -66,7 +69,8 @@ public class Controller implements Initializable {
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
-
+        map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
+        map.argentDeBase();
 
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
