@@ -28,6 +28,10 @@ public class Personnage {
         this.taille = taille;
     }
 
+    public double getTaille() {
+        return taille;
+    }
+
     public String getId() {
         return id;
     }

@@ -4,6 +4,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.skin.LabelSkin;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -32,6 +34,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane flêche;
+
+    @FXML
+    private Label labelArgent;
 
     private GameLoop loop;
 
@@ -62,10 +67,12 @@ public class Controller implements Initializable {
         drag = new Drag();
         drop = new Drop(achat, terrain);
         map.getTours().addListener(new ObsTour(terrain));
+        map.getPersonnages().addListener(new ObsPerso(terrain));
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
-
+        map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
+        map.argentDeBase();
 
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
@@ -77,6 +84,9 @@ public class Controller implements Initializable {
             }
         });
 
+        loop = new GameLoop(map);
+        loop.initAnimation();
+        loop.lancer();
 
     }
 
