@@ -4,22 +4,20 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.skin.LabelSkin;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private Map map;
+    private Environnement map;
     private Achat achat;
     private Drag drag;
     private Drop drop;
@@ -32,6 +30,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane flêche;
+
+    @FXML
+    private Label labelArgent;
 
     private GameLoop loop;
 
@@ -56,7 +57,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        map = new Map();
+        map = new Environnement();
         achat = new Achat(map);
         créerTerrain();
         drag = new Drag();
@@ -68,7 +69,8 @@ public class Controller implements Initializable {
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
-
+        map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
+        map.argentDeBase();
 
         terrain.setOnDragOver(new EventHandler<DragEvent>() {
             @Override public void handle(DragEvent event) {
@@ -83,6 +85,7 @@ public class Controller implements Initializable {
         loop = new GameLoop(map);
         loop.initAnimation();
         loop.lancer();
+
     }
 
 

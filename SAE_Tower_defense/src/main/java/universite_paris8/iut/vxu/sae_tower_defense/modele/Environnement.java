@@ -1,5 +1,8 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -7,73 +10,188 @@ import java.util.*;
 
 public class Environnement {
 
-    private static int indiceCible = 99;
+    private static int indiceCible = 71;
+    private static int[] indicesDepart = {18, 108, 164};
 
-    private ObservableList<Integer> terrain; // 10 * 10 ?
-    private List<Personnage> ennemies;
+    private int longueurMap; // static ?
+    private int tailleTile; // static ?
+
+    private IntegerProperty argent;
+
+    private ObservableList<Integer> map;
+    private ObservableList<Personnage> personnages;
+    private ObservableList<Tour> tours;
 
     public Environnement(){
-        this.terrain = FXCollections.observableArrayList();
-        for (int i = 0; i < 100; i++) {
-
-            if((i % 10) == (i / 10) || (i % 9) == 0){
-                terrain.add(1);
-            } else {
-                terrain.add(0);
-            }
-        }
-
-       ennemies = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-           ennemies.add(new Personnage(20, -1, -1, 0, 0, 20, 99, -1));
-       }
+        map = FXCollections.observableArrayList(List.of(
+                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
+                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
+                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
+                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
+        personnages = FXCollections.observableArrayList();
+        tours = FXCollections.observableArrayList();
+        longueurMap = 18;
+        tailleTile = 60;
+        argent = new SimpleIntegerProperty();
 
     }
 
-
-
-
-
-
-
-    public List<Personnage> getEnnemies() {
-        return ennemies;
+    public void argentDeBase(){
+        argent.set(999999999);
     }
 
-    public void test(){
-
-        for (int i = 0; i < 100; i++) {
-            System.out.print(terrain.get(i) + " ");
-            if((i+ 1) % 10 == 0){
-                System.out.println();
-            }
-
+    public void ajouterArgent(int ajout) {
+        if(argent.get()+ajout > 0) {
+            argent.set(argent.get() + ajout);
         }
     }
 
-    public static void main(String[] args) {
-        Environnement env = new Environnement();
-        env.test();
+    public void enleverArgent(int enlever) {
+        if(argent.get()-enlever > 0) {
+            argent.set(argent.get() - enlever);
+        }
+    }
 
-//        System.out.println(env.adjacents(13));
-//        System.out.println(env.adjacents(55));
-//        System.out.println(env.adjacents(90));
+    public int getArgent() {
+        return argent.get();
+    }
 
-        System.out.println("---------");
+    public IntegerProperty argentProperty() {
+        return argent;
+    }
 
-        System.out.println(env.ennemies.get(0).getIndiceTerrain());
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
-//        env.ennemies.get(0).seDeplace(env);
+    public int getTailleTile() {return tailleTile;}
 
+    public int getLongueurMap() {
+        return longueurMap;
+    }
+
+    public ObservableList<Integer> getMap() {
+        return map;
+    }
+
+    public ObservableList<Personnage> getPersonnages() {
+        return personnages;
+    }
+
+    public ObservableList<Tour> getTours() {
+        return tours;
+    }
+
+    public void ajouterPersonnage(Personnage p){
+        personnages.add(p);
+    }
+
+    public void ajouterTour(Tour t){
+        tours.add(t);
+    }
+
+    public void faireUnTour(){
+        System.out.println("Un tour ---------------------------------------------------------\n");
+
+        ajouterPersonnage(new Personnage(10, 1, 1, 3, 3, 10, 20,
+                genererIndiceDepartAlea()));
+
+        for (int i=0;i<personnages.size();i++){
+            personnages.get(i).action(this);
+        }
+        for (int i=0;i<tours.size();i++){
+            tours.get(i).action();
+        }
+    }
+
+    private static int genererIndiceDepartAlea(){
+        int i = (int) (Math.random() * indicesDepart.length);
+        return indicesDepart[i];
+    }
+
+    private Set<Integer> adjacents(int indice){
+
+        if (indice < 0 || indice > map.size() - 1){
+            throw new IllegalArgumentException();
+        }
+
+        var adjacents = new HashSet<Integer>();
+
+        if(indice > longueurMap - 1) {
+            if (map.get(indice).equals(map.get(indice - longueurMap))) {
+                adjacents.add(indice - longueurMap);
+            }
+            // adjacent nord/ouest
+            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
+                adjacents.add(indice - longueurMap - 1);
+            }
+            // adjacent nord/est
+            if ((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap + 1))) {
+                adjacents.add(indice - longueurMap + 1);
+            }
+        }
+        if(indice < map.size() - longueurMap){ // !
+            if(map.get(indice).equals(map.get(indice + longueurMap))){
+                adjacents.add(indice + longueurMap);
+            }
+            // adjacent sud/ouest
+            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
+                adjacents.add(indice + 9);
+            }
+            // adjacent sud/est
+            if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap + 1))){
+                adjacents.add(indice + longueurMap + 1);
+            }
+        }
+        if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - 1))){
+            adjacents.add(indice - 1);
+        }
+        if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + 1))){
+            adjacents.add(indice + 1);
+        }
+        return adjacents;
+    }
+
+    private java.util.Map<Integer, Integer> parcoursBFS(int source){
+
+        List<Integer> parcours = new ArrayList<>();
+
+        LinkedList<Integer> fifo = new LinkedList<>();
+        fifo.add(source);
+
+        java.util.Map<Integer, Integer> predecesseurs = new HashMap<>();
+        predecesseurs.put(source, null);
+
+        while(!fifo.isEmpty()){
+
+            Integer courant = fifo.poll();
+            parcours.add(courant);
+
+            for(Integer adjacent : adjacents(courant)){
+
+                if(!parcours.contains(adjacent)){
+                    parcours.add(adjacent);
+                    predecesseurs.put(adjacent, courant);
+                    fifo.add(adjacent);
+                }
+
+            }
+        }
+
+        return predecesseurs;
+    }
+
+    public List<Integer> cheminVersCible(int source){
+        var predecesseurs = parcoursBFS(source);
+        List<Integer> chemin = new ArrayList<>();
+        Integer courant = indiceCible;
+        while(courant != null){
+            chemin.add(courant);
+            courant = predecesseurs.get(courant);
+        }
+        Collections.reverse(chemin);
+        return chemin;
     }
 }

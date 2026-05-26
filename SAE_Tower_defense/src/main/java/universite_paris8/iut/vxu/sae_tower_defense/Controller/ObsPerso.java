@@ -1,21 +1,19 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 public class ObsPerso implements ListChangeListener<Personnage> {
 
     private Pane terrain;
-    private Map map;
+    private Environnement env;
 
-    public ObsPerso(Pane terrain, Map map) {
+    public ObsPerso(Pane terrain, Environnement env) {
         this.terrain = terrain;
-        this.map = map;
+        this.env = env;
     }
 
     @Override
@@ -23,15 +21,17 @@ public class ObsPerso implements ListChangeListener<Personnage> {
         change.next();
         if (change.wasAdded()){
             for (Personnage personnage : change.getAddedSubList()){
-                Rectangle sprite;
-                sprite = new Rectangle(10,10);
-                sprite.setFill (Color.WHITE);
+                ImageView sprite;
+                sprite =new ImageView();
+                sprite.setImage(new Image(getClass().getResourceAsStream("/image/perso/gobelin_vert/gobelin.gif")));
+                sprite.setFitWidth(personnage.getTaille());
+                sprite.setPreserveRatio(true);
 //                sprite.translateXProperty().bind(personnage.getXProperty());
 //                sprite.translateYProperty().bind(personnage.getYProperty());
 
                 personnage.getIndiceTerrainProperty().addListener((obs, oldVal, newVal) -> {
-                    sprite.setTranslateX(((int) newVal % map.getLongueurMap()) * map.getTailleTile());
-                    sprite.setTranslateY(((int) newVal / map.getLongueurMap()) * map.getTailleTile());
+                    sprite.setTranslateX(((int) newVal % env.getLongueurMap()) * env.getTailleTile());
+                    sprite.setTranslateY(((int) newVal / env.getLongueurMap()) * env.getTailleTile());
                 });
 
                 sprite.setId(personnage.getId());
@@ -41,7 +41,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
 
         if (change.wasRemoved()){
             for (Personnage personnage : change.getRemoved()){
-                terrain.getChildren().remove(terrain.lookup("#" + personnage.getId()));
+                terrain.getChildren().remove(terrain.lookup("#"+personnage.getId()));
             }
         }
     }

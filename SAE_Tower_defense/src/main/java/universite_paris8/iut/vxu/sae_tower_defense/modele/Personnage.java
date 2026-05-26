@@ -31,6 +31,10 @@ public class Personnage {
         this.indiceTerrain = new SimpleIntegerProperty(indiceTerrain);
     }
 
+    public double getTaille() {
+        return taille;
+    }
+
     public String getId() {
         return id;
     }
@@ -93,11 +97,11 @@ public class Personnage {
 
     public boolean estMort(){return pv<=0;}
 
-    public void action(Map env){
+    public void action(Environnement env){
         seDeplace(env);
     }
 
-    private void seDeplace(Map env){
+    private void seDeplace(Environnement env){
         List<Integer> chemin = env.cheminVersCible(indiceTerrain.getValue());
         indiceTerrain.setValue((chemin.size() == 1) ? chemin.get(0) : chemin.get(1));
     }

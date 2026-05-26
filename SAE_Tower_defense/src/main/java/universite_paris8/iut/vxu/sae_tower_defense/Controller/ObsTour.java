@@ -1,11 +1,9 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 public class ObsTour implements ListChangeListener<Tour> {
@@ -21,9 +19,11 @@ public class ObsTour implements ListChangeListener<Tour> {
         change.next();
         if (change.wasAdded()){
             for (Tour tour : change.getAddedSubList()){
-                Rectangle sprite;
-                sprite =new Rectangle(10,10);
-                sprite.setFill (Color.BLACK);
+                ImageView sprite;
+                sprite =new ImageView();
+                sprite.setImage(new Image(getClass().getResourceAsStream("/image/tour/archer/archer.gif")));
+                sprite.setFitWidth(tour.getTaille());
+                sprite.setPreserveRatio(true);
                 sprite.translateXProperty().bind(tour.getXProperty());
                 sprite.translateYProperty().bind(tour.getYProperty());
                 sprite.setId(tour.getId());
