@@ -14,9 +14,9 @@ public class Personnage {
     private int dx;
     private int dy;
     private int degat;
-    private double taille;
+    private int taille;
 
-    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille){
+    public Personnage(int pv, int x, int y, int dx, int dy, int degat, int taille){
         compteur++;
         id= String.valueOf(compteur);
         this.pv = new SimpleIntegerProperty(pv);

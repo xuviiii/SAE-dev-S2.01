@@ -22,7 +22,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
         if (change.wasAdded()){
             for (Personnage personnage : change.getAddedSubList()){
                 Rectangle sprite;
-                sprite =new Rectangle(10,10);
+                sprite =new Rectangle(personnage.getTaille(),personnage.getTaille());
                 sprite.setFill (Color.WHITE);
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());

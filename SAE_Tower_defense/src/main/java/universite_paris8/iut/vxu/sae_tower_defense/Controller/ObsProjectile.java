@@ -21,7 +21,7 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         change.next();
         if (change.wasAdded()){
             for (Projectile projectile : change.getAddedSubList()){
-                ObsIntersectProjectilePerso obs = new ObsIntersectProjectilePerso(map,terrain,projectile);
+                ObsIntersectProjectilePerso obs = new ObsIntersectProjectilePerso(map,projectile);
                 Rectangle sprite;
                 sprite =new Rectangle(5,5);
                 sprite.setFill (Color.BLUE);

@@ -20,11 +20,11 @@ public class GameLoop {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         Personnage p_test;
-        Tour t_test = new Tour("a",240,240,100,1,10,map);
+        Tour t_test = new Tour("a",240,240,100,1,32,map);
         map.ajouterTour(t_test);
 
         for (int i=0;i<50;i++){
-            p_test = new Personnage(10,(int) (Math.random()*500),(int) (Math.random()*500),3,2,10,5);
+            p_test = new Personnage(10,(int) (Math.random()*500),(int) (Math.random()*500),3,2,10,32);
             map.ajouterPersonnage(p_test);
             p_test.getPvProperty().addListener(new ObsPersoPvAZero(map,p_test));
         }

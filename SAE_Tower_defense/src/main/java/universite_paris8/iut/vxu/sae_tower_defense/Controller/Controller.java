@@ -23,7 +23,7 @@ public class Controller implements Initializable {
     private Achat achat;
     private Drag drag;
     private Drop drop;
-    GameLoop gameLoop;
+    private GameLoop loop;
 
     @FXML
     private TilePane tile;
@@ -33,8 +33,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane flêche;
-
-    private GameLoop loop;
 
 
 
@@ -80,27 +78,10 @@ public class Controller implements Initializable {
             }
         });
 
-
-        /*Pane menu = new Pane();
-        terrain.getChildren().add(menu);
-        Label stats = new Label("Stats");
-        Button améliorer = new Button("Améliorer");
-        Button vendre = new Button("Vendre");
-        VBox menuContenu = new VBox(stats,améliorer,vendre);
-        menu.getChildren().add(menuContenu);
-        menu.setStyle("-fx-background-color: #c19a9a;");
-        menu.setDisable(true);
-        menu.setOpacity(0);
-
-        terrain.setOnMouseClicked(new Menu(map,menu,stats));*/
-
-
         terrain.setOnMouseClicked(new Menu(map,terrain));
 
-
-
-        gameLoop=new GameLoop(map);
-        gameLoop.initAnimation();
-        gameLoop.lancer();
+        loop=new GameLoop(map);
+        loop.initAnimation();
+        loop.lancer();
     }
 }

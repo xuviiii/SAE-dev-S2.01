@@ -10,7 +10,7 @@ public class ObsIntersectProjectilePerso implements ChangeListener<Number> {
     private Map map;
     private Projectile projectile;
 
-    public ObsIntersectProjectilePerso(Map map, Pane terrain, Projectile projectile) {
+    public ObsIntersectProjectilePerso(Map map, Projectile projectile) {
         this.map = map;
         this.projectile = projectile;
     }
