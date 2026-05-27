@@ -47,13 +47,13 @@ public class Environnement {
     }
 
     public void ajouterArgent(int ajout) {
-        if(argent.get()+ajout > 0) {
+        if(argent.get() + ajout > 0) {
             argent.set(argent.get() + ajout);
         }
     }
 
     public void enleverArgent(int enlever) {
-        if(argent.get()-enlever > 0) {
+        if(argent.get() - enlever > 0) {
             argent.set(argent.get() - enlever);
         }
     }
@@ -95,13 +95,20 @@ public class Environnement {
     public void faireUnTour(){
         System.out.println("Un tour ---------------------------------------------------------\n");
 
-        ajouterPersonnage(new Personnage(10, 1, 1, 3, 3, 10, 20,
-                genererIndiceDepartAlea()));
+        int indDepart = genererIndiceDepartAlea();
 
-        for (int i=0;i<personnages.size();i++){
+        ajouterPersonnage(new Personnage(10,
+                (indDepart % longueurMap) * tailleTile,
+                (indDepart / longueurMap) * tailleTile,
+                4,
+                10,
+                20,
+                indDepart));
+
+        for (int i = 0; i < personnages.size(); i++){
             personnages.get(i).action(this);
         }
-        for (int i=0;i<tours.size();i++){
+        for (int i = 0; i < tours.size(); i++){
             tours.get(i).action();
         }
     }
@@ -124,26 +131,26 @@ public class Environnement {
                 adjacents.add(indice - longueurMap);
             }
             // adjacent nord/ouest
-            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
-                adjacents.add(indice - longueurMap - 1);
-            }
+//            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
+//                adjacents.add(indice - longueurMap - 1);
+//            }
             // adjacent nord/est
-            if ((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap + 1))) {
-                adjacents.add(indice - longueurMap + 1);
-            }
+//            if ((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap + 1))) {
+//                adjacents.add(indice - longueurMap + 1);
+//            }
         }
         if(indice < map.size() - longueurMap){ // !
             if(map.get(indice).equals(map.get(indice + longueurMap))){
                 adjacents.add(indice + longueurMap);
             }
             // adjacent sud/ouest
-            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
-                adjacents.add(indice + 9);
-            }
+//            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
+//                adjacents.add(indice + 9);
+//            }
             // adjacent sud/est
-            if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap + 1))){
-                adjacents.add(indice + longueurMap + 1);
-            }
+//            if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap + 1))){
+//                adjacents.add(indice + longueurMap + 1);
+//            }
         }
         if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - 1))){
             adjacents.add(indice - 1);
@@ -183,7 +190,7 @@ public class Environnement {
         return predecesseurs;
     }
 
-    public List<Integer> cheminVersCible(int source){
+    private List<Integer> cheminVersCible(int source){
         var predecesseurs = parcoursBFS(source);
         List<Integer> chemin = new ArrayList<>();
         Integer courant = indiceCible;
@@ -193,5 +200,10 @@ public class Environnement {
         }
         Collections.reverse(chemin);
         return chemin;
+    }
+
+    public int tileSuivante(int source){
+        List<Integer> chemin = cheminVersCible(source);
+        return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
     }
 }

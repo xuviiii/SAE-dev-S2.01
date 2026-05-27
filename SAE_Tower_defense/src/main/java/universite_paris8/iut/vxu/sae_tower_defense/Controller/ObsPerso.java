@@ -9,11 +9,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 public class ObsPerso implements ListChangeListener<Personnage> {
 
     private Pane terrain;
-    private Environnement env;
 
-    public ObsPerso(Pane terrain, Environnement env) {
+    public ObsPerso(Pane terrain) {
         this.terrain = terrain;
-        this.env = env;
     }
 
     @Override
@@ -26,13 +24,13 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite.setImage(new Image(getClass().getResourceAsStream("/image/perso/gobelin_vert/gobelin.gif")));
                 sprite.setFitWidth(personnage.getTaille());
                 sprite.setPreserveRatio(true);
-//                sprite.translateXProperty().bind(personnage.getXProperty());
-//                sprite.translateYProperty().bind(personnage.getYProperty());
+                sprite.translateXProperty().bind(personnage.getXProperty());
+                sprite.translateYProperty().bind(personnage.getYProperty());
 
-                personnage.getIndiceTerrainProperty().addListener((obs, oldVal, newVal) -> {
-                    sprite.setTranslateX(((int) newVal % env.getLongueurMap()) * env.getTailleTile());
-                    sprite.setTranslateY(((int) newVal / env.getLongueurMap()) * env.getTailleTile());
-                });
+//                personnage.getIndiceTerrainProperty().addListener((obs, oldVal, newVal) -> {
+//                    sprite.setTranslateX(((int) newVal % env.getLongueurMap()) * env.getTailleTile());
+//                    sprite.setTranslateY(((int) newVal / env.getLongueurMap()) * env.getTailleTile());
+//                });
 
                 sprite.setId(personnage.getId());
                 terrain.getChildren().add(sprite);

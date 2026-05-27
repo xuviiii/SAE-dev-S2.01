@@ -29,7 +29,7 @@ public class GameLoop {
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if (temps%5==0){    // A modifier pour les persos
+                    if (temps % 5 == 0){    // A modifier pour les persos
                         map.faireUnTour();
                     }
                     temps++;

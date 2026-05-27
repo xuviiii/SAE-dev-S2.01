@@ -1,10 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import java.util.List;
 
 public class Personnage {
     private static int compteur;
@@ -12,23 +9,22 @@ public class Personnage {
     private int pv;
     private DoubleProperty x;
     private DoubleProperty y;
-    private int dx;
-    private int dy;
+    private int vitesse;
     private int degat;
     private double taille;
-    private IntegerProperty indiceTerrain;
+    private int indiceTerrain;
 
-    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille, int indiceTerrain){
+    public Personnage(int pv, int x, int y, int vitesse,  int degat,
+                      double taille, int indiceTerrain){
         compteur++;
         id= String.valueOf(compteur);
         this.pv = pv;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
-        this.dx = dx;
-        this.dy = dy;
+        this.vitesse = vitesse;
         this.degat = degat;
         this.taille = taille;
-        this.indiceTerrain = new SimpleIntegerProperty(indiceTerrain);
+        this.indiceTerrain = indiceTerrain;
     }
 
     public double getTaille() {
@@ -71,20 +67,8 @@ public class Personnage {
         this.y.setValue(y);
     }
 
-    public int getDx() {
-        return dx;
-    }
-
-    public void setDx(int dx) {
-        this.dx = dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
+    public int getVitesse() {
+        return vitesse;
     }
 
     public int getDegat() {
@@ -102,20 +86,43 @@ public class Personnage {
     }
 
     private void seDeplace(Environnement env){
-        List<Integer> chemin = env.cheminVersCible(indiceTerrain.getValue());
-        indiceTerrain.setValue((chemin.size() == 1) ? chemin.get(0) : chemin.get(1));
-    }
 
-    public IntegerProperty getIndiceTerrainProperty() {
-        return indiceTerrain;
+        int suivant = env.tileSuivante(indiceTerrain);
+
+        int suivant_X = (suivant % env.getLongueurMap()) * env.getTailleTile();
+        int suivant_Y = (suivant / env.getLongueurMap()) * env.getTailleTile();
+
+        double dist_x = Math.abs(x.getValue() - suivant_X);
+        double dist_y = Math.abs(y.getValue() - suivant_Y);
+
+        if(x.getValue() > suivant_X){
+            x.setValue(x.getValue() - (Math.min(vitesse, dist_x)));
+        }
+
+        if(x.getValue() < suivant_X){
+            x.setValue(x.getValue() + (Math.min(vitesse, dist_x)));
+        }
+
+        if(y.getValue() > suivant_Y){
+            y.setValue(y.getValue() - (Math.min(vitesse, dist_y)));
+        }
+
+        if(y.getValue() < suivant_Y){
+            y.setValue(y.getValue() + (Math.min(vitesse, dist_y)));
+        }
+
+        if(x.getValue() == suivant_X && y.getValue() == suivant_Y){
+            indiceTerrain = suivant;
+        }
+
     }
 
     public int getIndiceTerrain(){
-        return indiceTerrain.getValue();
+        return indiceTerrain;
     }
 
     public void setIndiceTerrain(int indiceTerrain) {
-        this.indiceTerrain.setValue(indiceTerrain);
+        this.indiceTerrain = indiceTerrain;
     }
 
     @Override
@@ -124,8 +131,6 @@ public class Personnage {
                 "pv=" + pv +
                 ", x=" + x +
                 ", y=" + y +
-                ", dx=" + dx +
-                ", dy=" + dy +
                 ", degat=" + degat +
                 '}';
     }
