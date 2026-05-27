@@ -6,12 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 public class Menu implements EventHandler<MouseEvent> {
 
-    private Map map;
+    private Environnement map;
     private Pane terrain;
     private static Pane menu = new Pane();
     private static Label stats = new Label("Stats");
@@ -19,7 +18,7 @@ public class Menu implements EventHandler<MouseEvent> {
     private static Button vendre = new Button("Vendre");
     private static VBox menuContenu = new VBox(stats,améliorer,vendre);
 
-    public Menu(Map map, Pane terrain) {
+    public Menu(Environnement map, Pane terrain) {
         this.map = map;
         this.terrain = terrain;
         menu.setStyle("-fx-background-color: #c19a9a;");

@@ -8,9 +8,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.Controller.ObsPersoPvAZero;
 public class GameLoop {
     private Timeline gameLoop;
     private int temps;
-    private Map map;
+    private Environnement map;
 
-    public GameLoop(Map map) {
+    public GameLoop(Environnement map) {
         this.map = map;
     }
 
@@ -23,19 +23,19 @@ public class GameLoop {
         Tour t_test = new Tour("a",240,240,100,1,32,map);
         map.ajouterTour(t_test);
 
-        for (int i=0;i<50;i++){
-            p_test = new Personnage(10,(int) (Math.random()*500),(int) (Math.random()*500),3,2,10,32);
-            map.ajouterPersonnage(p_test);
-            p_test.getPvProperty().addListener(new ObsPersoPvAZero(map,p_test));
-        }
+//        for (int i=0;i<50;i++){
+//            p_test = new Personnage(10,(int) (Math.random()*500),(int) (Math.random()*500),3,2,32,32);
+//            map.ajouterPersonnage(p_test);
+//            p_test.getPvProperty().addListener(new ObsPersoPvAZero(map,p_test));
+//        }
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.017/10),
+                Duration.seconds(0.017/2),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
-                    if (temps%5==0){    // A modifier pour les persos
+                    if (temps % 5 == 0){    // A modifier pour les persos
                         map.faireUnTour(temps);
                     }
                     temps++;

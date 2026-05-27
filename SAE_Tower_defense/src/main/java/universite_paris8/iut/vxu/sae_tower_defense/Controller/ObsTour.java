@@ -4,10 +4,6 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 public class ObsTour implements ListChangeListener<Tour> {
