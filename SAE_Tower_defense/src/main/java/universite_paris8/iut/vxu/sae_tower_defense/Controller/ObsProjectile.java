@@ -4,14 +4,14 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Projectile;
 
 public class ObsProjectile implements ListChangeListener<Projectile> {
-    private Map map;
+    private Environnement map;
     private Pane terrain;
 
-    public ObsProjectile(Map map,Pane terrain) {
+    public ObsProjectile(Environnement map, Pane terrain) {
         this.map = map;
         this.terrain = terrain;
     }

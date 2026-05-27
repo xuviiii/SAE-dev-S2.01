@@ -4,11 +4,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 public class ObsPerso implements ListChangeListener<Personnage> {
 
@@ -30,6 +26,12 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite.setPreserveRatio(true);
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());
+
+//                personnage.getIndiceTerrainProperty().addListener((obs, oldVal, newVal) -> {
+//                    sprite.setTranslateX(((int) newVal % env.getLongueurMap()) * env.getTailleTile());
+//                    sprite.setTranslateY(((int) newVal / env.getLongueurMap()) * env.getTailleTile());
+//                });
+
                 sprite.setId(personnage.getId());
                 terrain.getChildren().add(sprite);
             }

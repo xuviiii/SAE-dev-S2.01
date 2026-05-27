@@ -2,10 +2,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.collections.FXCollections;
 
 import java.util.ArrayList;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 
 public class Tour {
     private static int compteur;
@@ -14,11 +12,11 @@ public class Tour {
     private DoubleProperty y;
     private int portée;
     private int dégât;
-    private Map map;
+    private Environnement map;
     private int taille;
     private int prix;
 
-    public Tour(double x, double y, int portée, int dégât, int taille, Map map, int prix) {
+    public Tour(double x, double y, int portée, int dégât, int taille, Environnement map, int prix) {
         compteur++;
         id= "T"+compteur;
         this.x = new SimpleDoubleProperty(x);

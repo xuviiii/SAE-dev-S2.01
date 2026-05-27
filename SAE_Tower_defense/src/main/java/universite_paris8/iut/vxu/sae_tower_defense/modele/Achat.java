@@ -1,9 +1,9 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 public class Achat {
-    private Map map;
+    private Environnement map;
 
-    public Achat(Map map) {
+    public Achat(Environnement map) {
         this.map = map;
     }
 
