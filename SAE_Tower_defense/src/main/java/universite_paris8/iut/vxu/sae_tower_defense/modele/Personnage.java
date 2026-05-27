@@ -8,18 +8,18 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Personnage {
     private static int compteur;
     private String id;
-    private int pv;
+    private IntegerProperty pv;
     private DoubleProperty x;
     private DoubleProperty y;
     private int dx;
     private int dy;
     private int degat;
-    private double taille;
+    private int taille;
 
-    public Personnage(int pv, int x, int y, int dx, int dy, int degat, double taille){
+    public Personnage(int pv, int x, int y, int dx, int dy, int degat, int taille){
         compteur++;
         id= String.valueOf(compteur);
-        this.pv = pv;
+        this.pv = new SimpleIntegerProperty(pv);
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.dx = dx;
@@ -28,20 +28,16 @@ public class Personnage {
         this.taille = taille;
     }
 
-    public double getTaille() {
-        return taille;
-    }
-
     public String getId() {
         return id;
     }
 
     public int getPv() {
-        return pv;
+        return pv.get();
     }
 
-    public void setPv(int pv) {
-        this.pv = pv;
+    public IntegerProperty getPvProperty() {
+        return pv;
     }
 
     public DoubleProperty getXProperty() {
@@ -88,11 +84,19 @@ public class Personnage {
         return degat;
     }
 
-    public void setDegat(int degat) {
-        this.degat = degat;
+    public int getTaille() {
+        return taille;
     }
 
-    public boolean estMort(){return pv<=0;}
+    public void subirDegat(int degat){
+        pv.setValue(pv.getValue()-degat);
+    }
+
+    public boolean estMort(){return pv.getValue()<=0;}
+
+    public boolean estTouché(double x,double y){
+        return this.x.getValue()-1<=x && this.x.getValue()+taille+1>=x && this.y.getValue()-1<=y && this.y.getValue()+taille+1>=y;
+    }
 
     public void action(){
 
