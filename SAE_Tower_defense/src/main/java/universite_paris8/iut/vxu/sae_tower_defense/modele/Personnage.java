@@ -19,7 +19,7 @@ public class Personnage {
     public Personnage(int pv, int x, int y, int vitesse,  int degat,
                       int taille, int indiceTerrain){
         compteur++;
-        id= String.valueOf(compteur);
+        id= "P"+compteur;
         this.pv = new SimpleIntegerProperty(pv);
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);

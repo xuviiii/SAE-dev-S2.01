@@ -13,10 +13,6 @@ public class Menu implements EventHandler<MouseEvent> {
     private Environnement map;
     private Pane terrain;
     private static Pane menu = new Pane();
-    private static Label stats = new Label("Stats");
-    private static Button améliorer = new Button("Améliorer");
-    private static Button vendre = new Button("Vendre");
-    private static VBox menuContenu = new VBox(stats,améliorer,vendre);
 
     public Menu(Environnement map, Pane terrain) {
         this.map = map;
@@ -34,14 +30,18 @@ public class Menu implements EventHandler<MouseEvent> {
             if (mouseEvent.getX()>=map.getTours().get(i).getX()&&mouseEvent.getX()<=map.getTours().get(i).getX()+map.getTours().get(i).getTaille()&&mouseEvent.getY()>=map.getTours().get(i).getY()&&mouseEvent.getY()<=map.getTours().get(i).getY()+map.getTours().get(i).getTaille()){
 
                 System.out.println("Tour clique");
+                Label stats = new Label("Stats");
+                Button améliorer = new Button("Améliorer");
+                Button vendre = new Button("Vendre");
+                VBox menuContenu = new VBox(stats,améliorer,vendre);
 
                 if (!menu.getChildren().contains(menuContenu))
                     menu.getChildren().add(menuContenu);
                 stats.setText("Stats :\ndegat : "+map.getTours().get(i).getDégât()+", Portée : "+map.getTours().get(i).getPortée()+", Position : x"+map.getTours().get(i).getX()+", y"+map.getTours().get(i).getY());
-                menu.setTranslateX(mouseEvent.getX());
-                menu.setTranslateY(mouseEvent.getY());
+                menu.setTranslateX(map.getTours().get(i).getX()+map.getTours().get(i).getTaille());
+                menu.setTranslateY(map.getTours().get(i).getY()+map.getTours().get(i).getTaille());
                 améliorer.setOnAction(new Améliorer(map.getTours().get(i),stats));
-                vendre.setOnAction(new Améliorer(map.getTours().get(i),stats));
+                vendre.setOnAction(new Vendre(map,map.getTours().get(i),menu));
                 tourClique = true;
             }
             i++;
