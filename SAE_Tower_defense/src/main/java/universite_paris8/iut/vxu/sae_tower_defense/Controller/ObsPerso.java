@@ -36,6 +36,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
         }
 
         if (change.wasRemoved()){
+            System.out.println(change.wasRemoved());
             for (Personnage personnage : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+personnage.getId()));
             }

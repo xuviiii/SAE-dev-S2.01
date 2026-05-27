@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 
 public class Tour {
+    private static int compteur;
     private String id;
     private DoubleProperty x;
     private DoubleProperty y;
@@ -15,15 +16,18 @@ public class Tour {
     private int dégât;
     private Map map;
     private int taille;
+    private int prix;
 
-    public Tour(String id, double x, double y, int portée, int dégât, int taille, Map map) {
-        this.id = id;
+    public Tour(double x, double y, int portée, int dégât, int taille, Map map, int prix) {
+        compteur++;
+        id= "T"+compteur;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.portée = portée;
         this.dégât = dégât;
         this.taille = taille;
         this.map = map;
+        this.prix = prix;
     }
 
     public String getId() {
@@ -56,6 +60,10 @@ public class Tour {
 
     public int getTaille() {
         return taille;
+    }
+
+    public int getPrix() {
+        return prix;
     }
 
     public void ameliorer(){

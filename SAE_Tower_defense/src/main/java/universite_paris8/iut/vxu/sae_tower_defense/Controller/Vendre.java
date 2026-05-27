@@ -2,6 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Map;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
@@ -9,14 +10,19 @@ public class Vendre implements EventHandler<ActionEvent> {
 
     private Map map;
     private Tour tour;
+    private Pane menu;
 
-    public Vendre(Map map, Tour tour) {
+    public Vendre(Map map, Tour tour, Pane menu) {
         this.map = map;
         this.tour = tour;
+        this.menu = menu;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        System.out.println(tour.getId());
+        menu.getChildren().clear();
         map.getTours().remove(tour);
+        map.ajouterArgent(tour.getPrix()/2);
     }
 }
