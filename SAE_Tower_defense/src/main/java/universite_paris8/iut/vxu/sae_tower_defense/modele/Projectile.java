@@ -1,0 +1,73 @@
+package universite_paris8.iut.vxu.sae_tower_defense.modele;
+
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+public class Projectile {
+    private String id;
+    private int degat;
+    private DoubleProperty x;
+    private DoubleProperty y;
+    private double dx;
+    private double dy;
+    private int portee;
+    private double xInitial;
+    private double yInitial;
+    private int vitesse;
+
+    public Projectile(String id, int degat, double x, double y, double dx, double dy, int portee, int vitesse) {
+        this.id = id;
+        this.degat = degat;
+        this.x = new SimpleDoubleProperty(x);
+        this.y = new SimpleDoubleProperty(y);
+        this.dx = dx;
+        this.dy = dy;
+        this.portee=portee;
+        xInitial=x;
+        yInitial=y;
+        this.vitesse = vitesse;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getDegat() {
+        return degat;
+    }
+
+    public double getX() {
+        return x.get();
+    }
+
+    public DoubleProperty getXProperty() {
+        return x;
+    }
+
+    public double getY() {
+        return y.get();
+    }
+
+    public DoubleProperty getYProperty() {
+        return y;
+    }
+
+    public void setDx(double dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(double dy) {
+        this.dy = dy;
+    }
+
+    public void avancer(){
+        x.setValue(x.getValue()+dx*vitesse);
+        y.setValue(y.getValue()+dy*vitesse);
+    }
+
+    public boolean horsPortee(){
+        return (int) (Math.abs(x.getValue()-(xInitial)))>portee || (int) (Math.abs(y.getValue()-(yInitial)))>portee;
+    }
+}

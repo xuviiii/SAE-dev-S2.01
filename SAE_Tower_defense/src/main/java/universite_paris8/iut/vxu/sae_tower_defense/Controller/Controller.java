@@ -5,12 +5,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.skin.LabelSkin;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ public class Controller implements Initializable {
     private Achat achat;
     private Drag drag;
     private Drop drop;
+    private GameLoop loop;
 
     @FXML
     private TilePane tile;
@@ -33,10 +35,6 @@ public class Controller implements Initializable {
 
     @FXML
     private Label labelArgent;
-
-    private GameLoop loop;
-
-
 
 
     public void créerTerrain() {
@@ -63,9 +61,8 @@ public class Controller implements Initializable {
         drag = new Drag();
         drop = new Drop(achat, terrain);
         map.getTours().addListener(new ObsTour(terrain));
-
+        map.getProjectiles().addListener(new ObsProjectile(map,terrain));
         map.getPersonnages().addListener(new ObsPerso(terrain));
-
 
         flêche.setOnDragDetected(e ->  drag.handle(e));
         terrain.setOnDragDropped(e -> drop.handle(e));
@@ -82,10 +79,11 @@ public class Controller implements Initializable {
             }
         });
 
-        loop = new GameLoop(map);
+        terrain.setOnMouseClicked(new Menu(map,terrain));
+
+        loop=new GameLoop(map);
         loop.initAnimation();
         loop.lancer();
-
     }
 
 

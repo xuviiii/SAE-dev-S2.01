@@ -1,24 +1,26 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Personnage {
     private static int compteur;
     private String id;
-    private int pv;
+    private IntegerProperty pv;
     private DoubleProperty x;
     private DoubleProperty y;
     private int vitesse;
     private int degat;
-    private double taille;
     private int indiceTerrain;
+    private int taille;
 
     public Personnage(int pv, int x, int y, int vitesse,  int degat,
-                      double taille, int indiceTerrain){
+                      int taille, int indiceTerrain){
         compteur++;
         id= String.valueOf(compteur);
-        this.pv = pv;
+        this.pv = new SimpleIntegerProperty(pv);
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.vitesse = vitesse;
@@ -27,20 +29,16 @@ public class Personnage {
         this.indiceTerrain = indiceTerrain;
     }
 
-    public double getTaille() {
-        return taille;
-    }
-
     public String getId() {
         return id;
     }
 
     public int getPv() {
-        return pv;
+        return pv.get();
     }
 
-    public void setPv(int pv) {
-        this.pv = pv;
+    public IntegerProperty getPvProperty() {
+        return pv;
     }
 
     public DoubleProperty getXProperty() {
@@ -75,11 +73,19 @@ public class Personnage {
         return degat;
     }
 
-    public void setDegat(int degat) {
-        this.degat = degat;
+    public int getTaille() {
+        return taille;
     }
 
-    public boolean estMort(){return pv<=0;}
+    public void subirDegat(int degat){
+        pv.setValue(pv.getValue()-degat);
+    }
+
+    public boolean estMort(){return pv.getValue()<=0;}
+
+    public boolean estTouché(double x,double y){
+        return this.x.getValue()-1<=x && this.x.getValue()+taille+1>=x && this.y.getValue()-1<=y && this.y.getValue()+taille+1>=y;
+    }
 
     public void action(Environnement env){
         seDeplace(env);

@@ -15,12 +15,11 @@ public class Environnement {
 
     private int longueurMap; // static ?
     private int tailleTile; // static ?
-
     private IntegerProperty argent;
-
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
+    private ObservableList<Projectile> projectiles;
 
     public Environnement(){
         map = FXCollections.observableArrayList(List.of(
@@ -34,9 +33,10 @@ public class Environnement {
                 0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
                 0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
-        personnages = FXCollections.observableArrayList();
-        tours = FXCollections.observableArrayList();
-        longueurMap = 18;
+        personnages= FXCollections.observableArrayList();
+        tours=FXCollections.observableArrayList();
+        projectiles = FXCollections.observableArrayList();
+        longueurMap =18;
         tailleTile = 60;
         argent = new SimpleIntegerProperty();
 
@@ -47,13 +47,13 @@ public class Environnement {
     }
 
     public void ajouterArgent(int ajout) {
-        if(argent.get() + ajout > 0) {
+        if(argent.get()+ajout > 0) {
             argent.set(argent.get() + ajout);
         }
     }
 
     public void enleverArgent(int enlever) {
-        if(argent.get() - enlever > 0) {
+        if(argent.get()-enlever > 0) {
             argent.set(argent.get() - enlever);
         }
     }
@@ -84,6 +84,10 @@ public class Environnement {
         return tours;
     }
 
+    public ObservableList<Projectile> getProjectiles() {
+        return projectiles;
+    }
+
     public void ajouterPersonnage(Personnage p){
         personnages.add(p);
     }
@@ -92,24 +96,30 @@ public class Environnement {
         tours.add(t);
     }
 
-    public void faireUnTour(){
-        System.out.println("Un tour ---------------------------------------------------------\n");
+    public void faireUnTour(int temps){
 
         int indDepart = genererIndiceDepartAlea();
 
-        ajouterPersonnage(new Personnage(10,
-                (indDepart % longueurMap) * tailleTile,
-                (indDepart / longueurMap) * tailleTile,
-                4,
-                10,
-                20,
-                indDepart));
+        if(temps % 100 == 0) {
 
-        for (int i = 0; i < personnages.size(); i++){
+            ajouterPersonnage(new Personnage(10,
+                    (indDepart % longueurMap) * tailleTile,
+                    (indDepart / longueurMap) * tailleTile,
+                    4,
+                    10,
+                    32,
+                    indDepart));
+        }
+
+        for (int i=0;i<personnages.size();i++){
             personnages.get(i).action(this);
         }
-        for (int i = 0; i < tours.size(); i++){
-            tours.get(i).action();
+        if (temps%100==0)
+            for (int i=0;i<tours.size();i++){
+                tours.get(i).action();
+            }
+        for (int i=0;i<projectiles.size();i++){
+            projectiles.get(i).avancer();
         }
     }
 
