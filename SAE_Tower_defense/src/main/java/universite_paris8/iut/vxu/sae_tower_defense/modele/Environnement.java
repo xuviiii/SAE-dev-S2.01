@@ -100,12 +100,12 @@ public class Environnement {
 
         int indDepart = genererIndiceDepartAlea();
 
-        if(temps % 100 == 0) {
+        if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
                     (indDepart % longueurMap) * tailleTile,
                     (indDepart / longueurMap) * tailleTile,
-                    4,
+                    1,
                     10,
                     32,
                     indDepart));
@@ -114,12 +114,17 @@ public class Environnement {
         for (int i=0;i<personnages.size();i++){
             personnages.get(i).action(this);
         }
-        if (temps%100==0)
+        if (temps%50==0)
             for (int i=0;i<tours.size();i++){
                 tours.get(i).action();
             }
         for (int i=0;i<projectiles.size();i++){
             projectiles.get(i).avancer();
+        }
+
+        for (int i=0;i<personnages.size();i++){
+            if (personnages.get(i).estMort())
+                personnages.remove(personnages.get(i));
         }
     }
 
@@ -200,7 +205,7 @@ public class Environnement {
         return predecesseurs;
     }
 
-    private List<Integer> cheminVersCible(int source){
+    public List<Integer> cheminVersCible(int source){
         var predecesseurs = parcoursBFS(source);
         List<Integer> chemin = new ArrayList<>();
         Integer courant = indiceCible;

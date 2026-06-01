@@ -20,7 +20,9 @@ public class ObsIntersectProjectilePerso implements ChangeListener<Number> {
         boolean arret=false;
         while (i<map.getPersonnages().size()&&!arret){
             if (map.getPersonnages().get(i).estTouché(projectile.getX(), projectile.getY())){
+                System.out.println(map.getPersonnages().get(i));
                 map.getPersonnages().get(i).subirDegat(projectile.getDegat());
+                System.out.println(map.getPersonnages().get(i));
                 map.getProjectiles().remove(projectile);
                 arret=true;
             }

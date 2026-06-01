@@ -10,7 +10,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.GameLoop;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.net.URL;

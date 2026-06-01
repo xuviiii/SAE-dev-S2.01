@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Projectile {
+    private static int compteur;
     private String id;
     private int degat;
     private DoubleProperty x;
@@ -17,8 +18,9 @@ public class Projectile {
     private double yInitial;
     private int vitesse;
 
-    public Projectile(String id, int degat, double x, double y, double dx, double dy, int portee, int vitesse) {
-        this.id = id;
+    public Projectile(int degat, double x, double y, double dx, double dy, int portee, int vitesse) {
+        compteur++;
+        id= "Pr"+compteur;
         this.degat = degat;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
