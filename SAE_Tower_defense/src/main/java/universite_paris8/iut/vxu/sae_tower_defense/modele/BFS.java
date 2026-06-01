@@ -93,4 +93,9 @@ public class BFS {
         Collections.reverse(chemin);
         return chemin;
     }
+
+    public int tileSuivante(int source){
+        List<Integer> chemin = cheminVersCible(source);
+        return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
+    }
 }
