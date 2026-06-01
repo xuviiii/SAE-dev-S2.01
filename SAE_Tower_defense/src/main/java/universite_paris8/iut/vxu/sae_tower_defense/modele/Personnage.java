@@ -95,8 +95,8 @@ public class Personnage {
 
         int suivant = env.tileSuivante(indiceTerrain);
 
-        int suivant_X = (suivant % env.getLongueurMap()) * env.getTailleTile();
-        int suivant_Y = (suivant / env.getLongueurMap()) * env.getTailleTile();
+        int suivant_X = (suivant % env.getTerrain().getLongueurMap()) * env.getTerrain().getTailleTile();
+        int suivant_Y = (suivant / env.getTerrain().getLongueurMap()) * env.getTerrain().getTailleTile();
 
         double dist_x = Math.abs(x.getValue() - suivant_X);
         double dist_y = Math.abs(y.getValue() - suivant_Y);

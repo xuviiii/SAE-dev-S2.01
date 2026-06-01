@@ -12,34 +12,19 @@ public class Environnement {
 
     private static int indiceCible = 71;
     private static int[] indicesDepart = {18, 108, 164};
-
-    private int longueurMap; // static ?
-    private int tailleTile; // static ?
+    private Terrain terrain;
     private IntegerProperty argent;
-    private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
 
     public Environnement(){
-        map = FXCollections.observableArrayList(List.of(
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
-                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
+
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
         projectiles = FXCollections.observableArrayList();
-        longueurMap =18;
-        tailleTile = 60;
         argent = new SimpleIntegerProperty();
-
+        terrain = new Terrain();
     }
 
     public void argentDeBase(){
@@ -62,18 +47,12 @@ public class Environnement {
         return argent.get();
     }
 
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
     public IntegerProperty argentProperty() {
         return argent;
-    }
-
-    public int getTailleTile() {return tailleTile;}
-
-    public int getLongueurMap() {
-        return longueurMap;
-    }
-
-    public ObservableList<Integer> getMap() {
-        return map;
     }
 
     public ObservableList<Personnage> getPersonnages() {
@@ -105,8 +84,8 @@ public class Environnement {
         if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
-                    (indDepart % longueurMap) * tailleTile,
-                    (indDepart / longueurMap) * tailleTile,
+                    (indDepart % terrain.getLongueurMap()) * terrain.getTailleTile(),
+                    (indDepart / terrain.getLongueurMap()) * terrain.getTailleTile(),
                     1,
                     10,
                     32,
@@ -152,15 +131,15 @@ public class Environnement {
 
     private Set<Integer> adjacents(int indice){
 
-        if (indice < 0 || indice > map.size() - 1){
+        if (indice < 0 || indice > terrain.getMap().size() - 1){
             throw new IllegalArgumentException();
         }
 
         var adjacents = new HashSet<Integer>();
 
-        if(indice > longueurMap - 1) {
-            if (map.get(indice).equals(map.get(indice - longueurMap))) {
-                adjacents.add(indice - longueurMap);
+        if(indice > terrain.getLongueurMap() - 1) {
+            if (terrain.getMap().get(indice).equals(terrain.getMap().get(indice - terrain.getLongueurMap()))) {
+                adjacents.add(indice - terrain.getLongueurMap());
             }
             // adjacent nord/ouest
 //            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
@@ -171,9 +150,9 @@ public class Environnement {
 //                adjacents.add(indice - longueurMap + 1);
 //            }
         }
-        if(indice < map.size() - longueurMap){ // !
-            if(map.get(indice).equals(map.get(indice + longueurMap))){
-                adjacents.add(indice + longueurMap);
+        if(indice < terrain.getMap().size() - terrain.getLongueurMap()){ // !
+            if(terrain.getMap().get(indice).equals(terrain.getMap().get(indice + terrain.getLongueurMap()))){
+                adjacents.add(indice + terrain.getLongueurMap());
             }
             // adjacent sud/ouest
 //            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
@@ -184,10 +163,10 @@ public class Environnement {
 //                adjacents.add(indice + longueurMap + 1);
 //            }
         }
-        if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - 1))){
+        if(indice % terrain.getLongueurMap() != 0 && terrain.getMap().get(indice).equals(terrain.getMap().get(indice - 1))){
             adjacents.add(indice - 1);
         }
-        if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + 1))){
+        if((indice + 1) % terrain.getLongueurMap() != 0 && terrain.getMap().get(indice).equals(terrain.getMap().get(indice + 1))){
             adjacents.add(indice + 1);
         }
         return adjacents;
