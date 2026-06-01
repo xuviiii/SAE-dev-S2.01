@@ -1,9 +1,11 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import universite_paris8.iut.vxu.sae_tower_defense.Controller.ObsPersoPvAZero;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 public class GameLoop {
     private Timeline gameLoop;
@@ -31,7 +33,7 @@ public class GameLoop {
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
-                Duration.seconds(0.017/2),
+                Duration.seconds(0.017/6),
                 // on définit ce qui se passe à chaque frame
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{

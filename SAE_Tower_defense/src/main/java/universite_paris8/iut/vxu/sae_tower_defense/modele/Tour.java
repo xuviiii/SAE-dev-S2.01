@@ -80,10 +80,13 @@ public class Tour {
             return null;
         else{
             ennemiACible = ennemisCiblables.get(0);
-            for (int i=1;i<ennemisCiblables.size();i++){
+            for (Personnage personnage : ennemisCiblables)
+                if (map.cheminVersCible(personnage.getIndiceTerrain()).size()<map.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
+                    ennemiACible = personnage;
+            /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
                     ennemiACible = ennemisCiblables.get(i);
-            }
+            }*/
             return ennemiACible;
         }
     }
@@ -91,9 +94,9 @@ public class Tour {
     public void creerProjectile(Personnage ennemi){
         double dx,dy,h;
         h = Math.hypot(ennemi.getX()-x.getValue(),ennemi.getY()-y.getValue());
-        dx = (ennemi.getX()+ennemi.getTaille()/2-x.getValue())/h;
-        dy = (ennemi.getY()+ennemi.getTaille()/2-y.getValue())/h;
-        map.getProjectiles().add(new Projectile("aa",dégât,getX(),getY(),dx,dy,portée,1));
+        dx = (ennemi.getX()+ (double) ennemi.getTaille() /2-x.getValue())/h;
+        dy = (ennemi.getY()+ (double) ennemi.getTaille() /2-y.getValue())/h;
+        map.getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,10));
     }
 
     public void attaquer(Personnage ennemi){
