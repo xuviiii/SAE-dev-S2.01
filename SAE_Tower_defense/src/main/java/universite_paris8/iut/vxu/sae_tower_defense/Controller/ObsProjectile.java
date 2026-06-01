@@ -8,11 +8,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Projectile;
 
 public class ObsProjectile implements ListChangeListener<Projectile> {
-    private Environnement map;
     private Pane terrain;
 
     public ObsProjectile(Environnement map, Pane terrain) {
-        this.map = map;
         this.terrain = terrain;
     }
 
@@ -21,14 +19,11 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         change.next();
         if (change.wasAdded()){
             for (Projectile projectile : change.getAddedSubList()){
-                ObsIntersectProjectilePerso obs = new ObsIntersectProjectilePerso(map,projectile);
                 Rectangle sprite;
                 sprite =new Rectangle(5,5);
                 sprite.setFill (Color.BLUE);
                 sprite.translateXProperty().bind(projectile.getXProperty());
-                projectile.getXProperty().addListener(obs);
                 sprite.translateYProperty().bind(projectile.getYProperty());
-                projectile.getYProperty().addListener(obs);
                 sprite.setId(projectile.getId());
                 terrain.getChildren().add(sprite);
             }
