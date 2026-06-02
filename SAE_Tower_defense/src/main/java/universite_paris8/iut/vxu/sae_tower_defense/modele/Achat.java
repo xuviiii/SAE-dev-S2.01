@@ -8,8 +8,8 @@ public class Achat {
     }
 
     public boolean horsChemin(double x,double y, int taille){
-        if(map.getMap().get((int)(((x-(x%map.getTailleTile()))/ map.getTailleTile())+((y-y%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1
-            || map.getMap().get((int)((((x+taille)-((x+taille)%map.getTailleTile()))/ map.getTailleTile())+(((y+taille)-(y+taille)%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1){
+        if(map.getTerrain().getMap().get((int)(((x-(x%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+((y-y%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1
+            || map.getTerrain().getMap().get((int)((((x+taille)-((x+taille)%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+(((y+taille)-(y+taille)%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1){
             return false;
         }
         else {

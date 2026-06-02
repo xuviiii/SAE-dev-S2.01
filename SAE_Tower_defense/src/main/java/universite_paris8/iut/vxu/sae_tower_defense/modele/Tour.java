@@ -69,8 +69,11 @@ public class Tour {
     }
 
     public Personnage ennemiACible(){
+
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
         Personnage ennemiACible;
+        BFS bfs = new BFS(map);
+
         for (int i=0;i<map.getPersonnages().size();i++){
             if (x.getValue()-portée<map.getPersonnages().get(i).getX()&&x.getValue()+portée>map.getPersonnages().get(i).getX()&&y.getValue()-portée<map.getPersonnages().get(i).getY()&&y.getValue()+portée>map.getPersonnages().get(i).getY()){
                 ennemisCiblables.add(map.getPersonnages().get(i));
@@ -81,7 +84,7 @@ public class Tour {
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (map.cheminVersCible(personnage.getIndiceTerrain()).size()<map.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
+                if (bfs.cheminVersCible(personnage.getIndiceTerrain()).size()<bfs.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
