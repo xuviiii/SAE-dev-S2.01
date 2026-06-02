@@ -4,27 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc826082-56f9-4f48-beb5-8e5d95b6f059" name="Changes" comment="Correction code dans le controleur pour séparer controleur/modele">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsPerso.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsPerso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsTour.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsTour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/Vendre.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/Controller/Vendre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Environnement.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Environnement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Projectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/src/main/java/universite_paris8/iut/vxu/sae_tower_defense/modele/Tour.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsPerso.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsPerso.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsTour.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/ObsTour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/Vendre.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/Controller/Vendre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Environnement.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Environnement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Projectile.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Projectile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Tour.class" beforeDir="false" afterPath="$PROJECT_DIR$/SAE_Tower_defense/target/classes/universite_paris8/iut/vxu/sae_tower_defense/modele/Tour.class" afterDir="false" />
-    </list>
+    <list default="true" id="bc826082-56f9-4f48-beb5-8e5d95b6f059" name="Changes" comment="Suppression dossier target" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -39,6 +30,7 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="3EJFFk5147JypZZkFVT6VZqUGdD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -140,6 +132,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Correction bug" />
     <MESSAGE value="Correction code dans le controleur pour séparer controleur/modele" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction code dans le controleur pour séparer controleur/modele" />
+    <MESSAGE value="Suppression dossier target" />
+    <option name="LAST_COMMIT_MESSAGE" value="Suppression dossier target" />
   </component>
 </project>
