@@ -14,6 +14,7 @@ public class Environnement {
     private static int[] indicesDepart = {18, 108, 164};
     private Terrain terrain;
     private IntegerProperty argent;
+    private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
@@ -26,6 +27,22 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         terrain = new Terrain();
     }
+
+    public static int getIndiceCible() {
+        return indiceCible;
+    }
+
+    //    public double X(int indiceTerrain){
+//        return (indiceTerrain % longueurMap) * tailleTile;
+//    }
+//
+//    public double Y(int indiceTerrain){
+//        return (indiceTerrain / longueurMap) * tailleTile;
+//    }
+
+//    public int indiceTerrain(double x, double y){
+//
+//    }
 
     public void argentDeBase(){
         argent.set(999999999);
@@ -127,94 +144,5 @@ public class Environnement {
     private static int genererIndiceDepartAlea(){
         int i = (int) (Math.random() * indicesDepart.length);
         return indicesDepart[i];
-    }
-
-    private Set<Integer> adjacents(int indice){
-
-        if (indice < 0 || indice > terrain.getMap().size() - 1){
-            throw new IllegalArgumentException();
-        }
-
-        var adjacents = new HashSet<Integer>();
-
-        if(indice > terrain.getLongueurMap() - 1) {
-            if (terrain.getMap().get(indice).equals(terrain.getMap().get(indice - terrain.getLongueurMap()))) {
-                adjacents.add(indice - terrain.getLongueurMap());
-            }
-            // adjacent nord/ouest
-//            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
-//                adjacents.add(indice - longueurMap - 1);
-//            }
-            // adjacent nord/est
-//            if ((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap + 1))) {
-//                adjacents.add(indice - longueurMap + 1);
-//            }
-        }
-        if(indice < terrain.getMap().size() - terrain.getLongueurMap()){ // !
-            if(terrain.getMap().get(indice).equals(terrain.getMap().get(indice + terrain.getLongueurMap()))){
-                adjacents.add(indice + terrain.getLongueurMap());
-            }
-            // adjacent sud/ouest
-//            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
-//                adjacents.add(indice + 9);
-//            }
-            // adjacent sud/est
-//            if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap + 1))){
-//                adjacents.add(indice + longueurMap + 1);
-//            }
-        }
-        if(indice % terrain.getLongueurMap() != 0 && terrain.getMap().get(indice).equals(terrain.getMap().get(indice - 1))){
-            adjacents.add(indice - 1);
-        }
-        if((indice + 1) % terrain.getLongueurMap() != 0 && terrain.getMap().get(indice).equals(terrain.getMap().get(indice + 1))){
-            adjacents.add(indice + 1);
-        }
-        return adjacents;
-    }
-
-    private java.util.Map<Integer, Integer> parcoursBFS(int source){
-
-        List<Integer> parcours = new ArrayList<>();
-
-        LinkedList<Integer> fifo = new LinkedList<>();
-        fifo.add(source);
-
-        java.util.Map<Integer, Integer> predecesseurs = new HashMap<>();
-        predecesseurs.put(source, null);
-
-        while(!fifo.isEmpty()){
-
-            Integer courant = fifo.poll();
-            parcours.add(courant);
-
-            for(Integer adjacent : adjacents(courant)){
-
-                if(!parcours.contains(adjacent)){
-                    parcours.add(adjacent);
-                    predecesseurs.put(adjacent, courant);
-                    fifo.add(adjacent);
-                }
-
-            }
-        }
-
-        return predecesseurs;
-    }
-
-    public List<Integer> cheminVersCible(int source){
-        var predecesseurs = parcoursBFS(source);
-        List<Integer> chemin = new ArrayList<>();
-        Integer courant = indiceCible;
-        while(courant != null){
-            chemin.add(courant);
-            courant = predecesseurs.get(courant);
-        }
-        Collections.reverse(chemin);
-        return chemin;
-    }
-
-    public int tileSuivante(int source){
-        List<Integer> chemin = cheminVersCible(source);
-        return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
     }
 }

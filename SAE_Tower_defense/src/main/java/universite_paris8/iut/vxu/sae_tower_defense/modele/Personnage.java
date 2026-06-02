@@ -93,7 +93,8 @@ public class Personnage {
 
     private void seDeplace(Environnement env){
 
-        int suivant = env.tileSuivante(indiceTerrain);
+        BFS bfs = new BFS(env);
+        int suivant = bfs.tileSuivante(indiceTerrain);
 
         int suivant_X = (suivant % env.getTerrain().getLongueurMap()) * env.getTerrain().getTailleTile();
         int suivant_Y = (suivant / env.getTerrain().getLongueurMap()) * env.getTerrain().getTailleTile();
