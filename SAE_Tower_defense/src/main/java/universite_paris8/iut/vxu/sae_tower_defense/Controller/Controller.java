@@ -18,67 +18,47 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     private Environnement map;
-    private Achat achat;
-    private Drag drag;
-    private Drop drop;
+
+
     private GameLoop loop;
+    private DragAndDrop dragAndDrop;
+    private VueTerrain vueTerrain;
 
     @FXML
     private TilePane tile;
 
     @FXML
-    private Pane terrain;
+    private Pane terrainEntite;
+
 
     @FXML
-    private Pane flêche;
+    private Pane magasin;
 
     @FXML
     private Label labelArgent;
 
 
-    public void créerTerrain() {
-        Rectangle tuille;
 
-        tile.setMinWidth(map.getTerrain().getLongueurMap()*map.getTerrain().getTailleTile());
-        for(int i=0; i<map.getTerrain().getMap().size(); i++){
-            tuille= new Rectangle(map.getTerrain().getTailleTile(),map.getTerrain().getTailleTile());
-            switch (map.getTerrain().getMap().get(i)){
-                case 1: tuille.setFill(Color.BROWN); break;
-                default: tuille.setFill(Color.GREEN); break;
-            }
-            tile.getChildren().add(tuille);
-        }
-    }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Environnement();
-        achat = new Achat(map);
-        créerTerrain();
-        drag = new Drag();
-        drop = new Drop(achat, terrain);
-        map.getTours().addListener(new ObsTour(terrain));
-        map.getProjectiles().addListener(new ObsProjectile(map,terrain));
-        map.getPersonnages().addListener(new ObsPerso(terrain));
+        dragAndDrop = new DragAndDrop(map, terrainEntite);
+        vueTerrain = new VueTerrain(tile, map.getTerrain());
 
-        flêche.setOnDragDetected(e ->  drag.handle(e));
-        terrain.setOnDragDropped(e -> drop.handle(e));
+        map.getTours().addListener(new ObsTour(terrainEntite));
+        map.getProjectiles().addListener(new ObsProjectile(map,terrainEntite));
+        map.getPersonnages().addListener(new ObsPerso(terrainEntite));
+
+        dragAndDrop.objetdrag(magasin);
+
         map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
         map.argentDeBase();
 
-        terrain.setOnDragOver(new EventHandler<DragEvent>() {
-            @Override public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if (db.hasString()) {
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-                event.consume();
-            }
-        });
 
-        terrain.setOnMouseClicked(new Menu(map,terrain));
+        terrainEntite.setOnMouseClicked(new Menu(map,terrainEntite));
 
         loop=new GameLoop(map);
         loop.initAnimation();
