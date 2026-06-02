@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import java.util.List;
 
 public class Terrain {
+    private static int indiceCible = 71;
+    private static int[] indicesDepart = {18, 108, 164};
     private int longueurMap; // static ?
     private int tailleTile; // static ?
     private ObservableList<Integer> map;
@@ -36,5 +38,14 @@ public class Terrain {
 
     public ObservableList<Integer> getMap() {
         return map;
+    }
+
+    public static int genererIndiceDepartAlea(){
+        int i = (int) (Math.random() * indicesDepart.length);
+        return indicesDepart[i];
+    }
+
+    public static int getIndiceCible() {
+        return indiceCible;
     }
 }

@@ -10,8 +10,7 @@ import java.util.*;
 
 public class Environnement {
 
-    private static int indiceCible = 71;
-    private static int[] indicesDepart = {18, 108, 164};
+
     private Terrain terrain;
     private IntegerProperty argent;
     private ObservableList<Integer> map;
@@ -28,9 +27,6 @@ public class Environnement {
         terrain = new Terrain();
     }
 
-    public static int getIndiceCible() {
-        return indiceCible;
-    }
 
     //    public double X(int indiceTerrain){
 //        return (indiceTerrain % longueurMap) * tailleTile;
@@ -96,7 +92,7 @@ public class Environnement {
 
         int j;
 
-        int indDepart = genererIndiceDepartAlea();
+        int indDepart = Terrain.genererIndiceDepartAlea();
 
         if(temps % 20 == 0) {
 
@@ -141,8 +137,4 @@ public class Environnement {
         }
     }
 
-    private static int genererIndiceDepartAlea(){
-        int i = (int) (Math.random() * indicesDepart.length);
-        return indicesDepart[i];
-    }
 }

@@ -12,15 +12,15 @@ public class BFS {
 
     private Set<Integer> adjacents(int indice){
 
-        if (indice < 0 || indice > env.getMap().size() - 1){
+        if (indice < 0 || indice > env.getTerrain().getMap().size() - 1){
             throw new IllegalArgumentException();
         }
 
         var adjacents = new HashSet<Integer>();
 
-        if(indice > env.getLongueurMap() - 1) {
-            if (env.getMap().get(indice).equals(env.getMap().get(indice - env.getLongueurMap()))) {
-                adjacents.add(indice - env.getLongueurMap());
+        if(indice > env.getTerrain().getLongueurMap() - 1) {
+            if (env.getTerrain().getMap().get(indice).equals(env.getTerrain().getMap().get(indice - env.getTerrain().getLongueurMap()))) {
+                adjacents.add(indice - env.getTerrain().getLongueurMap());
             }
             // adjacent nord/ouest
 //            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
@@ -31,9 +31,9 @@ public class BFS {
 //                adjacents.add(indice - longueurMap + 1);
 //            }
         }
-        if(indice < env.getMap().size() - env.getLongueurMap()){ // !
-            if(env.getMap().get(indice).equals(env.getMap().get(indice + env.getLongueurMap()))){
-                adjacents.add(indice + env.getLongueurMap());
+        if(indice < env.getTerrain().getMap().size() - env.getTerrain().getLongueurMap()){ // !
+            if(env.getTerrain().getMap().get(indice).equals(env.getTerrain().getMap().get(indice + env.getTerrain().getLongueurMap()))){
+                adjacents.add(indice + env.getTerrain().getLongueurMap());
             }
             // adjacent sud/ouest
 //            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
@@ -44,10 +44,10 @@ public class BFS {
 //                adjacents.add(indice + longueurMap + 1);
 //            }
         }
-        if(indice % env.getLongueurMap() != 0 && env.getMap().get(indice).equals(env.getMap().get(indice - 1))){
+        if(indice % env.getTerrain().getLongueurMap() != 0 && env.getTerrain().getMap().get(indice).equals(env.getTerrain().getMap().get(indice - 1))){
             adjacents.add(indice - 1);
         }
-        if((indice + 1) % env.getLongueurMap() != 0 && env.getMap().get(indice).equals(env.getMap().get(indice + 1))){
+        if((indice + 1) % env.getTerrain().getLongueurMap() != 0 && env.getTerrain().getMap().get(indice).equals(env.getTerrain().getMap().get(indice + 1))){
             adjacents.add(indice + 1);
         }
         return adjacents;
@@ -85,7 +85,7 @@ public class BFS {
     public List<Integer> cheminVersCible(int source){
         var predecesseurs = parcours(source);
         List<Integer> chemin = new ArrayList<>();
-        Integer courant = Environnement.getIndiceCible();
+        Integer courant = Terrain.getIndiceCible();
         while(courant != null){
             chemin.add(courant);
             courant = predecesseurs.get(courant);
