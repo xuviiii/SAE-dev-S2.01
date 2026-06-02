@@ -121,22 +121,7 @@ public class Environnement {
                 tours.get(i).action();
             }
         for (int i=0;i<projectiles.size();i++){
-            projectiles.get(i).avancer();
-
-            j=0;
-            boolean arret=false;
-            while (j<getPersonnages().size()&&!arret){
-                if (getPersonnages().get(j).estTouché(projectiles.get(i).getX(), projectiles.get(i).getY())){
-                    getPersonnages().get(j).subirDegat(projectiles.get(i).getDegat());
-                    getProjectiles().remove(projectiles.get(i));
-                    arret=true;
-                }
-                else if (projectiles.get(i).horsPortee()){
-                    getProjectiles().remove(projectiles.get(i));
-                    arret=true;
-                }
-                j++;
-            }
+            projectiles.get(i).action();
         }
 
         for (int i=0;i<personnages.size();i++){

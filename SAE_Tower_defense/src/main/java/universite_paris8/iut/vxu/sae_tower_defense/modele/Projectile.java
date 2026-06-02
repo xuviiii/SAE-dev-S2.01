@@ -17,8 +17,9 @@ public class Projectile {
     private double xInitial;
     private double yInitial;
     private int vitesse;
+    private Environnement map;
 
-    public Projectile(int degat, double x, double y, double dx, double dy, int portee, int vitesse) {
+    public Projectile(int degat, double x, double y, double dx, double dy, int portee, int vitesse, Environnement map) {
         compteur++;
         id= "Pr"+compteur;
         this.degat = degat;
@@ -30,6 +31,7 @@ public class Projectile {
         xInitial=x;
         yInitial=y;
         this.vitesse = vitesse;
+        this.map = map;
     }
 
     public String getId() {
@@ -71,5 +73,27 @@ public class Projectile {
 
     public boolean horsPortee(){
         return (int) (Math.abs(x.getValue()-(xInitial)))>portee || (int) (Math.abs(y.getValue()-(yInitial)))>portee;
+    }
+
+    public void projectileTouche(){
+        int j=0;
+        boolean arret=false;
+        while (j<map.getPersonnages().size()&&!arret){
+            if (map.getPersonnages().get(j).estTouché(x.getValue(), y.getValue())){
+                map.getPersonnages().get(j).subirDegat(degat);
+                map.getProjectiles().remove(this);
+                arret=true;
+            }
+            else if (horsPortee()){
+                map.getProjectiles().remove(this);
+                arret=true;
+            }
+            j++;
+        }
+    }
+
+    public void action(){
+        avancer();
+        projectileTouche();
     }
 }
