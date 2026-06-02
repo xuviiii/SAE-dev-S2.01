@@ -10,11 +10,8 @@ import java.util.*;
 
 public class Environnement {
 
-    private static int indiceCible = 71;
-    private static int[] indicesDepart = {18, 108, 164};
 
-    private int longueurMap; // static ?
-    private int tailleTile; // static ?
+    private Terrain terrain;
     private IntegerProperty argent;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
@@ -22,29 +19,14 @@ public class Environnement {
     private ObservableList<Projectile> projectiles;
 
     public Environnement(){
-        map = FXCollections.observableArrayList(List.of(
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
-                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
+
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
         projectiles = FXCollections.observableArrayList();
-        longueurMap =18;
-        tailleTile = 60;
         argent = new SimpleIntegerProperty();
-
+        terrain = new Terrain();
     }
 
-    public static int getIndiceCible() {
-        return indiceCible;
-    }
 
     //    public double X(int indiceTerrain){
 //        return (indiceTerrain % longueurMap) * tailleTile;
@@ -78,18 +60,12 @@ public class Environnement {
         return argent.get();
     }
 
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
     public IntegerProperty argentProperty() {
         return argent;
-    }
-
-    public int getTailleTile() {return tailleTile;}
-
-    public int getLongueurMap() {
-        return longueurMap;
-    }
-
-    public ObservableList<Integer> getMap() {
-        return map;
     }
 
     public ObservableList<Personnage> getPersonnages() {
@@ -116,13 +92,13 @@ public class Environnement {
 
         int j;
 
-        int indDepart = genererIndiceDepartAlea();
+        int indDepart = Terrain.genererIndiceDepartAlea();
 
         if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
-                    (indDepart % longueurMap) * tailleTile,
-                    (indDepart / longueurMap) * tailleTile,
+                    (indDepart % terrain.getLongueurMap()) * terrain.getTailleTile(),
+                    (indDepart / terrain.getLongueurMap()) * terrain.getTailleTile(),
                     1,
                     10,
                     32,
@@ -161,8 +137,4 @@ public class Environnement {
         }
     }
 
-    private static int genererIndiceDepartAlea(){
-        int i = (int) (Math.random() * indicesDepart.length);
-        return indicesDepart[i];
-    }
 }
