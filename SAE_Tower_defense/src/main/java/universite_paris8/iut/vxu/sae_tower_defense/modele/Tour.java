@@ -99,7 +99,7 @@ public class Tour {
         h = Math.hypot(ennemi.getX()-x.getValue(),ennemi.getY()-y.getValue());
         dx = (ennemi.getX()+ (double) ennemi.getTaille() /2-x.getValue())/h;
         dy = (ennemi.getY()+ (double) ennemi.getTaille() /2-y.getValue())/h;
-        map.getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,10));
+        map.getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,10,map));
     }
 
     public void attaquer(Personnage ennemi){
