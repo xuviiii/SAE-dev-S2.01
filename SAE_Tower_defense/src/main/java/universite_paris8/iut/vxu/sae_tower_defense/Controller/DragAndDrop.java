@@ -15,7 +15,7 @@ public class DragAndDrop {
 
     public DragAndDrop(Environnement env, Pane terrain) {
         achat = new Achat(env);
-        drag = new Drag(terrain,env);
+        drag = new Drag(terrain,env,achat);
         drop = new Drop(achat, terrain,drag, env);
         ad = new AccepterDrop(achat, terrain,drag);
         terrain.setOnDragDropped(e -> drop.handle(e));
