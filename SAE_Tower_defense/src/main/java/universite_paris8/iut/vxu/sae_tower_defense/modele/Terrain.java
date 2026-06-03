@@ -28,6 +28,21 @@ public class Terrain {
         tailleTile = 60;
     }
 
+    public double toX(int indiceTerrain){
+        return (indiceTerrain % longueurMap) * tailleTile;
+    }
+
+    public double toY(int indiceTerrain){
+        return (indiceTerrain / longueurMap) * tailleTile;
+    }
+
+//    public int indiceTerrain(double x, double y){
+//        int indiceTerrain = 0;
+//        indiceTerrain = (int) (indiceTerrain + (longueurMap * (y / tailleTile)));
+//        indiceTerrain = (int) (indiceTerrain + (x / tailleTile));
+//        return indiceTerrain;
+//    }
+
     public int getTailleTile() {
         return tailleTile;
     }

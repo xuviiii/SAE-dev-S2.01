@@ -17,6 +17,7 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
+    private Parcours parcours;
 
     public Environnement(){
 
@@ -25,20 +26,9 @@ public class Environnement {
         projectiles = FXCollections.observableArrayList();
         argent = new SimpleIntegerProperty();
         terrain = new Terrain();
+        parcours = new Parcours(this);
     }
 
-
-    //    public double X(int indiceTerrain){
-//        return (indiceTerrain % longueurMap) * tailleTile;
-//    }
-//
-//    public double Y(int indiceTerrain){
-//        return (indiceTerrain / longueurMap) * tailleTile;
-//    }
-
-//    public int indiceTerrain(double x, double y){
-//
-//    }
 
     public void argentDeBase(){
         argent.set(999999999);
@@ -80,6 +70,10 @@ public class Environnement {
         return projectiles;
     }
 
+    public Parcours getParcours() {
+        return parcours;
+    }
+
     public void ajouterPersonnage(Personnage p){
         personnages.add(p);
     }
@@ -97,16 +91,17 @@ public class Environnement {
         if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
-                    (indDepart % terrain.getLongueurMap()) * terrain.getTailleTile(),
-                    (indDepart / terrain.getLongueurMap()) * terrain.getTailleTile(),
+                    terrain.toX(indDepart),
+                    terrain.toY(indDepart),
                     1,
                     10,
                     32,
-                    indDepart));
+                    indDepart,
+                    this));
         }
 
         for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action(this);
+            personnages.get(i).action();
         }
         if (temps%50==0)
             for (int i=0;i<tours.size();i++){
