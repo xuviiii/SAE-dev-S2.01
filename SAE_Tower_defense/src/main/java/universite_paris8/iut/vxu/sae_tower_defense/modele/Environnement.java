@@ -102,11 +102,12 @@ public class Environnement {
                     1,
                     10,
                     32,
-                    indDepart));
+                    indDepart,
+                    this));
         }
 
         for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action(this);
+            personnages.get(i).action();
         }
         if (temps%50==0)
             for (int i=0;i<tours.size();i++){
