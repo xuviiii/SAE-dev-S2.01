@@ -9,17 +9,15 @@ public class Tour extends Entite{
     private static int compteur = 0;
     private int portée;
     private int dégât;
-    private Environnement map;
     private int taille;
     private int prix;
 
     public Tour(double x, double y, int portée, int dégât, int taille, Environnement map, int prix, int vitesse) {
-        super("t"+compteur,x,y,vitesse);
+        super("t"+compteur,x,y,vitesse,map);
         compteur++;
         this.portée = portée;
         this.dégât = dégât;
         this.taille = taille;
-        this.map = map;
         this.prix = prix;
     }
 
@@ -47,11 +45,11 @@ public class Tour extends Entite{
 
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
         Personnage ennemiACible;
-        BFS bfs = new BFS(map);
+        BFS bfs = new BFS(super.getMap());
 
-        for (int i=0;i<map.getPersonnages().size();i++){
-            if (super.getX()-portée<map.getPersonnages().get(i).getX()&&super.getX()+portée>map.getPersonnages().get(i).getX()&&super.getY()-portée<map.getPersonnages().get(i).getY()&&super.getY()+portée>map.getPersonnages().get(i).getY()){
-                ennemisCiblables.add(map.getPersonnages().get(i));
+        for (int i=0;i<super.getMap().getPersonnages().size();i++){
+            if (super.getX()-portée<super.getMap().getPersonnages().get(i).getX()&&super.getX()+portée>super.getMap().getPersonnages().get(i).getX()&&super.getY()-portée<super.getMap().getPersonnages().get(i).getY()&&super.getY()+portée>super.getMap().getPersonnages().get(i).getY()){
+                ennemisCiblables.add(super.getMap().getPersonnages().get(i));
             }
         }
         if (ennemisCiblables.isEmpty())
@@ -74,7 +72,7 @@ public class Tour extends Entite{
         h = Math.hypot(ennemi.getX()-super.getX(),ennemi.getY()-super.getY());
         dx = (ennemi.getX()+ (double) ennemi.getTaille() /2-super.getX())/h;
         dy = (ennemi.getY()+ (double) ennemi.getTaille() /2-super.getY())/h;
-        map.getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,map,10));
+        super.getMap().getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,super.getMap(),10));
     }
 
     public void attaquer(Personnage ennemi){

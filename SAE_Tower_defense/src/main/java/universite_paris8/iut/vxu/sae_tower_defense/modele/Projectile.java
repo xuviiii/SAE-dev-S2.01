@@ -15,10 +15,9 @@ public class Projectile extends Entite {
     private double xInitial;
     private double yInitial;
     private int degat;
-    private Environnement map;
 
     public Projectile(int degat, double x, double y, double dx, double dy, int portee, Environnement map, int vitesse) {
-        super("pr"+compteur,x,y,vitesse);
+        super("pr"+compteur,x,y,vitesse,map);
         compteur++;
 
         this.degat = degat;
@@ -27,7 +26,6 @@ public class Projectile extends Entite {
         this.portee=portee;
         xInitial=x;
         yInitial=y;
-        this.map = map;
     }
 
     public int getDegat() {
@@ -46,14 +44,14 @@ public class Projectile extends Entite {
     public void projectileTouche(){
         int j=0;
         boolean arret=false;
-        while (j<map.getPersonnages().size()&&!arret){
-            if (map.getPersonnages().get(j).estTouché(super.getX(), super.getY())){
-                map.getPersonnages().get(j).subirDegat(degat);
-                map.getProjectiles().remove(this);
+        while (j<super.getMap().getPersonnages().size()&&!arret){
+            if (super.getMap().getPersonnages().get(j).estTouché(super.getX(), super.getY())){
+                super.getMap().getPersonnages().get(j).subirDegat(degat);
+                super.getMap().getProjectiles().remove(this);
                 arret=true;
             }
             else if (horsPortee()){
-                map.getProjectiles().remove(this);
+                super.getMap().getProjectiles().remove(this);
                 arret=true;
             }
             j++;

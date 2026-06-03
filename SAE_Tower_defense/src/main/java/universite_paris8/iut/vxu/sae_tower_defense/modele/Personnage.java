@@ -7,18 +7,16 @@ public class Personnage extends Entite {
     private int degat;
     private int indiceTerrain;
     private int taille;
-    private Environnement map;
 
     public Personnage(int pv, int x, int y, int vitesse,  int degat,
                       int taille, int indiceTerrain, Environnement map){
-        super("p"+compteur,x,y,vitesse);
+        super("p"+compteur,x,y,vitesse,map);
         compteur++;
 
         this.pv = pv;
         this.degat = degat;
         this.taille = taille;
         this.indiceTerrain = indiceTerrain;
-        this.map = map;
     }
 
     public int getPv() {
@@ -45,11 +43,11 @@ public class Personnage extends Entite {
 
     private void seDeplace(){
 
-        BFS bfs = new BFS(map);
+        BFS bfs = new BFS(super.getMap());
         int suivant = bfs.tileSuivante(indiceTerrain);
 
-        int suivant_X = (suivant % map.getTerrain().getLongueurMap()) * map.getTerrain().getTailleTile();
-        int suivant_Y = (suivant / map.getTerrain().getLongueurMap()) * map.getTerrain().getTailleTile();
+        int suivant_X = (suivant % super.getMap().getTerrain().getLongueurMap()) * super.getMap().getTerrain().getTailleTile();
+        int suivant_Y = (suivant / super.getMap().getTerrain().getLongueurMap()) * super.getMap().getTerrain().getTailleTile();
 
         double dist_x = Math.abs(super.getX() - suivant_X);
         double dist_y = Math.abs(super.getY() - suivant_Y);
