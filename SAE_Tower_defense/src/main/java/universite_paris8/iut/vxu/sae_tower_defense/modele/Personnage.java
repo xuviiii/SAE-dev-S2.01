@@ -16,7 +16,7 @@ public class Personnage {
     private int indiceTerrain;
     private int taille;
 
-    public Personnage(int pv, int x, int y, int vitesse,  int degat,
+    public Personnage(int pv, double x, double y, int vitesse,  int degat,
                       int taille, int indiceTerrain){
         compteur++;
         id= "P"+compteur;
@@ -93,11 +93,11 @@ public class Personnage {
 
     private void seDeplace(Environnement env){
 
-        BFS bfs = new BFS(env);
-        int suivant = bfs.tileSuivante(indiceTerrain);
+        Parcours parcours = new Parcours(env);
+        int suivant = parcours.tileSuivante(indiceTerrain);
 
-        int suivant_X = (suivant % env.getLongueurMap()) * env.getTailleTile();
-        int suivant_Y = (suivant / env.getLongueurMap()) * env.getTailleTile();
+        double suivant_X = env.toX(suivant);
+        double suivant_Y = env.toY(suivant);
 
         double dist_x = Math.abs(x.getValue() - suivant_X);
         double dist_y = Math.abs(y.getValue() - suivant_Y);

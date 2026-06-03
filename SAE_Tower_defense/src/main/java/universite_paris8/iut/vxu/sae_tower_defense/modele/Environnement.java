@@ -46,16 +46,19 @@ public class Environnement {
         return indiceCible;
     }
 
-    //    public double X(int indiceTerrain){
-//        return (indiceTerrain % longueurMap) * tailleTile;
-//    }
-//
-//    public double Y(int indiceTerrain){
-//        return (indiceTerrain / longueurMap) * tailleTile;
-//    }
+    public double toX(int indiceTerrain){
+        return (indiceTerrain % longueurMap) * tailleTile;
+    }
+
+    public double toY(int indiceTerrain){
+        return (indiceTerrain / longueurMap) * tailleTile;
+    }
 
 //    public int indiceTerrain(double x, double y){
-//
+//        int indiceTerrain = 0;
+//        indiceTerrain = (int) (indiceTerrain + (longueurMap * (y / tailleTile)));
+//        indiceTerrain = (int) (indiceTerrain + (x / tailleTile));
+//        return indiceTerrain;
 //    }
 
     public void argentDeBase(){
@@ -121,8 +124,8 @@ public class Environnement {
         if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
-                    (indDepart % longueurMap) * tailleTile,
-                    (indDepart / longueurMap) * tailleTile,
+                    toX(indDepart),
+                    toY(indDepart),
                     1,
                     10,
                     32,
