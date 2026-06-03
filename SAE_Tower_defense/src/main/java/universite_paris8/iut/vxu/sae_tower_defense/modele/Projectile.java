@@ -1,10 +1,5 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class Projectile extends Entite {
 
     private static int compteur = 0;
@@ -44,14 +39,14 @@ public class Projectile extends Entite {
     public void projectileTouche(){
         int j=0;
         boolean arret=false;
-        while (j<super.getMap().getPersonnages().size()&&!arret){
-            if (super.getMap().getPersonnages().get(j).estTouché(super.getX(), super.getY())){
-                super.getMap().getPersonnages().get(j).subirDegat(degat);
-                super.getMap().getProjectiles().remove(this);
+        while (j<super.getEnv().getPersonnages().size()&&!arret){
+            if (super.getEnv().getPersonnages().get(j).estTouché(super.getX(), super.getY())){
+                super.getEnv().getPersonnages().get(j).subirDegat(degat);
+                super.getEnv().getProjectiles().remove(this);
                 arret=true;
             }
             else if (horsPortee()){
-                super.getMap().getProjectiles().remove(this);
+                super.getEnv().getProjectiles().remove(this);
                 arret=true;
             }
             j++;

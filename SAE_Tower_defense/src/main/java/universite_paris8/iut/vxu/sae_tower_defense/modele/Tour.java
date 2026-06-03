@@ -45,11 +45,14 @@ public class Tour extends Entite{
 
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
         Personnage ennemiACible;
-        BFS bfs = new BFS(super.getMap());
+        Parcours parcours = getEnv().getParcours();
 
-        for (int i=0;i<super.getMap().getPersonnages().size();i++){
-            if (super.getX()-portée<super.getMap().getPersonnages().get(i).getX()&&super.getX()+portée>super.getMap().getPersonnages().get(i).getX()&&super.getY()-portée<super.getMap().getPersonnages().get(i).getY()&&super.getY()+portée>super.getMap().getPersonnages().get(i).getY()){
-                ennemisCiblables.add(super.getMap().getPersonnages().get(i));
+        for (int i = 0; i < super.getEnv().getPersonnages().size(); i++){
+            if (super.getX() - portée < super.getEnv().getPersonnages().get(i).getX()
+                    && super.getX() + portée > super.getEnv().getPersonnages().get(i).getX()
+                    && super.getY() - portée < super.getEnv().getPersonnages().get(i).getY()
+                    && super.getY() + portée > super.getEnv().getPersonnages().get(i).getY()){
+                ennemisCiblables.add(super.getEnv().getPersonnages().get(i));
             }
         }
         if (ennemisCiblables.isEmpty())
@@ -57,7 +60,9 @@ public class Tour extends Entite{
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (bfs.cheminVersCible(personnage.getIndiceTerrain()).size()<bfs.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
+                //TODO
+                // associer à chaque perso sa bonne methode de déplacement
+                if (parcours.cheminVersCible(personnage.getIndiceTerrain()).size()< parcours.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
@@ -72,7 +77,7 @@ public class Tour extends Entite{
         h = Math.hypot(ennemi.getX()-super.getX(),ennemi.getY()-super.getY());
         dx = (ennemi.getX()+ (double) ennemi.getTaille() /2-super.getX())/h;
         dy = (ennemi.getY()+ (double) ennemi.getTaille() /2-super.getY())/h;
-        super.getMap().getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,super.getMap(),10));
+        super.getEnv().getProjectiles().add(new Projectile(dégât,getX(),getY(),dx,dy,portée,super.getEnv(),10));
     }
 
     public void attaquer(Personnage ennemi){

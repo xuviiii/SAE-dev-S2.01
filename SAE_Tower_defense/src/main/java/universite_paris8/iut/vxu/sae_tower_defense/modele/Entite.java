@@ -1,7 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
 public abstract class Entite {
@@ -10,14 +9,14 @@ public abstract class Entite {
     private DoubleProperty x;
     private DoubleProperty y;
     private int vitesse;
-    private Environnement map;
+    private Environnement env;
 
-    public Entite(String id, double x, double y, int vitesse, Environnement map) {
+    public Entite(String id, double x, double y, int vitesse, Environnement env) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.vitesse = vitesse;
-        this.map = map;
+        this.env = env;
     }
 
     public String getId() {
@@ -44,8 +43,8 @@ public abstract class Entite {
         return vitesse;
     }
 
-    public Environnement getMap() {
-        return map;
+    public Environnement getEnv() {
+        return env;
     }
 
     public void setX(double x) {
