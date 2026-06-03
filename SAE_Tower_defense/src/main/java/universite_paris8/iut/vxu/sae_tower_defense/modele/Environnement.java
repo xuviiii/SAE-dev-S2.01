@@ -10,56 +10,25 @@ import java.util.*;
 
 public class Environnement {
 
-    private static int indiceCible = 71;
-    private static int[] indicesDepart = {18, 108, 164};
 
-    private int longueurMap; // static ?
-    private int tailleTile; // static ?
+    private Terrain terrain;
     private IntegerProperty argent;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
+    private Parcours parcours;
 
     public Environnement(){
-        map = FXCollections.observableArrayList(List.of(
-                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-                1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,0,0,0,1,1,0,0,1,1,1,1,1,1,
-                0,0,1,0,1,1,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                1,1,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,
-                0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,
-                0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,
-                0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0));
+
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
         projectiles = FXCollections.observableArrayList();
-        longueurMap =18;
-        tailleTile = 60;
         argent = new SimpleIntegerProperty();
-
+        terrain = new Terrain();
+        parcours = new Parcours(this);
     }
 
-    public static int getIndiceCible() {
-        return indiceCible;
-    }
-
-    public double toX(int indiceTerrain){
-        return (indiceTerrain % longueurMap) * tailleTile;
-    }
-
-    public double toY(int indiceTerrain){
-        return (indiceTerrain / longueurMap) * tailleTile;
-    }
-
-//    public int indiceTerrain(double x, double y){
-//        int indiceTerrain = 0;
-//        indiceTerrain = (int) (indiceTerrain + (longueurMap * (y / tailleTile)));
-//        indiceTerrain = (int) (indiceTerrain + (x / tailleTile));
-//        return indiceTerrain;
-//    }
 
     public void argentDeBase(){
         argent.set(999999999);
@@ -81,18 +50,12 @@ public class Environnement {
         return argent.get();
     }
 
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
     public IntegerProperty argentProperty() {
         return argent;
-    }
-
-    public int getTailleTile() {return tailleTile;}
-
-    public int getLongueurMap() {
-        return longueurMap;
-    }
-
-    public ObservableList<Integer> getMap() {
-        return map;
     }
 
     public ObservableList<Personnage> getPersonnages() {
@@ -107,6 +70,10 @@ public class Environnement {
         return projectiles;
     }
 
+    public Parcours getParcours() {
+        return parcours;
+    }
+
     public void ajouterPersonnage(Personnage p){
         personnages.add(p);
     }
@@ -119,43 +86,29 @@ public class Environnement {
 
         int j;
 
-        int indDepart = genererIndiceDepartAlea();
+        int indDepart = Terrain.genererIndiceDepartAlea();
 
         if(temps % 20 == 0) {
 
             ajouterPersonnage(new Personnage(10,
-                    toX(indDepart),
-                    toY(indDepart),
+                    terrain.toX(indDepart),
+                    terrain.toY(indDepart),
                     1,
                     10,
                     32,
-                    indDepart));
+                    indDepart,
+                    this));
         }
 
         for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action(this);
+            personnages.get(i).action();
         }
         if (temps%50==0)
             for (int i=0;i<tours.size();i++){
                 tours.get(i).action();
             }
         for (int i=0;i<projectiles.size();i++){
-            projectiles.get(i).avancer();
-
-            j=0;
-            boolean arret=false;
-            while (j<getPersonnages().size()&&!arret){
-                if (getPersonnages().get(j).estTouché(projectiles.get(i).getX(), projectiles.get(i).getY())){
-                    getPersonnages().get(j).subirDegat(projectiles.get(i).getDegat());
-                    getProjectiles().remove(projectiles.get(i));
-                    arret=true;
-                }
-                else if (projectiles.get(i).horsPortee()){
-                    getProjectiles().remove(projectiles.get(i));
-                    arret=true;
-                }
-                j++;
-            }
+            projectiles.get(i).action();
         }
 
         for (int i=0;i<personnages.size();i++){
@@ -164,8 +117,4 @@ public class Environnement {
         }
     }
 
-    private static int genererIndiceDepartAlea(){
-        int i = (int) (Math.random() * indicesDepart.length);
-        return indicesDepart[i];
-    }
 }

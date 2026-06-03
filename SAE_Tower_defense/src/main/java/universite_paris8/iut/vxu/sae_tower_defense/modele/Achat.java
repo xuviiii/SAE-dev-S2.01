@@ -8,8 +8,8 @@ public class Achat {
     }
 
     public boolean horsChemin(double x,double y, int taille){
-        if(map.getMap().get((int)(((x-(x%map.getTailleTile()))/ map.getTailleTile())+((y-y%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1
-            || map.getMap().get((int)((((x+taille)-((x+taille)%map.getTailleTile()))/ map.getTailleTile())+(((y+taille)-(y+taille)%map.getTailleTile())/ map.getTailleTile())*map.getLongueurMap())) == 1){
+        if(map.getTerrain().getMap().get((int)(((x-(x%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+((y-y%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1
+                || map.getTerrain().getMap().get((int)((((x+taille)-((x+taille)%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+(((y+taille)-(y+taille)%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1){
             return false;
         }
         else {
@@ -27,7 +27,7 @@ public class Achat {
             }
         }
         if (id.equals("flêche")){
-            nvTour = new Tour(x, y, 100,10,32,map,100);
+            nvTour = new Tour(x, y, 100,10,32,map,100,10);
             if (horsChemin(x,y,nvTour.getTaille()) && map.getArgent() >= 100) {
                 map.ajouterTour(nvTour);
                 map.enleverArgent(nvTour.getPrix());

@@ -21,7 +21,6 @@ public class Vendre implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        System.out.println(tour.getId());
         menu.getChildren().clear();
         map.getTours().remove(tour);
         map.ajouterArgent(tour.getPrix()/2);

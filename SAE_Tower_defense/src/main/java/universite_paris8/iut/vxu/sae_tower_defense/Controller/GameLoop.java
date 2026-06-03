@@ -22,7 +22,7 @@ public class GameLoop {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         Personnage p_test;
-        Tour t_test = new Tour(200,260,100,10,32,map,100);
+        Tour t_test = new Tour(200,260,100,10,32,map,100,10);
         map.ajouterTour(t_test);
 
 //        for (int i=0;i<50;i++){
