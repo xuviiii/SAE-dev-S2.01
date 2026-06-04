@@ -20,7 +20,7 @@ public class ObsTour implements ListChangeListener<Tour> {
         change.next();
         if (change.wasAdded()){
             for (Tour tour : change.getAddedSubList()){
-                Circle rayon = new Circle(tour.getPortée());
+                Circle rayon = new Circle(tour.getPortee());
                 rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
                 rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
                 rayon.setOpacity(0.4);

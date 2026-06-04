@@ -88,27 +88,34 @@ public class Environnement {
 
         int indDepart = Terrain.genererIndiceDepartAlea();
 
-        if(temps % 20 == 0) {
+        if(temps % 100 == 0) {
 
-            ajouterPersonnage(new Personnage(10,
-                    terrain.toX(indDepart),
-                    terrain.toY(indDepart),
-                    1,
-                    10,
-                    32,
-                    indDepart,
-                    this));
+//            ajouterPersonnage(new Personnage(10,
+//                    terrain.toX(indDepart),
+//                    terrain.toY(indDepart),
+//                    1,
+//                    10,
+//                    32,
+//                    indDepart,
+//                    this));
+            ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
         }
+
+        if(temps % 200 == 0){
+            ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
+        }
+
+
 
         for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action();
+            personnages.get(i).action(temps);
         }
-        if (temps%50==0)
-            for (int i=0;i<tours.size();i++){
-                tours.get(i).action();
-            }
+        //if (temps%50==0)
+        for (int i=0;i<tours.size();i++){
+            tours.get(i).action(temps);
+        }
         for (int i=0;i<projectiles.size();i++){
-            projectiles.get(i).action();
+            projectiles.get(i).action(temps);
         }
 
         for (int i=0;i<personnages.size();i++){

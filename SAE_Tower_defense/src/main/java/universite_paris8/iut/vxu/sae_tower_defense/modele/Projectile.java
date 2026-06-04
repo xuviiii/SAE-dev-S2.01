@@ -54,7 +54,7 @@ public class Projectile extends Entite {
     }
 
     @Override
-    public void action() {
+    public void action(int temps) {
         avancer();
         projectileTouche();
     }
