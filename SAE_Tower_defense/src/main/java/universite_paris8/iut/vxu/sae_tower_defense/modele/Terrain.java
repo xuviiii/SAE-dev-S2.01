@@ -9,6 +9,7 @@ public class Terrain {
     private static int indiceCible = 71;
     private static int[] indicesDepart = {18, 108, 164};
     private int longueurMap; // static ?
+    private int hauteurMap; // static ?
     private int tailleTile; // static ?
     private ObservableList<Integer> map;
 
@@ -25,6 +26,7 @@ public class Terrain {
                 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0));
         longueurMap =18;
+        hauteurMap = 10;
         tailleTile = 60;
     }
 
@@ -45,6 +47,10 @@ public class Terrain {
 
     public int getTailleTile() {
         return tailleTile;
+    }
+
+    public int getHauteurMap() {
+        return hauteurMap;
     }
 
     public int getLongueurMap() {

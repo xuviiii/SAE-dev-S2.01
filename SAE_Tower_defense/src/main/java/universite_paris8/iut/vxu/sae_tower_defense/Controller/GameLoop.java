@@ -3,9 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 public class GameLoop {
     private Timeline gameLoop;
@@ -20,6 +18,13 @@ public class GameLoop {
         gameLoop = new Timeline();
         temps=0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        Tour t_test;
+
+        t_test = new TourDeFleche(200,20,map,100,10,10,100);
+        map.ajouterTour(t_test);
+        t_test = new Catapulte(200,240,map,100,10,10,400,240);
+        map.ajouterTour(t_test);
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)

@@ -10,13 +10,15 @@ public abstract class Entite {
     private DoubleProperty y;
     private int vitesse;
     private Environnement env;
+    private int taille;
 
-    public Entite(String id, double x, double y, int vitesse, Environnement env) {
+    public Entite(String id, double x, double y, int vitesse, Environnement env, int taille) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.vitesse = vitesse;
         this.env = env;
+        this.taille = taille;
     }
 
     public String getId() {
@@ -45,6 +47,10 @@ public abstract class Entite {
 
     public Environnement getEnv() {
         return env;
+    }
+
+    public int getTaille() {
+        return taille;
     }
 
     public void setX(double x) {

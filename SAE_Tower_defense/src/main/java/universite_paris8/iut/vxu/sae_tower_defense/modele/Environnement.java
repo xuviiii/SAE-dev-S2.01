@@ -84,11 +84,11 @@ public class Environnement {
 
     public void faireUnTour(int temps){
 
-        int j;
+        boolean a = true;
 
         int indDepart = Terrain.genererIndiceDepartAlea();
 
-        if(temps % 20 == 0) {
+        if(temps % 20 == 0 && a) {
 
             ajouterPersonnage(new Personnage(10,
                     terrain.toX(indDepart),

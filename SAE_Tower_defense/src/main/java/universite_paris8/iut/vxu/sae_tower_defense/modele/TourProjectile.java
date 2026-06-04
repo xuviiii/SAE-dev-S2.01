@@ -6,8 +6,8 @@ public abstract class TourProjectile extends TourHorsChemin{
 
     private int boost;
 
-    public TourProjectile(double x, double y, int taille, Environnement map, int prix, int vitesse, int dégât, int portee) {
-        super(x, y, taille, map, prix, vitesse, dégât, portee);
+    public TourProjectile(double x, double y, Environnement map, int prix, int vitesse, int dégât, int portee) {
+        super(x, y, map, prix, vitesse, dégât, portee);
         boost = 0;
     }
 
@@ -47,5 +47,13 @@ public abstract class TourProjectile extends TourHorsChemin{
 
     }
 
-    public abstract void creerProjectile(Personnage ennemi);
+    public void creerProjectile(double x,double y) {
+        double dx,dy,h;
+        h = Math.hypot(x-super.getX(),y-super.getY());
+        dx = (x-super.getX())/h;
+        dy = (y-super.getY())/h;
+        super.getEnv().getProjectiles().add(projectileALancer(x,y,dx,dy));
+    }
+
+    public abstract Projectile projectileALancer(double x,double y, double dx,double dy);
 }

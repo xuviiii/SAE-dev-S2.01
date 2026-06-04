@@ -6,17 +6,17 @@ public class Personnage extends Entite {
     private int pv;
     private int degat;
     private int indiceTerrain;
-    private int taille;
+    private int malusVitesse;
 
     public Personnage(int pv, double x, double y, int vitesse,  int degat,
                       int taille, int indiceTerrain, Environnement map){
-        super("p"+compteur,x,y,vitesse,map);
+        super("p"+compteur,x,y,vitesse,map,taille);
         compteur++;
 
         this.pv = pv;
         this.degat = degat;
-        this.taille = taille;
         this.indiceTerrain = indiceTerrain;
+        malusVitesse = 1;
     }
 
     public int getPv() {
@@ -27,10 +27,6 @@ public class Personnage extends Entite {
         return degat;
     }
 
-    public int getTaille() {
-        return taille;
-    }
-
     public void subirDegat(int degat){
         pv-=degat;
     }
@@ -38,7 +34,7 @@ public class Personnage extends Entite {
     public boolean estMort(){return pv<=0;}
 
     public boolean estTouché(double x,double y){
-        return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
+        return super.getX()-1<=x && super.getX()+getTaille()+1>=x && super.getY()-1<=y && super.getY()+getTaille()+1>=y;
     }
 
     private void seDeplace(){

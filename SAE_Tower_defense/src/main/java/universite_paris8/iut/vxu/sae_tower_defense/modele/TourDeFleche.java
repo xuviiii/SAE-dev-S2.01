@@ -2,22 +2,25 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 public class TourDeFleche extends TourProjectile{
 
-    public TourDeFleche(double x, double y, int taille, Environnement map, int prix, int vitesse, int dégât, int portee) {
-        super(x, y, taille, map, prix, vitesse, dégât, portee);
+    public TourDeFleche(double x, double y, Environnement map, int prix, int vitesse, int dégât, int portee) {
+        super(x, y, map, prix, vitesse, dégât, portee);
     }
 
     @Override
-    public void creerProjectile(Personnage ennemi) {
-        double dx,dy,h;
-        h = Math.hypot(ennemi.getX()-super.getX(),ennemi.getY()-super.getY());
-        dx = (ennemi.getX()+ (double) ennemi.getTaille() /2-super.getX())/h;
-        dy = (ennemi.getY()+ (double) ennemi.getTaille() /2-super.getY())/h;
-        super.getEnv().getProjectiles().add(new Projectile(super.getDégât(),getX(),getY(),dx,dy,super.getPortee(),super.getEnv(),10));
+    public Projectile projectileALancer(double x,double y, double dx,double dy) {
+        return new Fleche(getX(),getY(),10,super.getEnv(),dx,dy,super.getPortee(),super.getDégât());
     }
 
     @Override
     public void action() {
-        if (ennemiACible()!=null) creerProjectile(ennemiACible());
+        Personnage cible = ennemiACible();
+        double x,y;
+
+        if (ennemiACible()!=null){
+            x = cible.getX()+ (double) cible.getTaille() /2;
+            y = cible.getY()+ (double) cible.getTaille() /2;
+            creerProjectile(x,y);
+        }
     }
 
     @Override

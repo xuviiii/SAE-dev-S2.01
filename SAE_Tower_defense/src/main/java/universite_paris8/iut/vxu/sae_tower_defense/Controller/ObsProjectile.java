@@ -20,7 +20,7 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         if (change.wasAdded()){
             for (Projectile projectile : change.getAddedSubList()){
                 Rectangle sprite;
-                sprite =new Rectangle(5,5);
+                sprite =new Rectangle(projectile.getTaille(),projectile.getTaille());
                 sprite.setFill (Color.BLUE);
                 sprite.translateXProperty().bind(projectile.getXProperty());
                 sprite.translateYProperty().bind(projectile.getYProperty());
