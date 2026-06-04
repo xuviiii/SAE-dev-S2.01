@@ -37,6 +37,9 @@ public class Controller implements Initializable {
     @FXML
     private Label labelArgent;
 
+    @FXML
+    private Label labelVie;
+
 
 
 
@@ -56,6 +59,9 @@ public class Controller implements Initializable {
 
         map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
         map.argentDeBase();
+
+        map.vieProperty().addListener((ob,old,nv) -> labelVie.setText(nv.toString()));
+        map.vieDeBase();
 
 
         terrainEntite.setOnMouseClicked(new Menu(map,terrainEntite));

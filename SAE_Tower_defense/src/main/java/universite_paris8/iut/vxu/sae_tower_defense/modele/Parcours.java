@@ -139,7 +139,7 @@ public class Parcours {
 
     private List<Integer> cheminVersCible(int source, Map<Integer, Integer> predecesseurs) {
         List<Integer> chemin = new ArrayList<>();
-        Integer courant = Terrain.getIndiceCible();
+        Integer courant = env.getTerrain().getIndiceCible();
         while(courant != null){
             chemin.add(courant);
             courant = predecesseurs.get(courant);

@@ -13,6 +13,7 @@ public class Environnement {
 
     private Terrain terrain;
     private IntegerProperty argent;
+    private IntegerProperty vie;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
@@ -25,10 +26,12 @@ public class Environnement {
         tours=FXCollections.observableArrayList();
         projectiles = FXCollections.observableArrayList();
         argent = new SimpleIntegerProperty();
+        vie = new SimpleIntegerProperty();
         terrain = new Terrain();
         parcours = new Parcours(this);
     }
 
+    public void vieDeBase(){vie.set(10);}
 
     public void argentDeBase(){
         argent.set(999999999);
@@ -44,6 +47,14 @@ public class Environnement {
         if(argent.get()-enlever > 0) {
             argent.set(argent.get() - enlever);
         }
+    }
+
+    public int getVie() {
+        return vie.get();
+    }
+
+    public IntegerProperty vieProperty() {
+        return vie;
     }
 
     public int getArgent() {
@@ -83,10 +94,11 @@ public class Environnement {
     }
 
     public void faireUnTour(int temps){
-
         int j;
 
-        int indDepart = Terrain.genererIndiceDepartAlea();
+        int indDepart = terrain.genererIndiceDepartAlea();
+
+        ArrayList<Personnage> aEnlever = new ArrayList<>();
 
         if(temps % 100 == 0) {
 
@@ -105,10 +117,15 @@ public class Environnement {
             ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
         }
 
-
-
         for (int i=0;i<personnages.size();i++){
             personnages.get(i).action(temps);
+            if (personnages.get(i).getIndiceTerrain() == terrain.getIndiceCible()) {
+                vie.set(vie.get() - 1);
+                aEnlever.add(personnages.get(i));
+            }
+        }
+        for (Personnage perso: aEnlever){
+            personnages.remove(perso);
         }
         //if (temps%50==0)
         for (int i=0;i<tours.size();i++){
