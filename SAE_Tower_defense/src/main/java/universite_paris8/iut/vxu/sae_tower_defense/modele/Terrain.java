@@ -3,6 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Terrain {
@@ -11,6 +12,8 @@ public class Terrain {
     private int longueurMap; // static ?
     private int tailleTile; // static ?
     private ObservableList<Integer> map;
+    private ObservableList<Integer> map_initiale;
+
 
     public Terrain() {
         map = FXCollections.observableArrayList(List.of(
@@ -24,6 +27,9 @@ public class Terrain {
                 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+
+        map_initiale = FXCollections.observableArrayList(Collections.nCopies(map.size(), null));
+        FXCollections.copy(map_initiale, map.stream().toList());
         longueurMap =18;
         tailleTile = 60;
     }
@@ -62,5 +68,17 @@ public class Terrain {
 
     public  int getIndiceCible() {
         return indiceCible;
+    }
+
+    public void modifierTerrain(int valeur, int... indices){
+        for(int indice: indices){
+            map.set(indice, valeur);
+        }
+    }
+
+    public void reinitialiserTerrain(int... indices){
+        for(int indice: indices){
+            map.set(indice, map_initiale.get(indice));
+        }
     }
 }
