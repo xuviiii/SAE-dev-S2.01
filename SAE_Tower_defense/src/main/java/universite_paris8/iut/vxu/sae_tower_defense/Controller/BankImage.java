@@ -2,10 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Projectile;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +10,8 @@ import java.util.Map;
 public class BankImage {
     private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.of(
             Tour.class,"/image/tour/archer/archer.gif",
-            Personnage.class, "/image/perso/gobelin_vert/gobelin.gif",
+            GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif",
+            Pretre.class, "/image/perso/gobelin_vert/gobelin.gif",
             Projectile.class, "/image/projectile/flêche.png"));
 
 

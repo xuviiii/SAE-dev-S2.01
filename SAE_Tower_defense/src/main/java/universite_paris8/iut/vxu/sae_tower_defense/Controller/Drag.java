@@ -31,7 +31,7 @@ public class Drag implements EventHandler<MouseEvent> {
         Circle rayon = new Circle();
         ImageView img = BankImage.getImgView(tour.getClass(), tour.getTaille());
         img.setOpacity(0.5);
-        rayon.setRadius(tour.getPortée());
+        rayon.setRadius(tour.getPortee());
         rayon.setCenterX(tour.getX());
         rayon.setCenterY(tour.getY());
         rayon.setOpacity(0.4);
