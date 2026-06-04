@@ -39,7 +39,7 @@ public class Menu implements EventHandler<MouseEvent> {
 
                 if (!menu.getChildren().contains(menuContenu))
                     menu.getChildren().add(menuContenu);
-                stats.setText("Stats :\ndegat : "+map.getTours().get(i).getDégât()+", Portée : "+map.getTours().get(i).getPortée()+", Position : x"+map.getTours().get(i).getX()+", y"+map.getTours().get(i).getY());
+                stats.setText(map.getTours().get(i).toString());
                 menu.setTranslateX(map.getTours().get(i).getX()+map.getTours().get(i).getTaille());
                 menu.setTranslateY(map.getTours().get(i).getY()+map.getTours().get(i).getTaille());
                 améliorer.setOnAction(new Améliorer(map.getTours().get(i),stats));
