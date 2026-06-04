@@ -1,26 +1,41 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-public class Personnage extends Entite {
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
-    private int pv;
+    private IntegerProperty pv;
+    private int pvMax;
     private int degat;
     private int indiceTerrain;
     private int taille;
 
-    public Personnage(int pv, double x, double y, int vitesse,  int degat,
-                      int taille, int indiceTerrain, Environnement map){
-        super("p"+compteur,x,y,vitesse,map);
+    public Personnage(int pv, double x, double y, double vitesse,  int degat,
+                      int taille, int indiceTerrain, Environnement env){
+        super("p"+compteur,x,y,vitesse,env);
         compteur++;
 
-        this.pv = pv;
+        this.pv = new SimpleIntegerProperty(pv);
+        this.pvMax = pv;
         this.degat = degat;
         this.taille = taille;
         this.indiceTerrain = indiceTerrain;
     }
 
-    public int getPv() {
+    public IntegerProperty getPvProperty(){
         return pv;
+    }
+
+    public int getPv() {
+        return pv.getValue();
+    }
+
+    public void setPv(int pv) {
+        // System.out.print("SOIN ! (" + pv + ") : [" + this.pv + ",");
+        this.pv.setValue(Math.min(pv, this.pvMax));
+        // System.out.println(this.pv + "]");
     }
 
     public int getDegat() {
@@ -32,18 +47,20 @@ public class Personnage extends Entite {
     }
 
     public void subirDegat(int degat){
-        pv-=degat;
+        pv.setValue(pv.getValue() - degat);
     }
 
-    public boolean estMort(){return pv<=0;}
+    public boolean estMort(){return pv.getValue() <= 0;}
 
     public boolean estTouché(double x,double y){
         return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
     }
 
+    public abstract int tileSuivante();
+
     private void seDeplace(){
 
-        int suivant = getEnv().getParcours().tileSuivanteMoindreCout(indiceTerrain);
+        int suivant = tileSuivante();
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);
@@ -82,7 +99,7 @@ public class Personnage extends Entite {
     }
 
     @Override
-    public void action() {
+    public void action(int temps) {
         seDeplace();
     }
 
