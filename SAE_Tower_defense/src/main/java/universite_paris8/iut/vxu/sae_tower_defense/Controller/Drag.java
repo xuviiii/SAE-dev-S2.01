@@ -2,14 +2,12 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 public class Drag implements EventHandler<MouseEvent> {
@@ -31,13 +29,11 @@ public class Drag implements EventHandler<MouseEvent> {
         Pane preview = new Pane();
         tour = achat.selctionerTour(((Node)event.getSource()).getId(),0,0);
         Circle rayon = new Circle();
-        ImageView img = new ImageView(new Image(getClass().getResourceAsStream("/image/tour/archer/archer.gif")));
-        img.setFitWidth(tour.getTaille());
-        img.setPreserveRatio(true);
+        ImageView img = BankImage.getImgView(tour.getClass(), tour.getTaille());
         img.setOpacity(0.5);
         rayon.setRadius(tour.getPortée());
-        rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
-        rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
+        rayon.setCenterX(tour.getX());
+        rayon.setCenterY(tour.getY());
         rayon.setOpacity(0.4);
         preview.getChildren().add(rayon);
         preview.getChildren().add(img);

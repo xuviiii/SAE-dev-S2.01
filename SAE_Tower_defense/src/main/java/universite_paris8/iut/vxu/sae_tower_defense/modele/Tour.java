@@ -37,14 +37,6 @@ public class Tour extends Entite{
         return prix;
     }
 
-    public void setY(double y) {
-        this.y.set(y);
-    }
-
-    public void setX(double x) {
-        this.x.set(x);
-    }
-
     public void ameliorer(){
         dégât+=1;
     }

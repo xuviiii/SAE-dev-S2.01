@@ -1,6 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,12 +20,12 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         change.next();
         if (change.wasAdded()){
             for (Projectile projectile : change.getAddedSubList()){
-                Rectangle sprite;
-                sprite =new Rectangle(5,5);
-                sprite.setFill (Color.BLUE);
+                ImageView sprite;
+                sprite = BankImage.getImgView(projectile.getClass(), 20);
                 sprite.translateXProperty().bind(projectile.getXProperty());
                 sprite.translateYProperty().bind(projectile.getYProperty());
                 sprite.setId(projectile.getId());
+                sprite.setRotate(projectile.getAngle());
                 terrain.getChildren().add(sprite);
             }
         }

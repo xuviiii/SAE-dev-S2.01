@@ -27,6 +27,8 @@ public class Projectile extends Entite {
         return degat;
     }
 
+    public double getAngle(){return Math.toDegrees(Math.atan2(dy, dx));}
+
     public void avancer(){
         super.setX(super.getX()+dx*super.getVitesse());
         super.setY(super.getY()+dy*super.getVitesse());
