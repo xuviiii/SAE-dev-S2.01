@@ -32,8 +32,8 @@ public class AccepterDrop implements EventHandler<DragEvent>{
         Dragboard db = event.getDragboard();
         Node preview = terrain.lookup("#"+db.getString());
 
-        preview.setLayoutX(event.getX()-drag.getTour().getTaille()/2);
-        preview.setLayoutY(event.getY()-drag.getTour().getTaille()/2);
+        preview.setLayoutX(event.getX());
+        preview.setLayoutY(event.getY());
 
 
         event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
