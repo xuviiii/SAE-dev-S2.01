@@ -2,19 +2,57 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 public class Drag implements EventHandler<MouseEvent> {
+    private Pane terrain;
+    private Environnement env;
+    private Tour tour;
+    private Achat achat;
+
+
+    public Drag(Pane terrain, Environnement env,Achat achat) {
+        this.terrain = terrain;
+        this.env = env;
+        this.achat = achat;
+        this.tour=null;
+    }
+
     @Override
     public void handle(MouseEvent event) {
+        Pane preview = new Pane();
+        tour = achat.selctionerTour(((Node)event.getSource()).getId(),0,0);
+        Circle rayon = new Circle();
+        ImageView img = BankImage.getImgView(tour.getClass(), tour.getTaille());
+        img.setOpacity(0.5);
+        rayon.setRadius(tour.getPortée());
+        rayon.setCenterX(tour.getX());
+        rayon.setCenterY(tour.getY());
+        rayon.setOpacity(0.4);
+        preview.getChildren().add(rayon);
+        preview.getChildren().add(img);
+
+        preview.setId("preview");
+        terrain.getChildren().add(preview);
+
         Dragboard db = ((Node)event.getSource()).startDragAndDrop(TransferMode.ANY);
         ClipboardContent content = new ClipboardContent();
-        content.putString("");
+        content.putString(preview.getId());
         db.setContent(content);
         event.consume();
+    }
+
+    public Tour getTour() {
+        return tour;
+    }
+
+    public void viderTour(){
+        tour = null;
     }
 }

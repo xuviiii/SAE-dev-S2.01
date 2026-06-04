@@ -1,7 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.collections.ListChangeListener;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -26,10 +25,7 @@ public class ObsTour implements ListChangeListener<Tour> {
                 rayon.setOpacity(0.4);
 
                 ImageView sprite;
-                sprite =new ImageView();
-                sprite.setImage(new Image(getClass().getResourceAsStream("/image/tour/archer/archer.gif")));
-                sprite.setFitWidth(tour.getTaille());
-                sprite.setPreserveRatio(true);
+                sprite = BankImage.getImgView(tour.getClass(), tour.getTaille());
                 sprite.translateXProperty().bind(tour.getXProperty());
                 sprite.translateYProperty().bind(tour.getYProperty());
                 sprite.setId(tour.getId());
