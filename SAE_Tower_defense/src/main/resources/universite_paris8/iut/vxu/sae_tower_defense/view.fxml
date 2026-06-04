@@ -36,6 +36,12 @@
                   <Label fx:id="labelArgent" alignment="CENTER" prefHeight="31.0" prefWidth="87.0" textAlignment="CENTER" />
                </children>
             </VBox>
+            <VBox layoutX="329.0" prefHeight="66.0" prefWidth="87.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="87.0" text="Vie" textAlignment="CENTER" />
+                  <Label fx:id="labelVie" alignment="CENTER" prefHeight="31.0" prefWidth="87.0" textAlignment="CENTER" />
+               </children>
+            </VBox>
          </children></Pane>
    </bottom>
 </BorderPane>

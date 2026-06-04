@@ -38,6 +38,7 @@ public class Drop implements EventHandler<DragEvent> {
         success = (achat.peutEtrePoser(tour.getX(),tour.getY(),tour.getTaille())  && !(tour ==  null));
         if (success){
             env.ajouterTour(tour);
+            env.enleverArgent(tour.getPrix());
         }
         event.setDropCompleted(success);
         event.consume();
