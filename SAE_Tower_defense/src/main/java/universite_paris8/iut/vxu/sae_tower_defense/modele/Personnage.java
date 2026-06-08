@@ -14,16 +14,16 @@ public abstract class Personnage extends Entite {
     private int indiceTerrain;
     private int taille;
 
-    public Personnage(int pv, double x, double y, double vitesse,  int degat,
-                      int taille, int indiceTerrain, Environnement env){
-        super("p"+compteur,x,y,vitesse,env);
+    public Personnage(int pv, double vitesse,  int degat,
+                      int taille, Environnement env){
+        super("p"+compteur,0,0,vitesse,env);
         compteur++;
 
         this.pv = new SimpleIntegerProperty(pv);
         this.pvMax = pv;
         this.degat = degat;
         this.taille = taille;
-        this.indiceTerrain = indiceTerrain;
+        this.indiceTerrain = 0;
     }
 
     public IntegerProperty getPvProperty(){

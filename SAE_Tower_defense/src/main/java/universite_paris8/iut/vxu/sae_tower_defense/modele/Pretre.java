@@ -7,10 +7,10 @@ public class Pretre extends Personnage implements Cibleur {
     private int portee;
     private int pvSoin;
 
-    public Pretre(double x, double y, int indiceTerrain, Environnement env, int portee, int pvSoin){
-        super(15, x, y, 0.5, 10, 32, indiceTerrain, env);
-        this.portee = portee;
-        this.pvSoin = pvSoin;
+    public Pretre(Environnement env){
+        super(15 ,0.5, 10, 32, env);
+        this.portee = 100;
+        this.pvSoin = 15;
     }
 
     public int getPortee() {
