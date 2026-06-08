@@ -18,7 +18,6 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
-    private Parcours parcours;
 
     public Environnement(){
 
@@ -28,7 +27,6 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
         terrain = new Terrain();
-        parcours = new Parcours(this);
     }
 
     public void vieDeBase(){vie.set(10);}
@@ -79,10 +77,6 @@ public class Environnement {
 
     public ObservableList<Projectile> getProjectiles() {
         return projectiles;
-    }
-
-    public Parcours getParcours() {
-        return parcours;
     }
 
     public void ajouterPersonnage(Personnage p){

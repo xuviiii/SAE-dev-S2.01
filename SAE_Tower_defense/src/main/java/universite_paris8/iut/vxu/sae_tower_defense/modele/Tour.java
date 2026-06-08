@@ -42,7 +42,6 @@ public class Tour extends Entite implements Cibleur {
 
         List<Personnage> ennemisCiblables;
         Personnage ennemiACible;
-        Parcours parcours = getEnv().getParcours();
 
         ennemisCiblables = cibler();
 
@@ -51,7 +50,14 @@ public class Tour extends Entite implements Cibleur {
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (personnage.cheminVersCible().size() < ennemiACible.cheminVersCible().size())
+                if (personnage
+                        .getDeplacement()
+                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .size()
+                        < ennemiACible
+                        .getDeplacement()
+                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))

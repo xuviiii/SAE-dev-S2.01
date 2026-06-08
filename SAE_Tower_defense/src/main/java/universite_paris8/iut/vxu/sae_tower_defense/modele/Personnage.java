@@ -13,9 +13,10 @@ public abstract class Personnage extends Entite {
     private int degat;
     private int indiceTerrain;
     private int taille;
+    private Deplacement deplacement;
 
     public Personnage(int pv, double x, double y, double vitesse,  int degat,
-                      int taille, int indiceTerrain, Environnement env){
+                      int taille, int indiceTerrain, Environnement env, Deplacement deplacement){
         super("p"+compteur,x,y,vitesse,env);
         compteur++;
 
@@ -24,6 +25,7 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         this.taille = taille;
         this.indiceTerrain = indiceTerrain;
+        this.deplacement = deplacement;
     }
 
     public IntegerProperty getPvProperty(){
@@ -58,11 +60,9 @@ public abstract class Personnage extends Entite {
         return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
     }
 
-    public abstract List<Integer> cheminVersCible();
-
     private void seDeplace(){
 
-        int suivant = getEnv().getParcours().tileSuivante(cheminVersCible());
+        int suivant = deplacement.tileSuivante(indiceTerrain);
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);
@@ -98,6 +98,10 @@ public abstract class Personnage extends Entite {
 
     public void setIndiceTerrain(int indiceTerrain) {
         this.indiceTerrain = indiceTerrain;
+    }
+
+    public Deplacement getDeplacement(){
+        return this.deplacement;
     }
 
     @Override

@@ -5,12 +5,7 @@ import java.util.List;
 public class GobelinVert extends Personnage {
 
     public GobelinVert(double x, double y, int indiceTerrain, Environnement env){
-        super(10, x, y, 1, 10, 32, indiceTerrain, env);
-    }
-
-    @Override
-    public List<Integer> cheminVersCible(){
-        return getEnv().getParcours().cheminVersCible(getIndiceTerrain());
+        super(10, x, y, 1, 10, 32, indiceTerrain, env, new BFS(env));
     }
 
 //    @Override
