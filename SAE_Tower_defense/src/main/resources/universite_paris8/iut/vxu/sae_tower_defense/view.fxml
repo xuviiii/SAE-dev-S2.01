@@ -23,7 +23,7 @@
    <center>
       <Pane fx:id="terrainEntite" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="tile" alignment="CENTER" prefHeight="500.0" prefWidth="501.0" />
+            <TilePane fx:id="tile" alignment="CENTER" prefHeight="337.0" prefWidth="440.0" />
          </children>
       </Pane>
    </center>

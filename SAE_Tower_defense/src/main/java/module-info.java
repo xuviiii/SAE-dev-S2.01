@@ -3,6 +3,7 @@ module universite_paris8.iut.vxu.sae_tower_defense {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.desktop;
 
     opens universite_paris8.iut.vxu.sae_tower_defense to javafx.fxml;
     exports universite_paris8.iut.vxu.sae_tower_defense;
