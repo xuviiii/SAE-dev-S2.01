@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 
 public class ControlerDemarage implements Initializable {
     @FXML
-    private Button boutonDeDemarage;@FXML
-    private Pane fond;
+    private Button boutonDeDemarage;
+
 
     @FXML
     public void Demarer() throws Exception{
