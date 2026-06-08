@@ -8,18 +8,13 @@ public class Pretre extends Personnage implements Cibleur {
     private int pvSoin;
 
     public Pretre(double x, double y, int indiceTerrain, Environnement env, int portee, int pvSoin){
-        super(15, x, y, 0.5, 10, 32, indiceTerrain, env);
+        super(15, x, y, 0.5, 10, 32, indiceTerrain, env, new Dijkstra(env));
         this.portee = portee;
         this.pvSoin = pvSoin;
     }
 
     public int getPortee() {
         return portee;
-    }
-
-    @Override
-    public List<Integer> cheminVersCible(){
-        return getEnv().getParcours().cheminVersCibleMoindreCout(getIndiceTerrain());
     }
 
     @Override
