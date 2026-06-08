@@ -18,8 +18,8 @@ public class Pretre extends Personnage implements Cibleur {
     }
 
     @Override
-    public int tileSuivante(){
-        return getEnv().getParcours().tileSuivanteMoindreCout(getIndiceTerrain());
+    public List<Integer> cheminVersCible(){
+        return getEnv().getParcours().cheminVersCibleMoindreCout(getIndiceTerrain());
     }
 
     @Override

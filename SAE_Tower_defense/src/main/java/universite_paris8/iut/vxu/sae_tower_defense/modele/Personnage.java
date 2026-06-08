@@ -3,6 +3,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.List;
+
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
@@ -56,11 +58,11 @@ public abstract class Personnage extends Entite {
         return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
     }
 
-    public abstract int tileSuivante();
+    public abstract List<Integer> cheminVersCible();
 
     private void seDeplace(){
 
-        int suivant = tileSuivante();
+        int suivant = getEnv().getParcours().tileSuivante(cheminVersCible());
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);

@@ -1,5 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+import java.util.List;
+
 public class GobelinVert extends Personnage {
 
     public GobelinVert(double x, double y, int indiceTerrain, Environnement env){
@@ -7,8 +9,8 @@ public class GobelinVert extends Personnage {
     }
 
     @Override
-    public int tileSuivante(){
-        return getEnv().getParcours().tileSuivante(getIndiceTerrain());
+    public List<Integer> cheminVersCible(){
+        return getEnv().getParcours().cheminVersCible(getIndiceTerrain());
     }
 
 //    @Override
