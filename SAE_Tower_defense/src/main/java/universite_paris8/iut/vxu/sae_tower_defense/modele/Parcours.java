@@ -122,7 +122,7 @@ public class Parcours {
                 if((predecesseurs.get(adjacent) == null && adjacent != source) || cout < couts.get(adjacent)){
 
                     if(predecesseurs.get(adjacent) != null){
-                        fifo.removeIf((IndiceCout indiceCout) -> indiceCout.indice == adjacent); // ?
+                        fifo.removeIf((IndiceCout indiceCout) -> indiceCout.indice == adjacent);
                     }
 
                     predecesseurs.put(adjacent, courant);
@@ -135,9 +135,7 @@ public class Parcours {
         return predecesseurs;
     }
 
-
-
-    private List<Integer> cheminVersCible(int source, Map<Integer, Integer> predecesseurs) {
+    private List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs) {
         List<Integer> chemin = new ArrayList<>();
         Integer courant = env.getTerrain().getIndiceCible();
         while(courant != null){
@@ -150,20 +148,16 @@ public class Parcours {
 
     public List<Integer> cheminVersCible(int source) {
         Map<Integer, Integer> predecesseurs = parcours(source);
-        return cheminVersCible(source, predecesseurs);
+        return cheminVersCible(predecesseurs);
     }
 
-
-
-
-    public int tileSuivante(int source) {
-        List<Integer> chemin = cheminVersCible(source);
-        return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
-    }
-
-    public int tileSuivanteMoindreCout(int source) {
+    public List<Integer> cheminVersCibleMoindreCout(int source){
         Map<Integer, Integer> predecesseurs = parcoursMoindreCout(source);
-        List<Integer> chemin = cheminVersCible(source, predecesseurs);
+        return cheminVersCible(predecesseurs);
+    }
+
+
+    public int tileSuivante(List<Integer> chemin) {
         return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
     }
 }

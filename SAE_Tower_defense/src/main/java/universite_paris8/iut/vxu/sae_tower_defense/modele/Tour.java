@@ -51,9 +51,7 @@ public class Tour extends Entite implements Cibleur {
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                //TODO
-                // associer à chaque perso sa bonne methode de déplacement
-                if (parcours.cheminVersCible(personnage.getIndiceTerrain()).size()< parcours.cheminVersCible(ennemiACible.getIndiceTerrain()).size())
+                if (personnage.cheminVersCible().size() < ennemiACible.cheminVersCible().size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
