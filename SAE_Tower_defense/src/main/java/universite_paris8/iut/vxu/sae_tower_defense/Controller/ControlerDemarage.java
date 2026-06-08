@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import universite_paris8.iut.vxu.sae_tower_defense.Application;
 
@@ -16,6 +17,8 @@ import java.util.ResourceBundle;
 public class ControlerDemarage implements Initializable {
     @FXML
     private Button boutonDeDemarage;
+    @FXML
+    private Pane fond;
 
     @FXML
     public void Demarer() throws Exception{

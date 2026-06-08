@@ -14,13 +14,13 @@
          <image>
             <Image url="@../../../../image/tour/archer/archer1.png" />
          </image></ImageView>
-      <ImageView fitHeight="387.0" fitWidth="203.0" layoutX="196.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="387.0" fitWidth="203.0" layoutX="196.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/tour/tour%20de%20saurron/tour%20de%20saurron-1.png" />
          </image>
       </ImageView>
       <Button fx:id="boutonDeDemarage" layoutX="248.0" layoutY="237.0" mnemonicParsing="false" onAction="#Demarer" prefHeight="45.0" prefWidth="89.0" text="Lancer" />
-      <ImageView fitHeight="173.0" fitWidth="166.0" layoutX="409.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="173.0" fitWidth="166.0" layoutX="434.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/tour/tour%20de%20feu/tour%20de%20feu-1.png" />
          </image>
