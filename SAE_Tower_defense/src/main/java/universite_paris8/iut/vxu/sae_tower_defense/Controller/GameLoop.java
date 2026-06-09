@@ -21,11 +21,11 @@ public class GameLoop {
 
         Tour t_test;
 
-        t_test = new TourDeFleche(200,20,map,100,10,10,100);
+        t_test = new TourDeFleche(200,20,map);
         map.ajouterTour(t_test);
-        t_test = new Catapulte(200,240,map,100,10,10,400,240);
+        t_test = new Catapulte(200,240,map,400,240);
         map.ajouterTour(t_test);
-        t_test = new TourDHuile(400,240,map,100,1,10,100);
+        t_test = new TourDHuile(400,240,map);
         map.ajouterTour(t_test);
         t_test = new TourDeMage(400,500,map);
         map.ajouterTour(t_test);

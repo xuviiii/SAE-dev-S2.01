@@ -7,8 +7,8 @@ public abstract class Tour extends Entite{
     private int niveau;
     private int compteurAction;
 
-    public Tour(double x, double y, Environnement map, int prix, int vitesse, int dégât) {
-        super("t"+compteur,x,y,vitesse,map,32);
+    public Tour(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât) {
+        super("t"+compteur,x,y,vitesse,map,taille);
         compteur++;
         this.prix = prix;
         this.dégât = dégât;
@@ -30,6 +30,10 @@ public abstract class Tour extends Entite{
 
     public void compteurActionPlus(){
         compteurAction++;
+    }
+
+    public void resetCompteurAction(){
+        compteurAction = 0;
     }
 
     public abstract void ameliorer();

@@ -5,8 +5,8 @@ public class Catapulte extends TourProjectileLance {
     private double xCible;
     private double yCible;
 
-    public Catapulte(double x, double y, Environnement map, int prix, int vitesse, int dégât, double xCible, double yCible) {
-        super(x, y, map, prix, vitesse, dégât, 2000);
+    public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
+        super(x, y, 5, map, 32, 300, 10, 10000);
         this.xCible = xCible;
         this.yCible = yCible;
     }
