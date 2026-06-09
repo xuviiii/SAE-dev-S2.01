@@ -83,10 +83,6 @@ public class Environnement {
         return projectiles;
     }
 
-    public Parcours getParcours() {
-        return parcours;
-    }
-
     public void ajouterPersonnage(Personnage p){
         personnages.add(p);
     }

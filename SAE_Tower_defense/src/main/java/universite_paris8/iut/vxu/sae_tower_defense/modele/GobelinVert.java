@@ -7,11 +7,7 @@ public class GobelinVert extends Personnage {
     public GobelinVert( Environnement env){
         super(10, 1, 10, 32, env);
     }
-
-    @Override
-    public List<Integer> cheminVersCible(){
-        return getEnv().getParcours().cheminVersCible(getIndiceTerrain());
-    }
+    
 
 //    @Override
 //    public void action(){

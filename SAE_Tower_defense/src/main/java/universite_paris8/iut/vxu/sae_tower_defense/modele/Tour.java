@@ -2,12 +2,13 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import java.util.List;
 
-public class Tour extends Entite implements Cibleur {
+public class Tour extends Entite {
     private static int compteur = 0;
     private int portee;
     private int dégât;
     private int taille;
     private int prix;
+    private Cibleur cibleur;
 
     public Tour(double x, double y, int portee, int dégât, int taille, Environnement map, int prix, int vitesse) {
         super("t"+compteur,x,y,vitesse,map);
@@ -16,6 +17,7 @@ public class Tour extends Entite implements Cibleur {
         this.dégât = dégât;
         this.taille = taille;
         this.prix = prix;
+        this.cibleur = new Cibleur(this.portee, this);
     }
 
     public int getPortee() {
@@ -42,16 +44,22 @@ public class Tour extends Entite implements Cibleur {
 
         List<Personnage> ennemisCiblables;
         Personnage ennemiACible;
-        Parcours parcours = getEnv().getParcours();
 
-        ennemisCiblables = cibler();
+        ennemisCiblables = cibleur.cibler();
 
         if (ennemisCiblables.isEmpty())
             return null;
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (personnage.cheminVersCible().size() < ennemiACible.cheminVersCible().size())
+                if (personnage
+                        .getDeplacement()
+                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .size()
+                        < ennemiACible
+                        .getDeplacement()
+                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
