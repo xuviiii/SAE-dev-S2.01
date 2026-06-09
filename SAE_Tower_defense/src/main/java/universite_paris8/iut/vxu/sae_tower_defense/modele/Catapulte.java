@@ -26,7 +26,9 @@ public class Catapulte extends TourProjectile {
 
     @Override
     public void action() {
-        creerProjectile(xCible,yCible);
+        if (getCompteurAction()%5==0)
+            creerProjectile(xCible,yCible);
+        compteurActionPlus();
     }
 
     @Override

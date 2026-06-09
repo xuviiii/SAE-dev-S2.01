@@ -37,7 +37,7 @@ public abstract class Projectile extends Entite {
 
     public Personnage projectileTouche(){
         for (Personnage personnage : super.getEnv().getPersonnages())
-            if (personnage.estTouché(super.getX(), super.getY()))
+            if (personnage.estTouché(this))
                 return personnage;
         return null;
     }

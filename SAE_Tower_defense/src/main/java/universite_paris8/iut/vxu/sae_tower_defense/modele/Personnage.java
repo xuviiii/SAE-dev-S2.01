@@ -33,8 +33,13 @@ public class Personnage extends Entite {
 
     public boolean estMort(){return pv<=0;}
 
-    public boolean estTouché(double x,double y){
-        return super.getX()-1<=x && super.getX()+getTaille()+1>=x && super.getY()-1<=y && super.getY()+getTaille()+1>=y;
+    public boolean estTouché(Projectile projectile){
+        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
+        xProjectileG = projectile.getX();
+        xProjectileD = projectile.getX()+projectile.getTaille();
+        yProjectileH = projectile.getY();
+        yProjectileB = projectile.getY()+projectile.getTaille();
+        return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
     private void seDeplace(){
