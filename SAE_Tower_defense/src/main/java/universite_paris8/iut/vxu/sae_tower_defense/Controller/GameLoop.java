@@ -27,6 +27,8 @@ public class GameLoop {
         map.ajouterTour(t_test);
         t_test = new TourDHuile(400,240,map,100,1,10,100);
         map.ajouterTour(t_test);
+        t_test = new TourDeMage(400,500,map);
+        map.ajouterTour(t_test);
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)

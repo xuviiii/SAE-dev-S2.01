@@ -44,16 +44,7 @@ public abstract class TourProjectile extends TourHorsChemin{
                     ennemiACible = personnage;
             return ennemiACible;
         }
-
     }
 
-    public void creerProjectile(double x,double y) {
-        double dx,dy,h;
-        h = Math.hypot(x-super.getX(),y-super.getY());
-        dx = (x-super.getX())/h;
-        dy = (y-super.getY())/h;
-        super.getEnv().getProjectiles().add(projectileALancer(x,y,dx,dy));
-    }
-
-    public abstract Projectile projectileALancer(double x,double y, double dx,double dy);
+    public abstract void creerProjectile(double x,double y);
 }

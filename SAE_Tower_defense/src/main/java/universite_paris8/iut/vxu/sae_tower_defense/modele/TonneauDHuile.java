@@ -1,12 +1,14 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-public class TonneauDHuile extends Projectile {
+import java.util.ArrayList;
+
+public class TonneauDHuile extends ProjectileLance {
 
     private double xCible;
     private double yCible;
 
     public TonneauDHuile(double x, double y, int vitesse, Environnement env, int taille, double dx, double dy, int portee, int degat, double xCible, double yCible) {
-        super(x, y, vitesse, env, taille, dx, dy, portee, degat);
+        super(x, y, vitesse, env, taille, degat, dx, dy, portee);
         this.xCible = xCible;
         this.yCible = yCible;
     }
@@ -21,10 +23,7 @@ public class TonneauDHuile extends Projectile {
     @Override
     public void action() {
         avancer();
-        Personnage personnageTouche = projectileTouche();
-        if (personnageTouche != null)
-            attaquer(personnageTouche);
-        else if (xCible+10>getX()&&xCible-10<getX()&&yCible+10>getY()&&yCible-10<getY()){
+        if (xCible+32>getX()&&xCible-32<getX()&&yCible+32>getY()&&yCible-32<getY()){
             super.getEnv().getProjectiles().remove(this);
             super.getEnv().getProjectiles().add(new ZoneDeFlamme(xCible, yCible, super.getEnv()));
         }

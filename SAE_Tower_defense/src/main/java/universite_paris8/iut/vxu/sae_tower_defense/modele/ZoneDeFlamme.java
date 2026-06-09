@@ -7,12 +7,8 @@ public class ZoneDeFlamme extends Projectile {
     private int compteur;
 
     public ZoneDeFlamme(double x, double y, Environnement env) {
-        super(x, y, 10, env, 32, 0, 0, 0, 10);
+        super(x, y, 10, env, 32, 10);
         compteur = 0;
-    }
-
-    @Override
-    public void attaquer(Personnage personnage) {
     }
 
     @Override

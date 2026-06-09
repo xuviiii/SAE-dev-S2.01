@@ -61,5 +61,9 @@ public abstract class Entite {
         this.y.setValue(y);
     }
 
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
+
     public abstract void action();
 }

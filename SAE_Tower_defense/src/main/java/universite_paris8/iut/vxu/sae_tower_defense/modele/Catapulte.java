@@ -1,6 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-public class Catapulte extends TourProjectile {
+public class Catapulte extends TourProjectileLance {
 
     private double xCible;
     private double yCible;

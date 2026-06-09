@@ -2,12 +2,12 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import java.util.ArrayList;
 
-public class Rocher extends Projectile{
+public class Rocher extends ProjectileLance{
 
     private ArrayList<Personnage> ennemisTouches;
 
     public Rocher(double x, double y, int vitesse, Environnement env, double dx, double dy, int portee, int degat) {
-        super(x, y, vitesse, env, 20, dx, dy, portee, degat);
+        super(x, y, vitesse, env, 20, degat, dx, dy, portee);
         ennemisTouches = new ArrayList<>();
     }
 
