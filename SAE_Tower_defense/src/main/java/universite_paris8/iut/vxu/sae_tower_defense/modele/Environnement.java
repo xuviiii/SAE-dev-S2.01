@@ -18,7 +18,6 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
-    private Parcours parcours;
     private Vague vague;
 
     public Environnement(){
@@ -29,7 +28,6 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
         terrain = new Terrain();
-        parcours = new Parcours(this);
         vague = new Vague(this);
     }
 
