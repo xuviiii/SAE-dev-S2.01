@@ -1,25 +1,31 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+import javafx.collections.ObservableList;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Cibleur {
+public class Cibleur {
 
-    int getPortee();
-    double getX();
-    double getY();
-    Environnement getEnv();
+    private int portee;
+    private Entite entite;
 
-    default List<Personnage> cibler(){
+    public Cibleur(int portee, Entite entite) {
+        this.portee = portee;
+        this.entite = entite;
+    }
+
+    public List<Personnage> cibler(){
 
         List<Personnage> ennemisCiblables = new ArrayList<>();
+        ObservableList<Personnage> personnages = entite.getEnv().getPersonnages();
 
-        for (int i = 0; i < getEnv().getPersonnages().size(); i++){
-            if (((getX() - getPortee()) < getEnv().getPersonnages().get(i).getX())
-                    && ((getX() + getPortee()) > getEnv().getPersonnages().get(i).getX())
-                    && ((getY() - getPortee()) < getEnv().getPersonnages().get(i).getY())
-                    && ((getY() + getPortee()) > getEnv().getPersonnages().get(i).getY())){
-                ennemisCiblables.add(getEnv().getPersonnages().get(i));
+        for (int i = 0; i < personnages.size(); i++){
+            if (((entite.getX() - portee) < personnages.get(i).getX())
+                    && ((entite.getX() + portee) > personnages.get(i).getX())
+                    && ((entite.getY() - portee) < personnages.get(i).getY())
+                    && ((entite.getY() + portee) > personnages.get(i).getY())) {
+
+                ennemisCiblables.add(personnages.get(i));
             }
         }
 
