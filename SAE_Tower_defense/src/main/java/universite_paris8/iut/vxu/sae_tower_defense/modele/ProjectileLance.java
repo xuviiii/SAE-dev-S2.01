@@ -6,16 +6,16 @@ public abstract class ProjectileLance extends Projectile {
 
     private double dx;
     private double dy;
-    private int portee;
+    private int porteeTour;
     private double xInitial;
     private double yInitial;
 
-    public ProjectileLance(double x, double y, int vitesse, Environnement env, int taille, int degat, double dx, double dy, int portee) {
+    public ProjectileLance(double x, double y, int vitesse, Environnement env, int taille, int degat, double dx, double dy, int porteeTour) {
         super(x, y, vitesse, env, taille, degat);
 
         this.dx = dx;
         this.dy = dy;
-        this.portee = portee;
+        this.porteeTour = porteeTour;
         xInitial = x;
         yInitial = y;
     }
@@ -26,7 +26,7 @@ public abstract class ProjectileLance extends Projectile {
     }
 
     public boolean horsPortee(){
-        return (int) (Math.abs(super.getX()-(xInitial)))>portee || (int) (Math.abs(super.getY()-(yInitial)))>portee || getX()<0 || getX()>getEnv().getTerrain().getLongueurMap()*getEnv().getTerrain().getTailleTile() || getY()<0 || getY()>getEnv().getTerrain().getHauteurMap()*getEnv().getTerrain().getTailleTile();
+        return (int) (Math.abs(super.getX()-(xInitial)))> porteeTour || (int) (Math.abs(super.getY()-(yInitial)))> porteeTour || getX()<0 || getX()>getEnv().getTerrain().getLongueurMap()*getEnv().getTerrain().getTailleTile() || getY()<0 || getY()>getEnv().getTerrain().getHauteurMap()*getEnv().getTerrain().getTailleTile();
     }
 
     public abstract void attaquer(Personnage personnage);

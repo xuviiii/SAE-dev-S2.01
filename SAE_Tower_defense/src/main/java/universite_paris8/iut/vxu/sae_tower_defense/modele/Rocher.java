@@ -6,8 +6,8 @@ public class Rocher extends ProjectileLance{
 
     private ArrayList<Personnage> ennemisTouches;
 
-    public Rocher(double x, double y, int vitesse, Environnement env, double dx, double dy, int portee, int degat) {
-        super(x, y, vitesse, env, 20, degat, dx, dy, portee);
+    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour) {
+        super(x, y, 10, env, 20, degat, dx, dy, porteeTour);
         ennemisTouches = new ArrayList<>();
     }
 

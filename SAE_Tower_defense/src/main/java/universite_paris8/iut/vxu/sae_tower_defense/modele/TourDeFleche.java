@@ -8,7 +8,7 @@ public class TourDeFleche extends TourProjectileLance{
 
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
-        return new Fleche(getX(),getY(),10,super.getEnv(),dx,dy,super.getPortee(),super.getDégât());
+        return new Fleche(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
     }
 
     @Override

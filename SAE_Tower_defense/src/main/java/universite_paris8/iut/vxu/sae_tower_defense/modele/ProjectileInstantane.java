@@ -22,6 +22,5 @@ public class ProjectileInstantane extends Projectile {
                 personnage.subirDegat(super.getDegat());
             super.getEnv().getProjectiles().remove(this);
         }
-
     }
 }

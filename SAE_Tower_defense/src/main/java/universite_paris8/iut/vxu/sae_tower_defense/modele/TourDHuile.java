@@ -9,7 +9,7 @@ public class TourDHuile extends TourProjectileLance {
     @Override
     public Projectile projectileALancer(double x, double y, double dx, double dy) {
         Personnage cible = ennemiACible();
-        return new TonneauDHuile(getX(),getY(),10,super.getEnv(),10,dx,dy,super.getPortee(),super.getDégât(),cible.getX(),cible.getY());
+        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY());
     }
 
     @Override

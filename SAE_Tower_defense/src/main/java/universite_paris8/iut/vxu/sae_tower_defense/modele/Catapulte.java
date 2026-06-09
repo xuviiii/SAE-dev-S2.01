@@ -21,12 +21,12 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
-        return new Rocher(getX(),getY(),10,super.getEnv(),dx,dy,super.getPortee(),super.getDégât());
+        return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
     }
 
     @Override
     public void action() {
-        if (getCompteurAction()%5==0)
+        if (getCompteurAction()%15==0)
             creerProjectile(xCible,yCible);
         compteurActionPlus();
     }

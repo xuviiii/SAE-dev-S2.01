@@ -1,14 +1,12 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-import java.util.ArrayList;
-
 public class TonneauDHuile extends ProjectileLance {
 
     private double xCible;
     private double yCible;
 
-    public TonneauDHuile(double x, double y, int vitesse, Environnement env, int taille, double dx, double dy, int portee, int degat, double xCible, double yCible) {
-        super(x, y, vitesse, env, taille, degat, dx, dy, portee);
+    public TonneauDHuile(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, double xCible, double yCible) {
+        super(x, y, 5, env, 10, degat, dx, dy, porteeTour);
         this.xCible = xCible;
         this.yCible = yCible;
     }
@@ -17,7 +15,7 @@ public class TonneauDHuile extends ProjectileLance {
     public void attaquer(Personnage personnage) {
         personnage.subirDegat(super.getDegat());
         super.getEnv().getProjectiles().remove(this);
-        super.getEnv().getProjectiles().add(new ZoneDeFlamme(personnage.getX(), personnage.getY(), super.getEnv()));
+        super.getEnv().getProjectiles().add(new ZoneDeFlamme(personnage.getX(), personnage.getY(), super.getEnv(),getDegat()));
     }
 
     @Override
@@ -25,7 +23,7 @@ public class TonneauDHuile extends ProjectileLance {
         avancer();
         if (xCible+32>getX()&&xCible-32<getX()&&yCible+32>getY()&&yCible-32<getY()){
             super.getEnv().getProjectiles().remove(this);
-            super.getEnv().getProjectiles().add(new ZoneDeFlamme(xCible, yCible, super.getEnv()));
+            super.getEnv().getProjectiles().add(new ZoneDeFlamme(xCible, yCible, super.getEnv(),getDegat()));
         }
     }
 }

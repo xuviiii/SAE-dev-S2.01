@@ -6,8 +6,8 @@ public class ZoneDeFlamme extends Projectile {
 
     private int compteur;
 
-    public ZoneDeFlamme(double x, double y, Environnement env) {
-        super(x, y, 10, env, 32, 10);
+    public ZoneDeFlamme(double x, double y, Environnement env, int degat) {
+        super(x, y, 10, env, 32, degat);
         compteur = 0;
     }
 
