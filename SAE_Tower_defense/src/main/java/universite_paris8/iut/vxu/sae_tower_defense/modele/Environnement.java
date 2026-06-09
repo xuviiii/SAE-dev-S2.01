@@ -18,6 +18,8 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
+    private Parcours parcours;
+    private Vague vague;
 
     public Environnement(){
 
@@ -27,6 +29,8 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
         terrain = new Terrain();
+        parcours = new Parcours(this);
+        vague = new Vague(this);
     }
 
     public void vieDeBase(){vie.set(10);}
@@ -90,12 +94,18 @@ public class Environnement {
     public void faireUnTour(int temps){
         int j;
 
-        int indDepart = terrain.genererIndiceDepartAlea();
+
 
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
-        if(temps % 100 == 0) {
+        if (temps % 50 == 0) {
+            vague.libererVague();
+        }
 
+        System.out.println(personnages.size());
+
+//        if(temps % 100 == 0) {
+//
 //            ajouterPersonnage(new Personnage(10,
 //                    terrain.toX(indDepart),
 //                    terrain.toY(indDepart),
@@ -104,12 +114,12 @@ public class Environnement {
 //                    32,
 //                    indDepart,
 //                    this));
-            ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
-        }
-
-        if(temps % 200 == 0){
-            ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
-        }
+//            ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
+//        }
+//
+//        if(temps % 200 == 0){
+//            ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
+//        }
 
         for (int i=0;i<personnages.size();i++){
             personnages.get(i).action(temps);

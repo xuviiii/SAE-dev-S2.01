@@ -4,9 +4,10 @@ import java.util.List;
 
 public class GobelinVert extends Personnage {
 
-    public GobelinVert(double x, double y, int indiceTerrain, Environnement env){
-        super(10, x, y, 1, 10, 32, indiceTerrain, env, new BFS(env));
+    public GobelinVert( Environnement env){
+        super(10, 1, 10, 32, env);
     }
+    
 
 //    @Override
 //    public void action(){
