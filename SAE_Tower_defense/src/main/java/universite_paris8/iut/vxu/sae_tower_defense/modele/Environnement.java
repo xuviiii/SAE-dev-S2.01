@@ -49,6 +49,10 @@ public class Environnement {
         }
     }
 
+    public Vague getVague() {
+        return vague;
+    }
+
     public int getVie() {
         return vie.get();
     }
@@ -100,7 +104,7 @@ public class Environnement {
             vague.libererVague();
         }
 
-        System.out.println(personnages.size());
+
 
 //        if(temps % 100 == 0) {
 //

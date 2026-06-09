@@ -1,26 +1,37 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.ArrayList;
 
 public class Vague {
     private ArrayList<Personnage> aRelacher;
-    private int numVague;
+    private IntegerProperty numVague;
     private Environnement env;
 
     public Vague(Environnement env) {
         aRelacher = new ArrayList<>();
-        numVague = 0;
+        numVague = new SimpleIntegerProperty(0);
         this.env = env;
+    }
+
+    public int getNumVague() {
+        return numVague.get();
+    }
+
+    public IntegerProperty numVagueProperty() {
+        return numVague;
     }
 
     public void libererVague(){
         int alea;
         Personnage en;
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
-            numVague++;
-            for (int i = 0; i < (10 * numVague); i++) {
+            numVague.set(numVague.get()+1);
+            for (int i = 0; i < (10 * numVague.get()); i++) {
                 alea = (int)(Math.random() * 100);
-                if (alea < 30 && numVague > 4) {
+                if (alea < 30 && numVague.get() > 4) {
                     en = new Pretre(env);
                 } else {
                     en = new GobelinVert(env);
