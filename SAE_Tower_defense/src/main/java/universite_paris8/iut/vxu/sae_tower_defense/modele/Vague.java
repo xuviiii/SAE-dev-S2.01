@@ -30,10 +30,17 @@ public class Vague {
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
             numVague.set(numVague.get()+1);
             for (int i = 0; i < (10 * numVague.get()); i++) {
-                alea = (int)(Math.random() * 100);
-                if (alea < 30 && numVague.get() > 4) {
+                alea = (int)(Math.random() * 100)+1;
+                if (alea<30){
+                   en = new GobelinRouge(env);
+                }
+                else if(alea<60){
+                    en = new GobelinNoir(env);
+                }
+                else if (alea < 70 && numVague.get() > 4) {
                     en = new Pretre(env);
-                } else {
+                }
+                else {
                     en = new GobelinVert(env);
                 }
                 aRelacher.add(en);
