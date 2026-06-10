@@ -3,6 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Personnage extends Entite {
@@ -14,6 +15,7 @@ public abstract class Personnage extends Entite {
     private int indiceTerrain;
     private int taille;
     private Deplacement deplacement;
+    private List<Integer> historiqueDeplacement;
 
     public Personnage(int pv, double x, double y, double vitesse,  int degat,
                       int taille, int indiceTerrain, Environnement env, Deplacement deplacement){
@@ -26,6 +28,7 @@ public abstract class Personnage extends Entite {
         this.taille = taille;
         this.indiceTerrain = indiceTerrain;
         this.deplacement = deplacement;
+        historiqueDeplacement = new ArrayList<>(List.of(indiceTerrain));
     }
 
     public IntegerProperty getPvProperty(){
@@ -56,13 +59,17 @@ public abstract class Personnage extends Entite {
 
     public boolean estMort(){return pv.getValue() <= 0;}
 
+    public void meurt(){
+        setPv(0);
+    }
+
     public boolean estTouché(double x,double y){
         return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
     }
 
-    private void seDeplace(){
+    public void seDeplace(int cible){
 
-        int suivant = deplacement.tileSuivante(indiceTerrain);
+        int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);
@@ -88,7 +95,9 @@ public abstract class Personnage extends Entite {
 
         if(super.getX() == suivant_X && super.getY() == suivant_Y){
             indiceTerrain = suivant;
+            historiqueDeplacement.add(suivant);
         }
+        
 
     }
 
@@ -104,9 +113,13 @@ public abstract class Personnage extends Entite {
         return this.deplacement;
     }
 
+    public List<Integer> getHistoriqueDeplacement() {
+        return historiqueDeplacement;
+    }
+
     @Override
     public void action(int temps) {
-        seDeplace();
+        seDeplace(getEnv().getTerrain().getIndiceCible());
     }
 
     @Override

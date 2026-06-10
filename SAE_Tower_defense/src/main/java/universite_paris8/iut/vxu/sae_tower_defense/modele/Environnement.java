@@ -95,20 +95,12 @@ public class Environnement {
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
         if(temps % 100 == 0) {
-
-//            ajouterPersonnage(new Personnage(10,
-//                    terrain.toX(indDepart),
-//                    terrain.toY(indDepart),
-//                    1,
-//                    10,
-//                    32,
-//                    indDepart,
-//                    this));
             ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
         }
 
-        if(temps % 200 == 0){
+        if(temps % 1000 == 0){
             ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
+            // ajouterPersonnage(new ChevalDeTroie(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 6));
         }
 
         for (int i=0;i<personnages.size();i++){

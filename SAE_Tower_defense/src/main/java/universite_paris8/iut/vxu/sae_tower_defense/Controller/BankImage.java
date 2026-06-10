@@ -12,7 +12,8 @@ public class BankImage {
             Tour.class,"/image/tour/archer/archer.gif",
             GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif",
             Pretre.class, "/image/perso/gobelin_vert/gobelin.gif",
-            Projectile.class, "/image/projectile/flêche.png"));
+            Projectile.class, "/image/projectile/flêche.png",
+            ChevalDeTroie.class, "/image/tour/archer/archer.gif"));
 
 
 
