@@ -11,9 +11,9 @@ public class BankImage {
     private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.of(
             Tour.class,"/image/tour/archer/archer.gif",
             GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif",
-            Pretre.class, "/image/perso/gobelin_vert/gobelin.gif",
+            Pretre.class, "/image/perso/pretre/pretre.gif",
             Projectile.class, "/image/projectile/flêche.png",
-            ChevalDeTroie.class, "/image/tour/archer/archer.gif"));
+            ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"));
 
 
 

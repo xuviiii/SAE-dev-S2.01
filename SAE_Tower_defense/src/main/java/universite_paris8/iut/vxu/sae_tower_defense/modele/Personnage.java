@@ -3,9 +3,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
@@ -13,9 +10,9 @@ public abstract class Personnage extends Entite {
     private int pvMax;
     private int degat;
     private int indiceTerrain;
+    private int indiceDepart;
     private int taille;
     private Deplacement deplacement;
-    private List<Integer> historiqueDeplacement;
 
     public Personnage(int pv, double x, double y, double vitesse,  int degat,
                       int taille, int indiceTerrain, Environnement env, Deplacement deplacement){
@@ -27,8 +24,8 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         this.taille = taille;
         this.indiceTerrain = indiceTerrain;
+        this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
-        historiqueDeplacement = new ArrayList<>(List.of(indiceTerrain));
     }
 
     public IntegerProperty getPvProperty(){
@@ -95,7 +92,6 @@ public abstract class Personnage extends Entite {
 
         if(super.getX() == suivant_X && super.getY() == suivant_Y){
             indiceTerrain = suivant;
-            historiqueDeplacement.add(suivant);
         }
         
 
@@ -113,8 +109,8 @@ public abstract class Personnage extends Entite {
         return this.deplacement;
     }
 
-    public List<Integer> getHistoriqueDeplacement() {
-        return historiqueDeplacement;
+    public int getIndiceDepart() {
+        return this.indiceDepart;
     }
 
     @Override

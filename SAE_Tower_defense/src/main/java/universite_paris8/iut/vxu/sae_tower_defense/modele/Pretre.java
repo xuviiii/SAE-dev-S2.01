@@ -9,7 +9,7 @@ public class Pretre extends Personnage {
     private int pvSoin;
 
     public Pretre(double x, double y, int indiceTerrain, Environnement env, int portee, int pvSoin){
-        super(15, x, y, 0.5, 10, 32, indiceTerrain, env, new Dijkstra(env));
+        super(15, x, y, 0.5, 10, 40, indiceTerrain, env, new Dijkstra(env));
         this.portee = portee;
         this.cibleur = new Cibleur(this.portee, this);
         this.pvSoin = pvSoin;
