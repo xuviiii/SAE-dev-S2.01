@@ -41,11 +41,33 @@ public class Drag implements EventHandler<MouseEvent> {
         preview.setId("preview");
         terrain.getChildren().add(preview);
 
+        Node source = (Node) event.getSource();
+
+        source.setOnDragDone(e -> {
+
+            if (preview != null) {
+                terrain.getChildren().remove(preview);
+            }
+
+            viderTour();
+            e.consume();
+        });
+
         Dragboard db = ((Node)event.getSource()).startDragAndDrop(TransferMode.ANY);
         ClipboardContent content = new ClipboardContent();
         content.putString(preview.getId());
         db.setContent(content);
         event.consume();
+    }
+
+    private void finDrag(DragEvent event) {
+        Node preview = terrain.lookup("#preview");
+
+        if (preview != null) {
+            terrain.getChildren().remove(preview);
+        }
+
+        tour = null;
     }
 
     public Tour getTour() {

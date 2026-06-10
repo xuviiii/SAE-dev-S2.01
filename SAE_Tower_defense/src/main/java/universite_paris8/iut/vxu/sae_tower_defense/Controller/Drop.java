@@ -31,8 +31,6 @@ public class Drop implements EventHandler<DragEvent> {
         Dragboard db = event.getDragboard();
         boolean success;
         tour = drag.getTour();
-        drag.viderTour();
-        terrain.getChildren().remove(terrain.lookup("#"+db.getString()));
         tour.setX(event.getX());
         tour.setY(event.getY());
         success = (achat.peutEtrePoser(tour.getX(),tour.getY(),tour.getTaille())  && !(tour ==  null));

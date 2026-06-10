@@ -36,6 +36,9 @@ public class Controller implements Initializable {
     private Pane magasin;
 
     @FXML
+    private BorderPane borderPane;
+
+    @FXML
     private Label labelArgent;
 
     @FXML
@@ -65,9 +68,13 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Environnement();
-        dragAndDrop = new DragAndDrop(map, terrainEntite);
+        dragAndDrop = new DragAndDrop(map, terrainEntite, borderPane);
         vueTerrain = new VueTerrain(tile, map.getTerrain());
         loop=new GameLoop(map);
+
+
+        terrainEntite.setStyle("-fx-border-color: red;");
+
 
 
         map.getTours().addListener(new ObsTour(terrainEntite));
