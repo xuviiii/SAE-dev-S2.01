@@ -10,13 +10,15 @@ public abstract class Entite {
     private DoubleProperty y;
     private double vitesse;
     private Environnement env;
+    private int taille;
 
-    public Entite(String id, double x, double y, double vitesse, Environnement env) {
+    public Entite(String id, double x, double y, double vitesse, Environnement env, int taille) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
         this.vitesse = vitesse;
         this.env = env;
+        this.taille = taille;
     }
 
     public String getId() {
@@ -47,6 +49,10 @@ public abstract class Entite {
         return env;
     }
 
+    public int getTaille() {
+        return taille;
+    }
+
     public void setX(double x) {
         this.x.setValue(x);
     }
@@ -55,5 +61,9 @@ public abstract class Entite {
         this.y.setValue(y);
     }
 
-    public abstract void action(int temps);
+    public void setTaille(int taille) {
+        this.taille = taille;
+    }
+
+    public abstract void action();
 }

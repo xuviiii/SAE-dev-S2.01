@@ -19,6 +19,7 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
     public void onChanged(ListChangeListener.Change<? extends Projectile> change) {
         change.next();
         if (change.wasAdded()){
+            //System.out.println("Ajouter : "+change.getAddedSubList());
             for (Projectile projectile : change.getAddedSubList()){
                 ImageView sprite;
                 sprite = BankImage.getImgView(projectile.getClass(), 20);
@@ -31,6 +32,7 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         }
 
         if (change.wasRemoved()){
+            //System.out.println("Retirer : " +change.getRemoved());
             for (Projectile projectile : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+projectile.getId()));
             }
