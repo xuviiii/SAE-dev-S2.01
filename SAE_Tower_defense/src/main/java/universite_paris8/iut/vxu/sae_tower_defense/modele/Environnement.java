@@ -100,16 +100,15 @@ public class Environnement {
                     this));
         }
 
-        for (int i=0;i<personnages.size();i++){
+        for (int i=0;i<personnages.size();i++)
             personnages.get(i).action();
-        }
-        if (temps%50==0)
-            for (int i=0;i<tours.size();i++){
-                tours.get(i).action();
-            }
-        for (int i=0;i<projectiles.size();i++){
+
+        for (int i=0;i<tours.size();i++)
+            tours.get(i).action();
+
+        for (int i=0;i<projectiles.size();i++)
             projectiles.get(i).action();
-        }
+
 
         for (int i=0;i<personnages.size();i++){
             if (personnages.get(i).estMort())

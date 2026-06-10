@@ -24,17 +24,16 @@ public abstract class Tour extends Entite{
         return dégât;
     }
 
-    public int getCompteurAction() {
-        return compteurAction;
+    @Override
+    public void action() {
+        if (compteurAction>1000){
+            agir();
+            compteurAction = 0;
+        }
+        compteurAction += getVitesse();
     }
 
-    public void compteurActionPlus(){
-        compteurAction++;
-    }
-
-    public void resetCompteurAction(){
-        compteurAction = 0;
-    }
+    public abstract void agir();
 
     public abstract void ameliorer();
 }

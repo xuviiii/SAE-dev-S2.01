@@ -6,7 +6,7 @@ public class Catapulte extends TourProjectileLance {
     private double yCible;
 
     public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
-        super(x, y, 5, map, 32, 300, 10, 10000);
+        super(x, y, 15, map, 32, 300, 10, 10000);
         this.xCible = xCible;
         this.yCible = yCible;
     }
@@ -25,10 +25,8 @@ public class Catapulte extends TourProjectileLance {
     }
 
     @Override
-    public void action() {
-        if (getCompteurAction()%15==0)
-            creerProjectile(xCible,yCible);
-        compteurActionPlus();
+    public void agir() {
+        creerProjectile(xCible,yCible);
     }
 
     @Override

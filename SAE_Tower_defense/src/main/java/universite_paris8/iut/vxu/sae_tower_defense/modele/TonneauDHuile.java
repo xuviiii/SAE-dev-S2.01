@@ -6,7 +6,7 @@ public class TonneauDHuile extends ProjectileLance {
     private double yCible;
 
     public TonneauDHuile(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, double xCible, double yCible) {
-        super(x, y, 5, env, 10, degat, dx, dy, porteeTour);
+        super(x, y, 3, env, 10, degat, dx, dy, porteeTour);
         this.xCible = xCible;
         this.yCible = yCible;
     }

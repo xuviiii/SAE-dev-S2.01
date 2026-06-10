@@ -18,17 +18,14 @@ public class TourDHuile extends TourProjectileLance {
     }
 
     @Override
-    public void action() {
-        if (getCompteurAction()%15==0){
-            Personnage cible = ennemiACible();
-            double x,y;
+    public void agir() {
+        Personnage cible = ennemiACible();
+        double x,y;
 
-            if (ennemiACible()!=null){
-                x = cible.getX()+ (double) cible.getTaille() /2;
-                y = cible.getY()+ (double) cible.getTaille() /2;
-                creerProjectile(x,y);
-            }
+        if (ennemiACible()!=null){
+            x = cible.getX()+ (double) cible.getTaille() /2;
+            y = cible.getY()+ (double) cible.getTaille() /2;
+            creerProjectile(x,y);
         }
-        compteurActionPlus();
     }
 }
