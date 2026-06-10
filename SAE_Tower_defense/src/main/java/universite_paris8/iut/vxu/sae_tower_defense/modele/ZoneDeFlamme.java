@@ -22,4 +22,8 @@ public class ZoneDeFlamme extends Projectile {
     }
 
 
+    @Override
+    public double getAngle() {
+        return 0;
+    }
 }

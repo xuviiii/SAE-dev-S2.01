@@ -16,9 +16,7 @@ public class TourDeFleche extends TourProjectileLance{
         Personnage cible = ennemiACible();
         double x,y;
 
-        System.out.println(cible);
-
-        if (ennemiACible()!=null){
+        if (cible!=null){
             x = cible.getX()+ (double) cible.getTaille() /2;
             y = cible.getY()+ (double) cible.getTaille() /2;
             creerProjectile(x,y);

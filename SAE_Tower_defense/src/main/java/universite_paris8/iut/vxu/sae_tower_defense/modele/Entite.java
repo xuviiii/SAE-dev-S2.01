@@ -8,11 +8,11 @@ public abstract class Entite {
     private String id;
     private DoubleProperty x;
     private DoubleProperty y;
-    private int vitesse;
+    private double vitesse;
     private Environnement env;
     private int taille;
 
-    public Entite(String id, double x, double y, int vitesse, Environnement env, int taille) {
+    public Entite(String id, double x, double y, double vitesse, Environnement env, int taille) {
         this.id = id;
         this.x = new SimpleDoubleProperty(x);
         this.y = new SimpleDoubleProperty(y);
@@ -41,7 +41,7 @@ public abstract class Entite {
         return y;
     }
 
-    public int getVitesse() {
+    public double getVitesse() {
         return vitesse;
     }
 

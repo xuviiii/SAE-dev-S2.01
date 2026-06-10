@@ -19,6 +19,5 @@ public class Améliorer implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         tour.ameliorer();
         stats.setText(tour.toString());
-
     }
 }

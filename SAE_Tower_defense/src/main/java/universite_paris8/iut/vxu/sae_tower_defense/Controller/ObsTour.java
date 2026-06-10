@@ -1,11 +1,11 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.collections.ListChangeListener;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.TourHorsChemin;
 
 public class ObsTour implements ListChangeListener<Tour> {
 
@@ -21,11 +21,15 @@ public class ObsTour implements ListChangeListener<Tour> {
         if (change.wasAdded()){
             for (Tour tour : change.getAddedSubList()){
 
+                if (tour instanceof TourHorsChemin){
+                    Circle rayon = new Circle(((TourHorsChemin)tour).getPortee());
+                    rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
+                    rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
+                    rayon.setOpacity(0.4);
+                }
+
                 ImageView sprite;
-                sprite =new ImageView();
-                sprite.setImage(new Image(getClass().getResourceAsStream("/image/tour/archer/archer.gif")));
-                sprite.setFitWidth(tour.getTaille());
-                sprite.setPreserveRatio(true);
+                sprite = BankImage.getImgView(tour.getClass(), tour.getTaille());
                 sprite.translateXProperty().bind(tour.getXProperty());
                 sprite.translateYProperty().bind(tour.getYProperty());
                 sprite.setId(tour.getId());

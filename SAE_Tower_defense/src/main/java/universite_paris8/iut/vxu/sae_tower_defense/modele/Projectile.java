@@ -18,11 +18,13 @@ public abstract class Projectile extends Entite {
         return degat;
     }
 
-    public ArrayList<Personnage> projectileTouche(){
+    public ArrayList<Personnage> projectileTouche() {
         ArrayList<Personnage> personnagesTouches = new ArrayList<>();
         for (Personnage personnage : super.getEnv().getPersonnages())
             if (personnage.estTouché(this))
                 personnagesTouches.add(personnage);
         return personnagesTouches;
     }
+
+    public abstract double getAngle();
 }

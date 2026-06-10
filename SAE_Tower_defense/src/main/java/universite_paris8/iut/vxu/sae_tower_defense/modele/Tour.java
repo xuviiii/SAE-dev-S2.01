@@ -30,7 +30,7 @@ public abstract class Tour extends Entite{
             agir();
             compteurAction = 0;
         }
-        compteurAction += getVitesse();
+        compteurAction += (int) getVitesse();
     }
 
     public abstract void agir();

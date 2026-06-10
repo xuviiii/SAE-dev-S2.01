@@ -19,6 +19,7 @@ public class VueTerrain {
         Rectangle tuille;
 
         tile.setMinWidth(terrain.getLongueurMap() * terrain.getTailleTile());
+        tile.setMaxWidth(terrain.getLongueurMap() * terrain.getTailleTile());
         for (int i = 0; i < terrain.getMap().size(); i++) {
             tuille = new Rectangle(terrain.getTailleTile(), terrain.getTailleTile());
             switch (terrain.getMap().get(i)) {

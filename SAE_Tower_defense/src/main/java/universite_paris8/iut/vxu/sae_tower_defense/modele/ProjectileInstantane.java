@@ -11,6 +11,8 @@ public class ProjectileInstantane extends Projectile {
         this.tailleMax = tailleMax;
     }
 
+    public double getAngle(){return 0;}
+
     @Override
     public void action() {
         if (getTaille()<40){

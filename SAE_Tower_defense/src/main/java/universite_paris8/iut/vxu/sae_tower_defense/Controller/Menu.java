@@ -49,6 +49,7 @@ public class Menu implements EventHandler<MouseEvent> {
 
                 if (!menu.getChildren().contains(menuContenu))
                     menu.getChildren().add(menuContenu);
+
                 stats.setText(tour.toString());
                 menu.setTranslateX(tour.getX()+tour.getTaille());
                 menu.setTranslateY(tour.getY()+tour.getTaille());

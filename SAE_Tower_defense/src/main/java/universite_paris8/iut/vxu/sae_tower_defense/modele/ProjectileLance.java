@@ -29,6 +29,8 @@ public abstract class ProjectileLance extends Projectile {
         return (int) (Math.abs(super.getX()-(xInitial)))> porteeTour || (int) (Math.abs(super.getY()-(yInitial)))> porteeTour || getX()<0 || getX()>getEnv().getTerrain().getLongueurMap()*getEnv().getTerrain().getTailleTile() || getY()<0 || getY()>getEnv().getTerrain().getHauteurMap()*getEnv().getTerrain().getTailleTile();
     }
 
+    public double getAngle(){return Math.toDegrees(Math.atan2(dy, dx));}
+
     public abstract void attaquer(Personnage personnage);
 
     @Override
