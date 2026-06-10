@@ -13,10 +13,10 @@ public class BankImage {
             Map.entry(Pretre.class, "/image/perso/gobelin_vert/gobelin.gif"),
 
             Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),
-            Map.entry(Catapulte.class, "/image/tour/archer/archer.gif"),
-            Map.entry(TourDHuile.class, "/image/tour/archer/archer.gif"),
+            Map.entry(Catapulte.class, "/image/tour/catapulte/catapulte.gif"),
+            Map.entry(TourDHuile.class, "/image/tour/tour_de_feu/tour_de_feu.gif"),
             Map.entry(TourDeMage.class, "/image/tour/archer/archer.gif"),
-            Map.entry(TourDeSauron.class, "/image/tour/archer/archer.gif"),
+            Map.entry(TourDeSauron.class, "/image/tour/tour_de_saurron/tour_de_saurron.gif"),
 
             Map.entry(Fleche.class, "/image/projectile/flêche.png"),
             Map.entry(Rocher.class, "/image/projectile/flêche.png"),
