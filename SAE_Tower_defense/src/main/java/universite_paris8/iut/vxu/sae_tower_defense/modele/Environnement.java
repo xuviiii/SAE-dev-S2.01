@@ -100,7 +100,7 @@ public class Environnement {
             vague.libererVague();
         }
 
-        System.out.println(personnages.size());
+
 
 //        if(temps % 100 == 0) {
 //

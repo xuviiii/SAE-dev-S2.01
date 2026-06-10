@@ -25,6 +25,7 @@ public class Achat {
         return ((!surAutreTour(x,y)) && horsChemin(x,y,taille));
     }
 
+
     public boolean surAutreTour(double x,double y){
         for (Tour t:map.getTours()){
             if(x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1)){
