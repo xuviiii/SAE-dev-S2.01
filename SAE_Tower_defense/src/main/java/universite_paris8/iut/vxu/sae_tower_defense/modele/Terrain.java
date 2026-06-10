@@ -10,6 +10,7 @@ public class Terrain {
     private int indiceCible = 25;
     private int[] indicesDepart = {29, 174, 470, 405};
     private int longueurMap; // static ?
+    private int hauteurMap; // static ?
     private int tailleTile; // static ?
     private ObservableList<Integer> map;
     private ObservableList<Integer> map_initiale;
@@ -38,6 +39,7 @@ public class Terrain {
         map_initiale = FXCollections.observableArrayList(Collections.nCopies(map.size(), null));
         FXCollections.copy(map_initiale, map.stream().toList());
         longueurMap =29;
+        hauteurMap=17;
         tailleTile = 60;
     }
 
@@ -58,6 +60,10 @@ public class Terrain {
 
     public int getTailleTile() {
         return tailleTile;
+    }
+
+    public int getHauteurMap() {
+        return hauteurMap;
     }
 
     public int getLongueurMap() {

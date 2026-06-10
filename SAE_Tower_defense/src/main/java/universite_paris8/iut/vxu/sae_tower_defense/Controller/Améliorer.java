@@ -18,7 +18,6 @@ public class Améliorer implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         tour.ameliorer();
-        stats.setText("Stats :\ndegat : "+tour.getDégât()+", Portée : "+tour.getPortee()+", Position : x"+tour.getX()+", y"+tour.getY());
-
+        stats.setText(tour.toString());
     }
 }

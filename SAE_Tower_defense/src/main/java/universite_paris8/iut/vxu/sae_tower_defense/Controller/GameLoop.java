@@ -5,9 +5,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
 public class GameLoop {
     private Timeline gameLoop;
@@ -54,15 +52,18 @@ public class GameLoop {
 
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-        Personnage p_test;
-        Tour t_test = new Tour(200,260,100,10,32,map,100,10);
-        map.ajouterTour(t_test);
+        Tour t_test;
 
-//        for (int i=0;i<50;i++){
-//            p_test = new Personnage(10,(int) (Math.random()*500),(int) (Math.random()*500),3,2,32,32);
-//            map.ajouterPersonnage(p_test);
-//            p_test.getPvProperty().addListener(new ObsPersoPvAZero(map,p_test));
-//        }
+        t_test = new TourDeFleche(200,20,map);
+        map.ajouterTour(t_test);
+        t_test = new Catapulte(200,240,map,400,240);
+        map.ajouterTour(t_test);
+        t_test = new TourDHuile(400,240,map);
+        map.ajouterTour(t_test);
+        t_test = new TourDeMage(400,500,map);
+        map.ajouterTour(t_test);
+        t_test = new TourDeSauron(1000,20,map);
+        map.ajouterTour(t_test);
 
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)

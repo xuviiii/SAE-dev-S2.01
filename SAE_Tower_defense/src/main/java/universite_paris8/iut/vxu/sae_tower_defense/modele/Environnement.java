@@ -94,9 +94,6 @@ public class Environnement {
     }
 
     public void faireUnTour(int temps){
-        int j;
-
-
 
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
@@ -104,42 +101,23 @@ public class Environnement {
             vague.libererVague();
         }
 
-
-
-//        if(temps % 100 == 0) {
-//
-//            ajouterPersonnage(new Personnage(10,
-//                    terrain.toX(indDepart),
-//                    terrain.toY(indDepart),
-//                    1,
-//                    10,
-//                    32,
-//                    indDepart,
-//                    this));
-//            ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
-//        }
-//
-//        if(temps % 200 == 0){
-//            ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
-//        }
-
-        for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action(temps);
+        for (int i=0;i<personnages.size();i++) {
+            personnages.get(i).action();
             if (personnages.get(i).getIndiceTerrain() == terrain.getIndiceCible()) {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }
         }
+
         for (Personnage perso: aEnlever){
             personnages.remove(perso);
         }
-        //if (temps%50==0)
-        for (int i=0;i<tours.size();i++){
-            tours.get(i).action(temps);
-        }
-        for (int i=0;i<projectiles.size();i++){
-            projectiles.get(i).action(temps);
-        }
+
+        for (int i=0;i<tours.size();i++)
+            tours.get(i).action();
+
+        for (int i=0;i<projectiles.size();i++)
+            projectiles.get(i).action();
 
         for (int i=0;i<personnages.size();i++){
             if (personnages.get(i).estMort())

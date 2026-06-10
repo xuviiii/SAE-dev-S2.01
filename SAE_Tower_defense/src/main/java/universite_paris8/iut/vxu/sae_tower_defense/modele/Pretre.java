@@ -20,9 +20,9 @@ public class Pretre extends Personnage {
     }
 
     @Override
-    public void action(int temps){
-        super.action(temps);
-        if (temps % 200 == 0){
+    public void action(){
+        super.action();
+        if (getCompteurAction() % 200 == 0){
             soigner();
         }
     }

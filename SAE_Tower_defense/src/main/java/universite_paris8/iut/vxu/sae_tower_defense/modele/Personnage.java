@@ -3,8 +3,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.List;
-
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
@@ -12,20 +10,23 @@ public abstract class Personnage extends Entite {
     private int pvMax;
     private int degat;
     private int indiceTerrain;
-    private int taille;
+    private int malusVitesse;
     private Deplacement deplacement;
+    private int compteurAction;
+
 
     public Personnage(int pv, double vitesse,  int degat,
                       int taille, Environnement env, Deplacement deplacement){
-        super("p"+compteur,0,0,vitesse,env);
+        super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
 
         this.pv = new SimpleIntegerProperty(pv);
         this.pvMax = pv;
         this.degat = degat;
-        this.taille = taille;
+        malusVitesse = 1;
         this.indiceTerrain = 0;
         this.deplacement = deplacement;
+        compteurAction = 0;
     }
 
     public IntegerProperty getPvProperty(){
@@ -46,18 +47,19 @@ public abstract class Personnage extends Entite {
         return degat;
     }
 
-    public int getTaille() {
-        return taille;
-    }
-
     public void subirDegat(int degat){
         pv.setValue(pv.getValue() - degat);
     }
 
     public boolean estMort(){return pv.getValue() <= 0;}
 
-    public boolean estTouché(double x,double y){
-        return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
+    public boolean estTouché(Projectile projectile){
+        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
+        xProjectileG = projectile.getX();
+        xProjectileD = projectile.getX()+projectile.getTaille();
+        yProjectileH = projectile.getY();
+        yProjectileB = projectile.getY()+projectile.getTaille();
+        return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
     private void seDeplace(){
@@ -104,9 +106,14 @@ public abstract class Personnage extends Entite {
         return this.deplacement;
     }
 
+    public int getCompteurAction() {
+        return compteurAction;
+    }
+
     @Override
-    public void action(int temps) {
+    public void action(/*int temps*/) {
         seDeplace();
+        compteurAction++;
     }
 
     @Override

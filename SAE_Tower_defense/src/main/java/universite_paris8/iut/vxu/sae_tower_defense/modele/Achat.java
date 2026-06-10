@@ -13,7 +13,7 @@ public class Achat {
 
 
         if (id.equals("flêche")) {
-            nvTour = new Tour(x+16, y+16, 100, 10, 32, map, 100,10);
+            nvTour = new TourDeFleche(x+16, y+16, map);
 
         } else {
             return null;
@@ -44,4 +44,5 @@ public class Achat {
             return true;
         }
     }
+
 }
