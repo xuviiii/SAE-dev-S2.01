@@ -1,9 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BFS extends Deplacement{
 
@@ -11,8 +8,7 @@ public class BFS extends Deplacement{
         super(env);
     }
 
-    @Override
-    public List<Integer> cheminVersCible(int source){
+    public Map<Integer, Integer> bfs(int source){
 
         List<Integer> parcours = new ArrayList<>();
 
@@ -38,6 +34,18 @@ public class BFS extends Deplacement{
             }
         }
 
+        return predecesseurs;
+    }
+
+    @Override
+    public List<Integer> cheminVersCible(int source){
+        Map<Integer, Integer> predecesseurs = bfs(source);
         return cheminVersCible(predecesseurs);
+    }
+
+    @Override
+    public List<Integer> cheminVersCible(int source, int cible){
+        Map<Integer, Integer> predecesseurs = bfs(source);
+        return cheminVersCible(predecesseurs, cible);
     }
 }

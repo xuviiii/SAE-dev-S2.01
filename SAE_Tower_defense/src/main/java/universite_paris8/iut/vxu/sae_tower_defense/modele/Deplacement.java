@@ -12,6 +12,8 @@ public abstract class Deplacement {
 
     public abstract List<Integer> cheminVersCible(int source);
 
+    public abstract List<Integer> cheminVersCible(int source, int cible);
+
     public Set<Integer> adjacents(int indice){
 
         if (indice < 0 || indice > env.getTerrain().getMap().size() - 1){
@@ -58,9 +60,9 @@ public abstract class Deplacement {
         return adjacents;
     }
 
-    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs) {
+    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs, int cible) {
         List<Integer> chemin = new ArrayList<>();
-        Integer courant = env.getTerrain().getIndiceCible();
+        Integer courant = cible;
         while(courant != null){
             chemin.add(courant);
             courant = predecesseurs.get(courant);
@@ -69,8 +71,12 @@ public abstract class Deplacement {
         return chemin;
     }
 
-    public int tileSuivante(int source) {
-        List<Integer> chemin = cheminVersCible(source);
+    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs) {
+        return cheminVersCible(predecesseurs, env.getTerrain().getIndiceCible());
+    }
+
+    public int tileSuivante(int source, int cible) {
+        List<Integer> chemin = cheminVersCible(source, cible);
         return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
     }
 }

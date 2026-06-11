@@ -10,9 +10,10 @@ import java.util.Map;
 public class BankImage {
     private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.ofEntries(
             Map.entry(GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif"),
-            Map.entry(Pretre.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(Pretre.class, "/image/perso/pretre/pretre.gif"),
             Map.entry(GobelinRouge.class, "/image/perso/gobelin_vert/gobelin.gif"),
             Map.entry(GobelinNoir.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"),
 
             Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),
             Map.entry(Catapulte.class, "/image/tour/catapulte/catapulte.gif"),
