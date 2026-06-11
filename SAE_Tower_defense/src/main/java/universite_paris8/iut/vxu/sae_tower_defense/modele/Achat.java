@@ -13,7 +13,7 @@ public class Achat {
 
 
         if (id.equals("flêche")) {
-            nvTour = new Tour(x+16, y+16, 100, 10, 32, map, 100,10);
+            nvTour = new TourDeFleche(x+16, y+16, map);
 
         } else {
             return null;
@@ -24,6 +24,7 @@ public class Achat {
     public boolean peutEtrePoser(double x,double y, int taille){
         return ((!surAutreTour(x,y)) && horsChemin(x,y,taille));
     }
+
 
     public boolean surAutreTour(double x,double y){
         for (Tour t:map.getTours()){
@@ -43,4 +44,5 @@ public class Achat {
             return true;
         }
     }
+
 }

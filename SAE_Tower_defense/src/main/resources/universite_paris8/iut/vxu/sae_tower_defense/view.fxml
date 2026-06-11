@@ -4,13 +4,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.vxu.sae_tower_defense.Controller.Controller">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.vxu.sae_tower_defense.Controller.Controller">
    <right>
       <Pane fx:id="magasin" prefHeight="334.0" prefWidth="167.0" BorderPane.alignment="CENTER">
          <children>
             <Pane fx:id="flêche" layoutX="4.0" layoutY="7.0" prefHeight="70.0" prefWidth="70.0">
                <children>
-                  <Label layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="999999" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="100" />
                   <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../image/tour/archer/archer1.png" />
@@ -28,20 +28,29 @@
       </Pane>
    </center>
    <bottom>
-      <Pane prefHeight="66.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="66.0" prefWidth="600.0">
          <children>
-            <VBox layoutX="490.0" prefHeight="66.0" prefWidth="87.0">
+            <VBox layoutX="188.0" prefHeight="66.0" prefWidth="87.0">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="87.0" text="Argent" textAlignment="CENTER" />
                   <Label fx:id="labelArgent" alignment="CENTER" prefHeight="31.0" prefWidth="87.0" textAlignment="CENTER" />
                </children>
             </VBox>
-            <VBox layoutX="329.0" prefHeight="66.0" prefWidth="87.0">
+            <VBox layoutX="101.0" prefHeight="66.0" prefWidth="87.0">
                <children>
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="87.0" text="Vie" textAlignment="CENTER" />
                   <Label fx:id="labelVie" alignment="CENTER" prefHeight="31.0" prefWidth="87.0" textAlignment="CENTER" />
                </children>
             </VBox>
+            <VBox layoutX="14.0" prefHeight="66.0" prefWidth="87.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="87.0" text="Vague" textAlignment="CENTER" />
+                  <Label fx:id="labelVague" alignment="CENTER" prefHeight="31.0" prefWidth="87.0" textAlignment="CENTER" />
+               </children>
+            </VBox>
+            <Button fx:id="pause" layoutX="292.0" layoutY="21.0" mnemonicParsing="false" text="Pause" />
+            <Button fx:id="accelerer" layoutX="365.0" layoutY="21.0" mnemonicParsing="false" text="Accélérer" />
+            <Label fx:id="labelVitesse" layoutX="455.0" layoutY="25.0" text="x1" />
          </children></Pane>
    </bottom>
 </BorderPane>

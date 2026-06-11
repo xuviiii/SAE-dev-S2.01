@@ -18,6 +18,7 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
+    private Vague vague;
 
     public Environnement(){
 
@@ -27,6 +28,7 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
         terrain = new Terrain();
+        vague = new Vague(this);
     }
 
     public void vieDeBase(){vie.set(10);}
@@ -45,6 +47,10 @@ public class Environnement {
         if(argent.get()-enlever > 0) {
             argent.set(argent.get() - enlever);
         }
+    }
+
+    public Vague getVague() {
+        return vague;
     }
 
     public int getVie() {
@@ -88,38 +94,30 @@ public class Environnement {
     }
 
     public void faireUnTour(int temps){
-        int j;
-
-        int indDepart = terrain.genererIndiceDepartAlea();
 
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
-        if(temps % 100 == 0) {
-            ajouterPersonnage(new GobelinVert(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this));
+        if (temps % 50 == 0) {
+            vague.libererVague();
         }
 
-        if(temps % 1000 == 0){
-            ajouterPersonnage(new Pretre(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 100, 1));
-            // ajouterPersonnage(new ChevalDeTroie(terrain.toX(indDepart), terrain.toY(indDepart), indDepart, this, 6));
-        }
-
-        for (int i=0;i<personnages.size();i++){
-            personnages.get(i).action(temps);
+        for (int i=0;i<personnages.size();i++) {
+            personnages.get(i).action();
             if (personnages.get(i).getIndiceTerrain() == terrain.getIndiceCible()) {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }
         }
+
         for (Personnage perso: aEnlever){
             personnages.remove(perso);
         }
-        //if (temps%50==0)
-        for (int i=0;i<tours.size();i++){
-            tours.get(i).action(temps);
-        }
-        for (int i=0;i<projectiles.size();i++){
-            projectiles.get(i).action(temps);
-        }
+
+        for (int i=0;i<tours.size();i++)
+            tours.get(i).action();
+
+        for (int i=0;i<projectiles.size();i++)
+            projectiles.get(i).action();
 
         for (int i=0;i<personnages.size();i++){
             if (personnages.get(i).estMort())

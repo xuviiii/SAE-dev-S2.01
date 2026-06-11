@@ -9,6 +9,7 @@ import javafx.scene.shape.Circle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.TourHorsChemin;
 
 public class Drag implements EventHandler<MouseEvent> {
     private Pane terrain;
@@ -27,25 +28,53 @@ public class Drag implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent event) {
         Pane preview = new Pane();
-        tour = achat.selctionerTour(((Node)event.getSource()).getId(),0,0);
         Circle rayon = new Circle();
+
+        tour = achat.selctionerTour(((Node)event.getSource()).getId(),0,0);
         ImageView img = BankImage.getImgView(tour.getClass(), tour.getTaille());
         img.setOpacity(0.5);
-        rayon.setRadius(tour.getPortee());
-        rayon.setCenterX(tour.getX());
-        rayon.setCenterY(tour.getY());
-        rayon.setOpacity(0.4);
+
+        if (tour instanceof TourHorsChemin){
+            rayon.setRadius(((TourHorsChemin)tour).getPortee());
+            rayon.setCenterX(tour.getX());
+            rayon.setCenterY(tour.getY());
+            rayon.setOpacity(0.4);
+        }
+
+
         preview.getChildren().add(rayon);
         preview.getChildren().add(img);
 
         preview.setId("preview");
         terrain.getChildren().add(preview);
 
+        Node source = (Node) event.getSource();
+
+        source.setOnDragDone(e -> {
+
+            if (preview != null) {
+                terrain.getChildren().remove(preview);
+            }
+
+            viderTour();
+            e.consume();
+        });
+
         Dragboard db = ((Node)event.getSource()).startDragAndDrop(TransferMode.ANY);
         ClipboardContent content = new ClipboardContent();
         content.putString(preview.getId());
         db.setContent(content);
         event.consume();
+    }
+
+    private void finDrag(DragEvent event) {
+        Node preview = terrain.lookup("#preview");
+
+        if (preview != null) {
+            terrain.getChildren().remove(preview);
+        }
+
+        tour = null;
     }
 
     public Tour getTour() {

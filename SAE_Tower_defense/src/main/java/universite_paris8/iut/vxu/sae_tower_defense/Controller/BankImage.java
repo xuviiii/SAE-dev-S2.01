@@ -8,12 +8,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BankImage {
-    private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.of(
-            Tour.class,"/image/tour/archer/archer.gif",
-            GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif",
-            Pretre.class, "/image/perso/pretre/pretre.gif",
-            Projectile.class, "/image/projectile/flêche.png",
-            ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"));
+    private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.ofEntries(
+            Map.entry(GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(Pretre.class, "/image/perso/pretre/pretre.gif"),
+            Map.entry(GobelinRouge.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(GobelinNoir.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"),
+
+            Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),
+            Map.entry(Catapulte.class, "/image/tour/catapulte/catapulte.gif"),
+            Map.entry(TourDHuile.class, "/image/tour/tour_de_feu/tour_de_feu.gif"),
+            Map.entry(TourDeMage.class, "/image/tour/archer/archer.gif"),
+            Map.entry(TourDeSauron.class, "/image/tour/tour_de_saurron/tour_de_saurron.gif"),
+
+            Map.entry(Fleche.class, "/image/projectile/flêche.png"),
+            Map.entry(Rocher.class, "/image/projectile/flêche.png"),
+            Map.entry(TonneauDHuile.class, "/image/projectile/flêche.png"),
+            Map.entry(ZoneDeFlamme.class, "/image/projectile/flêche.png"),
+            Map.entry(ProjectileInstantane.class, "/image/projectile/flêche.png")
+            ));
 
 
 

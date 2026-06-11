@@ -29,11 +29,20 @@ public class AccepterDrop implements EventHandler<DragEvent>{
     @Override
     public void handle(DragEvent event) {
 
+        if (event.getX() < 0 ||
+                event.getY() < 0 ||
+                event.getX() > terrain.getWidth() ||
+                event.getY() > terrain.getHeight()) {
+
+            event.consume();
+            return;
+        }
+
         Dragboard db = event.getDragboard();
         Node preview = terrain.lookup("#"+db.getString());
 
-        preview.setLayoutX(event.getX());
-        preview.setLayoutY(event.getY());
+        preview.setTranslateX(event.getX());
+        preview.setTranslateY(event.getY());
 
 
         event.acceptTransferModes(TransferMode.COPY_OR_MOVE);

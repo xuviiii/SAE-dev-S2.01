@@ -8,11 +8,11 @@ public class Pretre extends Personnage {
     private Cibleur cibleur;
     private int pvSoin;
 
-    public Pretre(double x, double y, int indiceTerrain, Environnement env, int portee, int pvSoin){
-        super(15, x, y, 0.5, 10, 40, indiceTerrain, env, new Dijkstra(env));
-        this.portee = portee;
+    public Pretre(Environnement env){
+        super(15 ,0.5, 10, 32, env,new Dijkstra(env));
+        this.portee = 100;
         this.cibleur = new Cibleur(this.portee, this);
-        this.pvSoin = pvSoin;
+        this.pvSoin = 15;
     }
 
     public int getPortee() {
@@ -20,9 +20,9 @@ public class Pretre extends Personnage {
     }
 
     @Override
-    public void action(int temps){
-        super.action(temps);
-        if (temps % 200 == 0){
+    public void action(){
+        super.action();
+        if (getCompteurAction() % 200 == 0){
             soigner();
         }
     }

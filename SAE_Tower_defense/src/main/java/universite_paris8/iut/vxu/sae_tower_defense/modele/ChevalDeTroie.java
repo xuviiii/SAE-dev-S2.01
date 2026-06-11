@@ -5,15 +5,15 @@ public class ChevalDeTroie extends Personnage {
     private int nbPersonnages;
     private int distanceInit;
 
-    public ChevalDeTroie(double x, double y, int indiceTerrain, Environnement env, int nbPersonnages){
-        super(30, x, y, 0.5, 10, 48, indiceTerrain, env, new Dijkstra(env));
+    public ChevalDeTroie(Environnement env, int nbPersonnages){
+        super(30, 0.5, 10, 48, env, new Dijkstra(env));
         this.nbPersonnages = nbPersonnages;
-        distanceInit = getDeplacement().cheminVersCible(indiceTerrain).size();
+        distanceInit = getDeplacement().cheminVersCible(getIndiceTerrain()).size();
     }
 
     @Override
-    public void action(int temps){
-        super.action(temps);
+    public void action(){
+        super.action();
         if(seDecharge()){
             attaque();
         }
@@ -29,39 +29,31 @@ public class ChevalDeTroie extends Personnage {
 
     private void attaque(){
 
-        for (int i = 0; i < nbPersonnages / 2; i++) {
+        int cible;
 
-            int cible = getIndiceDepart();
+        for (int i = 0; i < nbPersonnages; i++) {
+
+            cible = (i < nbPersonnages / 2)
+                    ? getIndiceDepart()
+                    : getEnv().getTerrain().getIndiceCible();
+
             // System.out.println("Indice cheval: " + getIndiceTerrain() + ", indice cibe: " + cible);
 
-            GobelinVert gobelin = new GobelinVert(getEnv().getTerrain().toX(getIndiceTerrain()),
-                    getEnv().getTerrain().toY(getIndiceTerrain()),
-                    getIndiceTerrain(),
-                    getEnv());
+//            GobelinVert gobelin = new GobelinVert(getEnv().getTerrain().toX(getIndiceTerrain()),
+//                    getEnv().getTerrain().toY(getIndiceTerrain()),
+//                    getIndiceTerrain(),
+//                    getEnv());
+
+            GobelinVert gobelin = new GobelinVert(getEnv());
+            gobelin.setIndiceTerrain(getIndiceTerrain());
+            gobelin.setX(getEnv().getTerrain().toX(getIndiceTerrain()));
+            gobelin.setY(getEnv().getTerrain().toY(getIndiceTerrain()));
 
             for (int j = 0; j < 8 * (i + 1); j++) {
                 gobelin.seDeplace(cible);
             }
             getEnv().ajouterPersonnage(gobelin);
             // System.out.println("NEW GOBELIN ! x: " + gobelin.getX() + ", y: " + gobelin.getY());
-        }
-
-        for (int i = 0; i < (nbPersonnages - (nbPersonnages / 2)); i++) {
-
-            GobelinVert gobelin = new GobelinVert(getEnv().getTerrain().toX(getIndiceTerrain()),
-                    getEnv().getTerrain().toY(getIndiceTerrain()),
-                    getIndiceTerrain(),
-                    getEnv());
-
-            int cible = getEnv().getTerrain().getIndiceCible();
-            // System.out.println("Indice cheval: " + getIndiceTerrain() + ", indice cible: " + cible);
-
-            for (int j = 0; j < 8 * (i + 1); j++) {
-                gobelin.seDeplace(cible);
-            }
-            getEnv().ajouterPersonnage(gobelin);
-            // System.out.println("NEW GOBELIN ! x: " + gobelin.getX() + ", y: " + gobelin.getY());
-
         }
 
         meurt();

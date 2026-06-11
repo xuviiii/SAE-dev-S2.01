@@ -11,21 +11,26 @@ public abstract class Personnage extends Entite {
     private int degat;
     private int indiceTerrain;
     private int indiceDepart;
+    private int malusVitesse;
     private int taille;
     private Deplacement deplacement;
+    private int compteurAction;
 
-    public Personnage(int pv, double x, double y, double vitesse,  int degat,
-                      int taille, int indiceTerrain, Environnement env, Deplacement deplacement){
-        super("p"+compteur,x,y,vitesse,env);
+
+    public Personnage(int pv, double vitesse,  int degat,
+                      int taille, Environnement env, Deplacement deplacement){
+        super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
 
         this.pv = new SimpleIntegerProperty(pv);
         this.pvMax = pv;
         this.degat = degat;
+        malusVitesse = 1;
+        this.indiceTerrain = 0;
         this.taille = taille;
-        this.indiceTerrain = indiceTerrain;
         this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
+        compteurAction = 0;
     }
 
     public IntegerProperty getPvProperty(){
@@ -46,10 +51,6 @@ public abstract class Personnage extends Entite {
         return degat;
     }
 
-    public int getTaille() {
-        return taille;
-    }
-
     public void subirDegat(int degat){
         pv.setValue(pv.getValue() - degat);
     }
@@ -60,8 +61,13 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public boolean estTouché(double x,double y){
-        return super.getX()-1<=x && super.getX()+taille+1>=x && super.getY()-1<=y && super.getY()+taille+1>=y;
+    public boolean estTouché(Projectile projectile){
+        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
+        xProjectileG = projectile.getX();
+        xProjectileD = projectile.getX()+projectile.getTaille();
+        yProjectileH = projectile.getY();
+        yProjectileB = projectile.getY()+projectile.getTaille();
+        return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
     public void seDeplace(int cible){
@@ -93,7 +99,6 @@ public abstract class Personnage extends Entite {
         if(super.getX() == suivant_X && super.getY() == suivant_Y){
             indiceTerrain = suivant;
         }
-        
 
     }
 
@@ -109,13 +114,22 @@ public abstract class Personnage extends Entite {
         return this.deplacement;
     }
 
+    public int getCompteurAction() {
+        return compteurAction;
+    }
+
     public int getIndiceDepart() {
         return this.indiceDepart;
     }
 
+    public void setIndiceDepart(int indiceDepart) {
+        this.indiceDepart = indiceDepart;
+    }
+
     @Override
-    public void action(int temps) {
+    public void action(/*int temps*/) {
         seDeplace(getEnv().getTerrain().getIndiceCible());
+        compteurAction++;
     }
 
     @Override
