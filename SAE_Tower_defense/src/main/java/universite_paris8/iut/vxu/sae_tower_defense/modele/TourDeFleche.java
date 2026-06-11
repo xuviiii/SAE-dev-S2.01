@@ -25,6 +25,13 @@ public class TourDeFleche extends TourProjectileLance{
 
     @Override
     public void ameliorer() {
-
+        if (getNiveau() < 4){
+            switch (getNiveau()){
+                case 0: augmenterPortee(20); augmenterDegat(5);break;
+                case 4: augmenterVitesse(10);break;
+                default: break;
+            }
+            gainNiveau();
+        }
     }
 }

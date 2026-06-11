@@ -14,6 +14,8 @@ public abstract class TourProjectile extends TourHorsChemin{
         this.cibleur = new Cibleur(getPortee(), this);
     }
 
+
+
     public int getBoost() {
         return boost;
     }

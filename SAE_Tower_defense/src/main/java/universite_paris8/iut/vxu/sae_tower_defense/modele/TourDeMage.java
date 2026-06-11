@@ -13,6 +13,12 @@ public class TourDeMage extends TourProjectileInstantane {
 
     @Override
     public void ameliorer() {
-
+        if (getNiveau() < 2){
+            switch (getNiveau()){
+                case 0:  augmenterPortee(20);break;
+                default: break;
+            }
+            gainNiveau();
+        }
     }
 }

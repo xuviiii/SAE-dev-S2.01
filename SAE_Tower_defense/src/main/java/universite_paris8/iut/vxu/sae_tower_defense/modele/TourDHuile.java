@@ -9,12 +9,23 @@ public class TourDHuile extends TourProjectileLance {
     @Override
     public Projectile projectileALancer(double x, double y, double dx, double dy) {
         Personnage cible = ennemiACible();
-        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY());
+        double multiplicateurDurer;
+        if (getNiveau() < 2)
+            multiplicateurDurer = 1.5;
+        else
+            multiplicateurDurer = 1;
+        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY(), multiplicateurDurer);
     }
 
     @Override
     public void ameliorer() {
-
+        if (getNiveau() < 2){
+            switch (getNiveau()){
+                case 0:  augmenterDegat(5);break;
+                default: break;
+            }
+            gainNiveau();
+        }
     }
 
     @Override

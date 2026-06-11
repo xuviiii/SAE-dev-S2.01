@@ -21,6 +21,10 @@ public abstract class Entite {
         this.taille = taille;
     }
 
+    public void augmenterVitesse(int ajout){
+        vitesse += ajout;
+    }
+
     public String getId() {
         return id;
     }

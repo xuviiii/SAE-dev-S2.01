@@ -21,7 +21,10 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
-        return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
+        if (getNiveau()<1)
+            return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
+        else
+            return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
     }
 
     @Override
@@ -31,7 +34,10 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
+        if (getNiveau() < 1){
 
+            gainNiveau();
+        }
     }
 
 }

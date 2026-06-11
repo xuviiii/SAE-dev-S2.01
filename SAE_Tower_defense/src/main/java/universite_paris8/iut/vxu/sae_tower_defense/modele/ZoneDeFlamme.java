@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class ZoneDeFlamme extends Projectile {
 
     private int compteur;
+    private double multiplicateurDurer;
 
-    public ZoneDeFlamme(double x, double y, Environnement env, int degat) {
+    public ZoneDeFlamme(double x, double y, Environnement env, int degat, double multiplicateurDurer) {
         super(x, y, 10, env, 32, degat);
         compteur = 0;
+        this.multiplicateurDurer = multiplicateurDurer;
     }
 
     @Override

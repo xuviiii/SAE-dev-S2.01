@@ -17,6 +17,10 @@ public abstract class TourHorsChemin extends Tour{
         this.portée = portee;
     }
 
+    public void augmenterPortee(int ajout){
+        portée += ajout;
+    }
+
     public int getPortee() {
         return portée;
     }

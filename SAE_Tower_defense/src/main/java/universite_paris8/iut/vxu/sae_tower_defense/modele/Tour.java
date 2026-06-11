@@ -16,6 +16,18 @@ public abstract class Tour extends Entite{
         compteurAction = 0;
     }
 
+    public void augmenterDegat(int ajout){
+        dégât += ajout;
+    }
+
+    public void gainNiveau(){
+        niveau++;
+    }
+
+    public int getNiveau() {
+        return niveau;
+    }
+
     public int getPrix() {
         return prix;
     }
