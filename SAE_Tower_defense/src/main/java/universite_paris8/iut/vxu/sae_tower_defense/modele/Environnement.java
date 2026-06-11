@@ -5,6 +5,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
 import java.util.*;
 

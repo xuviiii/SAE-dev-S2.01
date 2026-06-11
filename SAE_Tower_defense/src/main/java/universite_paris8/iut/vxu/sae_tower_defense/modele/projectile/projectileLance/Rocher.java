@@ -1,8 +1,11 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 
 import java.util.ArrayList;
 
-public class Rocher extends ProjectileLance{
+public class Rocher extends ProjectileLance {
 
     private ArrayList<Personnage> ennemisTouches;
 

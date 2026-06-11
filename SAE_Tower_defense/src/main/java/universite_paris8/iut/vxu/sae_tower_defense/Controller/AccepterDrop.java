@@ -2,17 +2,11 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
 
 
 public class AccepterDrop implements EventHandler<DragEvent>{

@@ -1,4 +1,8 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
 
 public abstract class TourProjectileLance extends TourProjectile {
 
@@ -14,5 +18,5 @@ public abstract class TourProjectileLance extends TourProjectile {
         super.getEnv().getProjectiles().add(projectileALancer(x,y,dx,dy));
     }
 
-    public abstract Projectile projectileALancer(double x,double y, double dx,double dy);
+    public abstract Projectile projectileALancer(double x, double y, double dx, double dy);
 }

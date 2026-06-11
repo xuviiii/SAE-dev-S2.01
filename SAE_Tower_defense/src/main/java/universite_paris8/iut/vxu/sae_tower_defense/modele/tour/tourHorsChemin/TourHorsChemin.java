@@ -1,8 +1,9 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin;
 
-import java.util.ArrayList;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
-public abstract class TourHorsChemin extends Tour{
+public abstract class TourHorsChemin extends Tour {
 
     private int portée;
 

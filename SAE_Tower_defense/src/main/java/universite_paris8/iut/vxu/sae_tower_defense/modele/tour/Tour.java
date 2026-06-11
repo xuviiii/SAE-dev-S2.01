@@ -1,6 +1,9 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour;
 
-public abstract class Tour extends Entite{
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+
+public abstract class Tour extends Entite {
     private static int compteur = 0;
     private int prix;
     private int dégât;

@@ -1,13 +1,17 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance;
 
-public class TourDeFleche extends TourProjectileLance{
+import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Fleche;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+
+public class TourDeFleche extends TourProjectileLance {
 
     public TourDeFleche(double x, double y, Environnement map) {
         super(x, y, 30, map, 32, 100, 10, 100);
     }
 
     @Override
-    public Projectile projectileALancer(double x,double y, double dx,double dy) {
+    public Projectile projectileALancer(double x, double y, double dx, double dy) {
         return new Fleche(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
     }
 

@@ -1,4 +1,8 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Rocher;
 
 public class Catapulte extends TourProjectileLance {
 
@@ -20,7 +24,7 @@ public class Catapulte extends TourProjectileLance {
     }
 
     @Override
-    public Projectile projectileALancer(double x,double y, double dx,double dy) {
+    public Projectile projectileALancer(double x, double y, double dx, double dy) {
         return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee());
     }
 

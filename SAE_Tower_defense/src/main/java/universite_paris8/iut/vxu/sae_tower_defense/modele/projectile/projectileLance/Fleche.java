@@ -1,8 +1,11 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 
 import java.util.ArrayList;
 
-public class Fleche extends ProjectileLance{
+public class Fleche extends ProjectileLance {
 
     public Fleche(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour) {
         super(x, y, 3, env, 5, degat, dx, dy, porteeTour);

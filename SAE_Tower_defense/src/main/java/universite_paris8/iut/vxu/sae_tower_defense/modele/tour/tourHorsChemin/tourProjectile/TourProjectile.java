@@ -1,9 +1,13 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile;
 
-import java.util.ArrayList;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Cibleur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
+
 import java.util.List;
 
-public abstract class TourProjectile extends TourHorsChemin{
+public abstract class TourProjectile extends TourHorsChemin {
 
     private int boost;
     private Cibleur cibleur;
