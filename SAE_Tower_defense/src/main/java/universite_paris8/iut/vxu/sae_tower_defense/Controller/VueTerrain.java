@@ -25,10 +25,14 @@ public class VueTerrain {
         tile.setMinWidth(terrain.getLongueurMap() * terrain.getTailleTile());
         tile.setMaxWidth(terrain.getLongueurMap() * terrain.getTailleTile());
         for (int i = 0; i < terrain.getMap().size(); i++) {
+            aléatoire = Math.random();
+
             if (terrain.getMap().get(i) == 1)
-                sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin.png")));
+                if (aléatoire<0.5)
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin1.png")));
+                else
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin2.png")));
             else{
-                aléatoire = Math.random();
 
                 if (aléatoire<0.3333)
                     sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/herbe1.png")));
