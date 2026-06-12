@@ -29,7 +29,7 @@ public class Pretre extends Personnage {
 
     private void soigner(){
 
-        List<Personnage> personnages = cibleur.cibler();
+        List<Personnage> personnages = cibleur.ciblerEnnemie();
         for (Personnage p : personnages){
             p.setPv(p.getPv() + pvSoin);
         }

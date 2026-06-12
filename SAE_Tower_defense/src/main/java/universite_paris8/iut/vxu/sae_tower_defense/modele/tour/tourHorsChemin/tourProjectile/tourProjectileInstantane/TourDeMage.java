@@ -1,6 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.Explosion;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.ProjectileInstantane;
 
 public class TourDeMage extends TourProjectileInstantane {
@@ -11,7 +12,7 @@ public class TourDeMage extends TourProjectileInstantane {
 
     @Override
     public void creerProjectile(double x, double y) {
-        getEnv().getProjectiles().add(new ProjectileInstantane(x,y,getEnv(),10,15));
+        getEnv().getProjectiles().add(new Explosion(x,y,getEnv(),10));
     }
 
     @Override

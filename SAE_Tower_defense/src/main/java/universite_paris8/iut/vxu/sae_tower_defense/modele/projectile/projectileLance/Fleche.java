@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Fleche extends ProjectileLance {
 
     public Fleche(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour) {
-        super(x, y, 3, env, 5, degat, dx, dy, porteeTour);
+        super(x, y, 3, env, 20, degat, dx, dy, porteeTour);
     }
 
     @Override

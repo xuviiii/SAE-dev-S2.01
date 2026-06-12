@@ -7,12 +7,6 @@ public abstract class TourHorsChemin extends Tour {
 
     private int portée;
 
-    //Tour(double x, double y, Environnement map, int prix, int vitesse, int dégât)
-
-    //Tour(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât)
-
-    //TourHorsChemin(double x, double y, Environnement map, int prix, int vitesse, int dégât, int portee)
-
     public TourHorsChemin(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee) {
         super(x, y, vitesse, map, taille, prix, dégât);
         this.portée = portee;

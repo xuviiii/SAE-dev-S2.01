@@ -43,7 +43,7 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="100" />
                   <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../image/tour/archer/archer1.png" />
+                        <Image url="@../../../../image/tour/mage/mage.png" />
                      </image>
                   </ImageView>
                </children>
@@ -51,9 +51,9 @@
             <Pane fx:id="sauron" layoutX="4.0" layoutY="147.0" prefHeight="70.0" prefWidth="70.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="100" />
-                  <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../image/tour/tour_de_saurron/tour_de_saurron-1.png" />
+                        <Image url="@../../../../image/tour/tour_de_sauron/tour_de_sauron-1.png" />
                      </image>
                   </ImageView>
                </children>
@@ -63,7 +63,7 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="100" />
                   <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../image/tour/archer/archer1.png" />
+                        <Image url="@../../../../image/tour/camp/camp.png" />
                      </image>
                   </ImageView>
                </children>
@@ -83,7 +83,7 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="49.0" prefHeight="19.0" prefWidth="57.0" text="100" />
                   <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="12.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../image/tour/archer/archer1.png" />
+                        <Image url="@../../../../image/tour/mur/bob.png" />
                      </image>
                   </ImageView>
                </children>

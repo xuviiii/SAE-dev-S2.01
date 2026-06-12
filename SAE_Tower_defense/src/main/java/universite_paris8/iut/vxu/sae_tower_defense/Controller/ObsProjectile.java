@@ -20,7 +20,7 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
             //System.out.println("Ajouter : "+change.getAddedSubList());
             for (Projectile projectile : change.getAddedSubList()){
                 ImageView sprite;
-                sprite = BankImage.getImgView(projectile.getClass(), 20);
+                sprite = BankImage.getImgView(projectile.getClass(), projectile.getTaille());
                 sprite.translateXProperty().bind(projectile.getXProperty());
                 sprite.translateYProperty().bind(projectile.getYProperty());
                 sprite.setId(projectile.getId());

@@ -8,19 +8,19 @@ import java.util.ArrayList;
 
 public class ProjectileInstantane extends Projectile {
 
-    private int tailleMax;
+    private int compteur;
 
-    public ProjectileInstantane(double x, double y, Environnement env, int degat, int tailleMax) {
-        super(x, y, 0, env, 20, degat);
-        this.tailleMax = tailleMax;
+    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int taille) {
+        super(x, y, vitesse, env, taille, degat);
+        compteur = 0;
     }
 
     public double getAngle(){return 0;}
 
     @Override
     public void action() {
-        if (getTaille()<40){
-            setTaille(getTaille()+1);
+        if (compteur<50){
+            compteur+=getVitesse();
         }
         else {
             ArrayList<Personnage> personnageTouches = projectileTouche();

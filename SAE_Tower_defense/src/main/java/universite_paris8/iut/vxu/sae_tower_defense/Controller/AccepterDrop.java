@@ -7,6 +7,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 
 public class AccepterDrop implements EventHandler<DragEvent>{
@@ -37,7 +39,6 @@ public class AccepterDrop implements EventHandler<DragEvent>{
 
         preview.setTranslateX(event.getX());
         preview.setTranslateY(event.getY());
-
 
         event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 

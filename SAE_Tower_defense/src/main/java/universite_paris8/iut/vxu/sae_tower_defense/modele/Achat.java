@@ -1,11 +1,14 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeSauron;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDHuile;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 public class Achat {
     private Environnement map;
@@ -30,20 +33,23 @@ public class Achat {
         else if (id.equals("sauron"))
             nvTour = new TourDeSauron(x+16, y+16, map);
         else if (id.equals("camp"))
-            nvTour = new TourDHuile(x+16, y+16, map);
+            nvTour = new Camp(x+16, y+16, map);
         else if (id.equals("marais"))
-            nvTour = new TourDHuile(x+16, y+16, map);
+            nvTour = new Marais(x+16, y+16, map);
         else if (id.equals("mur"))
-            nvTour = new TourDHuile(x+16, y+16, map);
+            nvTour = new Mur(x+16, y+16, map);
         else
             return null;
         return nvTour;
     }
 
-    public boolean peutEtrePoser(double x,double y, int taille){
+    public boolean peutEtrePoserTourHorsChemin(double x, double y, int taille){
         return ((!surAutreTour(x,y)) && horsChemin(x,y,taille));
     }
 
+    public boolean peutEtrePoserTourSurChemin(double x, double y, int taille){
+        return ((!surAutreTour(x,y)) && !horsChemin(x,y,taille));
+    }
 
     public boolean surAutreTour(double x,double y){
         for (Tour t:map.getTours()){
@@ -63,5 +69,4 @@ public class Achat {
             return true;
         }
     }
-
 }

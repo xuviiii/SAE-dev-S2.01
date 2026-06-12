@@ -28,6 +28,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());
 
+
 //                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {
 //                    sprite.setClip(new ImageView(new Image(getClass().getResourceAsStream("/image/perso/gobelin_vert/gobelin.gif"))));
 //
