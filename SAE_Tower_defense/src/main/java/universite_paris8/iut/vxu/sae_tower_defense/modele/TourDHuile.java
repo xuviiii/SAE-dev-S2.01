@@ -3,7 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 public class TourDHuile extends TourProjectileLance {
 
     public TourDHuile(double x, double y, Environnement map) {
-        super(x, y, 10, map, 32, 200, 10, 150);
+        super(x, y, 10, map, 32, 200, 10, 150, false);
     }
 
     @Override
@@ -21,7 +21,8 @@ public class TourDHuile extends TourProjectileLance {
     public void ameliorer() {
         if (getNiveau() < 2){
             switch (getNiveau()){
-                case 0:  augmenterDegat(5);break;
+                case 0:  augmenterDegat(5);getEnv().enleverArgent(100);break;
+                case 1: getEnv().enleverArgent(200);break;
                 default: break;
             }
             gainNiveau();

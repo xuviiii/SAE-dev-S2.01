@@ -8,6 +8,7 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        System.out.println(getClass().getResource("Demarrage.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Demarrage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");

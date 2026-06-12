@@ -7,14 +7,18 @@ public abstract class TourProjectile extends TourHorsChemin{
 
     private int boost;
     private Cibleur cibleur;
+    private Boolean peutciblerCamoufle;
 
-    public TourProjectile(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee) {
+    public TourProjectile(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee, boolean peutciblerCamoufle) {
         super(x, y, vitesse, map, taille, prix, dégât, portee);
         boost = 0;
         this.cibleur = new Cibleur(getPortee(), this);
+        this.peutciblerCamoufle = peutciblerCamoufle;
     }
 
-
+    public void setPeutciblerCamoufle(Boolean peutciblerCamoufle) {
+        this.peutciblerCamoufle = peutciblerCamoufle;
+    }
 
     public int getBoost() {
         return boost;
@@ -43,15 +47,24 @@ public abstract class TourProjectile extends TourHorsChemin{
                         < ennemiACible
                         .getDeplacement()
                         .cheminVersCible(personnage.getIndiceTerrain())
-                        .size())
-                    ennemiACible = personnage;
+                        .size()) {
+                    if (!personnage.isCamoufles() || peutciblerCamoufle) {
+                        ennemiACible = personnage;
+                    }
+                }
             /*for (int i=1;i<ennemisCiblables.size();i++){
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
                     ennemiACible = ennemisCiblables.get(i);
             }*/
-            return ennemiACible;
+            if(!ennemiACible.isCuirasses() || peutciblerCamoufle) {
+                return ennemiACible;
+            }
+            else {
+                return null;
+            }
         }
     }
+
 
     public abstract void creerProjectile(double x,double y);
 }

@@ -6,7 +6,7 @@ public class Catapulte extends TourProjectileLance {
     private double yCible;
 
     public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
-        super(x, y, 15, map, 32, 300, 10, 10000);
+        super(x, y, 15, map, 32, 300, 10, 10000, false);
         this.xCible = xCible;
         this.yCible = yCible;
     }
@@ -35,7 +35,10 @@ public class Catapulte extends TourProjectileLance {
     @Override
     public void ameliorer() {
         if (getNiveau() < 1){
-
+            switch (getNiveau()) {
+                case 0: getEnv().enleverArgent(100);break;
+                default:break;
+            }
             gainNiveau();
         }
     }

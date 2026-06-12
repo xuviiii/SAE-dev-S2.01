@@ -3,6 +3,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.Random;
+
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
@@ -15,6 +17,8 @@ public abstract class Personnage extends Entite {
     private int taille;
     private Deplacement deplacement;
     private int compteurAction;
+    private boolean cuirasses;
+    private boolean camoufles;
 
 
     public Personnage(int pv, double vitesse,  int degat,
@@ -31,6 +35,38 @@ public abstract class Personnage extends Entite {
         this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
         compteurAction = 0;
+        rendreCamoufles();
+        rendreCuirases();
+    }
+
+    public boolean isCamoufles() {
+        return camoufles;
+    }
+
+    public boolean isCuirasses() {
+        return cuirasses;
+    }
+
+    public void setCuirasses(boolean cuirasses) {
+        this.cuirasses = cuirasses;
+    }
+
+    private void rendreCuirases(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea >= 20 && getEnv().getVague().getNumVague() > 9){
+            cuirasses = true;
+        }
+        else {
+            cuirasses = false;
+        }
+    }
+
+    private void rendreCamoufles(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea >= 20 && getEnv().getVague().getNumVague() > 9)
+            camoufles = true;
+        else
+            camoufles = false;
     }
 
     public IntegerProperty getPvProperty(){

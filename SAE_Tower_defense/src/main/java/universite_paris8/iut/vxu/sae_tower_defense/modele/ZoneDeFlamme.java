@@ -16,7 +16,7 @@ public class ZoneDeFlamme extends Projectile {
     @Override
     public void action() {
         for (Personnage ennemi : super.getEnv().getPersonnages())
-            if (ennemi.estTouché(this))
+            if (ennemi.estTouché(this) && !ennemi.isCuirasses())
                 ennemi.subirDegat(super.getDegat());
         compteur++;
         if (compteur == 200)

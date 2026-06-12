@@ -26,6 +26,12 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite = BankImage.getImgView(personnage.getClass(), personnage.getTaille());
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());
+                if(personnage.isCamoufles()){
+                    sprite.setOpacity(0.5);
+                }
+                if (personnage.isCuirasses()){
+                    sprite.setFitWidth(personnage.getTaille()*1.3);
+                }
 
 //                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {
 //                    ColorAdjust colorAdjust = new ColorAdjust();

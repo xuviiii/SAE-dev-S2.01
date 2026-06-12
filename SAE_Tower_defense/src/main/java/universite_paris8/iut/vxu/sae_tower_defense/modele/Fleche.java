@@ -10,7 +10,9 @@ public class Fleche extends ProjectileLance{
 
     @Override
     public void attaquer(Personnage personnage) {
-        personnage.subirDegat(super.getDegat());
+        if(!personnage.isCuirasses()) {
+            personnage.subirDegat(super.getDegat());
+        }
         super.getEnv().getProjectiles().remove(this);
     }
 

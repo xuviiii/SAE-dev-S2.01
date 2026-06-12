@@ -48,4 +48,9 @@ public abstract class Tour extends Entite{
     public abstract void agir();
 
     public abstract void ameliorer();
+
+    @Override
+    public String toString() {
+        return "niveau:" + niveau ;
+    }
 }
