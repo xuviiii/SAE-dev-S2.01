@@ -18,7 +18,7 @@ public class BankImage {
             Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),
             Map.entry(Catapulte.class, "/image/tour/catapulte/catapulte.gif"),
             Map.entry(TourDHuile.class, "/image/tour/tour_de_feu/tour_de_feu.gif"),
-            Map.entry(TourDeMage.class, "/image/tour/archer/archer.gif"),
+            Map.entry(TourDeMage.class, "/image/tour/mage/mage.gif"),
             Map.entry(TourDeSauron.class, "/image/tour/tour_de_saurron/tour_de_saurron.gif"),
 
             Map.entry(Fleche.class, "/image/projectile/flêche.png"),
