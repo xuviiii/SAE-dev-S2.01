@@ -73,7 +73,11 @@ public class Controller implements Initializable {
         loop=new GameLoop(map);
 
 
-        terrainEntite.setStyle("-fx-border-color: red;");
+
+        terrainEntite.setMaxWidth(map.getTerrain().getLongueurMap()*map.getTerrain().getTailleTile());
+        terrainEntite.setMaxHeight(map.getTerrain().getHauteurMap()*map.getTerrain().getTailleTile());
+
+
 
 
 
