@@ -9,18 +9,16 @@ public class TourDeMage extends TourProjectileInstantane {
     @Override
     public void creerProjectile(double x, double y) {
         boolean enleverCirasse;
-        if (getNiveau() == 2) {
-            enleverCirasse = true;
-        }
-        else {
-            enleverCirasse =false;
-        }
-        getEnv().getProjectiles().add(new ProjectileInstantane(x, y, getEnv(), 10, 15,true));
+        boolean teleporte;
+        enleverCirasse = getNiveau() == 2;
+        teleporte = getNiveau() == 3;
+
+        getEnv().getProjectiles().add(new ProjectileInstantane(x, y, getEnv(), 10, 15,enleverCirasse,teleporte));
     }
 
     @Override
     public void ameliorer() {
-        if (getNiveau() < 2){
+        if (getNiveau() < 3){
             switch (getNiveau()){
                 case 0:  augmenterPortee(20);getEnv().enleverArgent(100);break;
                 case 1: getEnv().enleverArgent(300);break;

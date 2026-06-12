@@ -3,6 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.List;
 import java.util.Random;
 
 public abstract class Personnage extends Entite {
@@ -14,7 +15,6 @@ public abstract class Personnage extends Entite {
     private int indiceTerrain;
     private int indiceDepart;
     private int malusVitesse;
-    private int taille;
     private Deplacement deplacement;
     private int compteurAction;
     private boolean cuirasses;
@@ -31,7 +31,6 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         malusVitesse = 1;
         this.indiceTerrain = 0;
-        this.taille = taille;
         this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
         compteurAction = 0;
@@ -47,14 +46,16 @@ public abstract class Personnage extends Entite {
         return cuirasses;
     }
 
-    public void setCuirasses(boolean cuirasses) {
-        this.cuirasses = cuirasses;
+    public void enleverCuirasses() {
+        this.cuirasses = false;
+        setTaille((int)(getTaille()/1.3));
     }
 
     private void rendreCuirases(){
         int alea = (int)(Math.random()*100)+1;
         if(alea >= 20 && getEnv().getVague().getNumVague() > 9){
             cuirasses = true;
+            setTaille ((int)(getTaille()*1.3));
         }
         else {
             cuirasses = false;
@@ -136,6 +137,21 @@ public abstract class Personnage extends Entite {
             indiceTerrain = suivant;
         }
 
+    }
+
+    public void reculer(int casse){
+        List<Integer> chemin = deplacement.cheminVersCible(indiceTerrain, indiceDepart);
+        int indice = nbCassereculMax(casse, chemin.size());
+        indiceTerrain = chemin.get(indiceTerrain);
+    }
+
+    public int nbCassereculMax(int casse, int longueurChemin){
+        for (int i=0; i < casse ; i++){
+            if ( casse-i < longueurChemin){
+                return casse-i;
+            }
+        }
+        return 0;
     }
 
     public int getIndiceTerrain(){
