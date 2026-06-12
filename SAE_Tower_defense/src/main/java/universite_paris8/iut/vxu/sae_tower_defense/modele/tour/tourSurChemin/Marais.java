@@ -7,7 +7,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 public class Marais extends Tour {
 
     public Marais(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 60, 700, 0);
+        super(x, y, 1000, map, 59, 700, 0);
     }
 
     @Override

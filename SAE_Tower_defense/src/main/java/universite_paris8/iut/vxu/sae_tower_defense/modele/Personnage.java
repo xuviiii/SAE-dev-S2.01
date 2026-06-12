@@ -3,6 +3,8 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 public abstract class Personnage extends Entite {
 
@@ -99,6 +101,13 @@ public abstract class Personnage extends Entite {
 
         malusVitesse = 1;
 
+    }
+
+    public Mur bloquerParMur(){
+        for (Tour tour : getEnv().getTours())
+            if (tour instanceof Mur && estTouché(tour))
+                return (Mur)tour;
+        return null;
     }
 
     public int getIndiceTerrain(){
