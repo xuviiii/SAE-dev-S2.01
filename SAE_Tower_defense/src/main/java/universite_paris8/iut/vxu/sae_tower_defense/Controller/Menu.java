@@ -6,9 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Catapulte;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
 public class Menu implements EventHandler<MouseEvent> {
 

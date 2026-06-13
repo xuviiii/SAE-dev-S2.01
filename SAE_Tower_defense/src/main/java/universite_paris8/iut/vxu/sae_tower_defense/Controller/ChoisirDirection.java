@@ -2,13 +2,11 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Catapulte;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 
 public class ChoisirDirection implements EventHandler<ActionEvent> {
 

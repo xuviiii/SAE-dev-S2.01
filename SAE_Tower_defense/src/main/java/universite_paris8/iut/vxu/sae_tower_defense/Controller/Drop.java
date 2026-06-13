@@ -1,16 +1,14 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Shape;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 public class Drop implements EventHandler<DragEvent> {
     private Achat achat;
@@ -33,7 +31,11 @@ public class Drop implements EventHandler<DragEvent> {
         tour = drag.getTour();
         tour.setX(event.getX());
         tour.setY(event.getY());
-        success = (achat.peutEtrePoser(tour.getX(),tour.getY(),tour.getTaille())  && !(tour ==  null));
+        if (tour instanceof Marais || tour instanceof Mur){
+            tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
+            tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
+        }
+        success = ((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof Marais || tour instanceof Mur)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof Marais || tour instanceof Mur)));
         if (success){
             env.ajouterTour(tour);
             env.enleverArgent(tour.getPrix());

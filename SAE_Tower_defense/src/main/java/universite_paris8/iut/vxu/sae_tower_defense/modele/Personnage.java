@@ -2,6 +2,9 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 public abstract class Personnage extends Entite {
 
@@ -47,6 +50,10 @@ public abstract class Personnage extends Entite {
         // System.out.println(this.pv + "]");
     }
 
+    public void setMalusVitesse(int malusVitesse) {
+        this.malusVitesse = malusVitesse;
+    }
+
     public int getDegat() {
         return degat;
     }
@@ -61,12 +68,12 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public boolean estTouché(Projectile projectile){
+    public boolean estTouché(Entite entite){
         double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
-        xProjectileG = projectile.getX();
-        xProjectileD = projectile.getX()+projectile.getTaille();
-        yProjectileH = projectile.getY();
-        yProjectileB = projectile.getY()+projectile.getTaille();
+        xProjectileG = entite.getX();
+        xProjectileD = entite.getX()+entite.getTaille();
+        yProjectileH = entite.getY();
+        yProjectileB = entite.getY()+entite.getTaille();
         return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
@@ -81,25 +88,34 @@ public abstract class Personnage extends Entite {
         double dist_y = Math.abs(super.getY() - suivant_Y);
 
         if(super.getX() > suivant_X){
-            super.setX(super.getX() - (Math.min(super.getVitesse(), dist_x)));
+            super.setX(super.getX() - (Math.min(super.getVitesse()/malusVitesse, dist_x)));
         }
 
         if(super.getX() < suivant_X){
-            super.setX(super.getX() + (Math.min(super.getVitesse(), dist_x)));
+            super.setX(super.getX() + (Math.min(super.getVitesse()/malusVitesse, dist_x)));
         }
 
         if(super.getY() > suivant_Y){
-            super.setY(super.getY() - (Math.min(super.getVitesse(), dist_y)));
+            super.setY(super.getY() - (Math.min(super.getVitesse()/malusVitesse, dist_y)));
         }
 
         if(super.getY() < suivant_Y){
-            super.setY(super.getY() + (Math.min(super.getVitesse(), dist_y)));
+            super.setY(super.getY() + (Math.min(super.getVitesse()/malusVitesse, dist_y)));
         }
 
         if(super.getX() == suivant_X && super.getY() == suivant_Y){
             indiceTerrain = suivant;
         }
 
+        malusVitesse = 1;
+
+    }
+
+    public Mur bloquerParMur(){
+        for (Tour tour : getEnv().getTours())
+            if (tour instanceof Mur && estTouché(tour))
+                return (Mur)tour;
+        return null;
     }
 
     public int getIndiceTerrain(){

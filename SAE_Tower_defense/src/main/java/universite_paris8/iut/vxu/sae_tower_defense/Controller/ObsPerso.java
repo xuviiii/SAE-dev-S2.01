@@ -27,6 +27,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());
 
+
 //                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {
 //                    ColorAdjust colorAdjust = new ColorAdjust();
 //

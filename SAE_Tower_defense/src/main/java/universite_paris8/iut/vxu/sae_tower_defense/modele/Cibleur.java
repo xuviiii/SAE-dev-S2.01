@@ -1,8 +1,10 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-import javafx.collections.ObservableList;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cibleur {
 
@@ -14,21 +16,31 @@ public class Cibleur {
         this.entite = entite;
     }
 
-    public List<Personnage> cibler(){
+    public ArrayList<Personnage> ciblerEnnemie(){
 
-        List<Personnage> ennemisCiblables = new ArrayList<>();
-        ObservableList<Personnage> personnages = entite.getEnv().getPersonnages();
+        double h;
+        ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
 
-        for (int i = 0; i < personnages.size(); i++){
-            if (((entite.getX() - portee) < personnages.get(i).getX())
-                    && ((entite.getX() + portee) > personnages.get(i).getX())
-                    && ((entite.getY() - portee) < personnages.get(i).getY())
-                    && ((entite.getY() + portee) > personnages.get(i).getY())) {
+        for (Personnage personnage : entite.getEnv().getPersonnages()) {
+            h = Math.hypot(entite.getX()-personnage.getX(),entite.getY()-personnage.getY());
+            if (h<portee)
+                ennemisCiblables.add(personnage);
+        }
+        return ennemisCiblables;
+    }
 
-                ennemisCiblables.add(personnages.get(i));
+    public ArrayList<TourProjectile> ciblerAllie(){
+
+        double h;
+
+        ArrayList<TourProjectile> tours = new ArrayList<>();
+        for (Tour tour : entite.getEnv().getTours()) {
+            if (tour instanceof TourProjectile) {
+                h = Math.hypot(entite.getX() - tour.getX(), entite.getY() - tour.getY());
+                if (h < portee)
+                    tours.add((TourProjectile) tour);
             }
         }
-
-        return ennemisCiblables;
+        return tours;
     }
 }
