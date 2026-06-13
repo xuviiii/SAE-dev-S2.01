@@ -7,7 +7,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileI
 public class TourDeSauron extends TourProjectileInstantane {
 
     public TourDeSauron(double x, double y, Environnement map) {
-        super(x, y, 5, map, 64, 50000, 100, 10000);
+        super(x, y, 5, map, 64, 50000, 100, 10000, true);
     }
 
     @Override

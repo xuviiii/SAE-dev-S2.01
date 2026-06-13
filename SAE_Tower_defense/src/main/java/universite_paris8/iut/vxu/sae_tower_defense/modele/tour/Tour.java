@@ -39,10 +39,6 @@ public abstract class Tour extends Entite {
         return dégât;
     }
 
-    public int getNiveau() {
-        return niveau;
-    }
-
     @Override
     public void action() {
         if (compteurAction>1000){

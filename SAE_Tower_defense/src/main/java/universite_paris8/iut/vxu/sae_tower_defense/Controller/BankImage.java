@@ -9,10 +9,10 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileI
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Fleche;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Rocher;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.TonneauDHuile;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeSauron;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDHuile;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
