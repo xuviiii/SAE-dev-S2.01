@@ -17,6 +17,7 @@ public abstract class Personnage extends Entite {
     private int malusVitesse;
     private Deplacement deplacement;
     private int compteurAction;
+    private IntegerProperty tempEnflamer;
     private boolean cuirasses;
     private boolean camoufles;
 
@@ -34,8 +35,18 @@ public abstract class Personnage extends Entite {
         this.indiceDepart = 0;
         this.deplacement = deplacement;
         compteurAction = 0;
+        tempEnflamer = new SimpleIntegerProperty(0);
         rendreCamoufles();
         rendreCuirases();
+    }
+
+    public void ajoutTempEnflamer(int tempEnflamer) {
+        this.tempEnflamer.set(this.tempEnflamer.get() + tempEnflamer);
+    }
+
+
+    public IntegerProperty tempEnflamerProperty() {
+        return tempEnflamer;
     }
 
     public boolean isCamoufles() {
@@ -181,9 +192,17 @@ public abstract class Personnage extends Entite {
         this.indiceDepart = indiceDepart;
     }
 
+    private void degatEnflamer(){
+        if (tempEnflamer.get() > 0){
+            subirDegat(1);
+            tempEnflamer.set(tempEnflamer.get() - 1);
+        }
+    }
+
     @Override
     public void action(/*int temps*/) {
         seDeplace(getEnv().getTerrain().getIndiceCible());
+        degatEnflamer();
         compteurAction++;
     }
 

@@ -32,6 +32,16 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 if (personnage.isCuirasses()){
                     sprite.fitWidthProperty().bind(personnage.tailleProperty());
                 }
+                personnage.tempEnflamerProperty().addListener((obs,old,nv)-> {
+                    ColorAdjust colorAdjust = new ColorAdjust();
+                    if ( nv.intValue() > 0) {
+                        colorAdjust.setHue(0.05);
+                    }
+                    else {
+                        colorAdjust.setHue(0.00);
+                    }
+                    sprite.setEffect(colorAdjust);
+                });
 
 //                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {
 //                    ColorAdjust colorAdjust = new ColorAdjust();
