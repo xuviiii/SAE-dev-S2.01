@@ -30,7 +30,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                     sprite.setOpacity(0.5);
                 }
                 if (personnage.isCuirasses()){
-                    sprite.setFitWidth(personnage.getTaille()*1.3);
+                    sprite.fitWidthProperty().bind(personnage.tailleProperty());
                 }
 
 //                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {

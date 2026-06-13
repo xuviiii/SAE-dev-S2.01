@@ -56,7 +56,7 @@ public abstract class TourProjectile extends TourHorsChemin{
                 if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
                     ennemiACible = ennemisCiblables.get(i);
             }*/
-            if(!ennemiACible.isCuirasses() || peutciblerCamoufle) {
+            if(!ennemiACible.isCamoufles() || peutciblerCamoufle) {
                 return ennemiACible;
             }
             else {

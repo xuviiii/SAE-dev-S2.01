@@ -27,10 +27,10 @@ public class ProjectileInstantane extends Projectile {
             ArrayList<Personnage> personnageTouches = projectileTouche();
             for (Personnage personnage : personnageTouches) {
                 personnage.subirDegat(super.getDegat());
-                if (enleveCuirasse && alea < 10) {
+                if (enleveCuirasse && alea <= 10) {
                     personnage.enleverCuirasses();
                 }
-                if (teleporte && alea < 5) {
+                if (teleporte && alea <= 10) {
                     personnage.reculer(5);
                 }
             }

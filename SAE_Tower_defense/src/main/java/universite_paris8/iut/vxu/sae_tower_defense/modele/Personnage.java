@@ -31,7 +31,7 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         malusVitesse = 1;
         this.indiceTerrain = 0;
-        this.indiceDepart = indiceTerrain;
+        this.indiceDepart = 0;
         this.deplacement = deplacement;
         compteurAction = 0;
         rendreCamoufles();
@@ -53,7 +53,7 @@ public abstract class Personnage extends Entite {
 
     private void rendreCuirases(){
         int alea = (int)(Math.random()*100)+1;
-        if(alea >= 20 && getEnv().getVague().getNumVague() > 9){
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9){
             cuirasses = true;
             setTaille ((int)(getTaille()*1.3));
         }
@@ -64,7 +64,7 @@ public abstract class Personnage extends Entite {
 
     private void rendreCamoufles(){
         int alea = (int)(Math.random()*100)+1;
-        if(alea >= 20 && getEnv().getVague().getNumVague() > 9)
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9)
             camoufles = true;
         else
             camoufles = false;
@@ -142,7 +142,10 @@ public abstract class Personnage extends Entite {
     public void reculer(int casse){
         List<Integer> chemin = deplacement.cheminVersCible(indiceTerrain, indiceDepart);
         int indice = nbCassereculMax(casse, chemin.size());
-        indiceTerrain = chemin.get(indiceTerrain);
+        indiceTerrain = chemin.get(indice);
+        setX(getEnv().getTerrain().toX(indiceTerrain));
+        setY(getEnv().getTerrain().toY(indiceTerrain));
+
     }
 
     public int nbCassereculMax(int casse, int longueurChemin){
