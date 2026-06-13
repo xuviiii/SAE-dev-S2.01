@@ -5,20 +5,23 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 
 import java.util.ArrayList;
 
-public class Rocher extends ProjectileLance {
+public class Rocher extends ProjectileTranspercant{
 
-    private ArrayList<Personnage> ennemisTouches;
+    private boolean enfaleme;
 
-    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour) {
-        super(x, y, 7, env, 40, degat, dx, dy, porteeTour);
-        ennemisTouches = new ArrayList<>();
+    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, boolean enfaleme) {
+        super(x, y, 7, env, 20, degat, dx, dy, porteeTour);
+        this.enfaleme = enfaleme;
     }
 
     @Override
     public void attaquer(Personnage personnage) {
-        if (!ennemisTouches.contains(personnage)){
+        if (!getEnnemisTouches().contains(personnage)){
             personnage.subirDegat(super.getDegat());
-            ennemisTouches.add(personnage);
+            if (enfaleme) {
+                personnage.ajoutTempEnflamer(5);
+            }
+            getEnnemisTouches().add(personnage);
         }
     }
 

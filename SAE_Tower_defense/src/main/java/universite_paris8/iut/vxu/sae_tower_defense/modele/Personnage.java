@@ -6,6 +6,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
+import java.util.List;
+import java.util.Random;
+
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
@@ -15,9 +18,11 @@ public abstract class Personnage extends Entite {
     private int indiceTerrain;
     private int indiceDepart;
     private int malusVitesse;
-    private int taille;
     private Deplacement deplacement;
     private int compteurAction;
+    private IntegerProperty tempEnflamer;
+    private boolean cuirasses;
+    private boolean camoufles;
 
 
     public Personnage(int pv, double vitesse,  int degat,
@@ -30,10 +35,53 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         malusVitesse = 1;
         this.indiceTerrain = 0;
-        this.taille = taille;
-        this.indiceDepart = indiceTerrain;
+        this.indiceDepart = 0;
         this.deplacement = deplacement;
         compteurAction = 0;
+        tempEnflamer = new SimpleIntegerProperty(0);
+        rendreCamoufles();
+        rendreCuirases();
+    }
+
+    public void ajoutTempEnflamer(int tempEnflamer) {
+        this.tempEnflamer.set(this.tempEnflamer.get() + tempEnflamer);
+    }
+
+
+    public IntegerProperty tempEnflamerProperty() {
+        return tempEnflamer;
+    }
+
+    public boolean isCamoufles() {
+        return camoufles;
+    }
+
+    public boolean isCuirasses() {
+        return cuirasses;
+    }
+
+    public void enleverCuirasses() {
+        this.cuirasses = false;
+        setTaille((int)(getTaille()/1.3));
+    }
+
+    private void rendreCuirases(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9){
+            cuirasses = true;
+            setTaille ((int)(getTaille()*1.3));
+        }
+        else {
+            cuirasses = false;
+        }
+    }
+
+    private void rendreCamoufles(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9)
+            camoufles = true;
+        else
+            camoufles = false;
     }
 
     public IntegerProperty getPvProperty(){
@@ -118,6 +166,24 @@ public abstract class Personnage extends Entite {
         return null;
     }
 
+    public void reculer(int casse){
+        List<Integer> chemin = deplacement.cheminVersCible(indiceTerrain, indiceDepart);
+        int indice = nbCassereculMax(casse, chemin.size());
+        indiceTerrain = chemin.get(indice);
+        setX(getEnv().getTerrain().toX(indiceTerrain));
+        setY(getEnv().getTerrain().toY(indiceTerrain));
+
+    }
+
+    public int nbCassereculMax(int casse, int longueurChemin){
+        for (int i=0; i < casse ; i++){
+            if ( casse-i < longueurChemin){
+                return casse-i;
+            }
+        }
+        return 0;
+    }
+
     public int getIndiceTerrain(){
         return indiceTerrain;
     }
@@ -142,9 +208,17 @@ public abstract class Personnage extends Entite {
         this.indiceDepart = indiceDepart;
     }
 
+    private void degatEnflamer(){
+        if (tempEnflamer.get() > 0){
+            subirDegat(1);
+            tempEnflamer.set(tempEnflamer.get() - 1);
+        }
+    }
+
     @Override
     public void action(/*int temps*/) {
         seDeplace(getEnv().getTerrain().getIndiceCible());
+        degatEnflamer();
         compteurAction++;
     }
 

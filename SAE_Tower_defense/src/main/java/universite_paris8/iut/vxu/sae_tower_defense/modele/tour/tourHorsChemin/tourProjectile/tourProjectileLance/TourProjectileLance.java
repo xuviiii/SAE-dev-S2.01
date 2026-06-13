@@ -6,8 +6,8 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.to
 
 public abstract class TourProjectileLance extends TourProjectile {
 
-    public TourProjectileLance(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee) {
-        super(x, y, vitesse, map, taille, prix, dégât, portee);
+    public TourProjectileLance(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee, boolean peutciblerCamoufle) {
+        super(x, y, vitesse, map, taille, prix, dégât, portee, peutciblerCamoufle);
     }
 
     public void creerProjectile(double x,double y) {

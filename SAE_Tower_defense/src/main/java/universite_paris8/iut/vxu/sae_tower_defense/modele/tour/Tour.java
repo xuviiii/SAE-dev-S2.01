@@ -19,6 +19,18 @@ public abstract class Tour extends Entite {
         compteurAction = 0;
     }
 
+    public void augmenterDegat(int ajout){
+        dégât += ajout;
+    }
+
+    public void gainNiveau(){
+        niveau++;
+    }
+
+    public int getNiveau() {
+        return niveau;
+    }
+
     public int getPrix() {
         return prix;
     }
@@ -43,4 +55,9 @@ public abstract class Tour extends Entite {
     public abstract void agir();
 
     public abstract void ameliorer();
+
+    @Override
+    public String toString() {
+        return "niveau:" + niveau ;
+    }
 }
