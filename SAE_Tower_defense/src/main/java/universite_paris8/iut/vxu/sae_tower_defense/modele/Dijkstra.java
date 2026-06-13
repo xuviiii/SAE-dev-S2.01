@@ -8,8 +8,7 @@ public class Dijkstra extends Deplacement {
         super(env);
     }
 
-    @Override
-    public List<Integer> cheminVersCible(int source) {
+    private Map<Integer, Integer> dijkstra(int source) {
 
         class IndiceCout implements Comparable<IndiceCout> {
 
@@ -56,7 +55,19 @@ public class Dijkstra extends Deplacement {
             }
         }
 
+        return predecesseurs;
+    }
+
+    @Override
+    public List<Integer> cheminVersCible(int source){
+        Map<Integer, Integer> predecesseurs = dijkstra(source);
         return cheminVersCible(predecesseurs);
+    }
+
+    @Override
+    public List<Integer> cheminVersCible(int source, int cible){
+        Map<Integer, Integer> predecesseurs = dijkstra(source);
+        return cheminVersCible(predecesseurs, cible);
     }
 
 }

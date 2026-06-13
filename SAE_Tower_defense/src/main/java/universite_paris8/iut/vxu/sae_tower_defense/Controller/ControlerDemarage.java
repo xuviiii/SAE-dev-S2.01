@@ -24,6 +24,7 @@ public class ControlerDemarage implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/vxu/sae_tower_defense/view.fxml"));
         Stage stage = (Stage) boutonDeDemarage.getScene().getWindow();
         stage.setScene(new Scene(fxmlLoader.load()));
+        stage.setMaximized(true);
 
     }
 

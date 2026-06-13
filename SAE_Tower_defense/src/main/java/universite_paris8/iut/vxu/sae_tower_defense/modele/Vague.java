@@ -49,6 +49,7 @@ public class Vague {
         else if (!aRelacher.isEmpty()){
                 en = aRelacher.remove(0);
                 en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
+                en.setIndiceDepart(en.getIndiceTerrain());
                 en.setX(env.getTerrain().toX(en.getIndiceTerrain()));
                 en.setY(env.getTerrain().toY(en.getIndiceTerrain()));
                 env.ajouterPersonnage(en);

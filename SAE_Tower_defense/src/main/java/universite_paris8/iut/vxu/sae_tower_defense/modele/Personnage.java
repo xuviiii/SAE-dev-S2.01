@@ -13,7 +13,9 @@ public abstract class Personnage extends Entite {
     private int pvMax;
     private int degat;
     private int indiceTerrain;
+    private int indiceDepart;
     private int malusVitesse;
+    private int taille;
     private Deplacement deplacement;
     private int compteurAction;
 
@@ -28,6 +30,8 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         malusVitesse = 1;
         this.indiceTerrain = 0;
+        this.taille = taille;
+        this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
         compteurAction = 0;
     }
@@ -60,6 +64,10 @@ public abstract class Personnage extends Entite {
 
     public boolean estMort(){return pv.getValue() <= 0;}
 
+    public void meurt(){
+        setPv(0);
+    }
+
     public boolean estTouché(Entite entite){
         double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
         xProjectileG = entite.getX();
@@ -69,9 +77,9 @@ public abstract class Personnage extends Entite {
         return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
-    private void seDeplace(){
+    public void seDeplace(int cible){
 
-        int suivant = deplacement.tileSuivante(indiceTerrain);
+        int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);
@@ -126,9 +134,17 @@ public abstract class Personnage extends Entite {
         return compteurAction;
     }
 
+    public int getIndiceDepart() {
+        return this.indiceDepart;
+    }
+
+    public void setIndiceDepart(int indiceDepart) {
+        this.indiceDepart = indiceDepart;
+    }
+
     @Override
     public void action(/*int temps*/) {
-        seDeplace();
+        seDeplace(getEnv().getTerrain().getIndiceCible());
         compteurAction++;
     }
 
