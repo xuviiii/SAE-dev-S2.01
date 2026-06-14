@@ -36,7 +36,7 @@ public class Environnement {
     public void vieDeBase(){vie.set(10);}
 
     public void argentDeBase(){
-        argent.set(999999999);
+        argent.set(100);
     }
 
     public void ajouterArgent(int ajout) {
@@ -46,7 +46,7 @@ public class Environnement {
     }
 
     public void enleverArgent(int enlever) {
-        if(argent.get()-enlever > 0) {
+        if(argent.get()-enlever >= 0) {
             argent.set(argent.get() - enlever);
         }
     }
@@ -109,10 +109,15 @@ public class Environnement {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }
+            if (personnages.get(i).estMort()){
+                aEnlever.add(personnages.get(i));
+                ajouterArgent(personnages.get(i).getGains());
+            }
         }
 
         for (Personnage perso: aEnlever){
             personnages.remove(perso);
+
         }
 
         for (int i=0;i<tours.size();i++)
@@ -121,10 +126,7 @@ public class Environnement {
         for (int i=0;i<projectiles.size();i++)
             projectiles.get(i).action();
 
-        for (int i=0;i<personnages.size();i++){
-            if (personnages.get(i).estMort())
-                personnages.remove(personnages.get(i));
-        }
+
     }
 
 }

@@ -20,15 +20,17 @@ public abstract class Personnage extends Entite {
     private int malusVitesse;
     private Deplacement deplacement;
     private int compteurAction;
+    private int gains;
     private IntegerProperty tempEnflamer;
     private boolean cuirasses;
     private boolean camoufles;
 
 
     public Personnage(int pv, double vitesse,  int degat,
-                      int taille, Environnement env, Deplacement deplacement){
+                      int taille, Environnement env, Deplacement deplacement, int gains){
         super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
+
 
         this.pv = new SimpleIntegerProperty(pv);
         this.pvMax = pv;
@@ -39,8 +41,13 @@ public abstract class Personnage extends Entite {
         this.deplacement = deplacement;
         compteurAction = 0;
         tempEnflamer = new SimpleIntegerProperty(0);
+        this.gains = gains;
         rendreCamoufles();
         rendreCuirases();
+    }
+
+    public int getGains() {
+        return gains;
     }
 
     public void ajoutTempEnflamer(int tempEnflamer) {

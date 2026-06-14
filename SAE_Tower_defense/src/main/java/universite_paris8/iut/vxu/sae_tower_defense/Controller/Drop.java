@@ -35,7 +35,7 @@ public class Drop implements EventHandler<DragEvent> {
             tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
             tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
         }
-        success = ((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof Marais || tour instanceof Mur)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof Marais || tour instanceof Mur)));
+        success = (((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof Marais || tour instanceof Mur)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof Marais || tour instanceof Mur))) && env.getArgent() >= tour.getPrix());
         if (success){
             env.ajouterTour(tour);
             env.enleverArgent(tour.getPrix());
