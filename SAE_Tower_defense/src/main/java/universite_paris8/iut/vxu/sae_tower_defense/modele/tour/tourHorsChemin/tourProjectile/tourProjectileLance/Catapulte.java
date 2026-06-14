@@ -10,7 +10,7 @@ public class Catapulte extends TourProjectileLance {
     private double yCible;
 
     public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
-        super(x, y, 15, map, 32, 300, 0, 10000, false);
+        super(x, y, 15, map, 32, 300, 10, 10000, false);
         this.xCible = xCible;
         this.yCible = yCible;
     }

@@ -10,7 +10,7 @@ public class Fleche extends ProjectileTranspercant{
     private int nbEnnemieMax;
 
     public Fleche(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, int nbEnnemieMax) {
-        super(x, y, 3, env, 5, degat, dx, dy, porteeTour);
+        super(x, y, 3, env, 10, degat, dx, dy, porteeTour);
         this.nbEnnemieMax = nbEnnemieMax;
     }
 

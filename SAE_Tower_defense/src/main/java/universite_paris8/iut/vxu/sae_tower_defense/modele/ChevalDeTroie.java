@@ -6,7 +6,7 @@ public class ChevalDeTroie extends Personnage {
     private int distanceInit;
 
     public ChevalDeTroie(Environnement env, int nbPersonnages){
-        super(30, 0.5, 10, 48, env, new Dijkstra(env));
+        super(30, 0.5, 10, 48, env, new Dijkstra(env), 5);
         this.nbPersonnages = nbPersonnages;
         distanceInit = getDeplacement().cheminVersCible(getIndiceTerrain()).size();
     }
