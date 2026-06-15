@@ -22,11 +22,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BankImage {
+    //stock tout les sprite des entiter
     private static HashMap<Class<? extends Entite>,String> bankImg =  new HashMap<>(Map.ofEntries(
             Map.entry(GobelinVert.class, "/image/perso/gobelin_vert/gobelin.gif"),
             Map.entry(Pretre.class, "/image/perso/pretre/pretre.gif"),
-            Map.entry(GobelinRouge.class, "/image/perso/gobelin_vert/gobelin.gif"),
-            Map.entry(GobelinNoir.class, "/image/perso/gobelin_vert/gobelin.gif"),
+            Map.entry(GobelinRouge.class, "/image/perso/gobelin_rouge/goblin_rouge.gif"),
+            Map.entry(GobelinNoir.class, "/image/perso/gobelin_noir/gobelin_noir.png"),
             Map.entry(ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"),
 
             Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),

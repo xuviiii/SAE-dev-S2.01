@@ -35,6 +35,7 @@ public class Environnement {
 
     public void vieDeBase(){vie.set(10);}
 
+    //donne l'argent de debut de partie
     public void argentDeBase(){
         argent.set(300);
     }
