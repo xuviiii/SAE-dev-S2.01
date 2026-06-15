@@ -17,7 +17,7 @@ public class Achat {
         this.map = map;
     }
 
-
+    //créer et renvoie une tour selon un et une position donner
     public Tour selctionerTour(String id, double x, double y) {
         Tour nvTour;
 
@@ -43,14 +43,17 @@ public class Achat {
         return nvTour;
     }
 
+    //verifie si on peut posser une tour hors du chemin
     public boolean peutEtrePoserTourHorsChemin(double x, double y, int taille){
         return ((!surAutreTour(x,y)) && horsChemin(x,y,taille));
     }
 
+    //verifie si on peut posser une tour sur le chemin
     public boolean peutEtrePoserTourSurChemin(double x, double y, int taille){
         return ((!surAutreTour(x,y)) && !horsChemin(x,y,taille));
     }
 
+    //vérifie si il y une tour au possition donner
     public boolean surAutreTour(double x,double y){
         for (Tour t:map.getTours()){
             if(x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1)){
@@ -60,6 +63,7 @@ public class Achat {
         return false;
     }
 
+    // verifie si il n'y a pas de chemin au cordonner donner
     public boolean horsChemin(double x,double y, int taille){
         if(map.getTerrain().getMap().get((int)(((x-(x%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+((y-y%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1
                 || map.getTerrain().getMap().get((int)((((x+taille)-((x+taille)%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+(((y+taille)-(y+taille)%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1){

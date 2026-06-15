@@ -3,13 +3,16 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.stage.Stage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
@@ -73,7 +76,7 @@ public class Controller implements Initializable {
         loop=new GameLoop(map);
 
 
-
+        // donne au terrainEntiter la taille de la map
         terrainEntite.setMaxWidth(map.getTerrain().getLongueurMap()*map.getTerrain().getTailleTile());
         terrainEntite.setMaxHeight(map.getTerrain().getHauteurMap()*map.getTerrain().getTailleTile());
 
@@ -85,6 +88,7 @@ public class Controller implements Initializable {
         map.getProjectiles().addListener(new ObsProjectile(map,terrainEntite));
         map.getPersonnages().addListener(new ObsPerso(terrainEntite));
 
+        //gère le drag and drop
         dragAndDrop.objetdrag(magasin);
 
         map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
@@ -92,6 +96,8 @@ public class Controller implements Initializable {
 
         map.getVague().numVagueProperty().addListener((ob,old,nv)-> labelVague.setText(nv.toString()));
         loop.vittesseProperty().addListener((ob,old,nv)-> labelVitesse.setText("x"+nv.toString()));
+
+
         loop.getGameLoop().statusProperty().addListener((ob,old,nv)-> {
             if (nv.name().equals("PAUSED")) {
                 pause.setText("Reprendre");
@@ -100,6 +106,8 @@ public class Controller implements Initializable {
                 pause.setText("Pause");
             }
         });
+
+        map.vieProperty().addListener(new vie_listener(loop, terrainEntite));
 
         map.vieProperty().addListener((ob,old,nv) -> labelVie.setText(nv.toString()));
         map.vieDeBase();

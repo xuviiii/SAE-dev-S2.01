@@ -30,6 +30,7 @@ public class Drag implements EventHandler<MouseEvent> {
         Pane preview = new Pane();
         Circle rayon = new Circle();
 
+        //créer une preview de la tour que l'on la drag
         tour = achat.selctionerTour(((Node)event.getSource()).getId(),0,0);
         ImageView img = BankImage.getImgView(tour.getClass(), tour.getTaille());
         img.setOpacity(0.5);
@@ -50,6 +51,7 @@ public class Drag implements EventHandler<MouseEvent> {
 
         Node source = (Node) event.getSource();
 
+        //enleve la preview a la fin du drag
         source.setOnDragDone(e -> {
 
             if (preview != null) {
@@ -67,15 +69,7 @@ public class Drag implements EventHandler<MouseEvent> {
         event.consume();
     }
 
-    private void finDrag(DragEvent event) {
-        Node preview = terrain.lookup("#preview");
 
-        if (preview != null) {
-            terrain.getChildren().remove(preview);
-        }
-
-        tour = null;
-    }
 
     public Tour getTour() {
         return tour;

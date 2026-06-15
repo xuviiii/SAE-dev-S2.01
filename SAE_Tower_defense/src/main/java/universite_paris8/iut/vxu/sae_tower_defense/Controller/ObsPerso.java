@@ -26,6 +26,8 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite = BankImage.getImgView(personnage.getClass(), personnage.getTaille());
                 sprite.translateXProperty().bind(personnage.getXProperty());
                 sprite.translateYProperty().bind(personnage.getYProperty());
+
+                //change le sprite selon leur qi il sont camouflé, cuirassé ou enflamer
                 if(personnage.isCamoufles()){
                     sprite.setOpacity(0.5);
                 }

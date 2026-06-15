@@ -26,6 +26,7 @@ public class DragAndDrop {
 
     }
 
+    //met en place le drag pour tout les objet a drag
     public void objetdrag(Pane magasin){
         for(Node p:magasin.getChildren()){
             p.setOnDragDetected(e ->  drag.handle(e));
