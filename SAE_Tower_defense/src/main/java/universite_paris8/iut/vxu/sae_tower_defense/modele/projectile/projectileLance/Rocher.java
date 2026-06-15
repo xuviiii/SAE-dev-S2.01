@@ -10,7 +10,7 @@ public class Rocher extends ProjectileTranspercant{
     private boolean enfaleme;
 
     public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, boolean enfaleme) {
-        super(x, y, 7, env, 20, degat, dx, dy, porteeTour);
+        super(x, y, 7, env, 40, degat, dx, dy, porteeTour);
         this.enfaleme = enfaleme;
     }
 

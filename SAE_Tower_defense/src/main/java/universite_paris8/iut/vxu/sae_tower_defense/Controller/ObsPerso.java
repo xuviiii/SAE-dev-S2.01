@@ -5,7 +5,6 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.effect.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 
@@ -30,7 +29,7 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                     sprite.setOpacity(0.5);
                 }
                 if (personnage.isCuirasses()){
-                    sprite.fitWidthProperty().bind(personnage.tailleProperty());
+                    sprite.fitWidthProperty().bind(personnage.getTailleProperty());
                 }
                 personnage.tempEnflamerProperty().addListener((obs,old,nv)-> {
                     ColorAdjust colorAdjust = new ColorAdjust();

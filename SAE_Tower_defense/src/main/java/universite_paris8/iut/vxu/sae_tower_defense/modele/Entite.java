@@ -59,7 +59,7 @@ public abstract class Entite {
         return taille.get();
     }
 
-    public IntegerProperty tailleProperty() {
+    public IntegerProperty getTailleProperty() {
         return taille;
     }
 

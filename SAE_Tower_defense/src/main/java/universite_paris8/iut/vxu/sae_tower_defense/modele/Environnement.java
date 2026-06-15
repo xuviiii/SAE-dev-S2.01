@@ -36,7 +36,7 @@ public class Environnement {
     public void vieDeBase(){vie.set(10);}
 
     public void argentDeBase(){
-        argent.set(100);
+        argent.set(300);
     }
 
     public void ajouterArgent(int ajout) {
