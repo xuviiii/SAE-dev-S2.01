@@ -14,6 +14,7 @@ public abstract class Personnage extends Entite {
     private int malusVitesse;
     private int taille;
     private Deplacement deplacement;
+    private DeplacementAleatoire deplacementAlea;
     private int compteurAction;
 
 
@@ -30,6 +31,7 @@ public abstract class Personnage extends Entite {
         this.taille = taille;
         this.indiceDepart = indiceTerrain;
         this.deplacement = deplacement;
+        this.deplacementAlea = new DeplacementAleatoire(env);
         compteurAction = 0;
     }
 
@@ -72,7 +74,14 @@ public abstract class Personnage extends Entite {
 
     public void seDeplace(int cible){
 
-        int suivant = deplacement.tileSuivante(indiceTerrain, cible);
+        int suivant;
+
+        if(deplacement.cheminVersCibleExiste(indiceTerrain, cible)){
+            suivant = deplacement.tileSuivante(indiceTerrain, cible);
+        } else {
+            suivant = deplacementAlea.tileSuivante(indiceTerrain, cible);
+        }
+
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);

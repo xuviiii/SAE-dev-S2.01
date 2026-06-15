@@ -5,13 +5,9 @@ import java.util.*;
 public abstract class Deplacement {
 
     private Environnement env;
-    private int indiceDeplacementAleaSuivant;
-    private int indiceDeplacementAleaPrecedent;
 
     public Deplacement(Environnement env){
         this.env = env;
-        indiceDeplacementAleaSuivant = -1;
-        indiceDeplacementAleaPrecedent = -1;
     }
 
     public Environnement getEnv() {
@@ -78,16 +74,6 @@ public abstract class Deplacement {
 
         Collections.reverse(chemin);
 
-        if(!chemin.contains(source)){
-            if(indiceDeplacementAleaSuivant == -1  || source == indiceDeplacementAleaSuivant){
-                chemin = deplacementAlea(source);
-            } else {
-                chemin.clear();
-                chemin.add(source);
-                chemin.add(indiceDeplacementAleaSuivant);
-            }
-        }
-
         return chemin;
     }
 
@@ -100,58 +86,7 @@ public abstract class Deplacement {
         return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
     }
 
-    private List<Integer> deplacementAlea(int source){
-
-        List<Integer> chemin = new ArrayList<>();
-        List<Integer> indicesCroissement = new ArrayList<>();
-        chemin.add(source);
-
-        List<Integer> adjacents = adjacents(source);
-//        Iterator<Integer> iterator = adjacents.iterator();
-//        boolean found = false;
-//        while (iterator.hasNext() && !found){
-//
-//           int suivant = iterator.next();
-//           if(adjacents.size() == 1 || indiceDeplacementAlea != suivant){
-//               chemin.add(suivant);
-//               indiceDeplacementAlea = suivant;
-//               found = true;
-//           }
-//       }
-
-        if(adjacents.size() == 1 && getEnv().getTerrain().estIndiceDepart(source)){
-            chemin.add(adjacents.get(0));
-            indiceDeplacementAleaPrecedent = source;
-            indiceDeplacementAleaSuivant = adjacents.get(0);
-        } else if(adjacents.size() > 1){
-            for (Integer adjacent: adjacents) {
-                if(adjacent != indiceDeplacementAleaPrecedent){
-                    indicesCroissement.add(adjacent);
-                    // chemin.add(adjacents.get(i));
-                    // indiceDeplacementAleaSuivant = adjacents.get(i);
-                }
-            }
-
-            Collections.shuffle(indicesCroissement);
-            indiceDeplacementAleaPrecedent = source;
-            indiceDeplacementAleaSuivant = indicesCroissement.get(0);
-            chemin.add(indiceDeplacementAleaSuivant);
-        }
-
-
-
-
-//            for(Integer ind: adjacents){
-//                if(adjacents.size() == 1 || ind != indiceDeplacementAlea){
-//                    // si ind == un des indices du tab d'indices de depart -> repartir en arriere
-//                    // indiceDeplacementAlea = ind;
-//                    chemin.add(ind);
-//                    System.out.print(chemin);
-//
-//                    return chemin;
-//                }
-//            }
-
-        return chemin;
+    public boolean cheminVersCibleExiste(int source, int cible){
+        return parcours(source, cible).contains(source);
     }
 }
