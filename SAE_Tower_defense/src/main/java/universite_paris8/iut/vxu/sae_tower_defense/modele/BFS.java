@@ -38,14 +38,14 @@ public class BFS extends Deplacement{
     }
 
     @Override
-    public List<Integer> cheminVersCible(int source){
+    public List<Integer> parcours(int source){
         Map<Integer, Integer> predecesseurs = bfs(source);
-        return cheminVersCible(predecesseurs);
+        return cheminVersCible(predecesseurs, source);
     }
 
     @Override
-    public List<Integer> cheminVersCible(int source, int cible){
+    public List<Integer> parcours(int source, int cible){
         Map<Integer, Integer> predecesseurs = bfs(source);
-        return cheminVersCible(predecesseurs, cible);
+        return cheminVersCible(predecesseurs,source, cible);
     }
 }

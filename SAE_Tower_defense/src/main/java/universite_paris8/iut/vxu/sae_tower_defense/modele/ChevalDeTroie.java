@@ -8,7 +8,7 @@ public class ChevalDeTroie extends Personnage {
     public ChevalDeTroie(Environnement env, int nbPersonnages){
         super(30, 0.5, 10, 48, env, new Dijkstra(env));
         this.nbPersonnages = nbPersonnages;
-        distanceInit = getDeplacement().cheminVersCible(getIndiceTerrain()).size();
+        distanceInit = getDeplacement().parcours(getIndiceTerrain()).size();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class ChevalDeTroie extends Personnage {
 
     private boolean seDecharge(){
 
-        int distanceCible = getDeplacement().cheminVersCible(getIndiceTerrain()).size();
+        int distanceCible = getDeplacement().parcours(getIndiceTerrain()).size();
         int rand = (int) (Math.random() * 6) + 1;
         rand = rand - 3;
         return (distanceCible + rand) < (distanceInit / 2);

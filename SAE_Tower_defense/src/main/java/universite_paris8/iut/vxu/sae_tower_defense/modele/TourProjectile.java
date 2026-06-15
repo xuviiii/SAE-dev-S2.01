@@ -1,6 +1,5 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class TourProjectile extends TourHorsChemin{
@@ -36,11 +35,11 @@ public abstract class TourProjectile extends TourHorsChemin{
             for (Personnage personnage : ennemisCiblables)
                 if (personnage
                         .getDeplacement()
-                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .parcours(personnage.getIndiceTerrain())
                         .size()
                         < ennemiACible
                         .getDeplacement()
-                        .cheminVersCible(personnage.getIndiceTerrain())
+                        .parcours(personnage.getIndiceTerrain())
                         .size())
                     ennemiACible = personnage;
             /*for (int i=1;i<ennemisCiblables.size();i++){
