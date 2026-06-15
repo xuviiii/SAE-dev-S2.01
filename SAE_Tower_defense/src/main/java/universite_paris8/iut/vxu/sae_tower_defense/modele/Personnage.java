@@ -2,6 +2,12 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
+
+import java.util.List;
+import java.util.Random;
 
 public abstract class Personnage extends Entite {
 
@@ -12,27 +18,79 @@ public abstract class Personnage extends Entite {
     private int indiceTerrain;
     private int indiceDepart;
     private int malusVitesse;
-    private int taille;
     private Deplacement deplacement;
     private DeplacementAleatoire deplacementAlea;
     private int compteurAction;
+    private int gains;
+    private IntegerProperty tempEnflamer;
+    private boolean cuirasses;
+    private boolean camoufles;
 
 
     public Personnage(int pv, double vitesse,  int degat,
-                      int taille, Environnement env, Deplacement deplacement){
+                      int taille, Environnement env, Deplacement deplacement, int gains){
         super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
+
 
         this.pv = new SimpleIntegerProperty(pv);
         this.pvMax = pv;
         this.degat = degat;
         malusVitesse = 1;
         this.indiceTerrain = 0;
-        this.taille = taille;
-        this.indiceDepart = indiceTerrain;
+        this.indiceDepart = 0;
         this.deplacement = deplacement;
         this.deplacementAlea = new DeplacementAleatoire(env);
         compteurAction = 0;
+        tempEnflamer = new SimpleIntegerProperty(0);
+        this.gains = gains;
+        rendreCamoufles();
+        rendreCuirases();
+    }
+
+    public int getGains() {
+        return gains;
+    }
+
+    public void ajoutTempEnflamer(int tempEnflamer) {
+        this.tempEnflamer.set(this.tempEnflamer.get() + tempEnflamer);
+    }
+
+
+    public IntegerProperty tempEnflamerProperty() {
+        return tempEnflamer;
+    }
+
+    public boolean isCamoufles() {
+        return camoufles;
+    }
+
+    public boolean isCuirasses() {
+        return cuirasses;
+    }
+
+    public void enleverCuirasses() {
+        this.cuirasses = false;
+        setTaille((int)(getTaille()/1.3));
+    }
+
+    private void rendreCuirases(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9){
+            cuirasses = true;
+            setTaille ((int)(getTaille()*1.3));
+        }
+        else {
+            cuirasses = false;
+        }
+    }
+
+    private void rendreCamoufles(){
+        int alea = (int)(Math.random()*100)+1;
+        if(alea <= 20 && getEnv().getVague().getNumVague() > 9)
+            camoufles = true;
+        else
+            camoufles = false;
     }
 
     public IntegerProperty getPvProperty(){
@@ -49,6 +107,10 @@ public abstract class Personnage extends Entite {
         // System.out.println(this.pv + "]");
     }
 
+    public void setMalusVitesse(int malusVitesse) {
+        this.malusVitesse = malusVitesse;
+    }
+
     public int getDegat() {
         return degat;
     }
@@ -63,20 +125,27 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public boolean estTouché(Projectile projectile){
+    public boolean estTouché(Entite entite){
         double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
-        xProjectileG = projectile.getX();
-        xProjectileD = projectile.getX()+projectile.getTaille();
-        yProjectileH = projectile.getY();
-        yProjectileB = projectile.getY()+projectile.getTaille();
+        xProjectileG = entite.getX();
+        xProjectileD = entite.getX()+entite.getTaille();
+        yProjectileH = entite.getY();
+        yProjectileB = entite.getY()+entite.getTaille();
         return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
+    }
+
+    public List<Integer> cheminCourant(int source, int cible){
+        if(!deplacement.cheminVersCibleExiste(source, cible)){
+            return deplacementAlea.parcours(source, cible);
+        }
+        return deplacement.parcours(source, cible);
     }
 
     public void seDeplace(int cible){
 
         int suivant;
 
-        if(deplacement.cheminVersCibleExiste(indiceTerrain, cible)){
+        if(deplacement.cheminVersCibleExiste(indiceTerrain, getEnv().getTerrain().getIndiceCible())){
             suivant = deplacement.tileSuivante(indiceTerrain, cible);
         } else {
             suivant = deplacementAlea.tileSuivante(indiceTerrain, cible);
@@ -90,25 +159,52 @@ public abstract class Personnage extends Entite {
         double dist_y = Math.abs(super.getY() - suivant_Y);
 
         if(super.getX() > suivant_X){
-            super.setX(super.getX() - (Math.min(super.getVitesse(), dist_x)));
+            super.setX(super.getX() - (Math.min(super.getVitesse()/malusVitesse, dist_x)));
         }
 
         if(super.getX() < suivant_X){
-            super.setX(super.getX() + (Math.min(super.getVitesse(), dist_x)));
+            super.setX(super.getX() + (Math.min(super.getVitesse()/malusVitesse, dist_x)));
         }
 
         if(super.getY() > suivant_Y){
-            super.setY(super.getY() - (Math.min(super.getVitesse(), dist_y)));
+            super.setY(super.getY() - (Math.min(super.getVitesse()/malusVitesse, dist_y)));
         }
 
         if(super.getY() < suivant_Y){
-            super.setY(super.getY() + (Math.min(super.getVitesse(), dist_y)));
+            super.setY(super.getY() + (Math.min(super.getVitesse()/malusVitesse, dist_y)));
         }
 
         if(super.getX() == suivant_X && super.getY() == suivant_Y){
             indiceTerrain = suivant;
         }
 
+        malusVitesse = 1;
+
+    }
+
+    public Mur bloquerParMur(){
+        for (Tour tour : getEnv().getTours())
+            if (tour instanceof Mur && estTouché(tour))
+                return (Mur)tour;
+        return null;
+    }
+
+    public void reculer(int casse){
+        List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
+        int indice = nbCassereculMax(casse, chemin.size());
+        indiceTerrain = chemin.get(indice);
+        setX(getEnv().getTerrain().toX(indiceTerrain));
+        setY(getEnv().getTerrain().toY(indiceTerrain));
+
+    }
+
+    public int nbCassereculMax(int casse, int longueurChemin){
+        for (int i=0; i < casse ; i++){
+            if ( casse-i < longueurChemin){
+                return casse-i;
+            }
+        }
+        return 0;
     }
 
     public int getIndiceTerrain(){
@@ -135,9 +231,17 @@ public abstract class Personnage extends Entite {
         this.indiceDepart = indiceDepart;
     }
 
+    private void degatEnflamer(){
+        if (tempEnflamer.get() > 0){
+            subirDegat(1);
+            tempEnflamer.set(tempEnflamer.get() - 1);
+        }
+    }
+
     @Override
     public void action(/*int temps*/) {
         seDeplace(getEnv().getTerrain().getIndiceCible());
+        degatEnflamer();
         compteurAction++;
     }
 

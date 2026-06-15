@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
 
 public class Vendre implements EventHandler<ActionEvent> {
 
@@ -24,5 +26,7 @@ public class Vendre implements EventHandler<ActionEvent> {
         menu.getChildren().clear();
         map.getTours().remove(tour);
         map.ajouterArgent(tour.getPrix()/2);
+        if (tour instanceof Camp)
+            ((Camp)tour).enleverBoost();
     }
 }

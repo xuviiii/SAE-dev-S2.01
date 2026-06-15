@@ -1,5 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,21 +18,32 @@ public class VueTerrain {
     }
 
     private void creeVueTerrain() {
-        Rectangle tuille;
+
+        double aléatoire;
+        ImageView sprite;
 
         tile.setMinWidth(terrain.getLongueurMap() * terrain.getTailleTile());
         tile.setMaxWidth(terrain.getLongueurMap() * terrain.getTailleTile());
         for (int i = 0; i < terrain.getMap().size(); i++) {
-            tuille = new Rectangle(terrain.getTailleTile(), terrain.getTailleTile());
-            switch (terrain.getMap().get(i)) {
-                case 1:
-                    tuille.setFill(Color.BROWN);
-                    break;
-                default:
-                    tuille.setFill(Color.GREEN);
-                    break;
+            aléatoire = Math.random();
+
+            if (terrain.getMap().get(i) == 1)
+                if (aléatoire<0.5)
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin1.png")));
+                else
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin2.png")));
+            else{
+
+                if (aléatoire<0.3333)
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/herbe1.png")));
+                else if (aléatoire<0.6666)
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/herbe2.png")));
+                else
+                    sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/herbe3.png")));
             }
-            tile.getChildren().add(tuille);
+            sprite.setFitHeight(terrain.getTailleTile());
+            sprite.setPreserveRatio(true);
+            tile.getChildren().add(sprite);
         }
     }
 }
