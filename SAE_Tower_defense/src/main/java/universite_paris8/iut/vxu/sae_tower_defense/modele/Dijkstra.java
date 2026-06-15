@@ -40,7 +40,7 @@ public class Dijkstra extends Deplacement {
 
             for (Integer adjacent : adjacents(courant)) {
 
-                int cout = couts.get(courant) + env.getTerrain().getMap().get(adjacent);
+                int cout = couts.get(courant) + getEnv().getTerrain().getMap().get(adjacent);
 
                 if ((predecesseurs.get(adjacent) == null && adjacent != source) || cout < couts.get(adjacent)) {
 
@@ -59,15 +59,15 @@ public class Dijkstra extends Deplacement {
     }
 
     @Override
-    public List<Integer> cheminVersCible(int source){
+    public List<Integer> parcours(int source){
         Map<Integer, Integer> predecesseurs = dijkstra(source);
-        return cheminVersCible(predecesseurs);
+        return cheminVersCible(predecesseurs, source);
     }
 
     @Override
-    public List<Integer> cheminVersCible(int source, int cible){
+    public List<Integer> parcours(int source, int cible){
         Map<Integer, Integer> predecesseurs = dijkstra(source);
-        return cheminVersCible(predecesseurs, cible);
+        return cheminVersCible(predecesseurs, source, cible);
     }
 
 }

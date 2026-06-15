@@ -81,6 +81,14 @@ public class Terrain {
         return indiceCible;
     }
 
+    public boolean estIndiceDepart(int indice) {
+        for (int i : indicesDepart) {
+            if (i == indice)
+                return true;
+        }
+        return false;
+    }
+
     public void modifierTerrain(int valeur, int... indices){
         for(int indice: indices){
             map.set(indice, valeur);
