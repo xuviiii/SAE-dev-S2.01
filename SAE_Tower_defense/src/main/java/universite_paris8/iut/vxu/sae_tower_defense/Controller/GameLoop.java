@@ -58,19 +58,6 @@ public class GameLoop {
 
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
-        Tour t_test;
-
-        t_test = new TourDeFleche(200,20,map);
-        map.ajouterTour(t_test);
-        t_test = new Catapulte(200,240,map,400,240);
-        map.ajouterTour(t_test);
-        t_test = new TourDHuile(400,240,map);
-        map.ajouterTour(t_test);
-        t_test = new TourDeMage(400,500,map);
-        map.ajouterTour(t_test);
-        t_test = new TourDeSauron(1000,20,map);
-        map.ajouterTour(t_test);
-
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017/6),

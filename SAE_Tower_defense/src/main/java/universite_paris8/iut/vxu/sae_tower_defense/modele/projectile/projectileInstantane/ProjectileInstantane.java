@@ -12,8 +12,8 @@ public class ProjectileInstantane extends Projectile {
     private boolean enleveCuirasse;
     private boolean teleporte;
 
-    public ProjectileInstantane(double x, double y, int viesse, Environnement env, int degat, int tailleMax, boolean enleveCuirasse, boolean teleporte) {
-        super(x, y, viesse, env, 20, degat);
+    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax, boolean enleveCuirasse, boolean teleporte) {
+        super(x, y, vitesse, env, 20, degat);
         this.tailleMax = tailleMax;
         this.enleveCuirasse =enleveCuirasse;
         this.teleporte = teleporte;

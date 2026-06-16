@@ -27,6 +27,8 @@ public class Vague {
     public void libererVague(){
         int alea;
         Personnage en;
+
+        // crée une nouvelle vague
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
             numVague.set(numVague.get()+1);
             for (int i = 0; i < (10 * numVague.get()); i++) {
@@ -46,6 +48,7 @@ public class Vague {
                 aRelacher.add(en);
             }
         }
+        // envoie petit a petit les ennemie sur le terrain
         else if (!aRelacher.isEmpty()){
                 en = aRelacher.remove(0);
                 en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());

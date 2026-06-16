@@ -10,7 +10,7 @@ public class ZoneDeFlamme extends Projectile {
     private double multiplicateurDurer;
 
     public ZoneDeFlamme(double x, double y, Environnement env, int degat, double multiplicateurDurer) {
-        super(x, y, 10, env, 32, degat);
+        super(x, y, 10, env, 64, degat);
         compteur = 0;
         this.multiplicateurDurer = multiplicateurDurer;
     }

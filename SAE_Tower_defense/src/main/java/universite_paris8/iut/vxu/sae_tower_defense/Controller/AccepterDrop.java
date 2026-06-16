@@ -25,6 +25,7 @@ public class AccepterDrop implements EventHandler<DragEvent>{
     @Override
     public void handle(DragEvent event) {
 
+        // vérifie si le curseur est sur le terrain et arrête l'envenement si il ne l'est pas
         if (event.getX() < 0 ||
                 event.getY() < 0 ||
                 event.getX() > terrain.getWidth() ||
@@ -35,8 +36,8 @@ public class AccepterDrop implements EventHandler<DragEvent>{
         }
 
         Dragboard db = event.getDragboard();
+        // met la preview a l'emplacement du curseur
         Node preview = terrain.lookup("#"+db.getString());
-
         preview.setTranslateX(event.getX());
         preview.setTranslateY(event.getY());
 

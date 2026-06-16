@@ -6,23 +6,63 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.vxu.sae_tower_defense.Controller.ControlerDemarage">
    <children>
-      <ImageView fitHeight="98.0" fitWidth="112.0" layoutX="34.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="98.0" fitWidth="112.0" layoutX="73.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/perso/gobelin_vert/gobelin-4.png" />
          </image></ImageView>
-      <ImageView fitHeight="112.0" fitWidth="142.0" layoutX="427.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="74.0" fitWidth="84.0" layoutX="390.0" layoutY="83.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/tour/archer/archer1.png" />
          </image></ImageView>
-      <ImageView fitHeight="387.0" fitWidth="203.0" layoutX="196.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="387.0" fitWidth="203.0" layoutX="196.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/tour/tour_de_sauron/tour_de_sauron-1.png" />
          </image>
       </ImageView>
       <Button fx:id="boutonDeDemarage" layoutX="248.0" layoutY="237.0" mnemonicParsing="false" onAction="#Demarer" prefHeight="45.0" prefWidth="89.0" text="Lancer" />
-      <ImageView fitHeight="173.0" fitWidth="166.0" layoutX="434.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="450.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/tour/tour_de_feu/tour_de_feu-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="89.0" layoutX="5.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/perso/gobelin_rouge/goblin_rouge.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="112.0" layoutX="1.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/perso/gobelin_noir/gobelin_noir.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="165.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/perso/cheval_de_troie/chevalDeTroie.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="129.0" layoutX="488.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/tour/mage/mage.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="112.0" layoutX="418.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/tour/camp/camp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="84.0" fitWidth="98.0" layoutX="337.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/tour/mur/bob.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="98.0" layoutX="73.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/perso/pretre/pretre.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="450.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../image/tour/catapulte/catapulte.png" />
          </image>
       </ImageView>
    </children>

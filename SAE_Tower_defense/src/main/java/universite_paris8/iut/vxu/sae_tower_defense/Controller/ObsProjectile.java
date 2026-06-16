@@ -17,12 +17,13 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
     public void onChanged(ListChangeListener.Change<? extends Projectile> change) {
         change.next();
         if (change.wasAdded()){
-            //System.out.println("Ajouter : "+change.getAddedSubList());
             for (Projectile projectile : change.getAddedSubList()){
                 ImageView sprite;
                 sprite = BankImage.getImgView(projectile.getClass(), projectile.getTaille());
                 sprite.translateXProperty().bind(projectile.getXProperty());
                 sprite.translateYProperty().bind(projectile.getYProperty());
+                sprite.fitHeightProperty().bind((projectile.getTailleProperty()));
+                sprite.setPreserveRatio(true);
                 sprite.setId(projectile.getId());
                 sprite.setRotate(projectile.getAngle());
                 terrain.getChildren().add(sprite);

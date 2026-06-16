@@ -19,6 +19,7 @@ public class ControlerDemarage implements Initializable {
     private Button boutonDeDemarage;
 
 
+    //change de view
     @FXML
     public void Demarer() throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/vxu/sae_tower_defense/view.fxml"));
