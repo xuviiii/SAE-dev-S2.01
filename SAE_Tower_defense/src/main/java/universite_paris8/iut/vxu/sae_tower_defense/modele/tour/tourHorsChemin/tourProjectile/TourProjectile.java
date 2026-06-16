@@ -55,10 +55,12 @@ public abstract class TourProjectile extends TourHorsChemin {
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
                 if (personnage
-                        .cheminCourant(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                        .getDeplacement()
+                        .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
                         .size()
                         < ennemiACible
-                        .cheminCourant(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                        .getDeplacement()
+                        .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
                         .size()) {
                     if (!personnage.isCamoufles() || peutciblerCamoufle) {
                         ennemiACible = personnage;

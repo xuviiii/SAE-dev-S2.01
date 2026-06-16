@@ -19,7 +19,6 @@ public abstract class Personnage extends Entite {
     private int indiceDepart;
     private int malusVitesse;
     private Deplacement deplacement;
-    private DeplacementAleatoire deplacementAlea;
     private int compteurAction;
     private int gains;
     private IntegerProperty tempEnflamer;
@@ -40,7 +39,6 @@ public abstract class Personnage extends Entite {
         this.indiceTerrain = 0;
         this.indiceDepart = 0;
         this.deplacement = deplacement;
-        this.deplacementAlea = new DeplacementAleatoire(env);
         compteurAction = 0;
         tempEnflamer = new SimpleIntegerProperty(0);
         this.gains = gains;
@@ -134,23 +132,16 @@ public abstract class Personnage extends Entite {
         return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
-    public List<Integer> cheminCourant(int source, int cible){
-        if(!deplacement.cheminVersCibleExiste(source, cible)){
-            return deplacementAlea.parcours(source, cible);
-        }
-        return deplacement.parcours(source, cible);
-    }
+//    public List<Integer> cheminCourant(int source, int cible){
+//        if(!deplacement.cheminVersCibleExiste(source, cible)){
+//            return deplacementAlea.parcours(source, cible);
+//        }
+//        return deplacement.parcours(source, cible);
+//    }
 
     public void seDeplace(int cible){
 
-        int suivant;
-
-        if(deplacement.cheminVersCibleExiste(indiceTerrain, getEnv().getTerrain().getIndiceCible())){
-            suivant = deplacement.tileSuivante(indiceTerrain, cible);
-        } else {
-            suivant = deplacementAlea.tileSuivante(indiceTerrain, cible);
-        }
-
+        int suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);

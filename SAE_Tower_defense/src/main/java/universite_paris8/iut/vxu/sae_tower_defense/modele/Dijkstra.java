@@ -4,8 +4,11 @@ import java.util.*;
 
 public class Dijkstra extends Deplacement {
 
+    DeplacementAleatoire deplacementAlea;
+
     public Dijkstra(Environnement env) {
         super(env);
+        deplacementAlea = new DeplacementAleatoire(env);
     }
 
     private Map<Integer, Integer> dijkstra(int source) {
@@ -38,7 +41,7 @@ public class Dijkstra extends Deplacement {
 
             Integer courant = fifo.poll().indice;
 
-            for (Integer adjacent : adjacents(courant)) {
+            for (Integer adjacent : Deplacement.adjacents(getEnv(), courant)) {
 
                 int cout = couts.get(courant) + getEnv().getTerrain().getMap().get(adjacent);
 
@@ -60,14 +63,30 @@ public class Dijkstra extends Deplacement {
 
     @Override
     public List<Integer> parcours(int source){
+
+        List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = dijkstra(source);
-        return cheminVersCible(predecesseurs, source);
+
+        parcours =  cheminVersCible(predecesseurs, source);
+        if(!cheminVersCibleExiste(parcours, source)){
+            parcours = deplacementAlea.parcours(source);
+        }
+
+        return parcours;
     }
 
     @Override
     public List<Integer> parcours(int source, int cible){
+
+        List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = dijkstra(source);
-        return cheminVersCible(predecesseurs, source, cible);
+
+        parcours =  cheminVersCible(predecesseurs, source, cible);
+        if(!cheminVersCibleExiste(parcours, source)){
+            parcours = deplacementAlea.parcours(source);
+        }
+
+        return parcours;
     }
 
 }

@@ -6,13 +6,8 @@ import java.util.List;
 
 public class DeplacementAleatoire extends Deplacement{
 
-    private int indicePrecedent;
-    private int indiceSuivant;
-
     public DeplacementAleatoire(Environnement env){
         super(env);
-        indicePrecedent = -1;
-        indiceSuivant = -1;
     }
     @Override
     public List<Integer> parcours(int source) {
@@ -24,12 +19,11 @@ public class DeplacementAleatoire extends Deplacement{
 
         List<Integer> chemin = new ArrayList<>();
 
-        if(indiceSuivant == -1  || source == indiceSuivant){
+        if(getIndiceSuivant() == -1  || source == getIndiceSuivant()){
             chemin = deplacementAlea(source);
         } else {
-            // chemin.clear();
             chemin.add(source);
-            chemin.add(indiceSuivant);
+            chemin.add(getIndiceSuivant());
         }
 
         return chemin;
@@ -41,23 +35,24 @@ public class DeplacementAleatoire extends Deplacement{
         List<Integer> indicesCroissement = new ArrayList<>();
         chemin.add(source);
 
-        List<Integer> adjacents = adjacents(source);
+        List<Integer> adjacents = Deplacement.adjacents(getEnv(), source);
 
         if(adjacents.size() == 1 && getEnv().getTerrain().estIndiceDepart(source)){
             chemin.add(adjacents.get(0));
-            indicePrecedent = source;
-            indiceSuivant = adjacents.get(0);
-        } else if(adjacents.size() > 1){
+            setIndicePrecedent(source);
+            setIndiceSuivant(adjacents.get(0));
+        } else if(adjacents.size() > 1
+                && Deplacement.indicesCasesContigues(getEnv(), source, i -> i == -1).isEmpty()){
             for (Integer adjacent: adjacents) {
-                if(adjacent != indicePrecedent){
+                if(adjacent != getIndicePrecedent()){
                     indicesCroissement.add(adjacent);
                 }
             }
 
             Collections.shuffle(indicesCroissement);
-            indicePrecedent = source;
-            indiceSuivant = indicesCroissement.get(0);
-            chemin.add(indiceSuivant);
+            setIndicePrecedent(source);
+            setIndiceSuivant(indicesCroissement.get(0));
+            chemin.add(getIndiceSuivant());
         }
 
         return chemin;

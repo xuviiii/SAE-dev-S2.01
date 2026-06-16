@@ -4,8 +4,11 @@ import java.util.*;
 
 public class BFS extends Deplacement{
 
+    DeplacementAleatoire deplacementAlea;
+
     public BFS(Environnement env){
         super(env);
+        deplacementAlea = new DeplacementAleatoire(env);
     }
 
     public Map<Integer, Integer> bfs(int source){
@@ -23,7 +26,7 @@ public class BFS extends Deplacement{
             Integer courant = fifo.poll();
             parcours.add(courant);
 
-            for(Integer adjacent : adjacents(courant)){
+            for(Integer adjacent : Deplacement.adjacents(getEnv(), courant)){
 
                 if(!parcours.contains(adjacent)){
                     parcours.add(adjacent);
@@ -39,13 +42,29 @@ public class BFS extends Deplacement{
 
     @Override
     public List<Integer> parcours(int source){
+
+        List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = bfs(source);
-        return cheminVersCible(predecesseurs, source);
+
+        parcours =  cheminVersCible(predecesseurs, source);
+        if(!cheminVersCibleExiste(parcours, source)){
+            parcours = deplacementAlea.parcours(source);
+        }
+
+        return parcours;
     }
 
     @Override
     public List<Integer> parcours(int source, int cible){
+
+        List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = bfs(source);
-        return cheminVersCible(predecesseurs,source, cible);
+
+        parcours =  cheminVersCible(predecesseurs, source, cible);
+        if(!cheminVersCibleExiste(parcours, source)){
+            parcours = deplacementAlea.parcours(source);
+        }
+
+        return parcours;
     }
 }
