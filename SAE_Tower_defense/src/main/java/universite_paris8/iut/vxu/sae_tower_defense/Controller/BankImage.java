@@ -29,6 +29,7 @@ public class BankImage {
             Map.entry(GobelinRouge.class, "/image/perso/gobelin_rouge/goblin_rouge.gif"),
             Map.entry(GobelinNoir.class, "/image/perso/gobelin_noir/gobelin_noir.png"),
             Map.entry(ChevalDeTroie.class, "/image/perso/cheval_de_troie/chevalDeTroie.gif"),
+            Map.entry(Artha.class, "/image/perso/artha/Artha.gif"),
 
             Map.entry(TourDeFleche.class, "/image/tour/archer/archer.gif"),
             Map.entry(Catapulte.class, "/image/tour/catapulte/catapulte.gif"),

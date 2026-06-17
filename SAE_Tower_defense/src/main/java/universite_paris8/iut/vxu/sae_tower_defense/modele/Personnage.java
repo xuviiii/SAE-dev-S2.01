@@ -63,6 +63,10 @@ public abstract class Personnage extends Entite {
         return camoufles;
     }
 
+    public void setCamoufles(boolean camoufles) {
+        this.camoufles = camoufles;
+    }
+
     public boolean isCuirasses() {
         return cuirasses;
     }
