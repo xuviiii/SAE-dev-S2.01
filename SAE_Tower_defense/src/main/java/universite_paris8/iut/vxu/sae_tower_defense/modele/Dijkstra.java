@@ -8,7 +8,7 @@ public class Dijkstra extends Deplacement {
 
     public Dijkstra(Environnement env) {
         super(env);
-        deplacementAlea = new DeplacementAleatoire(env);
+        deplacementAlea = new DeplacementAleatoire(env, () -> this.getIndicePrecedent());
     }
 
     private Map<Integer, Integer> dijkstra(int source) {
