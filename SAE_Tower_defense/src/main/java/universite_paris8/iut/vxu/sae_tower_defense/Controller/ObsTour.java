@@ -51,6 +51,8 @@ public class ObsTour implements ListChangeListener<Tour> {
             for (Tour tour : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()));
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()+"r"));
+                if (tour instanceof Mur)
+                    tour.getEnv().getTerrain().getMap().set((int)(((tour.getX()-(tour.getX()%tour.getEnv().getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile())+((tour.getY()-(tour.getY()%tour.getEnv().getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile()*tour.getEnv().getTerrain().getLongueurMap())),1);
             }
         }
     }
