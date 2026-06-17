@@ -42,10 +42,12 @@ public class Vague {
                 else if(alea<50){
                     en = new GobelinNoir(env);
                 }
-                else if (alea < 60 && numVague.get() > 4) {
+                else if (alea < 55 && numVague.get() > 4) {
                     en = new Pretre(env);
-                } else if (alea < 70 && numVague.get()>8) {
+                } else if (alea < 60 && numVague.get()>8) {
                     en = new ChevalDeTroie(env, 5);
+                } else if (alea < 70) {
+                    en = new ChevaucheurDeSanglier(env);
                 } else {
                     en = new GobelinVert(env);
                 }

@@ -9,6 +9,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.TourSurChemin;
 
 public class Drop implements EventHandler<DragEvent> {
     private Achat achat;
@@ -33,12 +34,12 @@ public class Drop implements EventHandler<DragEvent> {
         tour.setY(event.getY());
 
         //vérifie si on peut placer la tour
-        success = (((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof Marais || tour instanceof Mur)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof Marais || tour instanceof Mur))) && env.getArgent() >= tour.getPrix());
+        success = (((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin))) && env.getArgent() >= tour.getPrix());
 
-        if (tour instanceof Marais || tour instanceof Mur){
+        if (tour instanceof TourSurChemin){
             tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
             tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
-            tour.getEnv().getTerrain().getMap().set((int)(((event.getX()-(event.getX()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile())+((event.getY()-(event.getY()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile()*tour.getEnv().getTerrain().getLongueurMap())),-1);
+            ((TourSurChemin)tour).changerTerrain();
         }
 
         //pose la tour si possible

@@ -4,12 +4,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
-public class Mur extends Tour {
+public class Mur extends TourSurChemin {
 
     private int pv;
 
     public Mur(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 59, 400, 0);
+        super(x, y, 1000, map, 59, 400, 0, -1);
         pv = 100;
     }
 
@@ -17,6 +17,8 @@ public class Mur extends Tour {
     public void agir() {
 
     }
+
+
 
     @Override
     public int prixAmelioration() {
