@@ -132,13 +132,6 @@ public abstract class Personnage extends Entite {
         return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
     }
 
-//    public List<Integer> cheminCourant(int source, int cible){
-//        if(!deplacement.cheminVersCibleExiste(source, cible)){
-//            return deplacementAlea.parcours(source, cible);
-//        }
-//        return deplacement.parcours(source, cible);
-//    }
-
     public void seDeplace(int cible){
 
         int suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());

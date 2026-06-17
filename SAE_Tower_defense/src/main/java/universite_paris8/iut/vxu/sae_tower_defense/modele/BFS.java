@@ -8,7 +8,7 @@ public class BFS extends Deplacement{
 
     public BFS(Environnement env){
         super(env);
-        deplacementAlea = new DeplacementAleatoire(env);
+        deplacementAlea = new DeplacementAleatoire(env, () -> this.getIndicePrecedent());
     }
 
     public Map<Integer, Integer> bfs(int source){

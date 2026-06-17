@@ -13,7 +13,6 @@ public class Terrain {
     private int hauteurMap; // static ?
     private int tailleTile; // static ?
     private ObservableList<Integer> map;
-    private ObservableList<Integer> map_initiale;
 
 
     public Terrain() {
@@ -34,8 +33,6 @@ public class Terrain {
                 0,0,1,1,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,1,1,1,0,1,1,1,1,1,
                 0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0));
 
-        map_initiale = FXCollections.observableArrayList(Collections.nCopies(map.size(), null));
-        FXCollections.copy(map_initiale, map.stream().toList());
         longueurMap =28;
         hauteurMap=15;
         tailleTile = 60;
@@ -87,17 +84,5 @@ public class Terrain {
                 return true;
         }
         return false;
-    }
-
-    public void modifierTerrain(int valeur, int... indices){
-        for(int indice: indices){
-            map.set(indice, valeur);
-        }
-    }
-
-    public void reinitialiserTerrain(int... indices){
-        for(int indice: indices){
-            map.set(indice, map_initiale.get(indice));
-        }
     }
 }

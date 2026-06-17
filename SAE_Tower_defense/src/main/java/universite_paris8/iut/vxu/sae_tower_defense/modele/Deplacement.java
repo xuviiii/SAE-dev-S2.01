@@ -8,11 +8,13 @@ public abstract class Deplacement {
     private Environnement env;
     private int indicePrecedent;
     private int indiceSuivant;
+    private int tmp;
 
     public Deplacement(Environnement env){
         this.env = env;
         indicePrecedent = -1;
         indiceSuivant = -1;
+        tmp = -1;
     }
 
     public Environnement getEnv() {
@@ -114,7 +116,17 @@ public abstract class Deplacement {
 
     public int tileSuivante(int source, int cible) {
         List<Integer> chemin = parcours(source, cible);
-        return (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
+
+        int tileSuivante = (chemin.size() == 1) ? chemin.get(0) : chemin.get(1);
+
+        if(source == indiceSuivant){
+            indicePrecedent = tmp;
+        }
+
+        indiceSuivant = tileSuivante;
+        tmp = source;
+
+        return tileSuivante;
     }
 
     public boolean cheminVersCibleExiste(List<Integer> chemin, int source){
