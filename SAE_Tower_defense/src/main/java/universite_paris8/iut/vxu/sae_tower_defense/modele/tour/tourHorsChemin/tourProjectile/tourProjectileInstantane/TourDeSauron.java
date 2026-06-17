@@ -17,7 +17,16 @@ public class TourDeSauron extends TourProjectileInstantane {
 
     @Override
     public void ameliorer() {
+    }
 
+    @Override
+    public int prixAmelioration() {
+        return 0;
+    }
+
+    @Override
+    public boolean estAuNiveauMax() {
+        return true;
     }
 
 }

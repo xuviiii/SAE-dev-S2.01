@@ -24,14 +24,21 @@ public class TourDHuile extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
-        if (getNiveau() < 2){
-            switch (getNiveau()){
-                case 0:  augmenterDegat(5);getEnv().enleverArgent(100);break;
-                case 1: getEnv().enleverArgent(200);break;
-                default: break;
-            }
-            gainNiveau();
+        switch (getNiveau()){
+            case 0: augmenterDegat(5);getEnv().enleverArgent(100);break;
+            case 1: getEnv().enleverArgent(200);break;
+            default: break;
         }
+        gainNiveau();
+    }
+
+    @Override
+    public int prixAmelioration() {
+        switch (getNiveau()){
+            case 0: return 100;
+            case 1: return 200;
+        }
+        return 0;
     }
 
     @Override
@@ -44,5 +51,10 @@ public class TourDHuile extends TourProjectileLance {
             y = cible.getY()+ (double) cible.getTaille() /2;
             creerProjectile(x,y);
         }
+    }
+
+    @Override
+    public boolean estAuNiveauMax() {
+        return getNiveau() > 1;
     }
 }

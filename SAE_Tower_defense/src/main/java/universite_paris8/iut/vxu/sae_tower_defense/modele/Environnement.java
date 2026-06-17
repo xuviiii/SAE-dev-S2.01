@@ -37,7 +37,7 @@ public class Environnement {
 
     //donne l'argent de debut de partie
     public void argentDeBase(){
-        argent.set(300);
+        argent.set(100000);
     }
 
     public void ajouterArgent(int ajout) {

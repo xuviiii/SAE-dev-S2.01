@@ -22,14 +22,26 @@ public class TourDeMage extends TourProjectileInstantane {
 
     @Override
     public void ameliorer() {
-        if (getNiveau() < 3){
-            switch (getNiveau()){
-                case 0:  augmenterPortee(20);getEnv().enleverArgent(100);break;
-                case 1: getEnv().enleverArgent(300);break;
-                case 2: getEnv().enleverArgent(300);break;
-                default: break;
-            }
-            gainNiveau();
+        switch (getNiveau()){
+            case 0:  augmenterPortee(20);getEnv().enleverArgent(100);break;
+            case 1: getEnv().enleverArgent(300);break;
+            case 2: getEnv().enleverArgent(300);break;
+            default: break;
         }
+        gainNiveau();
+    }
+
+    @Override
+    public int prixAmelioration() {
+        switch (getNiveau()){
+            case 0: return 100;
+            case 1, 2: return 300;
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean estAuNiveauMax() {
+        return getNiveau() > 1;
     }
 }
