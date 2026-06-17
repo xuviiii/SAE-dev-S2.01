@@ -50,7 +50,6 @@ public class GameLoop {
         else {
             gameLoop.pause();
         }
-        System.out.println(gameLoop.getStatus().name());
 
     }
 
