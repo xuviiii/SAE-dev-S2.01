@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
 public class ObsTour implements ListChangeListener<Tour> {
 
@@ -50,6 +51,8 @@ public class ObsTour implements ListChangeListener<Tour> {
             for (Tour tour : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()));
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()+"r"));
+                if (tour instanceof Mur)
+                    tour.getEnv().getTerrain().getMap().set((int)(((tour.getX()-(tour.getX()%tour.getEnv().getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile())+((tour.getY()-(tour.getY()%tour.getEnv().getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile()*tour.getEnv().getTerrain().getLongueurMap())),1);
             }
         }
     }

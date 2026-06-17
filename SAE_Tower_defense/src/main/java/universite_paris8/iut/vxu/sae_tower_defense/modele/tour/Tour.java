@@ -48,6 +48,10 @@ public abstract class Tour extends Entite {
         compteurAction += (int) getVitesse();
     }
 
+    public abstract int prixAmelioration();
+
+    public abstract boolean estAuNiveauMax();
+
     public abstract void agir();
 
     public abstract void ameliorer();

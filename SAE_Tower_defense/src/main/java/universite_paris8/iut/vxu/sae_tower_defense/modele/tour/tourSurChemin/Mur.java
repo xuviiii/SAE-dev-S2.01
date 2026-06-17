@@ -19,7 +19,23 @@ public class Mur extends Tour {
     }
 
     @Override
-    public void ameliorer() {
+    public int prixAmelioration() {
+        switch (getNiveau()){
+            case 0: return 200;
+        }
+        return 0;
+    }
 
+    @Override
+    public boolean estAuNiveauMax() {
+        if (getNiveau()>0)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void ameliorer() {
+        pv = 250;
+        gainNiveau();
     }
 }

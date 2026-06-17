@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
@@ -17,6 +18,7 @@ public class Menu implements EventHandler<MouseEvent> {
     private static Pane menu;
     private Label stats;
     private Button améliorer;
+    private Button améliorerMage2;
     private Button vendre;
     private Button choisirDirection;
     private VBox menuContenu;
@@ -24,13 +26,14 @@ public class Menu implements EventHandler<MouseEvent> {
     public Menu(Environnement map, Pane terrain) {
         this.map = map;
         this.terrain = terrain;
-        menu = new Pane();
-        menu.setStyle("-fx-background-color: #c19a9a;");
         stats = new Label("Stats");
         améliorer = new Button("Améliorer");
+        améliorerMage2 = new Button("Améliorer 2");
         vendre = new Button("Vendre");
         choisirDirection = new Button("Choisir direction");
         menuContenu = new VBox(stats,améliorer,vendre);
+        menu = new Pane(menuContenu);
+        menu.setStyle("-fx-background-color: #c19a9a;");
     }
 
     @Override
@@ -41,19 +44,25 @@ public class Menu implements EventHandler<MouseEvent> {
         while (i<map.getTours().size()&&!tourClique){
             tour = map.getTours().get(i);
             if (mouseEvent.getX()>=tour.getX()&&mouseEvent.getX()<=tour.getX()+tour.getTaille()&&mouseEvent.getY()>=tour.getY()&&mouseEvent.getY()<=tour.getY()+tour.getTaille()){
-
+                //Ajoute au terrain le menu
                 if (!terrain.getChildren().contains(menu))
                     terrain.getChildren().add(menu);
-
-                System.out.println("Tour clique");
 
                 if (!menu.getChildren().contains(menuContenu))
                     menu.getChildren().add(menuContenu);
 
-                stats.setText(tour.toString());
+                //Mets le menu à l'emplacement de la tour
                 menu.setTranslateX(tour.getX()+tour.getTaille());
                 menu.setTranslateY(tour.getY()+tour.getTaille());
-                améliorer.setOnAction(new Améliorer(tour,stats));
+
+                améliorer.setOnAction(new Améliorer(tour,this));
+
+                Tour finalTour = tour;
+
+                améliorer.setOnMouseClicked(e -> {
+                    refreshMenu(finalTour);
+                });
+
                 vendre.setOnAction(new Vendre(map,tour,menu));
 
                 if (tour instanceof Catapulte){
@@ -64,6 +73,8 @@ public class Menu implements EventHandler<MouseEvent> {
                 else
                     menuContenu.getChildren().remove(choisirDirection);
 
+                refreshMenu(tour);
+
                 tourClique = true;
             }
             i++;
@@ -71,5 +82,30 @@ public class Menu implements EventHandler<MouseEvent> {
         if (!tourClique){
             terrain.getChildren().remove(menu);
         }
+    }
+
+    public void refreshMenu(Tour tour){
+        if (tour.estAuNiveauMax()){
+            stats.setText(tour+"\nPlus d'amélioration");
+            améliorer.setDisable(true);
+        }
+        else {
+            améliorer.setDisable(false);
+            if (tour.getEnv().getArgent()>tour.prixAmelioration())
+                stats.setText(tour+"\nPrix amélioration : "+tour.prixAmelioration());
+            else
+                stats.setText(tour+"\nPrix amélioration : "+tour.prixAmelioration()+"\nPas assez d'argent");
+        }
+
+        if (tour instanceof TourDeMage && tour.getNiveau() == 1){
+            if (!menuContenu.getChildren().contains(améliorerMage2))
+                menuContenu.getChildren().add(améliorerMage2);
+            améliorerMage2.setOnAction(new AméliorerMageBP2(tour,this));
+            améliorerMage2.setOnMouseClicked(e -> {
+                refreshMenu(tour);
+            });
+        }
+        else
+            menuContenu.getChildren().remove(améliorerMage2);
     }
 }

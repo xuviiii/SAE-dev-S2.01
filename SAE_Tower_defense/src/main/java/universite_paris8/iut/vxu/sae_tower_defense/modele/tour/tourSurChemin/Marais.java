@@ -21,7 +21,21 @@ public class Marais extends Tour {
     }
 
     @Override
-    public void ameliorer() {
+    public int prixAmelioration() {
+        switch (getNiveau()){
+            case 0: return 100;
+        }
+        return 0;
+    }
 
+    @Override
+    public boolean estAuNiveauMax() {
+        return getNiveau() > 0;
+    }
+
+    @Override
+    public void ameliorer() {
+        getEnv().enleverArgent(100);
+        gainNiveau();
     }
 }

@@ -26,6 +26,8 @@ public class Camp extends TourHorsChemin {
                     tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()*1.5);
                 if (getNiveau()>=1)
                     tourProjectile.setBoostVitesse(tourProjectile.getBoostVitesse()*1.5);
+                if (getNiveau()>=2)
+                    tourProjectile.setPeutciblerCamoufle(true);
             }
     }
 
@@ -35,11 +37,34 @@ public class Camp extends TourHorsChemin {
                 tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()/1.5);
             if (getNiveau()>=1)
                 tourProjectile.setBoostVitesse(tourProjectile.getBoostVitesse()/1.5);
+            if (getNiveau()>=2)
+                tourProjectile.setPeutciblerCamoufle(false);
         }
     }
 
     @Override
-    public void ameliorer() {
+    public int prixAmelioration() {
+        switch (getNiveau()){
+            case 0: return 100;
+            case 1: return 200;
+            case 2: return 300;
+        }
+        return 0;
+    }
 
+    @Override
+    public boolean estAuNiveauMax() {
+        return getNiveau() > 2;
+    }
+
+    @Override
+    public void ameliorer() {
+        switch (getNiveau()){
+            case 0: getEnv().enleverArgent(100);break;
+            case 1: getEnv().enleverArgent(200);break;
+            case 2: getEnv().enleverArgent(300);break;
+            default: break;
+        }
+        gainNiveau();
     }
 }
