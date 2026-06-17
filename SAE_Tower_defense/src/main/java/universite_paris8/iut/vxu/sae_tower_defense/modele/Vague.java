@@ -46,7 +46,7 @@ public class Vague {
                     en = new Pretre(env);
                 } else if (alea < 60 && numVague.get()>8) {
                     en = new ChevalDeTroie(env, 5);
-                } else if (alea < 70) {
+                } else if (alea < 70 && numVague.get() > 11) {
                     en = new ChevaucheurDeSanglier(env);
                 } else {
                     en = new GobelinVert(env);
