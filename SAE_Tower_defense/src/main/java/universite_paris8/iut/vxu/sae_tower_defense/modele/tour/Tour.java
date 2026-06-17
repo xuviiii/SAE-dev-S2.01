@@ -58,6 +58,6 @@ public abstract class Tour extends Entite {
 
     @Override
     public String toString() {
-        return "niveau:" + niveau ;
+        return super.toString() + ", niveau : " + niveau + ", degat : " + dégât ;
     }
 }

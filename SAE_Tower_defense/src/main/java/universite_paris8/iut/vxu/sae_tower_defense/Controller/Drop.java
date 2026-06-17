@@ -35,14 +35,13 @@ public class Drop implements EventHandler<DragEvent> {
         //vérifie si on peut placer la tour
         success = (((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof Marais || tour instanceof Mur)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof Marais || tour instanceof Mur))) && env.getArgent() >= tour.getPrix());
 
-        if (tour instanceof Marais || tour instanceof Mur){
-            tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
-            tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
-            tour.getEnv().getTerrain().getMap().set((int)(((event.getX()-(event.getX()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile())+((event.getY()-(event.getY()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile()*tour.getEnv().getTerrain().getLongueurMap())),-1);
-        }
-
         //pose la tour si possible
         if (success){
+            if (tour instanceof Marais || tour instanceof Mur){
+                tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
+                tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
+                tour.getEnv().getTerrain().getMap().set((int)(((event.getX()-(event.getX()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile())+((event.getY()-(event.getY()%env.getTerrain().getTailleTile()))/tour.getEnv().getTerrain().getTailleTile()*tour.getEnv().getTerrain().getLongueurMap())),-1);
+            }
             env.ajouterTour(tour);
             env.enleverArgent(tour.getPrix());
         }

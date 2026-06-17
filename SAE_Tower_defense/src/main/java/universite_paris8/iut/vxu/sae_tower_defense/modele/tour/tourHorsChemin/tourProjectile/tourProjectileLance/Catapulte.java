@@ -56,4 +56,8 @@ public class Catapulte extends TourProjectileLance {
         return getNiveau() > 0;
     }
 
+    @Override
+    public String toString() {
+        return "Catapulte [ " + super.toString() + " ]" ;
+    }
 }

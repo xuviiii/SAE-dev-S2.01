@@ -75,5 +75,26 @@ public abstract class Entite {
         this.taille.set(taille);
     }
 
+    public boolean estTouché(Entite entite){
+        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
+        xProjectileG = entite.getX();
+        xProjectileD = entite.getX()+entite.getTaille();
+        yProjectileH = entite.getY();
+        yProjectileB = entite.getY()+entite.getTaille();
+        return x.get()<xProjectileD && x.get()+getTaille()>xProjectileG && y.get()<yProjectileB && y.get()+getTaille()>yProjectileH;
+    }
+
+    public boolean estACettePosition(double x,double y){
+        //System.out.println("\n\nx : "+this.x.get()+" <= "+x+" <= "+(this.x.get()+taille.get())+"\ny : "+this.y.get()+" <= "+y+" <= "+(this.y.get()+taille.get()));
+        if (x>=this.x.get()&&x<=this.x.get()+taille.get()&&y>=this.y.get()&&y<=this.y.get()+taille.get())
+            return true;
+        return false;
+    }
+
     public abstract void action();
+
+    @Override
+    public String toString() {
+        return "id : " + id + " x : " + x.get() + ", y : " + y.get();
+    }
 }

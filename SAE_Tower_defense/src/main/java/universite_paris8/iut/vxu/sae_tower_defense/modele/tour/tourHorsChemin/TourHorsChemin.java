@@ -20,5 +20,9 @@ public abstract class TourHorsChemin extends Tour {
         portée += ajout;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "portée : " + portée;
+    }
 }
 

@@ -31,7 +31,7 @@ public class Vague {
         // crée une nouvelle vague
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
             numVague.set(numVague.get()+1);
-            for (int i = 0; i < (10 * numVague.get()); i++) {
+            for (int i = 0; i < (1 * numVague.get()); i++) {
                 alea = (int)(Math.random() * 100)+1;
                 if (alea<30){
                    en = new GobelinRouge(env);

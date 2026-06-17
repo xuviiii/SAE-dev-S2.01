@@ -24,6 +24,8 @@ public abstract class Personnage extends Entite {
     private IntegerProperty tempEnflamer;
     private boolean cuirasses;
     private boolean camoufles;
+    private int attaqueCooldown;
+    private int compteurAttaque;
 
 
     public Personnage(int pv, double vitesse,  int degat,
@@ -44,6 +46,8 @@ public abstract class Personnage extends Entite {
         this.gains = gains;
         rendreCamoufles();
         rendreCuirases();
+        attaqueCooldown = 100;
+        compteurAttaque = 0;
     }
 
     public int getGains() {
@@ -123,15 +127,6 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public boolean estTouché(Entite entite){
-        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
-        xProjectileG = entite.getX();
-        xProjectileD = entite.getX()+entite.getTaille();
-        yProjectileH = entite.getY();
-        yProjectileB = entite.getY()+entite.getTaille();
-        return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
-    }
-
     public void seDeplace(int cible){
 
         int suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
@@ -167,9 +162,21 @@ public abstract class Personnage extends Entite {
     }
 
     public Mur bloquerParMur(){
-        for (Tour tour : getEnv().getTours())
-            if (tour instanceof Mur && estTouché(tour))
-                return (Mur)tour;
+        int suivant;
+        double suivant_X, suivant_Y;
+
+        for (Tour tour : getEnv().getTours()) {
+            if (tour instanceof Mur) {
+                suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
+                System.out.println("actuelle : "+indiceTerrain + ", suivant : " +suivant);
+                suivant_X = getEnv().getTerrain().toX(suivant);
+                suivant_Y = getEnv().getTerrain().toY(suivant);
+                if (tour.estACettePosition(suivant_X,suivant_Y)) {
+                    System.out.println("aaa");
+                    return (Mur) tour;
+                }
+            }
+        }
         return null;
     }
 
@@ -224,6 +231,12 @@ public abstract class Personnage extends Entite {
 
     @Override
     public void action(/*int temps*/) {
+        Mur mur = bloquerParMur();
+        if (mur!=null && compteurAttaque>attaqueCooldown){
+            mur.subirDegat(degat);
+            compteurAttaque = 0;
+        }
+        compteurAttaque++;
         seDeplace(getEnv().getTerrain().getIndiceCible());
         degatEnflamer();
         compteurAction++;

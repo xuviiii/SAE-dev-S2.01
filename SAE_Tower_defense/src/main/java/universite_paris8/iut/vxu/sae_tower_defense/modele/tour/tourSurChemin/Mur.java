@@ -1,21 +1,30 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mur extends Tour {
 
     private int pv;
 
     public Mur(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 59, 400, 0);
+        super(x, y, 1000, map, 60, 400, 0);
         pv = 100;
+    }
+
+    public void subirDegat(int degat){
+        pv -=degat;
+        if (pv<=0)
+            getEnv().getTours().remove(this);
     }
 
     @Override
     public void agir() {
-
     }
 
     @Override
@@ -37,5 +46,10 @@ public class Mur extends Tour {
     public void ameliorer() {
         pv = 250;
         gainNiveau();
+    }
+
+    @Override
+    public String toString() {
+        return "Mur [ " + super.toString() + " ]" ;
     }
 }
