@@ -17,7 +17,7 @@ public class Menu implements EventHandler<MouseEvent> {
 
     private Environnement map;
     private Pane terrain;
-    private static Pane menu;
+    private Pane menu;
     private Label stats;
     private Button améliorer;
     private Button améliorerMage2;
@@ -45,23 +45,29 @@ public class Menu implements EventHandler<MouseEvent> {
         Tour tour;
         boolean tourClique = false;
         int i=0;
+
+        terrain.getChildren().remove(menu);
+
         while (i<map.getTours().size()&&!tourClique){
             tour = map.getTours().get(i);
             if (mouseEvent.getX()>=tour.getX()&&mouseEvent.getX()<=tour.getX()+tour.getTaille()&&mouseEvent.getY()>=tour.getY()&&mouseEvent.getY()<=tour.getY()+tour.getTaille()){
-                //Ajoute au terrain le menu
 
-                if (tour instanceof TourHorsChemin || terrain.getChildren().contains(rayon)){
+
+                if (tour instanceof TourHorsChemin){
                     rayon.setRadius(((TourHorsChemin)tour).getPortee());
                     rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
                     rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
                     rayon.setOpacity(0.3);
                     rayon.setId(tour.getId()+"r");
-                    terrain.getChildren().add(rayon);
                 }
 
-                if (!terrain.getChildren().contains(menu))
-                    terrain.getChildren().add(menu);
+                if (!terrain.getChildren().contains(rayon))
+                    terrain.getChildren().add(rayon);
 
+                //Ajoute au terrain le menu
+                terrain.getChildren().add(menu);
+
+                //Ajoute au menu les données et boutons associés à la tour
                 if (!menu.getChildren().contains(menuContenu))
                     menu.getChildren().add(menuContenu);
 
@@ -69,13 +75,9 @@ public class Menu implements EventHandler<MouseEvent> {
                 menu.setTranslateX(tour.getX()+tour.getTaille());
                 menu.setTranslateY(tour.getY()+tour.getTaille());
 
-                améliorer.setOnAction(new Améliorer(tour,this));
-
+                améliorer.setOnAction(new Améliorer(tour));
                 Tour finalTour = tour;
-
-                améliorer.setOnMouseClicked(e -> {
-                    refreshMenu(finalTour);
-                });
+                améliorer.setOnMouseClicked(e -> refreshMenu(finalTour));
 
                 vendre.setOnAction(new Vendre(map,tour,menu));
 
@@ -99,6 +101,8 @@ public class Menu implements EventHandler<MouseEvent> {
         }
     }
 
+
+    //Permet de rafraichir les statisques, désactiver/activer les boutons
     public void refreshMenu(Tour tour){
         if (tour.estAuNiveauMax()){
             stats.setText(tour+"\nPlus d'amélioration");
@@ -115,7 +119,7 @@ public class Menu implements EventHandler<MouseEvent> {
         if (tour instanceof TourDeMage && tour.getNiveau() == 1){
             if (!menuContenu.getChildren().contains(améliorerMage2))
                 menuContenu.getChildren().add(améliorerMage2);
-            améliorerMage2.setOnAction(new AméliorerMageBP2(tour,this));
+            améliorerMage2.setOnAction(new AméliorerMageBP2(tour));
             améliorerMage2.setOnMouseClicked(e -> {
                 refreshMenu(tour);
             });

@@ -23,6 +23,7 @@ public class ObsTour implements ListChangeListener<Tour> {
         if (change.wasAdded()){
             for (Tour tour : change.getAddedSubList()){
 
+                //Seuls les tours hors chemin ont un rayon d'action
                 if (tour instanceof TourHorsChemin){
                     Circle rayon = new Circle(((TourHorsChemin)tour).getPortee());
                     rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
@@ -30,6 +31,7 @@ public class ObsTour implements ListChangeListener<Tour> {
                     rayon.setOpacity(0.4);
                 }
 
+                //création du sprite
                 ImageView sprite;
                 sprite = BankImage.getImgView(tour.getClass(), tour.getTaille());
                 sprite.translateXProperty().bind(tour.getXProperty());
@@ -43,6 +45,7 @@ public class ObsTour implements ListChangeListener<Tour> {
             for (Tour tour : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()));
                 terrain.getChildren().remove(terrain.lookup("#"+ tour.getId()+"r"));
+
                 if (tour instanceof TourSurChemin)
                     tour.getEnv().getTerrain().reinisaliserCasse(tour.getEnv().getTerrain().indiceTerrain(tour.getX(), tour.getY()));
             }
