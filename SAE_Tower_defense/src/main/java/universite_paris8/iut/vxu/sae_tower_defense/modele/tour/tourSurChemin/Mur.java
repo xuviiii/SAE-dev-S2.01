@@ -25,13 +25,24 @@ public class Mur extends Tour {
 
     @Override
     public void agir() {
+        int indice;
+        List<Integer> adjacents;
+
+        indice = (int)(((getX()-(getX()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile())+((getY()-(getY()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile()*getEnv().getTerrain().getLongueurMap()));
+        adjacents = Deplacement.adjacents(getEnv(),indice);
+
+        for (Personnage personnage : getEnv().getPersonnages()){
+            if (adjacents.contains(personnage.getIndiceTerrain()))
+                pv -= personnage.attaqueMur();
+        }
+        if (pv<=0)
+            getEnv().getTours().remove(this);
     }
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 200;
-        }
+        if (getNiveau() == 0)
+            return 200;
         return 0;
     }
 

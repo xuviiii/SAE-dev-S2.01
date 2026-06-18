@@ -161,25 +161,6 @@ public abstract class Personnage extends Entite {
 
     }
 
-    public Mur bloquerParMur(){
-        int suivant;
-        double suivant_X, suivant_Y;
-
-        for (Tour tour : getEnv().getTours()) {
-            if (tour instanceof Mur) {
-                suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
-                System.out.println("actuelle : "+indiceTerrain + ", suivant : " +suivant);
-                suivant_X = getEnv().getTerrain().toX(suivant);
-                suivant_Y = getEnv().getTerrain().toY(suivant);
-                if (tour.estACettePosition(suivant_X,suivant_Y)) {
-                    System.out.println("aaa");
-                    return (Mur) tour;
-                }
-            }
-        }
-        return null;
-    }
-
     public void reculer(int casse){
         List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
         int indice = nbCassereculMax(casse, chemin.size());
@@ -229,16 +210,19 @@ public abstract class Personnage extends Entite {
         }
     }
 
+    public int attaqueMur(){
+        if (compteurAttaque>attaqueCooldown){
+            compteurAttaque = 0;
+            return degat;
+        }
+        return 0;
+    }
+
     @Override
     public void action(/*int temps*/) {
-        Mur mur = bloquerParMur();
-        if (mur!=null && compteurAttaque>attaqueCooldown){
-            mur.subirDegat(degat);
-            compteurAttaque = 0;
-        }
-        compteurAttaque++;
         seDeplace(getEnv().getTerrain().getIndiceCible());
         degatEnflamer();
+        compteurAttaque++;
         compteurAction++;
     }
 
