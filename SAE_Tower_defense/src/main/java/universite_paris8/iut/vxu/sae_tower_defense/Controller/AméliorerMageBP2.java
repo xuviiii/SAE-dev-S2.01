@@ -9,7 +9,7 @@ public class AméliorerMageBP2 implements EventHandler<ActionEvent> {
 
     private Tour tour;
 
-    public AméliorerMageBP2(Tour tour, Menu menu) {
+    public AméliorerMageBP2(Tour tour) {
         this.tour = tour;
     }
 

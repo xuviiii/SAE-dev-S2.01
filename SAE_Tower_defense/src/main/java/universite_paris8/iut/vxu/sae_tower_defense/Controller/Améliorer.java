@@ -11,7 +11,7 @@ public class Améliorer implements EventHandler<ActionEvent> {
 
     private Tour tour;
 
-    public Améliorer(Tour tour, Menu menu) {
+    public Améliorer(Tour tour) {
         this.tour = tour;
     }
 

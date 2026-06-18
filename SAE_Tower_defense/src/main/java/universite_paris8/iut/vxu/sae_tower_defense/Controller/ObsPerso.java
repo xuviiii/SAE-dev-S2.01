@@ -44,22 +44,6 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                     sprite.setEffect(colorAdjust);
                 });
 
-
-//                personnage.getPvProperty().addListener((obs, oldVal, newVal) -> {
-//                    ColorAdjust colorAdjust = new ColorAdjust();
-//
-//                    if(newVal.doubleValue() < oldVal.doubleValue()){
-//                        colorAdjust.setHue(-0.4);
-//                    }
-//
-//                    if(newVal.doubleValue() > oldVal.doubleValue()){
-//                        colorAdjust.setHue(0.4);
-//                        // System.out.println("EFFECT ???");
-//                    }
-//                    sprite.setEffect(colorAdjust);
-//                    // sprite.setEffect(null);
-//               });
-
                 sprite.setId(personnage.getId());
                 terrain.getChildren().add(sprite);
             }

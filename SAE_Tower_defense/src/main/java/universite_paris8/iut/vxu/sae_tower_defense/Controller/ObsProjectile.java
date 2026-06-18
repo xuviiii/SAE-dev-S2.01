@@ -31,7 +31,6 @@ public class ObsProjectile implements ListChangeListener<Projectile> {
         }
 
         if (change.wasRemoved()){
-            //System.out.println("Retirer : " +change.getRemoved());
             for (Projectile projectile : change.getRemoved()){
                 terrain.getChildren().remove(terrain.lookup("#"+projectile.getId()));
             }
