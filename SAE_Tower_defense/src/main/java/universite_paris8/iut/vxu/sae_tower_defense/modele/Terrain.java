@@ -46,12 +46,13 @@ public class Terrain {
         return (indiceTerrain / longueurMap) * tailleTile;
     }
 
-//    public int indiceTerrain(double x, double y){
-//        int indiceTerrain = 0;
-//        indiceTerrain = (int) (indiceTerrain + (longueurMap * (y / tailleTile)));
-//        indiceTerrain = (int) (indiceTerrain + (x / tailleTile));
-//        return indiceTerrain;
-//    }
+    public int indiceTerrain(double x, double y){
+        return (int)(((x-(x%getTailleTile()))/getTailleTile())+((y-(y%getTailleTile()))/getTailleTile()*getLongueurMap()));
+    }
+
+    public void reinisaliserCasse(int indice){
+        map.set(indice,1);
+    }
 
     public int getTailleTile() {
         return tailleTile;

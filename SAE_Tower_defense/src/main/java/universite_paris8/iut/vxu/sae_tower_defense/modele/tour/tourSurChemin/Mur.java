@@ -8,12 +8,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mur extends Tour {
-
+public class Mur extends TourSurChemin {
+  
     private int pv;
 
     public Mur(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 60, 400, 0);
+        super(x, y, 1000, map, 59, 400, 0, -1);
         pv = 100;
     }
 
@@ -38,6 +38,8 @@ public class Mur extends Tour {
         if (pv<=0)
             getEnv().getTours().remove(this);
     }
+
+
 
     @Override
     public int prixAmelioration() {

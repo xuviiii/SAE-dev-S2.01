@@ -31,18 +31,24 @@ public class Vague {
         // crée une nouvelle vague
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
             numVague.set(numVague.get()+1);
+            if (numVague.get()%20 == 0){
+                aRelacher.add(new Artha(env));
+            }
             for (int i = 0; i < (10 * numVague.get()); i++) {
-                alea = (int)(Math.random() * 100)+1;
-                if (alea<30){
+                alea = (int)(Math.random() * 100);
+                if (alea<25){
                    en = new GobelinRouge(env);
                 }
-                else if(alea<60){
+                else if(alea<50){
                     en = new GobelinNoir(env);
                 }
-                else if (alea < 70 && numVague.get() > 4) {
+                else if (alea < 55 && numVague.get() > 4) {
                     en = new Pretre(env);
-                }
-                else {
+                } else if (alea < 60 && numVague.get()>8) {
+                    en = new ChevalDeTroie(env, 5);
+                } else if (alea < 70 && numVague.get() > 11) {
+                    en = new ChevaucheurDeSanglier(env);
+                } else {
                     en = new GobelinVert(env);
                 }
                 aRelacher.add(en);
