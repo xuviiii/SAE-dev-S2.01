@@ -133,7 +133,7 @@ public abstract class Personnage extends Entite {
 
     public void seDeplace(int cible){
 
-        int suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
+        int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
         double suivant_X = getEnv().getTerrain().toX(suivant);
         double suivant_Y = getEnv().getTerrain().toY(suivant);
