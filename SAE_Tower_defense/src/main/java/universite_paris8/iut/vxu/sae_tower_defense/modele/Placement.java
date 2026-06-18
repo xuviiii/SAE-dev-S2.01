@@ -2,6 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeSauron;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
@@ -9,6 +10,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.to
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.TourSurChemin;
 
 public class Placement {
     private Environnement map;
@@ -56,7 +58,10 @@ public class Placement {
     //vérifie si il y une tour au possition donner
     public boolean surAutreTourHorsChemin(double x,double y){
         for (Tour t:map.getTours()){
-            if(x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1)){
+            if(t instanceof TourHorsChemin && (x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1))){
+                return true;
+            }
+            if(t instanceof TourSurChemin && (x> (t.getX()- (double) t.getTaille() /2) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()- (double) t.getTaille() /2) && y<(t.getY()+t.getTaille()+1))){
                 return true;
             }
         }
