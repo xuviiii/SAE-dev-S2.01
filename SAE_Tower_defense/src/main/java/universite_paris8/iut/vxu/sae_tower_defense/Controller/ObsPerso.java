@@ -6,7 +6,7 @@ import javafx.scene.effect.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class ObsPerso implements ListChangeListener<Personnage> {
 

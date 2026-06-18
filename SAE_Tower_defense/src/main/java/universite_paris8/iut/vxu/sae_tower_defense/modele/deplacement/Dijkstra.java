@@ -1,4 +1,6 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.util.*;
 
@@ -46,10 +48,6 @@ public class Dijkstra extends Deplacement {
                 int cout = couts.get(courant) + getEnv().getTerrain().getMap().get(adjacent);
 
                 if ((predecesseurs.get(adjacent) == null && adjacent != source) || cout < couts.get(adjacent)) {
-
-                    if (predecesseurs.get(adjacent) != null) {
-                        fifo.removeIf((IndiceCout indiceCout) -> indiceCout.indice == adjacent);
-                    }
 
                     predecesseurs.put(adjacent, courant);
                     couts.put(adjacent, cout);

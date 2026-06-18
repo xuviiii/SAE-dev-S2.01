@@ -1,8 +1,10 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.util.*;
 
-public class BFS extends Deplacement{
+public class BFS extends Deplacement {
 
     DeplacementAleatoire deplacementAlea;
 
