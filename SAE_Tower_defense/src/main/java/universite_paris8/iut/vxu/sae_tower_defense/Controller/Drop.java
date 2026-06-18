@@ -13,13 +13,11 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Tou
 
 public class Drop implements EventHandler<DragEvent> {
     private Placement achat;
-    private Pane terrain;
     private Drag drag;
     private Environnement env;
 
-    public Drop(Placement achat, Pane terrain, Drag drag, Environnement env) {
+    public Drop(Placement achat, Drag drag, Environnement env) {
         this.achat = achat;
-        this.terrain = terrain;
         this.drag =drag;
         this.env = env;
     }
@@ -27,7 +25,6 @@ public class Drop implements EventHandler<DragEvent> {
     @Override
     public void handle(DragEvent event) {
         Tour tour;
-        Dragboard db = event.getDragboard();
         boolean success;
         tour = drag.getTour();
         tour.setX(event.getX());
@@ -35,9 +32,6 @@ public class Drop implements EventHandler<DragEvent> {
 
         //vérifie si on peut placer la tour
         success = ((((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin)))) && env.getArgent() >= tour.getPrix());
-
-        System.out.println("PeutEtrePoserTourHorsChemin : "+achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille()));
-        System.out.println("PeutEtrePoserTourSurChemin : "+achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille()));
 
         //pose la tour si possible
         if (success){
@@ -49,6 +43,7 @@ public class Drop implements EventHandler<DragEvent> {
             env.ajouterTour(tour);
             env.enleverArgent(tour.getPrix());
         }
+
         event.setDropCompleted(success);
         event.consume();
         }

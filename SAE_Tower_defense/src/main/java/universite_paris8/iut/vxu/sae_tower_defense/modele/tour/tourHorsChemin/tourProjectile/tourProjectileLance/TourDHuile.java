@@ -24,21 +24,20 @@ public class TourDHuile extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
-        switch (getNiveau()){
-            case 0: augmenterDegat(5);getEnv().enleverArgent(100);break;
-            case 1: getEnv().enleverArgent(200);break;
-            default: break;
+        if (getNiveau() == 0) {
+            augmenterDegat(5);
         }
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 100;
-            case 1: return 200;
-        }
-        return 0;
+        return switch (getNiveau()) {
+            case 0 -> 100;
+            case 1 -> 200;
+            default -> 0;
+        };
     }
 
     @Override

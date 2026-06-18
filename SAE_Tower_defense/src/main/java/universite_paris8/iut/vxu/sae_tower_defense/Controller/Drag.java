@@ -13,14 +13,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.To
 
 public class Drag implements EventHandler<MouseEvent> {
     private Pane terrain;
-    private Environnement env;
     private Tour tour;
     private Placement achat;
 
 
-    public Drag(Pane terrain, Environnement env, Placement achat) {
+    public Drag(Pane terrain, Placement achat) {
         this.terrain = terrain;
-        this.env = env;
         this.achat = achat;
         this.tour=null;
     }
@@ -42,7 +40,6 @@ public class Drag implements EventHandler<MouseEvent> {
             rayon.setOpacity(0.4);
         }
 
-
         preview.getChildren().add(rayon);
         preview.getChildren().add(img);
 
@@ -53,12 +50,10 @@ public class Drag implements EventHandler<MouseEvent> {
 
         //enleve la preview a la fin du drag
         source.setOnDragDone(e -> {
-
             if (preview != null) {
                 terrain.getChildren().remove(preview);
             }
-
-            viderTour();
+            tour = null;
             e.consume();
         });
 
@@ -68,14 +63,7 @@ public class Drag implements EventHandler<MouseEvent> {
         db.setContent(content);
         event.consume();
     }
-
-
-
     public Tour getTour() {
         return tour;
-    }
-
-    public void viderTour(){
-        tour = null;
     }
 }

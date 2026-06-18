@@ -19,27 +19,16 @@ public class Pretre extends Personnage {
         this.pvSoin = 15;
     }
 
-    public int getPortee() {
-        return portee;
-    }
-
     @Override
     public void action(){
         super.action();
-        if (getCompteurAction() % 200 == 0){
+        if (getCompteurAction() % 200 == 0)
             soigner();
-        }
     }
 
     private void soigner(){
-
         List<Personnage> personnages = cibleur.ciblerEnnemie();
-        for (Personnage p : personnages){
+        for (Personnage p : personnages)
             p.setPv(p.getPv() + pvSoin);
-        }
     }
-
-
-
-
 }

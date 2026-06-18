@@ -45,7 +45,6 @@ public class Placement {
 
     //verifie si on peut posser une tour hors du chemin
     public boolean peutEtrePoserTourHorsChemin(double x, double y, int taille){
-        System.out.println("\nSur autre tour : "+surAutreTourHorsChemin(x,y)+", hors chemin : "+horsChemin(x,y,taille));
         return ((!surAutreTourHorsChemin(x,y)) && horsChemin(x,y,taille));
     }
 

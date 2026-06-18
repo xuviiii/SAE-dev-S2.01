@@ -26,7 +26,6 @@ public class Controller implements Initializable {
     @FXML
     private Pane terrainEntite;
 
-
     @FXML
     private Pane magasin;
 
@@ -53,13 +52,6 @@ public class Controller implements Initializable {
     private Button accelerer;
 
 
-
-
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         map = new Environnement();
@@ -67,14 +59,9 @@ public class Controller implements Initializable {
         vueTerrain = new VueTerrain(tile, map.getTerrain());
         loop=new GameLoop(map);
 
-
         // donne au terrainEntiter la taille de la map
         terrainEntite.setMaxWidth(map.getTerrain().getLongueurMap()*map.getTerrain().getTailleTile());
         terrainEntite.setMaxHeight(map.getTerrain().getHauteurMap()*map.getTerrain().getTailleTile());
-
-
-
-
 
         map.getTours().addListener(new ObsTour(terrainEntite));
         map.getProjectiles().addListener(new ObsProjectile(map,terrainEntite));
@@ -88,7 +75,6 @@ public class Controller implements Initializable {
 
         map.getVague().numVagueProperty().addListener((ob,old,nv)-> labelVague.setText(nv.toString()));
         loop.vittesseProperty().addListener((ob,old,nv)-> labelVitesse.setText("x"+nv.toString()));
-
 
         loop.getGameLoop().statusProperty().addListener((ob,old,nv)-> {
             if (nv.name().equals("PAUSED")) {

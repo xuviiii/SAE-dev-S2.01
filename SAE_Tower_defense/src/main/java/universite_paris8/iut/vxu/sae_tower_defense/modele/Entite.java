@@ -84,13 +84,6 @@ public abstract class Entite {
         return x.get()<xProjectileD && x.get()+getTaille()>xProjectileG && y.get()<yProjectileB && y.get()+getTaille()>yProjectileH;
     }
 
-    public boolean estACettePosition(double x,double y){
-        //System.out.println("\n\nx : "+this.x.get()+" <= "+x+" <= "+(this.x.get()+taille.get())+"\ny : "+this.y.get()+" <= "+y+" <= "+(this.y.get()+taille.get()));
-        if (x>=this.x.get()&&x<=this.x.get()+taille.get()&&y>=this.y.get()&&y<=this.y.get()+taille.get())
-            return true;
-        return false;
-    }
-
     public abstract void action();
 
     @Override

@@ -2,7 +2,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.t
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.Explosion;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.ProjectileInstantane;
 
 public class TourDeMage extends TourProjectileInstantane {
 
@@ -12,32 +11,31 @@ public class TourDeMage extends TourProjectileInstantane {
 
     @Override
     public void creerProjectile(double x, double y) {
-        boolean enleverCirasse;
+        boolean enleverCuirasse;
         boolean teleporte;
-        enleverCirasse = getNiveau() == 2;
+        enleverCuirasse = getNiveau() == 2;
         teleporte = getNiveau() == 3;
 
-        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), 10,enleverCirasse,teleporte));
+        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), 10, enleverCuirasse,teleporte));
     }
 
     @Override
     public void ameliorer() {
-        switch (getNiveau()){
-            case 0:  augmenterPortee(20);getEnv().enleverArgent(100);break;
-            case 1: getEnv().enleverArgent(300);break;
-            case 2: getEnv().enleverArgent(300);break;
-            default: break;
+        if (getNiveau() == 0) {
+            augmenterPortee(20);
+            getEnv().enleverArgent(100);
         }
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 100;
-            case 1, 2: return 300;
-        }
-        return 0;
+        return switch (getNiveau()) {
+            case 0 -> 100;
+            case 1, 2 -> 300;
+            default -> 0;
+        };
     }
 
     @Override

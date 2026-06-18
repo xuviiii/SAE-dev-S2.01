@@ -22,9 +22,8 @@ public class Marais extends TourSurChemin {
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 100;
-        }
+        if (getNiveau() == 0)
+            return 100;
         return 0;
     }
 
@@ -35,7 +34,7 @@ public class Marais extends TourSurChemin {
 
     @Override
     public void ameliorer() {
-        getEnv().enleverArgent(100);
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

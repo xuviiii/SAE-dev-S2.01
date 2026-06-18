@@ -3,8 +3,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 public class VueTerrain {

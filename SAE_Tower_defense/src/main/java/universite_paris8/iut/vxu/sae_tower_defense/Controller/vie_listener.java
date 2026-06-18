@@ -29,13 +29,11 @@ public class vie_listener implements ChangeListener<Number> {
         }
     }
 
-
     private void Fin() throws Exception{
             loop.mettrePause();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/universite_paris8/iut/vxu/sae_tower_defense/Demarrage.fxml"));
             Stage stage = (Stage) terrainEntite.getScene().getWindow();
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.setMaximized(false);
-
     }
 }

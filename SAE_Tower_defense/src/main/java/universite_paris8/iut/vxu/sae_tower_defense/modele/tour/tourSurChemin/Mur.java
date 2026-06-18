@@ -15,12 +15,6 @@ public class Mur extends TourSurChemin {
         pv = 100;
     }
 
-    public void subirDegat(int degat){
-        pv -=degat;
-        if (pv<=0)
-            getEnv().getTours().remove(this);
-    }
-
     @Override
     public void agir() {
         int indice;
@@ -37,8 +31,6 @@ public class Mur extends TourSurChemin {
             getEnv().getTours().remove(this);
     }
 
-
-
     @Override
     public int prixAmelioration() {
         if (getNiveau() == 0)
@@ -48,14 +40,13 @@ public class Mur extends TourSurChemin {
 
     @Override
     public boolean estAuNiveauMax() {
-        if (getNiveau()>0)
-            return true;
-        return false;
+        return getNiveau() > 0;
     }
 
     @Override
     public void ameliorer() {
-        pv = 250;
+        if (getNiveau() == 0)
+            pv = 250;
         gainNiveau();
     }
 

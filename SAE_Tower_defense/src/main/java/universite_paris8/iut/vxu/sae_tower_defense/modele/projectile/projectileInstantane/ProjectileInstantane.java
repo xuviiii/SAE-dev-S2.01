@@ -24,7 +24,7 @@ public class ProjectileInstantane extends Projectile {
     @Override
     public void action() {
         int alea = (int)(Math.random()*100)+1;
-        if (getTaille()<40){
+        if (getTaille()<tailleMax){
             setTaille(getTaille()+1);
         }
         else {

@@ -6,7 +6,6 @@ import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
 
 public class Vendre implements EventHandler<ActionEvent> {
 

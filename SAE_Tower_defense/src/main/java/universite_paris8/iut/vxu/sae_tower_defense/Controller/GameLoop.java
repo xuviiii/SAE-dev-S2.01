@@ -6,12 +6,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.*;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeSauron;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDHuile;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
 
 public class GameLoop {
     private Timeline gameLoop;
@@ -35,22 +29,17 @@ public class GameLoop {
     }
 
     public void changerVitesse(){
-        if (vittesse.get() >= 4){
+        if (vittesse.get() >= 4)
             vittesse.set(1);
-        }
-        else {
+        else
             vittesse.set(vittesse.get()*2);
-        }
     }
 
     public void mettrePause(){
-        if (gameLoop.getStatus().name().equals("PAUSED")){
+        if (gameLoop.getStatus().name().equals("PAUSED"))
             gameLoop.play();
-        }
-        else {
+        else
             gameLoop.pause();
-        }
-
     }
 
     public void initAnimation() {
@@ -70,7 +59,6 @@ public class GameLoop {
                 })
         );
         gameLoop.getKeyFrames().add(kf);
-
     }
 
     public void lancer(){

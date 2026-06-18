@@ -52,7 +52,6 @@ public class Menu implements EventHandler<MouseEvent> {
             tour = map.getTours().get(i);
             if (mouseEvent.getX()>=tour.getX()&&mouseEvent.getX()<=tour.getX()+tour.getTaille()&&mouseEvent.getY()>=tour.getY()&&mouseEvent.getY()<=tour.getY()+tour.getTaille()){
 
-
                 if (tour instanceof TourHorsChemin){
                     rayon.setRadius(((TourHorsChemin)tour).getPortee());
                     rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
@@ -116,7 +115,6 @@ public class Menu implements EventHandler<MouseEvent> {
             else
                 stats.setText(tour+"\nPrix amélioration : "+tour.prixAmelioration()+"\nPas assez d'argent");
         }
-
         if (tour instanceof TourDeMage && tour.getNiveau() == 1){
             if (!menuContenu.getChildren().contains(améliorerMage2))
                 menuContenu.getChildren().add(améliorerMage2);

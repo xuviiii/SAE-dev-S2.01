@@ -57,10 +57,6 @@ public class Environnement {
         return vague;
     }
 
-    public int getVie() {
-        return vie.get();
-    }
-
     public IntegerProperty vieProperty() {
         return vie;
     }
@@ -117,18 +113,14 @@ public class Environnement {
             }
         }
 
-        for (Personnage perso: aEnlever){
+        for (Personnage perso: aEnlever)
             personnages.remove(perso);
-
-        }
 
         for (int i=0;i<tours.size();i++)
             tours.get(i).action();
 
         for (int i=0;i<projectiles.size();i++)
             projectiles.get(i).action();
-
-
     }
 
 }

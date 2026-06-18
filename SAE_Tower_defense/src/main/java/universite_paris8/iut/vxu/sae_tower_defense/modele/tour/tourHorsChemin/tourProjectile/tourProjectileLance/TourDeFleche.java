@@ -38,12 +38,12 @@ public class TourDeFleche extends TourProjectileLance{
     @Override
     public void ameliorer() {
         switch (getNiveau()){
-            case 0: augmenterPortee(20); augmenterDegat(5);getEnv().enleverArgent(100);break;
-            case 1: setPeutciblerCamoufle(true);getEnv().enleverArgent(200); break;
-            case 2: getEnv().enleverArgent(300);break;
-            case 3: augmenterVitesse(10);getEnv().enleverArgent(400);break;
+            case 0: augmenterPortee(20); augmenterDegat(5);break;
+            case 1: setPeutciblerCamoufle(true); break;
+            case 3: augmenterVitesse(10);break;
             default: break;
         }
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

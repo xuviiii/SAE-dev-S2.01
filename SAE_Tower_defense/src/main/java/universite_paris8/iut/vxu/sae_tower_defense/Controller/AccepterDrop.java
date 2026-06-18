@@ -6,18 +6,13 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Placement;
 
 
 public class AccepterDrop implements EventHandler<DragEvent>{
-    private Placement selection;
     private Pane terrain;
-    private Drag drag;
 
-    public AccepterDrop(Placement selection, Pane terrain, Drag drag) {
-        this.selection = selection;
+    public AccepterDrop(Pane terrain) {
         this.terrain= terrain;
-        this.drag = drag;
     }
 
     @Override

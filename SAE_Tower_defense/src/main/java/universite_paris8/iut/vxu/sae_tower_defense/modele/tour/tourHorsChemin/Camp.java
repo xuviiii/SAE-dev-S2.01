@@ -44,12 +44,12 @@ public class Camp extends TourHorsChemin {
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 100;
-            case 1: return 200;
-            case 2: return 300;
-        }
-        return 0;
+        return switch (getNiveau()) {
+            case 0 -> 100;
+            case 1 -> 200;
+            case 2 -> 300;
+            default -> 0;
+        };
     }
 
     @Override
@@ -59,12 +59,7 @@ public class Camp extends TourHorsChemin {
 
     @Override
     public void ameliorer() {
-        switch (getNiveau()){
-            case 0: getEnv().enleverArgent(100);break;
-            case 1: getEnv().enleverArgent(200);break;
-            case 2: getEnv().enleverArgent(300);break;
-            default: break;
-        }
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

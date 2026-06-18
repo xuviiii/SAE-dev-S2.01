@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
-    private IntegerProperty pv;
+    private int pv;
     private int pvMax;
     private int degat;
     private int indiceTerrain;
@@ -32,8 +32,7 @@ public abstract class Personnage extends Entite {
         super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
 
-
-        this.pv = new SimpleIntegerProperty(pv);
+        this.pv = pv;
         this.pvMax = pv;
         this.degat = degat;
         malusVitesse = 1;
@@ -56,7 +55,6 @@ public abstract class Personnage extends Entite {
     public void ajoutTempEnflamer(int tempEnflamer) {
         this.tempEnflamer.set(this.tempEnflamer.get() + tempEnflamer);
     }
-
 
     public IntegerProperty tempEnflamerProperty() {
         return tempEnflamer;
@@ -98,18 +96,12 @@ public abstract class Personnage extends Entite {
             camoufles = false;
     }
 
-    public IntegerProperty getPvProperty(){
+    public int getPv() {
         return pv;
     }
 
-    public int getPv() {
-        return pv.getValue();
-    }
-
     public void setPv(int pv) {
-        // System.out.print("SOIN ! (" + pv + ") : [" + this.pv + ",");
-        this.pv.setValue(Math.min(pv, this.pvMax));
-        // System.out.println(this.pv + "]");
+        this.pv = (Math.min(pv, this.pvMax));
     }
 
     public void setMalusVitesse(int malusVitesse) {
@@ -121,10 +113,10 @@ public abstract class Personnage extends Entite {
     }
 
     public void subirDegat(int degat){
-        pv.setValue(pv.getValue() - degat);
+        pv = pv - degat;
     }
 
-    public boolean estMort(){return pv.getValue() <= 0;}
+    public boolean estMort(){return pv <= 0;}
 
     public void meurt(){
         setPv(0);
@@ -170,15 +162,12 @@ public abstract class Personnage extends Entite {
         indiceTerrain = chemin.get(indice);
         setX(getEnv().getTerrain().toX(indiceTerrain));
         setY(getEnv().getTerrain().toY(indiceTerrain));
-
     }
 
     public int nbCassereculMax(int casse, int longueurChemin){
-        for (int i=0; i < casse ; i++){
-            if ( casse-i < longueurChemin){
+        for (int i=0; i < casse ; i++)
+            if ( casse-i < longueurChemin)
                 return casse-i;
-            }
-        }
         return 0;
     }
 

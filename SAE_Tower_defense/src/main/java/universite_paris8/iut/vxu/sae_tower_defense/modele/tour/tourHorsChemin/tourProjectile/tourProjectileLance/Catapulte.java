@@ -36,17 +36,14 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
-        switch (getNiveau()) {
-            case 0: getEnv().enleverArgent(100);break;
-            default:break;
-        }
+        getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 100;
+        if (getNiveau() == 0) {
+            return 100;
         }
         return 0;
     }

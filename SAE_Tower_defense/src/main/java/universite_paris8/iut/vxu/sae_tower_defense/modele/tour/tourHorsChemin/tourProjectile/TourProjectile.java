@@ -66,19 +66,12 @@ public abstract class TourProjectile extends TourHorsChemin {
                         ennemiACible = personnage;
                     }
                 }
-            /*for (int i=1;i<ennemisCiblables.size();i++){
-                if ((ennemiACible.getX()+ennemiACible.getY())<(ennemisCiblables.get(i).getX()+ennemisCiblables.get(i).getY()))
-                    ennemiACible = ennemisCiblables.get(i);
-            }*/
-            if(!ennemiACible.isCamoufles() || peutciblerCamoufle) {
-                return ennemiACible;
+            if (ennemiACible.isCamoufles() && !peutciblerCamoufle) {
+                ennemiACible = null;
             }
-            else {
-                return null;
-            }
+            return ennemiACible;
         }
     }
-
 
     public abstract void creerProjectile(double x,double y);
 }

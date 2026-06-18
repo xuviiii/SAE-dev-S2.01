@@ -2,16 +2,14 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.Collections;
 import java.util.List;
 
 public class Terrain {
     private int indiceCible = 25;
     private int[] indicesDepart = {28, 168, 398, 391};
-    private int longueurMap; // static ?
-    private int hauteurMap; // static ?
-    private int tailleTile; // static ?
+    private int longueurMap;
+    private int hauteurMap;
+    private int tailleTile;
     private ObservableList<Integer> map;
 
 

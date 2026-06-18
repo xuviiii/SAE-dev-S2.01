@@ -6,7 +6,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.TourSurChemin;
 
 public class ObsTour implements ListChangeListener<Tour> {
