@@ -10,10 +10,10 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.to
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
 
-public class Achat {
+public class Placement {
     private Environnement map;
 
-    public Achat(Environnement map) {
+    public Placement(Environnement map) {
         this.map = map;
     }
 
@@ -45,18 +45,29 @@ public class Achat {
 
     //verifie si on peut posser une tour hors du chemin
     public boolean peutEtrePoserTourHorsChemin(double x, double y, int taille){
-        return ((!surAutreTour(x,y)) && horsChemin(x,y,taille));
+        System.out.println("\nSur autre tour : "+surAutreTourHorsChemin(x,y)+", hors chemin : "+horsChemin(x,y,taille));
+        return ((!surAutreTourHorsChemin(x,y)) && horsChemin(x,y,taille));
     }
 
     //verifie si on peut posser une tour sur le chemin
     public boolean peutEtrePoserTourSurChemin(double x, double y, int taille){
-        return ((!surAutreTour(x,y)) && !horsChemin(x,y,taille));
+        return ((!surAutreTourSurChemin(x,y)) && !horsChemin(x,y,taille));
     }
 
     //vérifie si il y une tour au possition donner
-    public boolean surAutreTour(double x,double y){
+    public boolean surAutreTourHorsChemin(double x,double y){
         for (Tour t:map.getTours()){
             if(x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //vérifie si il y une tour au possition donner
+    public boolean surAutreTourSurChemin(double x,double y){
+        for (Tour t:map.getTours()){
+            if(x>= (t.getX()) &&  x<(t.getX()+t.getTaille()) && y> (t.getY()) && y<=(t.getY()+t.getTaille())){
                 return true;
             }
         }

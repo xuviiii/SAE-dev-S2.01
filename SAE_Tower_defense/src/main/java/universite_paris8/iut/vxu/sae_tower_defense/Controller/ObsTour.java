@@ -36,15 +36,6 @@ public class ObsTour implements ListChangeListener<Tour> {
                 sprite.translateYProperty().bind(tour.getYProperty());
                 sprite.setId(tour.getId());
                 terrain.getChildren().add(sprite);
-
-                /*
-                Circle rayon = new Circle(tour.getPortée());
-                rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
-                rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
-                rayon.setOpacity(0.4);
-                rayon.setId(tour.getId()+"r");
-                terrain.getChildren().add(rayon);
-                 */
             }
         }
 

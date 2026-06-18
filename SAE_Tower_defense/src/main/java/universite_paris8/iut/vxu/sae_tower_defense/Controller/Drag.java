@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Placement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
@@ -15,10 +15,10 @@ public class Drag implements EventHandler<MouseEvent> {
     private Pane terrain;
     private Environnement env;
     private Tour tour;
-    private Achat achat;
+    private Placement achat;
 
 
-    public Drag(Pane terrain, Environnement env,Achat achat) {
+    public Drag(Pane terrain, Environnement env, Placement achat) {
         this.terrain = terrain;
         this.env = env;
         this.achat = achat;

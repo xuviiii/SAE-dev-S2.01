@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
@@ -22,6 +24,7 @@ public class Menu implements EventHandler<MouseEvent> {
     private Button vendre;
     private Button choisirDirection;
     private VBox menuContenu;
+    private Circle rayon;
 
     public Menu(Environnement map, Pane terrain) {
         this.map = map;
@@ -34,6 +37,7 @@ public class Menu implements EventHandler<MouseEvent> {
         menuContenu = new VBox(stats,améliorer,vendre);
         menu = new Pane(menuContenu);
         menu.setStyle("-fx-background-color: #c19a9a;");
+        rayon = new Circle(10);
     }
 
     @Override
@@ -45,6 +49,16 @@ public class Menu implements EventHandler<MouseEvent> {
             tour = map.getTours().get(i);
             if (mouseEvent.getX()>=tour.getX()&&mouseEvent.getX()<=tour.getX()+tour.getTaille()&&mouseEvent.getY()>=tour.getY()&&mouseEvent.getY()<=tour.getY()+tour.getTaille()){
                 //Ajoute au terrain le menu
+
+                if (tour instanceof TourHorsChemin || terrain.getChildren().contains(rayon)){
+                    rayon.setRadius(((TourHorsChemin)tour).getPortee());
+                    rayon.setCenterX(tour.getX()+ (double) tour.getTaille() /2);
+                    rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
+                    rayon.setOpacity(0.3);
+                    rayon.setId(tour.getId()+"r");
+                    terrain.getChildren().add(rayon);
+                }
+
                 if (!terrain.getChildren().contains(menu))
                     terrain.getChildren().add(menu);
 
@@ -81,6 +95,7 @@ public class Menu implements EventHandler<MouseEvent> {
         }
         if (!tourClique){
             terrain.getChildren().remove(menu);
+            terrain.getChildren().remove(rayon);
         }
     }
 

@@ -1,19 +1,11 @@
 package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
-import javafx.stage.Stage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.net.URL;

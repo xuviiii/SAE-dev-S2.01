@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Achat;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Placement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
@@ -12,12 +12,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.TourSurChemin;
 
 public class Drop implements EventHandler<DragEvent> {
-    private Achat achat;
+    private Placement achat;
     private Pane terrain;
     private Drag drag;
     private Environnement env;
 
-    public Drop(Achat achat, Pane terrain, Drag drag, Environnement env) {
+    public Drop(Placement achat, Pane terrain, Drag drag, Environnement env) {
         this.achat = achat;
         this.terrain = terrain;
         this.drag =drag;
@@ -34,7 +34,10 @@ public class Drop implements EventHandler<DragEvent> {
         tour.setY(event.getY());
 
         //vérifie si on peut placer la tour
-        success = (((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin))) && env.getArgent() >= tour.getPrix());
+        success = ((((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin)))) && env.getArgent() >= tour.getPrix());
+
+        System.out.println("PeutEtrePoserTourHorsChemin : "+achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille()));
+        System.out.println("PeutEtrePoserTourSurChemin : "+achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille()));
 
         //pose la tour si possible
         if (success){
