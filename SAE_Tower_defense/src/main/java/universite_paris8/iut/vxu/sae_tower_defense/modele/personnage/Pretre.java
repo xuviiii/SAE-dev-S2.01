@@ -1,4 +1,8 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Cibleur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Dijkstra;
 
 import java.util.List;
 

@@ -1,13 +1,12 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 
 import java.util.List;
-import java.util.Random;
 
 public abstract class Personnage extends Entite {
 
@@ -28,7 +27,7 @@ public abstract class Personnage extends Entite {
     private int compteurAttaque;
 
 
-    public Personnage(int pv, double vitesse,  int degat,
+    public Personnage(int pv, double vitesse, int degat,
                       int taille, Environnement env, Deplacement deplacement, int gains){
         super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;

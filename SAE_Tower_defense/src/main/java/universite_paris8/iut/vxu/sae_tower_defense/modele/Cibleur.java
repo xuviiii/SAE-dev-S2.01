@@ -1,7 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
 
 import java.util.ArrayList;

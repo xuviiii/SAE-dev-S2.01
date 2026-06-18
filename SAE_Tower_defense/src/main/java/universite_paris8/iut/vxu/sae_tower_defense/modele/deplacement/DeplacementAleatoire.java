@@ -1,11 +1,13 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.IntSupplier;
 
-public class DeplacementAleatoire extends Deplacement{
+public class DeplacementAleatoire extends Deplacement {
 
     private IntSupplier indicePrecedentParent;
 

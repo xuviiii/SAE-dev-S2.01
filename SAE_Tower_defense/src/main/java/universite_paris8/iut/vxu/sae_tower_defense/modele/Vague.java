@@ -2,6 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.*;
 
 import java.util.ArrayList;
 

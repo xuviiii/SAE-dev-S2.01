@@ -1,11 +1,9 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Deplacement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Mur extends TourSurChemin {

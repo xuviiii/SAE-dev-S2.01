@@ -29,4 +29,8 @@ module universite_paris8.iut.vxu.sae_tower_defense {
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile to javafx.fxml;
     exports universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin;
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage to javafx.fxml;
 }

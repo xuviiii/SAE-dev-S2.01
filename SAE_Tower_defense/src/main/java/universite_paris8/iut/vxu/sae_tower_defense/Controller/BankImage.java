@@ -3,6 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.Controller;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.AttaqueSauron;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.Explosion;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.ZoneDeFlamme;

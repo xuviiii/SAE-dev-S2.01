@@ -1,7 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 import java.util.ArrayList;
 

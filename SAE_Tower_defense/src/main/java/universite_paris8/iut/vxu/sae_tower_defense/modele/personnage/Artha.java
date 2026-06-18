@@ -1,6 +1,9 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
 
-public class Artha extends Boss{
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Dijkstra;
+
+public class Artha extends Boss {
     private int tempsInvocation;
 
     public Artha(Environnement env) {

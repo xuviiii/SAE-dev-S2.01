@@ -1,6 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Fleche;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 
