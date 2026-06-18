@@ -59,10 +59,11 @@ public class Menu implements EventHandler<MouseEvent> {
                     rayon.setCenterY(tour.getY()+ (double) tour.getTaille() /2);
                     rayon.setOpacity(0.3);
                     rayon.setId(tour.getId()+"r");
+                    if (!terrain.getChildren().contains(rayon))
+                        terrain.getChildren().add(rayon);
                 }
-
-                if (!terrain.getChildren().contains(rayon))
-                    terrain.getChildren().add(rayon);
+                else
+                    terrain.getChildren().remove(rayon);
 
                 //Ajoute au terrain le menu
                 terrain.getChildren().add(menu);
