@@ -67,4 +67,9 @@ public class Camp extends TourHorsChemin {
         }
         gainNiveau();
     }
+
+    @Override
+    public String toString() {
+        return "Camp [ " + super.toString() + " ]" ;
+    }
 }

@@ -44,4 +44,9 @@ public class TourDeMage extends TourProjectileInstantane {
     public boolean estAuNiveauMax() {
         return getNiveau() > 1;
     }
+
+    @Override
+    public String toString() {
+        return "TourDeMage [ " + super.toString() + " ]" ;
+    }
 }

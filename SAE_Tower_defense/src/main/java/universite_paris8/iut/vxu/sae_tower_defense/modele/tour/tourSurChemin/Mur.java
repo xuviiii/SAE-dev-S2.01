@@ -1,11 +1,15 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
-public class Mur extends TourSurChemin {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Mur extends TourSurChemin {
+  
     private int pv;
 
     public Mur(double x, double y, Environnement map) {
@@ -13,18 +17,34 @@ public class Mur extends TourSurChemin {
         pv = 100;
     }
 
+    public void subirDegat(int degat){
+        pv -=degat;
+        if (pv<=0)
+            getEnv().getTours().remove(this);
+    }
+
     @Override
     public void agir() {
+        int indice;
+        List<Integer> adjacents;
 
+        indice = (int)(((getX()-(getX()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile())+((getY()-(getY()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile()*getEnv().getTerrain().getLongueurMap()));
+        adjacents = Deplacement.adjacents(getEnv(),indice);
+
+        for (Personnage personnage : getEnv().getPersonnages()){
+            if (adjacents.contains(personnage.getIndiceTerrain()))
+                pv -= personnage.attaqueMur();
+        }
+        if (pv<=0)
+            getEnv().getTours().remove(this);
     }
 
 
 
     @Override
     public int prixAmelioration() {
-        switch (getNiveau()){
-            case 0: return 200;
-        }
+        if (getNiveau() == 0)
+            return 200;
         return 0;
     }
 
@@ -39,5 +59,10 @@ public class Mur extends TourSurChemin {
     public void ameliorer() {
         pv = 250;
         gainNiveau();
+    }
+
+    @Override
+    public String toString() {
+        return "Mur [ " + super.toString() + " ]" ;
     }
 }

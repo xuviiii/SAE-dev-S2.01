@@ -39,4 +39,9 @@ public class Marais extends TourSurChemin {
         getEnv().enleverArgent(100);
         gainNiveau();
     }
+
+    @Override
+    public String toString() {
+        return "Marais [ " + super.toString() + " ]" ;
+    }
 }

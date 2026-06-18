@@ -24,6 +24,8 @@ public abstract class Personnage extends Entite {
     private IntegerProperty tempEnflamer;
     private boolean cuirasses;
     private boolean camoufles;
+    private int attaqueCooldown;
+    private int compteurAttaque;
 
 
     public Personnage(int pv, double vitesse,  int degat,
@@ -44,6 +46,8 @@ public abstract class Personnage extends Entite {
         this.gains = gains;
         rendreCamoufles();
         rendreCuirases();
+        attaqueCooldown = 100;
+        compteurAttaque = 0;
     }
 
     public int getGains() {
@@ -127,15 +131,6 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public boolean estTouché(Entite entite){
-        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
-        xProjectileG = entite.getX();
-        xProjectileD = entite.getX()+entite.getTaille();
-        yProjectileH = entite.getY();
-        yProjectileB = entite.getY()+entite.getTaille();
-        return super.getX()<xProjectileD && super.getX()+getTaille()>xProjectileG && super.getY()<yProjectileB && super.getY()+getTaille()>yProjectileH;
-    }
-
     public void seDeplace(int cible){
 
         int suivant = deplacement.tileSuivante(indiceTerrain, getEnv().getTerrain().getIndiceCible());
@@ -168,13 +163,6 @@ public abstract class Personnage extends Entite {
 
         malusVitesse = 1;
 
-    }
-
-    public Mur bloquerParMur(){
-        for (Tour tour : getEnv().getTours())
-            if (tour instanceof Mur && estTouché(tour))
-                return (Mur)tour;
-        return null;
     }
 
     public void reculer(int casse){
@@ -226,10 +214,19 @@ public abstract class Personnage extends Entite {
         }
     }
 
+    public int attaqueMur(){
+        if (compteurAttaque>attaqueCooldown){
+            compteurAttaque = 0;
+            return degat;
+        }
+        return 0;
+    }
+
     @Override
     public void action(/*int temps*/) {
         seDeplace(getEnv().getTerrain().getIndiceCible());
         degatEnflamer();
+        compteurAttaque++;
         compteurAction++;
     }
 

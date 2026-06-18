@@ -57,4 +57,9 @@ public class TourDHuile extends TourProjectileLance {
     public boolean estAuNiveauMax() {
         return getNiveau() > 1;
     }
+
+    @Override
+    public String toString() {
+        return "Tour d'huile [ " + super.toString() + " ]" ;
+    }
 }

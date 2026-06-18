@@ -61,4 +61,9 @@ public class TourDeFleche extends TourProjectileLance{
     public boolean estAuNiveauMax() {
         return getNiveau() > 3;
     }
+
+    @Override
+    public String toString() {
+        return "Tour de flèche [ " + super.toString() + " ]" ;
+    }
 }

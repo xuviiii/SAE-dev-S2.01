@@ -29,4 +29,8 @@ public class TourDeSauron extends TourProjectileInstantane {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "TourDeSauron [ " + super.toString() + " ]";
+    }
 }
