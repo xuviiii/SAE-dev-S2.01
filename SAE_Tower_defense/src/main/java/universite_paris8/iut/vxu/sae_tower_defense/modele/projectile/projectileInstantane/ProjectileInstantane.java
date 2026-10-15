@@ -34,6 +34,9 @@ public class ProjectileInstantane extends Projectile {
                 if (enleveCuirasse && alea <= 10) {
                     personnage.enleverCuirasses();
                 }
+
+
+
                 if (teleporte && alea <= 10) {
                     personnage.reculer(5);
                 }
