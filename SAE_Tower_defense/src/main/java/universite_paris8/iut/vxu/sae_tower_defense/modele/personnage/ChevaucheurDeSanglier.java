@@ -11,7 +11,7 @@ public class ChevaucheurDeSanglier extends Personnage {
 
     @Override
     public void action() {
-        setMalusVitesse(1);
+        getGestionnaireDeplacementPersonnage().setMalusVitesse(1);
         super.action();
     }
 }

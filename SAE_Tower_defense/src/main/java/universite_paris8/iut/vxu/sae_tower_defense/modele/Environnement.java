@@ -103,7 +103,7 @@ public class Environnement {
 
         for (int i=0;i<personnages.size();i++) {
             personnages.get(i).action();
-            if (personnages.get(i).getIndiceTerrain() == terrain.getIndiceCible()) {
+            if (personnages.get(i).getGestionnaireDeplacementPersonnage().getIndiceTerrain() == terrain.getIndiceCible()) {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }

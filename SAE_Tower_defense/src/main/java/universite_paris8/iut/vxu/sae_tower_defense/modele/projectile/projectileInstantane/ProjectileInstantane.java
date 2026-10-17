@@ -35,10 +35,11 @@ public class ProjectileInstantane extends Projectile {
                     personnage.enleverCuirasses();
                 }
                 if (teleporte && alea <= 10) {
-                    personnage.reculer(5);
+                    personnage.getGestionnaireDeplacementPersonnage().reculer(5);
                 }
             }
             super.getEnv().getProjectiles().remove(this);
         }
     }
 }
+
