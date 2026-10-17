@@ -47,7 +47,7 @@ public abstract class TourProjectile extends TourHorsChemin {
         List<Personnage> ennemisCiblables;
         Personnage ennemiACible;
 
-        ennemisCiblables = cibleur.ciblerEnnemie();
+        ennemisCiblables = cibleur.ciblerPerso();
 
         if (ennemisCiblables.isEmpty())
             return null;

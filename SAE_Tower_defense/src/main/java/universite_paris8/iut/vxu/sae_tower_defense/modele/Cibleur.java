@@ -16,7 +16,7 @@ public class Cibleur {
         this.entite = entite;
     }
 
-    public ArrayList<Personnage> ciblerEnnemie(){
+    public ArrayList<Personnage> ciblerPerso(){
 
         double h;
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
@@ -29,7 +29,7 @@ public class Cibleur {
         return ennemisCiblables;
     }
 
-    public ArrayList<TourProjectile> ciblerAllie(){
+    public ArrayList<TourProjectile> ciblerTour(){
 
         double h;
 
