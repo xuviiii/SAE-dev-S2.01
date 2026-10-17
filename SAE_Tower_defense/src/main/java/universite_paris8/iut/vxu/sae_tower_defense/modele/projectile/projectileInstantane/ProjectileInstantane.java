@@ -9,14 +9,10 @@ import java.util.ArrayList;
 public class ProjectileInstantane extends Projectile {
 
     private int tailleMax;
-    private boolean enleveCuirasse;
-    private boolean teleporte;
 
-    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax, boolean enleveCuirasse, boolean teleporte) {
+    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax) {
         super(x, y, vitesse, env, 20, degat);
         this.tailleMax = tailleMax;
-        this.enleveCuirasse =enleveCuirasse;
-        this.teleporte = teleporte;
     }
 
     public double getAngle(){return 0;}
@@ -31,14 +27,12 @@ public class ProjectileInstantane extends Projectile {
             ArrayList<Personnage> personnageTouches = projectileTouche();
             for (Personnage personnage : personnageTouches) {
                 personnage.subirDegat(super.getDegat());
-                if (enleveCuirasse && alea <= 10) {
-                    personnage.enleverCuirasses();
-                }
-                if (teleporte && alea <= 10) {
-                    personnage.reculer(5);
-                }
             }
             super.getEnv().getProjectiles().remove(this);
         }
+    }
+
+    public int getTailleMax() {
+        return tailleMax;
     }
 }

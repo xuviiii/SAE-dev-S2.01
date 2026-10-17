@@ -16,6 +16,7 @@ public abstract class Projectile extends Entite {
         compteur++;
 
         this.degat = degat;
+
     }
 
     public int getDegat() {
