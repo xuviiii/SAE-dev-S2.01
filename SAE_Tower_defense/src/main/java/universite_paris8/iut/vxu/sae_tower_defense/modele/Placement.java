@@ -2,7 +2,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeMage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane.TourDeSauron;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.Catapulte;
@@ -10,13 +9,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.to
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.TourSurChemin;
 
 public class Placement {
-    private Environnement map;
+    private Environnement environnement;
 
-    public Placement(Environnement map) {
-        this.map = map;
+    public Placement(Environnement environnement) {
+        this.environnement = environnement;
     }
 
     //créer et renvoie une tour selon un et une position donner
@@ -24,14 +22,14 @@ public class Placement {
         Tour nvTour;
 
         switch (id){
-            case "flêche": nvTour = new TourDeFleche(x+16, y+16, map);break;
-            case "huile": nvTour = new TourDHuile(x+16, y+16, map);break;
-            case "catapulte": nvTour = new Catapulte(x+16, y+16, map,0,0);break;
-            case "mage": nvTour = new TourDeMage(x+16, y+16, map);break;
-            case "sauron": nvTour = new TourDeSauron(x+16, y+16, map);break;
-            case "camp": nvTour = new Camp(x+16, y+16, map);break;
-            case "marais": nvTour = new Marais(x+16, y+16, map);break;
-            case "mur": nvTour = new Mur(x+16, y+16, map);break;
+            case "flêche": nvTour = new TourDeFleche(x+16, y+16, environnement);break;
+            case "huile": nvTour = new TourDHuile(x+16, y+16, environnement);break;
+            case "catapulte": nvTour = new Catapulte(x+16, y+16, environnement,0,0);break;
+            case "mage": nvTour = new TourDeMage(x+16, y+16, environnement);break;
+            case "sauron": nvTour = new TourDeSauron(x+16, y+16, environnement);break;
+            case "camp": nvTour = new Camp(x+16, y+16, environnement);break;
+            case "marais": nvTour = new Marais(x+16, y+16, environnement);break;
+            case "mur": nvTour = new Mur(x+16, y+16, environnement);break;
             default: nvTour = null;break;
         }
         return nvTour;
@@ -52,7 +50,7 @@ public class Placement {
         double x = tour.getX();
         double y = tour.getY();
         double taille = tour.getTaille();
-        for (Tour t:map.getTours()){
+        for (Tour t: environnement.getTours()){
             if((x>= (t.getX()) &&  x<=(t.getX()+t.getTaille())||x+taille>= (t.getX()) &&  x+taille<=(t.getX()+t.getTaille()))
                     && (y>= (t.getY()) && y<=(t.getY()+t.getTaille())||y+taille>= (t.getY()) && y+taille<=(t.getY()+t.getTaille()))){
                 return true;
@@ -68,7 +66,7 @@ public class Placement {
     }
 
     private boolean estSurUnChemin(double x, double y) {
-        Terrain terrain = map.getTerrain();
+        Terrain terrain = environnement.getTerrain();
         return terrain.getMap().get(terrain.indiceTerrain(x, y)) == 1;
     }
 }
