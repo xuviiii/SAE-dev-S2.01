@@ -12,8 +12,8 @@ public abstract class Invocation {
         int indice = invocateur.getIndiceTerrain();
         invoque.setIndiceDepart(invocateur.getIndiceDepart());
         invoque.setIndiceTerrain(indice);
-        invoque.setX(invocateur.getEnv().getTerrain().toX(indice));
-        invoque.setY(invocateur.getEnv().getTerrain().toY(indice));
+        invoque.setX(invocateur.getEnv().getTerrain().positionXdepuisIndice(indice));
+        invoque.setY(invocateur.getEnv().getTerrain().positionYdepuisIndice(indice));
         invocateur.getEnv().ajouterPersonnage(invoque);
     }
 }

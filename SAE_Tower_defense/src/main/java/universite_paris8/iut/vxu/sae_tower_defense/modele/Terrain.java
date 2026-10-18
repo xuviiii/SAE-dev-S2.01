@@ -36,11 +36,11 @@ public class Terrain {
         tailleTile = 60;
     }
 
-    public double toX(int indiceTerrain){
+    public double positionXdepuisIndice(int indiceTerrain){
         return (indiceTerrain % longueurMap) * tailleTile;
     }
 
-    public double toY(int indiceTerrain){
+    public double positionYdepuisIndice(int indiceTerrain){
         return (indiceTerrain / longueurMap) * tailleTile;
     }
 

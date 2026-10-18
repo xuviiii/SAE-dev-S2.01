@@ -126,8 +126,8 @@ public abstract class Personnage extends Entite {
 
         int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
-        double suivant_X = getEnv().getTerrain().toX(suivant);
-        double suivant_Y = getEnv().getTerrain().toY(suivant);
+        double suivant_X = getEnv().getTerrain().positionXdepuisIndice(suivant);
+        double suivant_Y = getEnv().getTerrain().positionYdepuisIndice(suivant);
 
         double dist_x = Math.abs(super.getX() - suivant_X);
         double dist_y = Math.abs(super.getY() - suivant_Y);
@@ -160,8 +160,8 @@ public abstract class Personnage extends Entite {
         List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
         int indice = nbCassereculMax(casse, chemin.size());
         indiceTerrain = chemin.get(indice);
-        setX(getEnv().getTerrain().toX(indiceTerrain));
-        setY(getEnv().getTerrain().toY(indiceTerrain));
+        setX(getEnv().getTerrain().positionXdepuisIndice(indiceTerrain));
+        setY(getEnv().getTerrain().positionYdepuisIndice(indiceTerrain));
     }
 
     public int nbCassereculMax(int casse, int longueurChemin){
