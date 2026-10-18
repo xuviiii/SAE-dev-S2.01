@@ -23,25 +23,17 @@ public class Placement {
     public Tour selctionerTour(String id, double x, double y) {
         Tour nvTour;
 
-
-        if (id.equals("flêche"))
-            nvTour = new TourDeFleche(x+16, y+16, map);
-        else if (id.equals("huile"))
-            nvTour = new TourDHuile(x+16, y+16, map);
-        else if (id.equals("catapulte"))
-            nvTour = new Catapulte(x+16, y+16, map,0,0);
-        else if (id.equals("mage"))
-            nvTour = new TourDeMage(x+16, y+16, map);
-        else if (id.equals("sauron"))
-            nvTour = new TourDeSauron(x+16, y+16, map);
-        else if (id.equals("camp"))
-            nvTour = new Camp(x+16, y+16, map);
-        else if (id.equals("marais"))
-            nvTour = new Marais(x+16, y+16, map);
-        else if (id.equals("mur"))
-            nvTour = new Mur(x+16, y+16, map);
-        else
-            return null;
+        switch (id){
+            case "flêche": nvTour = new TourDeFleche(x+16, y+16, map);break;
+            case "huile": nvTour = new TourDHuile(x+16, y+16, map);break;
+            case "catapulte": nvTour = new Catapulte(x+16, y+16, map,0,0);break;
+            case "mage": nvTour = new TourDeMage(x+16, y+16, map);break;
+            case "sauron": nvTour = new TourDeSauron(x+16, y+16, map);break;
+            case "camp": nvTour = new Camp(x+16, y+16, map);break;
+            case "marais": nvTour = new Marais(x+16, y+16, map);break;
+            case "mur": nvTour = new Mur(x+16, y+16, map);break;
+            default: nvTour = null;break;
+        }
         return nvTour;
     }
 
@@ -80,12 +72,11 @@ public class Placement {
 
     // verifie si il n'y a pas de chemin au cordonner donner
     public boolean horsChemin(double x,double y, int taille){
-        if(map.getTerrain().getMap().get((int)(((x-(x%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+((y-y%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1
-                || map.getTerrain().getMap().get((int)((((x+taille)-((x+taille)%map.getTerrain().getTailleTile()))/ map.getTerrain().getTailleTile())+(((y+taille)-(y+taille)%map.getTerrain().getTailleTile())/ map.getTerrain().getTailleTile())*map.getTerrain().getLongueurMap())) == 1){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return !estSurUnChemin(x, y);
+    }
+
+    private boolean estSurUnChemin(double x, double y) {
+        Terrain terrain = map.getTerrain();
+        return terrain.getMap().get(terrain.indiceTerrain(x, y)) == 1;
     }
 }

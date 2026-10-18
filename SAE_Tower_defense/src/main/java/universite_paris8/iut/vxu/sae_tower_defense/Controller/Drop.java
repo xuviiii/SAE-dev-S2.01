@@ -31,7 +31,7 @@ public class Drop implements EventHandler<DragEvent> {
         tour.setY(event.getY());
 
         //vérifie si on peut placer la tour
-        success = ((((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour.getTaille())  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin)))) && env.getArgent() >= tour.getPrix());
+        success = ((((achat.peutEtrePoserTourHorsChemin(tour.getX(),tour.getY(),tour)  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour.getX(),tour.getY(),tour.getTaille())  && (tour instanceof TourSurChemin)))) && env.getArgent() >= tour.getPrix());
 
         //pose la tour si possible
         if (success){
