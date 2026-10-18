@@ -4,16 +4,13 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.util.*;
 
-public class Dijkstra extends Deplacement {
-
-    DeplacementAleatoire deplacementAlea;
+public class Dijkstra extends Algorithme {
 
     public Dijkstra(Environnement env) {
         super(env);
-        deplacementAlea = new DeplacementAleatoire(env, () -> this.getIndicePrecedent());
     }
 
-    private Map<Integer, Integer> dijkstra(int source) {
+    public Map<Integer, Integer> predecesseurs(int source) {
 
         class IndiceCout implements Comparable<IndiceCout> {
 
@@ -57,34 +54,6 @@ public class Dijkstra extends Deplacement {
         }
 
         return predecesseurs;
-    }
-
-    @Override
-    public List<Integer> parcours(int source){
-
-        List<Integer> parcours;
-        Map<Integer, Integer> predecesseurs = dijkstra(source);
-
-        parcours =  cheminVersLaFin(predecesseurs);
-        if(!cheminVersCibleExiste(parcours, source)){
-            parcours = deplacementAlea.parcours(source);
-        }
-
-        return parcours;
-    }
-
-    @Override
-    public List<Integer> parcours(int source, int cible){
-
-        List<Integer> parcours;
-        Map<Integer, Integer> predecesseurs = dijkstra(source);
-
-        parcours =  cheminVersCible(predecesseurs, cible);
-        if(!cheminVersCibleExiste(parcours, source)){
-            parcours = deplacementAlea.parcours(source);
-        }
-
-        return parcours;
     }
 
 }
