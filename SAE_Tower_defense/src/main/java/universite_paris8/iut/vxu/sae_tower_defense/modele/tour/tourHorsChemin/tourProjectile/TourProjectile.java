@@ -42,6 +42,17 @@ public abstract class TourProjectile extends TourHorsChemin {
         this.boostVitesse = boostVitesse;
     }
 
+    private boolean plusProcheDeLaFin(Personnage personnage, Personnage ennemiACible){
+        return personnage
+                .getDeplacement()
+                .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .size()
+                < ennemiACible
+                .getDeplacement()
+                .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .size();
+    }
+
     public Personnage ennemiACible(){
 
         List<Personnage> ennemisCiblables;
@@ -54,17 +65,9 @@ public abstract class TourProjectile extends TourHorsChemin {
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (personnage
-                        .getDeplacement()
-                        .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
-                        .size()
-                        < ennemiACible
-                        .getDeplacement()
-                        .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
-                        .size()) {
-                    if (!personnage.isCamoufles() || peutciblerCamoufle) {
-                        ennemiACible = personnage;
-                    }
+                if ((ennemiACible.isCamoufles() && !peutciblerCamoufle)
+                        || (plusProcheDeLaFin(personnage, ennemiACible) && (!personnage.isCamoufles() || peutciblerCamoufle))) {
+                    ennemiACible = personnage;
                 }
             if (ennemiACible.isCamoufles() && !peutciblerCamoufle) {
                 ennemiACible = null;
