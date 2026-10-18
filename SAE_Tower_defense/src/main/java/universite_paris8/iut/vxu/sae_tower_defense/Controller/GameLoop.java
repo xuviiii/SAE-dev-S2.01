@@ -42,7 +42,7 @@ public class GameLoop {
             gameLoop.pause();
     }
 
-    public void initAnimation() {
+    public void initLoop() {
 
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 

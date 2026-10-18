@@ -96,7 +96,7 @@ public class Controller implements Initializable {
 
         terrainEntite.setOnMouseClicked(new Menu(map,terrainEntite));
 
-        loop.initAnimation();
+        loop.initLoop();
         loop.lancer();
     }
 
