@@ -112,10 +112,6 @@ public abstract class Deplacement {
         return chemin;
     }
 
-    public List<Integer> cheminVersLaFin(Map<Integer, Integer> predecesseurs) {
-        return cheminVersCible(predecesseurs, env.getTerrain().getIndiceCible());
-    }
-
     public int tileSuivante(int source, int cible) {
         List<Integer> chemin = parcours(source, cible);
 
@@ -130,8 +126,5 @@ public abstract class Deplacement {
 
         return tileSuivante;
     }
-
-    public boolean cheminVersCibleExiste(List<Integer> chemin, int source){
-        return chemin.contains(source);
-    }
+    
 }
