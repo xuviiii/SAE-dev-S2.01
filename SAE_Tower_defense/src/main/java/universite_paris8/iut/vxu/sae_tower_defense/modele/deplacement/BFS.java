@@ -48,7 +48,7 @@ public class BFS extends Deplacement {
         List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = bfs(source);
 
-        parcours =  cheminVersCible(predecesseurs, source);
+        parcours =  cheminVersLaFin(predecesseurs);
         if(!cheminVersCibleExiste(parcours, source)){
             parcours = deplacementAlea.parcours(source);
         }
@@ -62,7 +62,7 @@ public class BFS extends Deplacement {
         List<Integer> parcours;
         Map<Integer, Integer> predecesseurs = bfs(source);
 
-        parcours =  cheminVersCible(predecesseurs, source, cible);
+        parcours =  cheminVersCible(predecesseurs, cible);
         if(!cheminVersCibleExiste(parcours, source)){
             parcours = deplacementAlea.parcours(source);
         }
