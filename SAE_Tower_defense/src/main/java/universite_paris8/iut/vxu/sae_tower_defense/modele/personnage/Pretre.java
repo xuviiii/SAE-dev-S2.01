@@ -11,18 +11,21 @@ public class Pretre extends Personnage {
     private int portee;
     private Cibleur cibleur;
     private int pvSoin;
+    private int compteurAction;
 
     public Pretre(Environnement env){
         super(15 ,0.5, 10, 32, env,new Dijkstra(env),10);
         this.portee = 100;
         this.cibleur = new Cibleur(this.portee, this);
         this.pvSoin = 15;
+        compteurAction = 0;
     }
 
     @Override
     public void action(){
         super.action();
-        if (getCompteurAction() % 200 == 0)
+        compteurAction++;
+        if (compteurAction % 200 == 0)
             soigner();
     }
 
