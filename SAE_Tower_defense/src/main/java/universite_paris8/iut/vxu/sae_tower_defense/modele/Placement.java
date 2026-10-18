@@ -38,32 +38,23 @@ public class Placement {
     }
 
     //verifie si on peut posser une tour hors du chemin
-    public boolean peutEtrePoserTourHorsChemin(double x, double y){
-        return ((!surAutreTourHorsChemin(x,y)) && horsChemin(x,y));
+    public boolean peutEtrePoserTourHorsChemin(Tour tour){
+        return ((!surAutreTour(tour)) && horsChemin(tour));
     }
 
     //verifie si on peut posser une tour sur le chemin
-    public boolean peutEtrePoserTourSurChemin(double x, double y){
-        return ((!surAutreTourSurChemin(x,y)) && !horsChemin(x,y));
+    public boolean peutEtrePoserTourSurChemin(Tour tour){
+        return ((!surAutreTour(tour)) && !horsChemin(tour));
     }
 
     //vérifie si il y une tour au possition donner
-    public boolean surAutreTourHorsChemin(double x,double y){
+    public boolean surAutreTour(Tour tour){
+        double x = tour.getX();
+        double y = tour.getY();
+        double taille = tour.getTaille();
         for (Tour t:map.getTours()){
-            if(t instanceof TourHorsChemin && (x> (t.getX()-t.getTaille()-1) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()-t.getTaille()-1) && y<(t.getY()+t.getTaille()+1))){
-                return true;
-            }
-            if(t instanceof TourSurChemin && (x> (t.getX()- (double) t.getTaille() /2) &&  x<(t.getX()+t.getTaille()+1) && y> (t.getY()- (double) t.getTaille() /2) && y<(t.getY()+t.getTaille()+1))){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //vérifie si il y une tour au possition donner
-    public boolean surAutreTourSurChemin(double x,double y){
-        for (Tour t:map.getTours()){
-            if(x>= (t.getX()) &&  x<(t.getX()+t.getTaille()) && y> (t.getY()) && y<=(t.getY()+t.getTaille())){
+            if((x>= (t.getX()) &&  x<=(t.getX()+t.getTaille())||x+taille>= (t.getX()) &&  x+taille<=(t.getX()+t.getTaille()))
+                    && (y>= (t.getY()) && y<=(t.getY()+t.getTaille())||y+taille>= (t.getY()) && y+taille<=(t.getY()+t.getTaille()))){
                 return true;
             }
         }
@@ -71,8 +62,9 @@ public class Placement {
     }
 
     // verifie si il n'y a pas de chemin au cordonner donner
-    public boolean horsChemin(double x,double y){
-        return !estSurUnChemin(x, y);
+    public boolean horsChemin(Tour tour){
+        return !estSurUnChemin(tour.getX(), tour.getY())
+                && !estSurUnChemin(tour.getX()+ tour.getTaille(), tour.getY() + tour.getTaille());
     }
 
     private boolean estSurUnChemin(double x, double y) {
