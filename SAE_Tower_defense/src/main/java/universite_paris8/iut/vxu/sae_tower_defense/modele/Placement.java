@@ -38,13 +38,13 @@ public class Placement {
     }
 
     //verifie si on peut posser une tour hors du chemin
-    public boolean peutEtrePoserTourHorsChemin(double x, double y, int taille){
-        return ((!surAutreTourHorsChemin(x,y)) && horsChemin(x,y,taille));
+    public boolean peutEtrePoserTourHorsChemin(double x, double y){
+        return ((!surAutreTourHorsChemin(x,y)) && horsChemin(x,y));
     }
 
     //verifie si on peut posser une tour sur le chemin
-    public boolean peutEtrePoserTourSurChemin(double x, double y, int taille){
-        return ((!surAutreTourSurChemin(x,y)) && !horsChemin(x,y,taille));
+    public boolean peutEtrePoserTourSurChemin(double x, double y){
+        return ((!surAutreTourSurChemin(x,y)) && !horsChemin(x,y));
     }
 
     //vérifie si il y une tour au possition donner
@@ -71,7 +71,7 @@ public class Placement {
     }
 
     // verifie si il n'y a pas de chemin au cordonner donner
-    public boolean horsChemin(double x,double y, int taille){
+    public boolean horsChemin(double x,double y){
         return !estSurUnChemin(x, y);
     }
 
