@@ -32,7 +32,7 @@ public class ProjectileInstantane extends Projectile {
             for (Personnage personnage : personnageTouches) {
                 personnage.subirDegat(super.getDegat());
                 if (enleveCuirasse && alea <= 10) {
-                    personnage.enleverCuirasses();
+                    personnage.getGestionnaireEffetPerso().enleverCuirasses();
                 }
                 if (teleporte && alea <= 10) {
                     personnage.reculer(5);

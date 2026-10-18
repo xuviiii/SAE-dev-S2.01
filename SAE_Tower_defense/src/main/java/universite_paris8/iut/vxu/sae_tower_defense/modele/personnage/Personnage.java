@@ -20,10 +20,11 @@ public abstract class Personnage extends Entite {
     private Deplacement deplacement;
     private int gains;
     private IntegerProperty tempEnflamer;
-    private boolean cuirasses;
-    private boolean camoufles;
     private int attaqueCooldown;
     private int compteurAttaque;
+
+    private GestionnaireEffetPerso gestionnaireEffetPerso;
+
 
 
     public Personnage(int pv, double vitesse, int degat,
@@ -40,8 +41,8 @@ public abstract class Personnage extends Entite {
         this.deplacement = deplacement;
         tempEnflamer = new SimpleIntegerProperty(0);
         this.gains = gains;
-        rendreCamoufles();
-        rendreCuirases();
+        gestionnaireEffetPerso.rendreCamoufles();
+        gestionnaireEffetPerso.rendreCuirases();
         attaqueCooldown = 100;
         compteurAttaque = 0;
     }
@@ -58,41 +59,10 @@ public abstract class Personnage extends Entite {
         return tempEnflamer;
     }
 
-    public boolean isCamoufles() {
-        return camoufles;
+    public GestionnaireEffetPerso getGestionnaireEffetPerso() {
+        return gestionnaireEffetPerso;
     }
 
-    public void setCamoufles(boolean camoufles) {
-        this.camoufles = camoufles;
-    }
-
-    public boolean isCuirasses() {
-        return cuirasses;
-    }
-
-    public void enleverCuirasses() {
-        this.cuirasses = false;
-        setTaille((int)(getTaille()/1.3));
-    }
-
-    private void rendreCuirases(){
-        int alea = (int)(Math.random()*100)+1;
-        if(alea <= 20 && getEnv().getVague().getNumVague() > 9){
-            cuirasses = true;
-            setTaille ((int)(getTaille()*1.3));
-        }
-        else {
-            cuirasses = false;
-        }
-    }
-
-    private void rendreCamoufles(){
-        int alea = (int)(Math.random()*100)+1;
-        if(alea <= 20 && getEnv().getVague().getNumVague() > 9)
-            camoufles = true;
-        else
-            camoufles = false;
-    }
 
     public int getPv() {
         return pv;
