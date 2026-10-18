@@ -28,44 +28,52 @@ public class Vague {
     }
 
     public void libererVague(){
-        int alea;
-        Personnage en;
-
         // crée une nouvelle vague
         if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
-            numVague.set(numVague.get()+1);
-            if (numVague.get()%20 == 0){
-                aRelacher.add(new Artha(env));
-            }
-            for (int i = 0; i < (10 * numVague.get()); i++) {
-                alea = (int)(Math.random() * 100);
-                if (alea<25){
-                   en = new GobelinRouge(env);
-                }
-                else if(alea<50){
-                    en = new GobelinNoir(env);
-                }
-                else if (alea < 55 && numVague.get() > 4) {
-                    en = new Pretre(env);
-                } else if (alea < 60 && numVague.get()>8) {
-                    en = new ChevalDeTroie(env, 5);
-                } else if (alea < 70 && numVague.get() > 11) {
-                    en = new ChevaucheurDeSanglier(env);
-                } else {
-                    en = new GobelinVert(env);
-                }
-                aRelacher.add(en);
-            }
+            creerVague();
         }
         // envoie petit a petit les ennemie sur le terrain
         else if (!aRelacher.isEmpty()){
-                en = aRelacher.remove(0);
-                en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
-                en.setIndiceDepart(en.getIndiceTerrain());
-                en.setX(env.getTerrain().positionXdepuisIndice(en.getIndiceTerrain()));
-                en.setY(env.getTerrain().positionYdepuisIndice(en.getIndiceTerrain()));
-                env.ajouterPersonnage(en);
+            envoyerVague();
         }
+    }
+
+    private void creerVague(){
+        Personnage en;
+        numVague.set(numVague.get()+1);
+        if (numVague.get()%20 == 0){
+            aRelacher.add(new Artha(env));
+        }
+        for (int i = 0; i < (10 * numVague.get()); i++) {
+            en = creerEnnemi();
+            aRelacher.add(en);
+        }
+    }
+
+    private Personnage creerEnnemi() {
+        int alea = (int)(Math.random() * 100);
+        int numero = numVague.get();
+        if (alea < 25)
+            return new GobelinRouge(env);
+        if (alea < 50)
+            return new GobelinNoir(env);
+        if (alea < 55 && numero > 4)
+            return new Pretre(env);
+        if (alea < 60 && numero > 8)
+            return new ChevalDeTroie(env, 5);
+        if (alea < 70 && numero > 11)
+            return new ChevaucheurDeSanglier(env);
+        return new GobelinVert(env);
+    }
+
+    public void envoyerVague(){
+        Personnage en;
+        en = aRelacher.remove(0);
+        en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
+        en.setIndiceDepart(en.getIndiceTerrain());
+        en.setX(env.getTerrain().positionXdepuisIndice(en.getIndiceTerrain()));
+        en.setY(env.getTerrain().positionYdepuisIndice(en.getIndiceTerrain()));
+        env.ajouterPersonnage(en);
     }
 }
 
