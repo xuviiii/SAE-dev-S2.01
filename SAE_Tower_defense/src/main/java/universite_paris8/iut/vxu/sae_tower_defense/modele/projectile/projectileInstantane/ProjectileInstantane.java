@@ -19,7 +19,6 @@ public class ProjectileInstantane extends Projectile {
 
     @Override
     public void action() {
-        int alea = (int)(Math.random()*100)+1;
         if (getTaille()<tailleMax){
             setTaille(getTaille()+1);
         }
@@ -27,9 +26,14 @@ public class ProjectileInstantane extends Projectile {
             ArrayList<Personnage> personnageTouches = projectileTouche();
             for (Personnage personnage : personnageTouches) {
                 personnage.subirDegat(super.getDegat());
+                faireEffet(personnage);
             }
             super.getEnv().getProjectiles().remove(this);
         }
+    }
+
+    public void faireEffet(Personnage personnage) {
+        //faire effet est nul car il ni a aucun effet pour les projectiles instantané mais seulement pour sa classe fille Explosion
     }
 
     public int getTailleMax() {

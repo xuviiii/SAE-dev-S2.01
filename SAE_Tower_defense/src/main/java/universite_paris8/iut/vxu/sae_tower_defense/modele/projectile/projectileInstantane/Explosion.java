@@ -16,24 +16,15 @@ public class Explosion extends ProjectileInstantane {
         this.teleporte = teleport;
     }
 
+
     @Override
-    public void action() {
+    public void faireEffet(Personnage personnage) {
         int alea = (int)(Math.random()*100)+1;
-        if (getTaille()<getTailleMax()){
-            setTaille(getTaille()+1);
+        if (enleveCuirasse && alea <= 10) {
+            personnage.enleverCuirasses();
         }
-        else {
-            ArrayList<Personnage> personnageTouches = projectileTouche();
-            for (Personnage personnage : personnageTouches) {
-                personnage.subirDegat(super.getDegat());
-                if (enleveCuirasse && alea <= 10) {
-                    personnage.enleverCuirasses();
-                }
-                if (teleporte && alea <= 10) {
-                    personnage.reculer(5);
-                }
-            }
-            super.getEnv().getProjectiles().remove(this);
+        if (teleporte && alea <= 10) {
+            personnage.reculer(5);
         }
     }
 }
