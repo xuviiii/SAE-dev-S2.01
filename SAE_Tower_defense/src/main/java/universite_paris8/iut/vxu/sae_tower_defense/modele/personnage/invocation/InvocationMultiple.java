@@ -1,6 +1,7 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinNoir;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class InvocationMultiple extends Invocation {
 

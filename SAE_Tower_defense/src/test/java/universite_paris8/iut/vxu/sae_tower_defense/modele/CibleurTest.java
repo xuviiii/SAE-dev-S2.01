@@ -1,9 +1,8 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele;
 
 import org.junit.jupiter.api.Test;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.GobelinVert;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinVert;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
 

@@ -1,4 +1,7 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinVert;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class InvocationApresMort extends Invocation {
 

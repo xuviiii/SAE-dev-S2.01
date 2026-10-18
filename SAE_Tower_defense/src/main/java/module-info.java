@@ -33,4 +33,10 @@ module universite_paris8.iut.vxu.sae_tower_defense {
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement to javafx.fxml;
     exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.boss;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.boss to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun to javafx.fxml;
 }

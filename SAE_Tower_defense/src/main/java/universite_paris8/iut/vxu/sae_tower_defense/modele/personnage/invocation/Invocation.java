@@ -1,8 +1,6 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
-
-import java.util.ArrayList;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public abstract class Invocation {
 
