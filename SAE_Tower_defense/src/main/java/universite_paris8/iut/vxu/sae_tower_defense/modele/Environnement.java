@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Environnement {
 
-
+    private static Environnement envUnique= null;
     private Terrain terrain;
     private IntegerProperty argent;
     private IntegerProperty vie;
@@ -23,7 +23,7 @@ public class Environnement {
     private ObservableList<Projectile> projectiles;
     private Vague vague;
 
-    public Environnement(){
+    private Environnement(){
 
         personnages= FXCollections.observableArrayList();
         tours=FXCollections.observableArrayList();
@@ -32,6 +32,13 @@ public class Environnement {
         vie = new SimpleIntegerProperty();
         terrain = new Terrain();
         vague = new Vague(this);
+    }
+
+    public static Environnement getEnvironnement() {
+       if (envUnique == null){
+           envUnique = new Environnement();
+       }
+       return envUnique;
     }
 
     public void vieDeBase(){vie.set(10);}

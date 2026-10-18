@@ -54,7 +54,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        map = new Environnement();
+        map = Environnement.getEnvironnement();
         dragAndDrop = new DragAndDrop(map, terrainEntite, borderPane);
         vueTerrain = new VueTerrain(tile, map.getTerrain());
         loop=new GameLoop(map);
