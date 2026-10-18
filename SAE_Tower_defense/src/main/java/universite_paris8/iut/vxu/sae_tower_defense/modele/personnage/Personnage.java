@@ -18,7 +18,7 @@ public abstract class Personnage extends Entite {
     private int indiceDepart;
     private int malusVitesse;
     private Deplacement deplacement;
-    private int compteurAction;
+    private int compteurAbilite;
     private int gains;
     private IntegerProperty tempEnflamer;
     private boolean cuirasses;
@@ -39,7 +39,7 @@ public abstract class Personnage extends Entite {
         this.indiceTerrain = 0;
         this.indiceDepart = 0;
         this.deplacement = deplacement;
-        compteurAction = 0;
+        compteurAbilite = 0;
         tempEnflamer = new SimpleIntegerProperty(0);
         this.gains = gains;
         rendreCamoufles();
@@ -183,8 +183,8 @@ public abstract class Personnage extends Entite {
         return this.deplacement;
     }
 
-    public int getCompteurAction() {
-        return compteurAction;
+    public int getCompteurAbilite() {
+        return compteurAbilite;
     }
 
     public int getIndiceDepart() {
@@ -215,7 +215,7 @@ public abstract class Personnage extends Entite {
         seDeplace(getEnv().getTerrain().getIndiceCible());
         degatEnflamer();
         compteurAttaque++;
-        compteurAction++;
+        compteurAbilite++;
     }
 
     @Override

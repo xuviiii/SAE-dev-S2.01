@@ -22,7 +22,7 @@ public class Pretre extends Personnage {
     @Override
     public void action(){
         super.action();
-        if (getCompteurAction() % 200 == 0)
+        if (getCompteurAbilite() % 200 == 0)
             soigner();
     }
 
