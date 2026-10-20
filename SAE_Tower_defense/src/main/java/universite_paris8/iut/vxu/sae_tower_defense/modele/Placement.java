@@ -37,36 +37,50 @@ public class Placement {
 
     //verifie si on peut posser une tour hors du chemin
     public boolean peutEtrePoserTourHorsChemin(Tour tour){
-        return ((!surAutreTour(tour)) && horsChemin(tour));
+        return !surAutreTour(tour) && horsChemin(tour);
     }
 
     //verifie si on peut posser une tour sur le chemin
     public boolean peutEtrePoserTourSurChemin(Tour tour){
-        return ((!surAutreTour(tour)) && !horsChemin(tour));
+        return !tourSurChemin(tour) && estSurUnChemin(tour);
     }
 
     //vérifie si il y une tour au possition donner
     public boolean surAutreTour(Tour tour){
-        double x = tour.getX();
-        double y = tour.getY();
-        double taille = tour.getTaille();
         for (Tour t: environnement.getTours()){
-            if((x>= (t.getX()) &&  x<=(t.getX()+t.getTaille())||x+taille>= (t.getX()) &&  x+taille<=(t.getX()+t.getTaille()))
-                    && (y>= (t.getY()) && y<=(t.getY()+t.getTaille())||y+taille>= (t.getY()) && y+taille<=(t.getY()+t.getTaille()))){
+            if(toursSuperposées(tour,t) || toursSuperposées(t,tour))
                 return true;
-            }
         }
         return false;
     }
 
-    // verifie si il n'y a pas de chemin au cordonner donner
-    public boolean horsChemin(Tour tour){
-        return !estSurUnChemin(tour.getX(), tour.getY())
-                && !estSurUnChemin(tour.getX()+ tour.getTaille(), tour.getY() + tour.getTaille());
+    public boolean toursSuperposées(Tour tour1,Tour tour2){
+        return (tour1.getX()>= (tour2.getX()) &&  tour1.getX()<=(tour2.getX()+tour2.getTaille())||tour1.getX()+ tour1.getTaille()>= (tour2.getX()) &&  tour1.getX()+tour1.getTaille()<=(tour2.getX()+tour2.getTaille()))
+                && (tour1.getY()>= (tour2.getY()) && tour1.getY()<=(tour2.getY()+tour2.getTaille())||tour1.getY()+tour1.getTaille()>= (tour2.getY()) && tour1.getY()+tour1.getTaille()<=(tour2.getY()+tour2.getTaille()));
     }
 
-    private boolean estSurUnChemin(double x, double y) {
+    // verifie si il n'y a pas de chemin au cordonner donner
+    public boolean horsChemin(Tour tour){
+        return !posSurChemin(tour.getX(), tour.getY())
+                && !posSurChemin(tour.getX()+ tour.getTaille(), tour.getY() + tour.getTaille());
+    }
+
+    private boolean estSurUnChemin(Tour tour){
+        return posSurChemin(tour.getX(), tour.getY());
+    }
+
+    private boolean posSurChemin(double x, double y) {
         Terrain terrain = environnement.getTerrain();
         return terrain.getMap().get(terrain.indiceTerrain(x, y)) == 1;
+    }
+
+    public boolean tourSurChemin(Tour tour){
+        Terrain terrain = tour.getEnv().getTerrain();
+        int indice = terrain.indiceTerrain(tour.getX(), tour.getY());
+        for (Tour t: environnement.getTours()){
+            if(t.getX()==terrain.positionXdepuisIndice(indice) && t.getY()==terrain.positionYdepuisIndice(indice))
+                return true;
+        }
+        return false;
     }
 }
