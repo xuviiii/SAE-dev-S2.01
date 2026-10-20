@@ -9,12 +9,12 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommu
 import java.util.ArrayList;
 
 public class Vague {
-    private ArrayList<Personnage> aRelacher;
+    private ArrayList<Personnage> caserne;
     private IntegerProperty numVague;
     private Environnement env;
 
     public Vague(Environnement env) {
-        aRelacher = new ArrayList<>();
+        caserne = new ArrayList<>();
         numVague = new SimpleIntegerProperty(0);
         this.env = env;
     }
@@ -29,24 +29,32 @@ public class Vague {
 
     public void libererVague(){
         // crée une nouvelle vague
-        if (env.getPersonnages().isEmpty() && aRelacher.isEmpty()) {
+        if (tousEnnemisMorts()) {
             creerVague();
         }
         // envoie petit a petit les ennemie sur le terrain
-        else if (!aRelacher.isEmpty()){
+        else if (ennemisDansLaCaserne()){
             envoyerVague();
         }
+    }
+
+    private boolean tousEnnemisMorts(){
+        return env.getPersonnages().isEmpty() && caserne.isEmpty();
+    }
+
+    private boolean ennemisDansLaCaserne(){
+        return !caserne.isEmpty();
     }
 
     private void creerVague(){
         Personnage en;
         numVague.set(numVague.get()+1);
         if (numVague.get()%20 == 0){
-            aRelacher.add(new Artha(env));
+            caserne.add(new Artha(env));
         }
         for (int i = 0; i < (10 * numVague.get()); i++) {
             en = creerEnnemi();
-            aRelacher.add(en);
+            caserne.add(en);
         }
     }
 
@@ -68,7 +76,7 @@ public class Vague {
 
     public void envoyerVague(){
         Personnage en;
-        en = aRelacher.remove(0);
+        en = caserne.remove(0);
         en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
         en.setIndiceDepart(en.getIndiceTerrain());
         en.setX(env.getTerrain().positionXdepuisIndice(en.getIndiceTerrain()));
