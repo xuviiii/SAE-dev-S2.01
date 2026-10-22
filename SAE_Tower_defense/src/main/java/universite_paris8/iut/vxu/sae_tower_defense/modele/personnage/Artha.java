@@ -19,10 +19,10 @@ public class Artha extends Boss {
             System.out.println("Invoquer");
             tempsInvocation =0;
             Personnage perso = new GobelinNoir(getEnv());
-            perso.setIndiceDepart(getIndiceDepart());
-            perso.setIndiceTerrain(getIndiceTerrain());
-            perso.setX(getEnv().getTerrain().toX(getIndiceTerrain()));
-            perso.setY(getEnv().getTerrain().toY(getIndiceTerrain()));
+            perso.getGestionnaireDeplacementPersonnage().setIndiceDepart(getGestionnaireDeplacementPersonnage().getIndiceDepart());
+            perso.getGestionnaireDeplacementPersonnage().setIndiceTerrain(getGestionnaireDeplacementPersonnage().getIndiceTerrain());
+            perso.setX(getEnv().getTerrain().toX(getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+            perso.setY(getEnv().getTerrain().toY(getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
             getEnv().ajouterPersonnage(perso);
         }
     }

@@ -14,9 +14,9 @@ public class Marais extends TourSurChemin {
         for (Personnage ennemi : super.getEnv().getPersonnages())
             if (ennemi.estTouché(this))
                 if (getNiveau()==0)
-                    ennemi.setMalusVitesse(10);
+                    ennemi.getGestionnaireDeplacementPersonnage().setMalusVitesse(10);
                 else if (getNiveau()==1)
-                    ennemi.setMalusVitesse(20);
+                    ennemi.getGestionnaireDeplacementPersonnage().setMalusVitesse(20);
     }
 
 

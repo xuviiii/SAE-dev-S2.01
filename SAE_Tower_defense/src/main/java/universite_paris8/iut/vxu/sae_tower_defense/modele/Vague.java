@@ -58,10 +58,10 @@ public class Vague {
         // envoie petit a petit les ennemie sur le terrain
         else if (!aRelacher.isEmpty()){
                 en = aRelacher.remove(0);
-                en.setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
-                en.setIndiceDepart(en.getIndiceTerrain());
-                en.setX(env.getTerrain().toX(en.getIndiceTerrain()));
-                en.setY(env.getTerrain().toY(en.getIndiceTerrain()));
+                en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
+                en.getGestionnaireDeplacementPersonnage().setIndiceDepart(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain());
+                en.setX(env.getTerrain().toX(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+                en.setY(env.getTerrain().toY(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
                 env.ajouterPersonnage(en);
         }
     }

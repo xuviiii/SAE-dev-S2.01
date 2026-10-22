@@ -5,23 +5,36 @@ import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire.GestionnaireDeplacementPersonnage;
 
 import java.util.List;
 
 public abstract class Personnage extends Entite {
 
     private static int compteur = 0;
+
     private int pv;
     private int pvMax;
     private int degat;
-    private int indiceTerrain;
-    private int indiceDepart;
-    private int malusVitesse;
-    private Deplacement deplacement;
-    private int gains;
-    private IntegerProperty tempEnflamer;
     private int attaqueCooldown;
     private int compteurAttaque;
+    private IntegerProperty tempEnflamer;
+
+
+    private boolean cuirasses;
+
+    private GestionnaireDeplacementPersonnage gestionnaireDeplacementPersonnage;
+
+    private int gains; //valeur pour les gold
+
+    private boolean camoufles;
+
+    private int compteurAction; //a changé de classe
+
+    public GestionnaireDeplacementPersonnage getGestionnaireDeplacementPersonnage() {
+        return gestionnaireDeplacementPersonnage;
+    }
+
 
     private GestionnaireEffetPerso gestionnaireEffetPerso;
 
@@ -35,10 +48,12 @@ public abstract class Personnage extends Entite {
         this.pv = pv;
         this.pvMax = pv;
         this.degat = degat;
-        malusVitesse = 1;
-        this.indiceTerrain = 0;
-        this.indiceDepart = 0;
-        this.deplacement = deplacement;
+        this.gestionnaireDeplacementPersonnage = new GestionnaireDeplacementPersonnage(0,0,1,deplacement,this );
+//        malusVitesse = 1;
+//        this.indiceTerrain = 0;
+//        this.indiceDepart = 0;
+//        this.deplacement = deplacement;
+        compteurAction = 0;
         tempEnflamer = new SimpleIntegerProperty(0);
         this.gains = gains;
         gestionnaireEffetPerso.rendreCamoufles();
@@ -72,10 +87,6 @@ public abstract class Personnage extends Entite {
         this.pv = (Math.min(pv, this.pvMax));
     }
 
-    public void setMalusVitesse(int malusVitesse) {
-        this.malusVitesse = malusVitesse;
-    }
-
     public int getDegat() {
         return degat;
     }
@@ -90,47 +101,7 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public void seDeplace(int cible){
 
-        int suivant = deplacement.tileSuivante(indiceTerrain, cible);
-
-        double suivant_X = getEnv().getTerrain().toX(suivant);
-        double suivant_Y = getEnv().getTerrain().toY(suivant);
-
-        double dist_x = Math.abs(super.getX() - suivant_X);
-        double dist_y = Math.abs(super.getY() - suivant_Y);
-
-        if(super.getX() > suivant_X){
-            super.setX(super.getX() - (Math.min(super.getVitesse()/malusVitesse, dist_x)));
-        }
-
-        if(super.getX() < suivant_X){
-            super.setX(super.getX() + (Math.min(super.getVitesse()/malusVitesse, dist_x)));
-        }
-
-        if(super.getY() > suivant_Y){
-            super.setY(super.getY() - (Math.min(super.getVitesse()/malusVitesse, dist_y)));
-        }
-
-        if(super.getY() < suivant_Y){
-            super.setY(super.getY() + (Math.min(super.getVitesse()/malusVitesse, dist_y)));
-        }
-
-        if(super.getX() == suivant_X && super.getY() == suivant_Y){
-            indiceTerrain = suivant;
-        }
-
-        malusVitesse = 1;
-
-    }
-
-    public void reculer(int casse){
-        List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
-        int indice = nbCassereculMax(casse, chemin.size());
-        indiceTerrain = chemin.get(indice);
-        setX(getEnv().getTerrain().toX(indiceTerrain));
-        setY(getEnv().getTerrain().toY(indiceTerrain));
-    }
 
     public int nbCassereculMax(int casse, int longueurChemin){
         for (int i=0; i < casse ; i++)
@@ -139,25 +110,6 @@ public abstract class Personnage extends Entite {
         return 0;
     }
 
-    public int getIndiceTerrain(){
-        return indiceTerrain;
-    }
-
-    public void setIndiceTerrain(int indiceTerrain) {
-        this.indiceTerrain = indiceTerrain;
-    }
-
-    public Deplacement getDeplacement(){
-        return this.deplacement;
-    }
-
-    public int getIndiceDepart() {
-        return this.indiceDepart;
-    }
-
-    public void setIndiceDepart(int indiceDepart) {
-        this.indiceDepart = indiceDepart;
-    }
 
     private void degatEnflamer(){
         if (tempEnflamer.get() > 0){
@@ -176,9 +128,10 @@ public abstract class Personnage extends Entite {
 
     @Override
     public void action(/*int temps*/) {
-        seDeplace(getEnv().getTerrain().getIndiceCible());
+        gestionnaireDeplacementPersonnage.seDeplace(getEnv().getTerrain().getIndiceCible());
         degatEnflamer();
         compteurAttaque++;
+        compteurAction++;
     }
 
     @Override

@@ -67,13 +67,13 @@ public abstract class TourProjectile extends TourHorsChemin {
     }
 
     public Boolean EstABonneDistance(Personnage personnage,Personnage ennemiACible){
-        return personnage
+        return personnage.getGestionnaireDeplacementPersonnage()
                 .getDeplacement()
-                .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
                 .size()
-                < ennemiACible
+                < ennemiACible.getGestionnaireDeplacementPersonnage()
                 .getDeplacement()
-                .parcours(personnage.getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
                 .size();
     }
 

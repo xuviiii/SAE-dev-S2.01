@@ -24,7 +24,7 @@ public class Mur extends TourSurChemin {
         adjacents = Deplacement.adjacents(getEnv(),indice);
 
         for (Personnage personnage : getEnv().getPersonnages()){
-            if (adjacents.contains(personnage.getIndiceTerrain()))
+            if (adjacents.contains(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain()))
                 pv -= personnage.attaqueMur();
         }
         if (pv<=0)

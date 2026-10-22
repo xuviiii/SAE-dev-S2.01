@@ -11,7 +11,7 @@ public class ChevalDeTroie extends Personnage {
     public ChevalDeTroie(Environnement env, int nbPersonnages) {
         super(30, 0.5, 10, 48, env, new Dijkstra(env), 5);
         this.nbPersonnages = nbPersonnages;
-        distanceInit = getDeplacement().parcours(getIndiceTerrain()).size();
+        distanceInit = getGestionnaireDeplacementPersonnage().getDeplacement().parcours(getGestionnaireDeplacementPersonnage().getIndiceTerrain()).size();
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ChevalDeTroie extends Personnage {
     }
 
     private boolean seDecharge() {
-        int distanceCible = getDeplacement().parcours(getIndiceTerrain()).size();
+        int distanceCible = getGestionnaireDeplacementPersonnage().getDeplacement().parcours(getGestionnaireDeplacementPersonnage().getIndiceTerrain()).size();
         int rand = (int) (Math.random() * 6) + 1;
         rand = rand - 3;
         return (distanceCible + rand) < (distanceInit / 2);
@@ -36,16 +36,16 @@ public class ChevalDeTroie extends Personnage {
         for (int i = 0; i < nbPersonnages; i++) {
 
             cible = (i < nbPersonnages / 2)
-                    ? getIndiceDepart()
+                    ? getGestionnaireDeplacementPersonnage().getIndiceDepart()
                     : getEnv().getTerrain().getIndiceCible();
 
             GobelinVert gobelin = new GobelinVert(getEnv());
-            gobelin.setIndiceTerrain(getIndiceTerrain());
-            gobelin.setX(getEnv().getTerrain().toX(getIndiceTerrain()));
-            gobelin.setY(getEnv().getTerrain().toY(getIndiceTerrain()));
+            gobelin.getGestionnaireDeplacementPersonnage().setIndiceTerrain(getGestionnaireDeplacementPersonnage().getIndiceTerrain());
+            gobelin.setX(getEnv().getTerrain().toX(getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+            gobelin.setY(getEnv().getTerrain().toY(getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
 
             for (int j = 0; j < 8 * (i + 1); j++) {
-                gobelin.seDeplace(cible);
+                gobelin.getGestionnaireDeplacementPersonnage().seDeplace(cible);
             }
             getEnv().ajouterPersonnage(gobelin);
         }
