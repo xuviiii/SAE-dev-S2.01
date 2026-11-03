@@ -15,21 +15,7 @@ public class Dijkstra extends Deplacement {
 
     private Map<Integer, Integer> dijkstra(int source) {
 
-        class IndiceCout implements Comparable<IndiceCout> {
 
-            private int indice;
-            private int cout;
-
-            public IndiceCout(int indice, int cout) {
-                this.indice = indice;
-                this.cout = cout;
-            }
-
-            @Override
-            public int compareTo(IndiceCout indiceCout) {
-                return this.cout - indiceCout.cout;
-            }
-        }
 
         PriorityQueue<IndiceCout> fifo = new PriorityQueue<>();
         Map<Integer, Integer> predecesseurs = new HashMap<>();
@@ -41,7 +27,7 @@ public class Dijkstra extends Deplacement {
 
         while (!fifo.isEmpty()) {
 
-            Integer courant = fifo.poll().indice;
+            Integer courant = fifo.poll().getIndice();
 
             for (Integer adjacent : Deplacement.adjacents(getEnv(), courant)) {
 

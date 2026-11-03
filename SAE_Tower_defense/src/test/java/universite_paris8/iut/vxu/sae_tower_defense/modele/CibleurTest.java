@@ -3,7 +3,6 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele;
 import org.junit.jupiter.api.Test;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.GobelinVert;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
-import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.Camp;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance.TourDeFleche;
 
@@ -26,16 +25,16 @@ class CibleurTest {
         Environnement env = new Environnement();
         Cibleur cibleur = new Cibleur(10, new TourDeFleche(20,20,env));
         ArrayList attendue= new ArrayList<>();
-        assertEquals(attendue, cibleur.ciblerEnnemie(), "cas pas d'ennemie" );
+        assertEquals(attendue, cibleur.ciblerPerso(), "cas pas d'ennemie" );
         ajouterNvPersoEnv(env, 35, 35);
-        assertEquals(attendue, cibleur.ciblerEnnemie(), "ennemie hors-porter" );
+        assertEquals(attendue, cibleur.ciblerPerso(), "ennemie hors-porter" );
         for(int i=0; i<3; i++){
             ajouterNvPersoEnv(env, 27+i, 20);
             attendue.add(env.getPersonnages().get(env.getPersonnages().size()-1));
         }
-        assertEquals(attendue, cibleur.ciblerEnnemie(), "cas normal" );
+        assertEquals(attendue, cibleur.ciblerPerso(), "cas normal" );
         env.ajouterTour(new TourDeFleche(25,25,env));
-        assertEquals(attendue, cibleur.ciblerEnnemie(), "alier a porter" );
+        assertEquals(attendue, cibleur.ciblerPerso(), "alier a porter" );
     }
 
     @Test
@@ -43,15 +42,15 @@ class CibleurTest {
         Environnement env = new Environnement();
         Cibleur cibleur = new Cibleur(10, new Camp(20,20,env));
         ArrayList attendue= new ArrayList<>();
-        assertEquals(attendue, cibleur.ciblerAllie(), "cas pas d'alier" );
+        assertEquals(attendue, cibleur.ciblerTour(), "cas pas d'alier" );
         env.ajouterTour(new TourDeFleche(35,35,env));
-        assertEquals(attendue, cibleur.ciblerAllie(), "alier hors-porter" );
+        assertEquals(attendue, cibleur.ciblerTour(), "alier hors-porter" );
         for(int i=0; i<3; i++){
             env.ajouterTour(new TourDeFleche(27+i,20,env));
             attendue.add(env.getTours().get(env.getTours().size()-1));
         }
-        assertEquals(attendue, cibleur.ciblerAllie(), "cas normal" );
+        assertEquals(attendue, cibleur.ciblerTour(), "cas normal" );
         ajouterNvPersoEnv(env, 25, 25);;
-        assertEquals(attendue, cibleur.ciblerAllie(), "ennemie a porter" );
+        assertEquals(attendue, cibleur.ciblerTour(), "ennemie a porter" );
     }
 }

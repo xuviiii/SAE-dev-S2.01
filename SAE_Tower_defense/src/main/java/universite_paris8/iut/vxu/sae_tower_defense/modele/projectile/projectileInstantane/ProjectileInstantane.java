@@ -6,7 +6,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 
 import java.util.ArrayList;
 
-public class ProjectileInstantane extends Projectile {
+public abstract class ProjectileInstantane extends Projectile {
 
     private int tailleMax;
     private boolean enleveCuirasse;
@@ -34,6 +34,9 @@ public class ProjectileInstantane extends Projectile {
                 if (enleveCuirasse && alea <= 10) {
                     personnage.enleverCuirasses();
                 }
+
+
+
                 if (teleporte && alea <= 10) {
                     personnage.reculer(5);
                 }
