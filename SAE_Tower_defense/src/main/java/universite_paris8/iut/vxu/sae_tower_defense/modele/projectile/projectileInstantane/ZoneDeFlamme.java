@@ -21,7 +21,7 @@ public class ZoneDeFlamme extends Projectile {
             if (ennemi.estTouché(this) && !ennemi.isCuirasses())
                 ennemi.subirDegat(super.getDegat());
         compteur++;
-        if (compteur == 200)
+        if (compteur == 200*multiplicateurDurer)
             getEnv().getProjectiles().remove(this);
     }
 
