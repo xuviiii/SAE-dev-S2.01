@@ -99,7 +99,7 @@ public abstract class Deplacement {
         return indicesCasesContigues(env, indice, i -> i > 0);
     }
 
-    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs, int source,  int cible) {
+    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs,  int cible) {
         List<Integer> chemin = new ArrayList<>();
         Integer courant = cible;
         while(courant != null){
@@ -110,10 +110,6 @@ public abstract class Deplacement {
         Collections.reverse(chemin);
 
         return chemin;
-    }
-
-    public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs, int source) {
-        return cheminVersCible(predecesseurs, source, env.getTerrain().getIndiceCible());
     }
 
     public int tileSuivante(int source, int cible) {
@@ -130,8 +126,5 @@ public abstract class Deplacement {
 
         return tileSuivante;
     }
-
-    public boolean cheminVersCibleExiste(List<Integer> chemin, int source){
-        return chemin.contains(source);
-    }
+    
 }
