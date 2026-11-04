@@ -21,10 +21,10 @@ public class Explosion extends ProjectileInstantane {
     public void faireEffet(Personnage personnage) {
         int alea = (int)(Math.random()*100)+1;
         if (enleveCuirasse && alea <= 10) {
-            personnage.enleverCuirasses();
+            personnage.getGestionnaireEffetPerso().enleverCuirasses();
         }
         if (teleporte && alea <= 10) {
-            personnage.reculer(5);
+            personnage.getGestionnaireDeplacementPersonnage().reculer(5);
         }
     }
 }

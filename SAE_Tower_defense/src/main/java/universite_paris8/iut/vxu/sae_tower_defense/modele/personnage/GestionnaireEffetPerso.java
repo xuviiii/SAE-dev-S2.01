@@ -33,4 +33,12 @@ public class GestionnaireEffetPerso {
     public void setCamoufles(boolean camoufles) {
         this.camoufles = camoufles;
     }
+
+    public Boolean isCamoufles() {
+        return camoufles;
+    }
+
+    public Boolean isCuirasses() {
+        return cuirasses;
+    }
 }

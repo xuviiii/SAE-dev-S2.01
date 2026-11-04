@@ -10,7 +10,7 @@ public class ProjectileInstantane extends Projectile {
 
     private int tailleMax;
 
-    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax, boolean enleveCuirasse, boolean teleporte) {
+    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax) {
         super(x, y, vitesse, env, 20, degat);
         this.tailleMax = tailleMax;
     }

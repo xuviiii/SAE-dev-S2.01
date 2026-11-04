@@ -26,10 +26,10 @@ public class ObsPerso implements ListChangeListener<Personnage> {
                 sprite.translateYProperty().bind(personnage.getYProperty());
 
                 //change le sprite selon leur qi il sont camouflé, cuirassé ou enflamer
-                if(personnage.isCamoufles()){
+                if(personnage.getGestionnaireEffetPerso().isCamoufles()){
                     sprite.setOpacity(0.5);
                 }
-                if (personnage.isCuirasses()){
+                if (personnage.getGestionnaireEffetPerso().isCuirasses()){
                     sprite.fitWidthProperty().bind(personnage.getTailleProperty());
                 }
                 personnage.tempEnflamerProperty().addListener((obs,old,nv)-> {

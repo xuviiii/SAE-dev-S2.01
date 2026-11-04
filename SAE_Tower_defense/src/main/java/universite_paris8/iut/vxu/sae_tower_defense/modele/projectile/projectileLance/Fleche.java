@@ -17,7 +17,7 @@ public class Fleche extends ProjectileTranspercant{
     @Override
     public void attaquer(Personnage personnage) {
         if (!getEnnemisTouches().contains(personnage)) {
-            if (!personnage.isCuirasses()) {
+            if (!personnage.getGestionnaireEffetPerso().isCuirasses()) {
                 personnage.subirDegat(super.getDegat());
             }
             getEnnemisTouches().add(personnage);
