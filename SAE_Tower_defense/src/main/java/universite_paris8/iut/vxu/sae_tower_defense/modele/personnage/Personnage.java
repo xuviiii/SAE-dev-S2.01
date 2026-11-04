@@ -35,10 +35,7 @@ public abstract class Personnage extends Entite {
         return gestionnaireDeplacementPersonnage;
     }
 
-
     private GestionnaireEffetPerso gestionnaireEffetPerso;
-
-
 
     public Personnage(int pv, double vitesse, int degat,
                       int taille, Environnement env, Deplacement deplacement, int gains){
@@ -48,6 +45,7 @@ public abstract class Personnage extends Entite {
         this.pv = pv;
         this.pvMax = pv;
         this.degat = degat;
+        this.gestionnaireEffetPerso = new GestionnaireEffetPerso();
         this.gestionnaireDeplacementPersonnage = new GestionnaireDeplacementPersonnage(0,0,1,deplacement,this );
 //        malusVitesse = 1;
 //        this.indiceTerrain = 0;
