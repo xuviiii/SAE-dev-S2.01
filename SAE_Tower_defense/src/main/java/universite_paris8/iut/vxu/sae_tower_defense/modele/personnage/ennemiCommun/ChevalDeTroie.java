@@ -1,0 +1,23 @@
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Dijkstra;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation.Invocation;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation.InvocationApresMort;
+
+public class ChevalDeTroie extends Personnage {
+
+    private final Invocation invocation;
+
+    public ChevalDeTroie(Environnement env, int nbPersonnages) {
+        super(30, 0.5, 10, 48, env, new Dijkstra(env), 5);
+        invocation = new InvocationApresMort(nbPersonnages,getGestionnaireDeplacementPersonnage().getDeplacement().parcours(getGestionnaireDeplacementPersonnage().getIndiceTerrain()).size());
+    }
+
+    @Override
+    public void action() {
+        super.action();
+        invocation.action(this);
+    }
+}

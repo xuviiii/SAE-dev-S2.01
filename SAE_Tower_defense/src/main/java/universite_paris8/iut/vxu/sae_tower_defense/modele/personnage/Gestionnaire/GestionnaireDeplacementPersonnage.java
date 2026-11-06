@@ -50,8 +50,8 @@ public class GestionnaireDeplacementPersonnage {
 
         int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
-        double suivant_X = personnage.getEnv().getTerrain().toX(suivant);    //lorsqu'on aura un environnement avec un singleton on pourra modifié cette ligne
-        double suivant_Y = personnage.getEnv().getTerrain().toY(suivant);
+        double suivant_X = personnage.getEnv().getTerrain().positionXdepuisIndice(suivant);    //lorsqu'on aura un environnement avec un singleton on pourra modifié cette ligne
+        double suivant_Y = personnage.getEnv().getTerrain().positionYdepuisIndice(suivant);
 
         double dist_x = Math.abs(personnage.getX() - suivant_X);
         double dist_y = Math.abs(personnage.getY() - suivant_Y);
@@ -84,8 +84,8 @@ public class GestionnaireDeplacementPersonnage {
         List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
         int indice = nbCassereculMax(casse, chemin.size());
         indiceTerrain = chemin.get(indice);
-        personnage.setX(personnage.getEnv().getTerrain().toX(indiceTerrain));
-        personnage.setY(personnage.getEnv().getTerrain().toY(indiceTerrain));
+        personnage.setX(personnage.getEnv().getTerrain().positionXdepuisIndice(indiceTerrain));
+        personnage.setY(personnage.getEnv().getTerrain().positionYdepuisIndice(indiceTerrain));
     }
     public int nbCassereculMax(int casse, int longueurChemin){
         for (int i=0; i < casse ; i++)

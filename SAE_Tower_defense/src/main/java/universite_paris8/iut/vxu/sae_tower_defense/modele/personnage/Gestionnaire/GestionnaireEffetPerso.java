@@ -1,10 +1,16 @@
-package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage;
+package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire;
+
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class GestionnaireEffetPerso {
 
     private boolean cuirasses;
     private boolean camoufles;
     private Personnage personnage;
+
+    public GestionnaireEffetPerso(Personnage personnage) {
+        this.personnage = personnage;
+    }
 
     public void enleverCuirasses() {
         this.cuirasses = false;

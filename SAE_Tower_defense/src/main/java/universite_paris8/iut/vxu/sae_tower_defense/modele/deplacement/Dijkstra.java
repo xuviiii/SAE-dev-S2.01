@@ -4,32 +4,15 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 import java.util.*;
 
-public class Dijkstra extends Deplacement {
-
-    DeplacementAleatoire deplacementAlea;
+public class Dijkstra extends Algorithme {
 
     public Dijkstra(Environnement env) {
         super(env);
-        deplacementAlea = new DeplacementAleatoire(env, () -> this.getIndicePrecedent());
     }
 
-    private Map<Integer, Integer> dijkstra(int source) {
+    public Map<Integer, Integer> predecesseurs(int source) {
 
-        class IndiceCout implements Comparable<IndiceCout> {
 
-            private int indice;
-            private int cout;
-
-            public IndiceCout(int indice, int cout) {
-                this.indice = indice;
-                this.cout = cout;
-            }
-
-            @Override
-            public int compareTo(IndiceCout indiceCout) {
-                return this.cout - indiceCout.cout;
-            }
-        }
 
         PriorityQueue<IndiceCout> fifo = new PriorityQueue<>();
         Map<Integer, Integer> predecesseurs = new HashMap<>();
@@ -41,7 +24,7 @@ public class Dijkstra extends Deplacement {
 
         while (!fifo.isEmpty()) {
 
-            Integer courant = fifo.poll().indice;
+            Integer courant = fifo.poll().getIndice();
 
             for (Integer adjacent : Deplacement.adjacents(getEnv(), courant)) {
 
@@ -57,34 +40,6 @@ public class Dijkstra extends Deplacement {
         }
 
         return predecesseurs;
-    }
-
-    @Override
-    public List<Integer> parcours(int source){
-
-        List<Integer> parcours;
-        Map<Integer, Integer> predecesseurs = dijkstra(source);
-
-        parcours =  cheminVersCible(predecesseurs, source);
-        if(!cheminVersCibleExiste(parcours, source)){
-            parcours = deplacementAlea.parcours(source);
-        }
-
-        return parcours;
-    }
-
-    @Override
-    public List<Integer> parcours(int source, int cible){
-
-        List<Integer> parcours;
-        Map<Integer, Integer> predecesseurs = dijkstra(source);
-
-        parcours =  cheminVersCible(predecesseurs, source, cible);
-        if(!cheminVersCibleExiste(parcours, source)){
-            parcours = deplacementAlea.parcours(source);
-        }
-
-        return parcours;
     }
 
 }

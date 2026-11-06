@@ -19,7 +19,7 @@ public class Camp extends TourHorsChemin {
 
     @Override
     public void agir() {
-        ArrayList<TourProjectile> toursABooster = cibleur.ciblerAllie();
+        ArrayList<TourProjectile> toursABooster = cibleur.ciblerTour();
         for (TourProjectile tourProjectile : toursABooster)
             if (!toursBoostes.contains(tourProjectile)){
                 if (getNiveau()>=0)
