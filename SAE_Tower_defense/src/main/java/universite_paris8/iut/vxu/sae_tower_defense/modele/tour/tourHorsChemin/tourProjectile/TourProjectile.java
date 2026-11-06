@@ -42,22 +42,33 @@ public abstract class TourProjectile extends TourHorsChemin {
         this.boostVitesse = boostVitesse;
     }
 
+    private boolean plusProcheDeLaFin(Personnage personnage, Personnage ennemiACible){
+        return personnage
+                .getGestionnaireDeplacementPersonnage().getDeplacement()
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .size()
+                < ennemiACible
+                .getGestionnaireDeplacementPersonnage().getDeplacement()
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .size();
+    }
+
     public Personnage ennemiACible(){
 
         List<Personnage> ennemisCiblables;
         Personnage ennemiACible;
 
-        ennemisCiblables = cibleur.ciblerEnnemie();
+        ennemisCiblables = cibleur.ciblerPerso();
 
         if (ennemisCiblables.isEmpty())
             return null;
         else{
             ennemiACible = ennemisCiblables.get(0);
             for (Personnage personnage : ennemisCiblables)
-                if (EstABonneDistance(personnage, ennemiACible)) {
-                    if (!personnage.getGestionnaireEffetPerso().isCamoufles() || peutciblerCamoufle) {
-                        ennemiACible = personnage;
-                    }
+
+                if ((ennemiACible.getGestionnaireEffetPerso().isCamoufles() && !peutciblerCamoufle)
+                        || (plusProcheDeLaFin(personnage, ennemiACible) && (!personnage.getGestionnaireEffetPerso().isCamoufles() || peutciblerCamoufle))) {
+                    ennemiACible = personnage;
                 }
             if (ennemiACible.getGestionnaireEffetPerso().isCamoufles() && !peutciblerCamoufle) {
                 ennemiACible = null;
@@ -66,16 +77,7 @@ public abstract class TourProjectile extends TourHorsChemin {
         }
     }
 
-    public Boolean EstABonneDistance(Personnage personnage,Personnage ennemiACible){
-        return personnage.getGestionnaireDeplacementPersonnage()
-                .getDeplacement()
-                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
-                .size()
-                < ennemiACible.getGestionnaireDeplacementPersonnage()
-                .getDeplacement()
-                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
-                .size();
-    }
+
 
 
     public abstract void creerProjectile(double x,double y);

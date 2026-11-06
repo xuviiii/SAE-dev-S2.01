@@ -6,8 +6,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire.GestionnaireDeplacementPersonnage;
-
-import java.util.List;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire.GestionnaireEffetPerso;
 
 public abstract class Personnage extends Entite {
 
@@ -31,21 +30,16 @@ public abstract class Personnage extends Entite {
 
     private int compteurAction; //a changé de classe
 
-    public GestionnaireDeplacementPersonnage getGestionnaireDeplacementPersonnage() {
-        return gestionnaireDeplacementPersonnage;
-    }
-
     private GestionnaireEffetPerso gestionnaireEffetPerso;
 
-    public Personnage(int pv, double vitesse, int degat,
-                      int taille, Environnement env, Deplacement deplacement, int gains){
+    public Personnage(int pv, double vitesse, int degat, int taille, Environnement env, Deplacement deplacement, int gains){
         super("p"+compteur,0,0,vitesse,env,taille);
         compteur++;
 
         this.pv = pv;
         this.pvMax = pv;
         this.degat = degat;
-        this.gestionnaireEffetPerso = new GestionnaireEffetPerso();
+        this.gestionnaireEffetPerso = new GestionnaireEffetPerso(this);
         this.gestionnaireDeplacementPersonnage = new GestionnaireDeplacementPersonnage(0,0,1,deplacement,this );
 //        malusVitesse = 1;
 //        this.indiceTerrain = 0;
@@ -70,6 +64,10 @@ public abstract class Personnage extends Entite {
 
     public IntegerProperty tempEnflamerProperty() {
         return tempEnflamer;
+    }
+
+    public GestionnaireDeplacementPersonnage getGestionnaireDeplacementPersonnage() {
+        return gestionnaireDeplacementPersonnage;
     }
 
     public GestionnaireEffetPerso getGestionnaireEffetPerso() {
@@ -98,8 +96,6 @@ public abstract class Personnage extends Entite {
     public void meurt(){
         setPv(0);
     }
-
-
 
     public int nbCassereculMax(int casse, int longueurChemin){
         for (int i=0; i < casse ; i++)
