@@ -9,15 +9,23 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommu
 
 import java.util.ArrayList;
 
-public class Vague {
+public class GestionVague {
+    private static GestionVague uniqueInstance = null;
     private ArrayList<Personnage> caserne;
     private IntegerProperty numVague;
     private Environnement env;
 
-    public Vague(Environnement env) {
+    private GestionVague(Environnement env) {
         caserne = new ArrayList<>();
         numVague = new SimpleIntegerProperty(0);
         this.env = env;
+    }
+
+    public static GestionVague getVague(){
+        if (uniqueInstance == null){
+            uniqueInstance = new GestionVague(Environnement.getEnvironnement());
+        }
+        return uniqueInstance;
     }
 
     public int getNumVague() {

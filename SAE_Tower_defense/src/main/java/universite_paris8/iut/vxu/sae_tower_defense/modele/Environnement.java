@@ -21,7 +21,7 @@ public class Environnement {
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
-    private Vague vague;
+    private GestionVague gestionVague;
 
     private Environnement(){
 
@@ -31,7 +31,7 @@ public class Environnement {
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
         terrain = Terrain.getTerrain();
-        vague = new Vague(this);
+        gestionVague = GestionVague.getVague();
     }
 
     public static Environnement getEnvironnement() {
@@ -60,8 +60,8 @@ public class Environnement {
         }
     }
 
-    public Vague getVague() {
-        return vague;
+    public GestionVague getVague() {
+        return gestionVague;
     }
 
     public IntegerProperty vieProperty() {
@@ -105,7 +105,7 @@ public class Environnement {
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
         if (temps % 50 == 0) {
-            vague.libererVague();
+            gestionVague.libererVague();
         }
 
         for (int i=0;i<personnages.size();i++) {
