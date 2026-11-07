@@ -30,7 +30,7 @@ public class Environnement {
         projectiles = FXCollections.observableArrayList();
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
-        terrain = new Terrain();
+        terrain = Terrain.getTerrain();
         vague = new Vague(this);
     }
 
