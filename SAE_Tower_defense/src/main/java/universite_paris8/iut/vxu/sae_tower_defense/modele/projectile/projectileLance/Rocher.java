@@ -2,24 +2,22 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectile
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetProjectile;
 
 public class Rocher extends ProjectileTranspercant{
 
-    private boolean enflamme;
+    private EffetProjectile effet;
 
-    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, boolean enflamme) {
+    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, EffetProjectile effet) {
         super(x, y, 7, env, 40, degat, dx, dy, porteeTour);
-        this.enflamme = enflamme;
+        this.effet = effet;
     }
 
     @Override
     public void enPlus(Personnage personnage) {
         super.enPlus(personnage);
-        if (enflamme) {
+        if (effet != null) {
             personnage.ajoutTempEnflamer(5);
         }
     }
-
-
-
 }

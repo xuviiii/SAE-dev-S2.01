@@ -25,7 +25,7 @@ public class TourDeMage extends TourProjectileInstantane {
         switch (getNiveau()) {
             case 0 -> augmenterPortee(20);
             case 1 -> effetProjectile = new EffetAntiCuirasse();
-            case 2 -> effetProjectile = new EffetTeleportation();
+            case 2 -> effetProjectile = new EffetTeleportation(5);
         };
         getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
