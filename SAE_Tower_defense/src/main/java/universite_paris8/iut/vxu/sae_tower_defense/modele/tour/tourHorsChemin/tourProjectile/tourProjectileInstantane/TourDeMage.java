@@ -25,7 +25,8 @@ public class TourDeMage extends TourProjectileInstantane {
             augmenterPortee(20);
             getEnv().enleverArgent(prixAmelioration());
         }
-        getEnv().enleverArgent(prixAmelioration());
+        else
+            getEnv().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 
