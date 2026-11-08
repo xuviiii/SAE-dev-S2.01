@@ -1,5 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinVert;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
@@ -28,9 +30,9 @@ public class InvocationApresMort extends Invocation {
         for (int i = 0; i < nbPersonnages; i++) {
             cible = (i < nbPersonnages / 2)
                     ? invocateur.getGestionnaireDeplacementPersonnage().getIndiceDepart()
-                    : invocateur.getEnv().getTerrain().getIndiceCible();
+                    : Terrain.getTerrain().getIndiceCible();
 
-            GobelinVert gobelin = new GobelinVert(invocateur.getEnv());
+            GobelinVert gobelin = new GobelinVert();
             faireApparaitre(invocateur, gobelin);
             for (int j = 0; j < 8 * (i + 1); j++) {
                 gobelin.getGestionnaireDeplacementPersonnage().seDeplace(cible);

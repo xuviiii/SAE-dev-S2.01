@@ -10,8 +10,8 @@ public abstract class Tour extends Entite {
     private int niveau;
     private int compteurAction;
 
-    public Tour(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât) {
-        super("t"+compteur,x,y,vitesse,map,taille);
+    public Tour(double x, double y, int vitesse, int taille, int prix, int dégât) {
+        super("t"+compteur,x,y,vitesse,taille);
         compteur++;
         this.prix = prix;
         this.dégât = dégât;

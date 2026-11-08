@@ -2,6 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.t
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Cibleur;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 
@@ -14,8 +15,8 @@ public abstract class TourProjectile extends TourHorsChemin {
     private Cibleur cibleur;
     private Boolean peutciblerCamoufle;
 
-    public TourProjectile(double x, double y, int vitesse, Environnement map, int taille, int prix, int dégât, int portee, boolean peutciblerCamoufle) {
-        super(x, y, vitesse, map, taille, prix, dégât, portee);
+    public TourProjectile(double x, double y, int vitesse, int taille, int prix, int dégât, int portee, boolean peutciblerCamoufle) {
+        super(x, y, vitesse, taille, prix, dégât, portee);
         boostAttaque = 1;
         boostVitesse = 1;
         this.cibleur = new Cibleur(getPortee(), this);
@@ -45,11 +46,11 @@ public abstract class TourProjectile extends TourHorsChemin {
     private boolean plusProcheDeLaFin(Personnage personnage, Personnage ennemiACible){
         return personnage
                 .getGestionnaireDeplacementPersonnage().getDeplacement()
-                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), Terrain.getTerrain().getIndiceCible())
                 .size()
                 < ennemiACible
                 .getGestionnaireDeplacementPersonnage().getDeplacement()
-                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
+                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), Terrain.getTerrain().getIndiceCible())
                 .size();
     }
 

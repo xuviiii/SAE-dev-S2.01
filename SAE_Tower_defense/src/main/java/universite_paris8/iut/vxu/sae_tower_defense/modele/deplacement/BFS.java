@@ -6,8 +6,8 @@ import java.util.*;
 
 public class BFS extends Algorithme {
 
-    public BFS(Environnement env){
-        super(env);
+    public BFS(){
+        super();
     }
 
     public Map<Integer, Integer> predecesseurs(int source){
@@ -25,7 +25,7 @@ public class BFS extends Algorithme {
             Integer courant = fifo.poll();
             parcours.add(courant);
 
-            for(Integer adjacent : Deplacement.adjacents(getEnv(), courant)){
+            for(Integer adjacent : Deplacement.adjacents( courant)){
 
                 if(!parcours.contains(adjacent)){
                     parcours.add(adjacent);

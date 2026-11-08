@@ -11,8 +11,8 @@ public abstract class Projectile extends Entite {
     private static int compteur = 0;
     private int degat;
 
-    public Projectile(double x, double y, int vitesse, Environnement env, int taille, int degat) {
-        super("pr"+compteur,x,y,vitesse,env,taille);
+    public Projectile(double x, double y, int vitesse, int taille, int degat) {
+        super("pr"+compteur,x,y,vitesse,taille);
         compteur++;
 
         this.degat = degat;
@@ -37,7 +37,7 @@ public abstract class Projectile extends Entite {
 
     public ArrayList<Personnage> projectileTouche() {
         ArrayList<Personnage> personnagesTouches = new ArrayList<>();
-        for (Personnage personnage : super.getEnv().getPersonnages())
+        for (Personnage personnage : Environnement.getEnvironnement().getPersonnages())
             if (personnage.estTouché(this))
                 personnagesTouches.add(personnage);
         return personnagesTouches;

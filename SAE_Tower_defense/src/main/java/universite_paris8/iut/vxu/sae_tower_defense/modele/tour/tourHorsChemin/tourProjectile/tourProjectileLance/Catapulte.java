@@ -12,8 +12,8 @@ public class Catapulte extends TourProjectileLance {
     private double yCible;
     private EffetProjectile effetProjectile;
 
-    public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
-        super(x, y, 15, map, 32, 300, 10, 10000, false);
+    public Catapulte(double x, double y, double xCible, double yCible) {
+        super(x, y, 15, 32, 300, 10, 10000, false);
         this.xCible = xCible;
         this.yCible = yCible;
         effetProjectile = null;
@@ -29,7 +29,7 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
-        return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(), effetProjectile);
+        return new Rocher(getX(),getY(),super.getDégât(),dx,dy,super.getPortee(), effetProjectile);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         effetProjectile = new EffetBrulure(5);
         gainNiveau();
     }

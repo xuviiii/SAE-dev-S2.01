@@ -1,27 +1,26 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 import java.util.*;
 import java.util.function.Predicate;
 
 public abstract class Deplacement {
 
-    private Environnement env;
+
     private int indicePrecedent;
     private int indiceSuivant;
     private int tmp;
 
-    public Deplacement(Environnement env){
-        this.env = env;
+    public Deplacement(){
+
         indicePrecedent = -1;
         indiceSuivant = -1;
         tmp = -1;
     }
 
-    public Environnement getEnv() {
-        return env;
-    }
+
 
     public int getIndicePrecedent() {
         return indicePrecedent;
@@ -43,20 +42,20 @@ public abstract class Deplacement {
 
     public abstract List<Integer> parcours(int source, int cible);
 
-    public static List<Integer> indicesCasesContigues(Environnement env, Integer indice, Predicate<Integer> predicate){
+    public static List<Integer> indicesCasesContigues( Integer indice, Predicate<Integer> predicate){
 
-        if (indice < 0 || indice > env.getTerrain().getMap().size() - 1){
+        if (indice < 0 || indice > Terrain.getTerrain().getMap().size() - 1){
             throw new IllegalArgumentException();
         }
 
         List<Integer> contigues = new ArrayList<>();
 
-        if(indice > env.getTerrain().getLongueurMap() - 1) {
+        if(indice > Terrain.getTerrain().getLongueurMap() - 1) {
 
             if (predicate.test(
-                    env.getTerrain().getMap().get(indice - env.getTerrain().getLongueurMap())
+                    Terrain.getTerrain().getMap().get(indice - Terrain.getTerrain().getLongueurMap())
             )) {
-                contigues.add(indice - env.getTerrain().getLongueurMap());
+                contigues.add(indice - Terrain.getTerrain().getLongueurMap());
             }
             // adjacent nord/ouest
 //            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
@@ -68,12 +67,12 @@ public abstract class Deplacement {
 //            }
         }
 
-        if(indice < env.getTerrain().getMap().size() - env.getTerrain().getLongueurMap()){
+        if(indice < Terrain.getTerrain().getMap().size() - Terrain.getTerrain().getLongueurMap()){
 
             if(predicate.test(
-                    env.getTerrain().getMap().get(indice + env.getTerrain().getLongueurMap())
+                    Terrain.getTerrain().getMap().get(indice + Terrain.getTerrain().getLongueurMap())
             )){
-                contigues.add(indice + env.getTerrain().getLongueurMap());
+                contigues.add(indice + Terrain.getTerrain().getLongueurMap());
             }
             // adjacent sud/ouest
 //            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
@@ -84,19 +83,19 @@ public abstract class Deplacement {
 //                adjacents.add(indice + longueurMap + 1);
 //            }
         }
-        if(indice % env.getTerrain().getLongueurMap() != 0
-                && predicate.test(env.getTerrain().getMap().get(indice - 1))){
+        if(indice % Terrain.getTerrain().getLongueurMap() != 0
+                && predicate.test(Terrain.getTerrain().getMap().get(indice - 1))){
             contigues.add(indice - 1);
         }
-        if((indice + 1) % env.getTerrain().getLongueurMap() != 0
-                && predicate.test(env.getTerrain().getMap().get(indice + 1))){
+        if((indice + 1) % Terrain.getTerrain().getLongueurMap() != 0
+                && predicate.test(Terrain.getTerrain().getMap().get(indice + 1))){
             contigues.add(indice + 1);
         }
         return contigues;
     }
 
-    public static List<Integer> adjacents(Environnement env, int indice){
-        return indicesCasesContigues(env, indice, i -> i > 0);
+    public static List<Integer> adjacents(int indice){
+        return indicesCasesContigues( indice, i -> i > 0);
     }
 
     public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs,  int cible) {

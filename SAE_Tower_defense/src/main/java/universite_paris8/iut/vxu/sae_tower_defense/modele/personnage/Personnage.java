@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Entite;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire.GestionnaireDeplacementPersonnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire.GestionnaireEffetPerso;
@@ -32,8 +33,8 @@ public abstract class Personnage extends Entite {
 
     private GestionnaireEffetPerso gestionnaireEffetPerso;
 
-    public Personnage(int pv, double vitesse, int degat, int taille, Environnement env, Deplacement deplacement, int gains){
-        super("p"+compteur,0,0,vitesse,env,taille);
+    public Personnage(int pv, double vitesse, int degat, int taille, Deplacement deplacement, int gains){
+        super("p"+compteur,0,0,vitesse,taille);
         compteur++;
 
         this.pv = pv;
@@ -122,7 +123,7 @@ public abstract class Personnage extends Entite {
 
     @Override
     public void action(/*int temps*/) {
-        gestionnaireDeplacementPersonnage.seDeplace(getEnv().getTerrain().getIndiceCible());
+        gestionnaireDeplacementPersonnage.seDeplace(Terrain.getTerrain().getIndiceCible());
         degatEnflamer();
         compteurAttaque++;
         compteurAction++;

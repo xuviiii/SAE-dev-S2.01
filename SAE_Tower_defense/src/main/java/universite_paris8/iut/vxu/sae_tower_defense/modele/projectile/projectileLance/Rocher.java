@@ -8,8 +8,8 @@ public class Rocher extends ProjectileTranspercant{
 
     private EffetProjectile effet;
 
-    public Rocher(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, EffetProjectile effet) {
-        super(x, y, 7, env, 40, degat, dx, dy, porteeTour);
+    public Rocher(double x, double y, int degat, double dx, double dy, int porteeTour, EffetProjectile effet) {
+        super(x, y, 7, 40, degat, dx, dy, porteeTour);
         this.effet = effet;
     }
 

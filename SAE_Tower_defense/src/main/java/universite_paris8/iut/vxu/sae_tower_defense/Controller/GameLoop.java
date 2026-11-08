@@ -10,11 +10,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.*;
 public class GameLoop {
     private Timeline gameLoop;
     private int temps;
-    private Environnement map;
     private IntegerProperty vittesse;
 
-    public GameLoop(Environnement map) {
-        this.map = map;
+    public GameLoop() {
         gameLoop = new Timeline();
         temps=0;
         vittesse= new SimpleIntegerProperty(1);
@@ -53,7 +51,7 @@ public class GameLoop {
                 // c'est un eventHandler d'ou le lambda
                 (ev ->{
                     if (temps % (5/vittesse.get()) == 0){    // A modifier pour les persos
-                        map.faireUnTour(temps);
+                        Environnement.getEnvironnement().faireUnTour(temps);
                     }
                     temps++;
                 })

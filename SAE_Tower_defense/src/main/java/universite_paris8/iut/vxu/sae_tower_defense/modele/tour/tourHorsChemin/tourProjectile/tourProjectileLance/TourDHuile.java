@@ -7,8 +7,8 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileL
 
 public class TourDHuile extends TourProjectileLance {
 
-    public TourDHuile(double x, double y, Environnement map) {
-        super(x, y, 10, map, 32, 200, 10, 150, false);
+    public TourDHuile(double x, double y) {
+        super(x, y, 10, 32, 200, 10, 150, false);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class TourDHuile extends TourProjectileLance {
             multiplicateurDurer = 1.5;
         else
             multiplicateurDurer = 1;
-        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY(), multiplicateurDurer);
+        return new TonneauDHuile(getX(),getY(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY(), multiplicateurDurer);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TourDHuile extends TourProjectileLance {
         if (getNiveau() == 0) {
             augmenterDegat(5);
         }
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

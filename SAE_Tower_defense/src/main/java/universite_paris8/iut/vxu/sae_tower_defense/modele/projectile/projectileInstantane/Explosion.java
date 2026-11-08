@@ -10,8 +10,8 @@ public class Explosion extends ProjectileInstantane {
 
     private EffetProjectile effet;
 
-    public Explosion(double x, double y, Environnement env, int degat, EffetProjectile effet) {
-        super(x, y, 10, env, degat, 40);
+    public Explosion(double x, double y, int degat, EffetProjectile effet) {
+        super(x, y, 10, degat, 40);
         this.effet = effet;
     }
 

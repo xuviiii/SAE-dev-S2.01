@@ -21,7 +21,7 @@ public class Cibleur {
         double h;
         ArrayList<Personnage> ennemisCiblables = new ArrayList<>();
 
-        for (Personnage personnage : entite.getEnv().getPersonnages()) {
+        for (Personnage personnage : Environnement.getEnvironnement().getPersonnages()) {
             h = Math.hypot(entite.getX()-personnage.getX(),entite.getY()-personnage.getY());
             if (h<portee)
                 ennemisCiblables.add(personnage);
@@ -34,7 +34,7 @@ public class Cibleur {
         double h;
 
         ArrayList<TourProjectile> tours = new ArrayList<>();
-        for (Tour tour : entite.getEnv().getTours()) {
+        for (Tour tour : Environnement.getEnvironnement().getTours()) {
             if (tour instanceof TourProjectile) {
                 h = Math.hypot(entite.getX() - tour.getX(), entite.getY() - tour.getY());
                 if (h < portee)

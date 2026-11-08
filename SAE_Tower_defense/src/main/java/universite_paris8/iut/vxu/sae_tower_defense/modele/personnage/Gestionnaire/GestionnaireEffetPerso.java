@@ -1,5 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.GestionVague;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class GestionnaireEffetPerso {
@@ -19,7 +21,7 @@ public class GestionnaireEffetPerso {
 
     public void rendreCuirases(){
         int alea = (int)(Math.random()*100)+1;
-        if(alea <= 20 && personnage.getEnv().getVague().getNumVague() > 9){
+        if(alea <= 20 && GestionVague.getVague().getNumVague() > 9){
             cuirasses = true;
             personnage.setTaille ((int)(personnage.getTaille()*1.3));
         }
@@ -30,7 +32,7 @@ public class GestionnaireEffetPerso {
 
     public void rendreCamoufles(){
         int alea = (int)(Math.random()*100)+1;
-        if(alea <= 20 && personnage.getEnv().getVague().getNumVague() > 9)
+        if(alea <= 20 && GestionVague.getVague().getNumVague() > 9)
             camoufles = true;
         else
             camoufles = false;

@@ -70,25 +70,25 @@ public class GestionVague {
         int alea = (int)(Math.random() * 100);
         int numero = numVague.get();
         if (alea < 25)
-            return new GobelinRouge(Environnement.getEnvironnement());
+            return new GobelinRouge();
         if (alea < 50)
-            return new GobelinNoir(Environnement.getEnvironnement());
+            return new GobelinNoir();
         if (alea < 55 && numero > 4)
-            return new Pretre(Environnement.getEnvironnement());
+            return new Pretre();
         if (alea < 60 && numero > 8)
             return new ChevalDeTroie(Environnement.getEnvironnement(), 5);
         if (alea < 70 && numero > 11)
-            return new ChevaucheurDeSanglier(Environnement.getEnvironnement());
-        return new GobelinVert(Environnement.getEnvironnement());
+            return new ChevaucheurDeSanglier();
+        return new GobelinVert();
     }
 
     public void envoyerVague(){
         Personnage en;
         en = caserne.remove(0);
-        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(Environnement.getEnvironnement().getTerrain().genererIndiceDepartAlea());
+        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(Terrain.getTerrain().genererIndiceDepartAlea());
         en.getGestionnaireDeplacementPersonnage().setIndiceDepart(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain());
-        en.setX(Environnement.getEnvironnement().getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
-        en.setY(Environnement.getEnvironnement().getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        en.setX(Terrain.getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        en.setY(Terrain.getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
         Environnement.getEnvironnement().ajouterPersonnage(en);
     }
 

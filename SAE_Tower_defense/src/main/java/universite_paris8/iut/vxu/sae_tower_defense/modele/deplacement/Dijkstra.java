@@ -1,13 +1,14 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 import java.util.*;
 
 public class Dijkstra extends Algorithme {
 
-    public Dijkstra(Environnement env) {
-        super(env);
+    public Dijkstra() {
+        super();
     }
 
     public Map<Integer, Integer> predecesseurs(int source) {
@@ -26,9 +27,9 @@ public class Dijkstra extends Algorithme {
 
             Integer courant = fifo.poll().getIndice();
 
-            for (Integer adjacent : Deplacement.adjacents(getEnv(), courant)) {
+            for (Integer adjacent : Deplacement.adjacents( courant)) {
 
-                int cout = couts.get(courant) + getEnv().getTerrain().getMap().get(adjacent);
+                int cout = couts.get(courant) + Terrain.getTerrain().getMap().get(adjacent);
 
                 if ((predecesseurs.get(adjacent) == null && adjacent != source) || cout < couts.get(adjacent)) {
 

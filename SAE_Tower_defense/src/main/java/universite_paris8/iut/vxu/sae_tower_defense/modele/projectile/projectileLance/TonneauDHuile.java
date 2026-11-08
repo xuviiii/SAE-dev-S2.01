@@ -10,8 +10,8 @@ public class TonneauDHuile extends ProjectileLance {
     private double yCible;
     private double multiplicateurDurer;
 
-    public TonneauDHuile(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, double xCible, double yCible, double multiplicateurDurer) {
-        super(x, y, 3, env, 10, degat, dx, dy, porteeTour);
+    public TonneauDHuile(double x, double y, int degat, double dx, double dy, int porteeTour, double xCible, double yCible, double multiplicateurDurer) {
+        super(x, y, 3, 10, degat, dx, dy, porteeTour);
         this.xCible = xCible;
         this.yCible = yCible;
         this.multiplicateurDurer =multiplicateurDurer;
@@ -19,16 +19,16 @@ public class TonneauDHuile extends ProjectileLance {
 
     @Override
     public void enPlus(Personnage personnage) {
-        super.getEnv().getProjectiles().remove(this);
-        super.getEnv().getProjectiles().add(new ZoneDeFlamme(personnage.getX(), personnage.getY(), super.getEnv(),getDegat(), multiplicateurDurer));
+        Environnement.getEnvironnement().getProjectiles().remove(this);
+        Environnement.getEnvironnement().getProjectiles().add(new ZoneDeFlamme(personnage.getX(), personnage.getY(), getDegat(), multiplicateurDurer));
     }
 
     @Override
     public void action() {
         avancer();
         if (xCible+32>getX()&&xCible-32<getX()&&yCible+32>getY()&&yCible-32<getY()){
-            super.getEnv().getProjectiles().remove(this);
-            super.getEnv().getProjectiles().add(new ZoneDeFlamme(xCible, yCible, super.getEnv(),getDegat(), multiplicateurDurer));
+            Environnement.getEnvironnement().getProjectiles().remove(this);
+            Environnement.getEnvironnement().getProjectiles().add(new ZoneDeFlamme(xCible, yCible, getDegat(), multiplicateurDurer));
         }
     }
 }

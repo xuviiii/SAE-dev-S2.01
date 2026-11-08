@@ -14,14 +14,13 @@ import java.util.*;
 public class Environnement {
 
     private static Environnement envUnique= null;
-    private Terrain terrain;
     private IntegerProperty argent;
     private IntegerProperty vie;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
-    private GestionVague gestionVague;
+
 
     private Environnement(){
 
@@ -30,8 +29,7 @@ public class Environnement {
         projectiles = FXCollections.observableArrayList();
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
-        terrain = Terrain.getTerrain();
-        gestionVague = GestionVague.getVague();
+
     }
 
     public static Environnement getEnvironnement() {
@@ -60,9 +58,6 @@ public class Environnement {
         }
     }
 
-    public GestionVague getVague() {
-        return gestionVague;
-    }
 
     public IntegerProperty vieProperty() {
         return vie;
@@ -70,10 +65,6 @@ public class Environnement {
 
     public int getArgent() {
         return argent.get();
-    }
-
-    public Terrain getTerrain() {
-        return terrain;
     }
 
     public IntegerProperty argentProperty() {
@@ -110,12 +101,12 @@ public class Environnement {
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
         if (temps % 50 == 0) {
-            gestionVague.libererVague();
+            GestionVague.getVague().libererVague();
         }
 
         for (int i=0;i<personnages.size();i++) {
             personnages.get(i).action();
-            if (personnages.get(i).getGestionnaireDeplacementPersonnage().getIndiceTerrain() == terrain.getIndiceCible()) {
+            if (personnages.get(i).getGestionnaireDeplacementPersonnage().getIndiceTerrain() == Terrain.getTerrain().getIndiceCible()) {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }

@@ -9,7 +9,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 public class ObsProjectile implements ListChangeListener<Projectile> {
     private Pane terrain;
 
-    public ObsProjectile(Environnement map, Pane terrain) {
+    public ObsProjectile( Pane terrain) {
         this.terrain = terrain;
     }
 

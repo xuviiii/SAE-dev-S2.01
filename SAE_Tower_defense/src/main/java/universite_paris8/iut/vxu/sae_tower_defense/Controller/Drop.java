@@ -6,6 +6,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.layout.Pane;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Placement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Marais;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Mur;
@@ -14,12 +15,10 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin.Tou
 public class Drop implements EventHandler<DragEvent> {
     private Placement achat;
     private Drag drag;
-    private Environnement env;
 
-    public Drop(Placement achat, Drag drag, Environnement env) {
+    public Drop(Placement achat, Drag drag) {
         this.achat = achat;
         this.drag =drag;
-        this.env = env;
     }
 
     @Override
@@ -31,17 +30,17 @@ public class Drop implements EventHandler<DragEvent> {
         tour.setY(event.getY());
 
         //vérifie si on peut placer la tour
-        success = ((((achat.peutEtrePoserTourHorsChemin(tour)  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour)  && (tour instanceof TourSurChemin)))) && env.getArgent() >= tour.getPrix());
+        success = ((((achat.peutEtrePoserTourHorsChemin(tour)  && !(tour instanceof TourSurChemin)) || (achat.peutEtrePoserTourSurChemin(tour)  && (tour instanceof TourSurChemin)))) && Environnement.getEnvironnement().getArgent() >= tour.getPrix());
 
         //pose la tour si possible
         if (success){
             if (tour instanceof Marais || tour instanceof Mur){
-                tour.setX(event.getX()-(event.getX()%env.getTerrain().getTailleTile()));
-                tour.setY(event.getY()-(event.getY()%env.getTerrain().getTailleTile()));
+                tour.setX(event.getX()-(event.getX()% Terrain.getTerrain().getTailleTile()));
+                tour.setY(event.getY()-(event.getY()%Terrain.getTerrain().getTailleTile()));
                 ((TourSurChemin)tour).changerTerrain();
             }
-            env.ajouterTour(tour);
-            env.enleverArgent(tour.getPrix());
+            Environnement.getEnvironnement().ajouterTour(tour);
+            Environnement.getEnvironnement().enleverArgent(tour.getPrix());
         }
 
         event.setDropCompleted(success);

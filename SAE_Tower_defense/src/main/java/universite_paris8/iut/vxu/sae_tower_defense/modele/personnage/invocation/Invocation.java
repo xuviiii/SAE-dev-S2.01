@@ -1,5 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public abstract class Invocation {
@@ -12,8 +14,8 @@ public abstract class Invocation {
         int indice = invocateur.getGestionnaireDeplacementPersonnage().getIndiceTerrain();
         invoque.getGestionnaireDeplacementPersonnage().setIndiceDepart(invocateur.getGestionnaireDeplacementPersonnage().getIndiceDepart());
         invoque.getGestionnaireDeplacementPersonnage().setIndiceTerrain(indice);
-        invoque.setX(invocateur.getEnv().getTerrain().positionXdepuisIndice(indice));
-        invoque.setY(invocateur.getEnv().getTerrain().positionYdepuisIndice(indice));
-        invocateur.getEnv().ajouterPersonnage(invoque);
+        invoque.setX(Terrain.getTerrain().positionXdepuisIndice(indice));
+        invoque.setY(Terrain.getTerrain().positionYdepuisIndice(indice));
+        Environnement.getEnvironnement().ajouterPersonnage(invoque);
     }
 }

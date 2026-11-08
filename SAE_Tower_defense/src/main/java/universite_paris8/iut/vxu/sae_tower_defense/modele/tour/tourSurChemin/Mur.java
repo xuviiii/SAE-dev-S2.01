@@ -1,17 +1,19 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourSurChemin;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
+import java.time.temporal.Temporal;
 import java.util.List;
 
 public class Mur extends TourSurChemin {
   
     private int pv;
 
-    public Mur(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 59, 400, 0, -1);
+    public Mur(double x, double y) {
+        super(x, y, 1000, 59, 400, 0, -1);
         pv = 100;
     }
 
@@ -20,15 +22,15 @@ public class Mur extends TourSurChemin {
         int indice;
         List<Integer> adjacents;
 
-        indice = (int)(((getX()-(getX()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile())+((getY()-(getY()%getEnv().getTerrain().getTailleTile()))/getEnv().getTerrain().getTailleTile()*getEnv().getTerrain().getLongueurMap()));
-        adjacents = Deplacement.adjacents(getEnv(),indice);
+        indice = (int)(((getX()-(getX()% Terrain.getTerrain().getTailleTile()))/Terrain.getTerrain().getTailleTile())+((getY()-(getY()%Terrain.getTerrain().getTailleTile()))/Terrain.getTerrain().getTailleTile()*Terrain.getTerrain().getLongueurMap()));
+        adjacents = Deplacement.adjacents(indice);
 
-        for (Personnage personnage : getEnv().getPersonnages()){
+        for (Personnage personnage : Environnement.getEnvironnement().getPersonnages()){
             if (adjacents.contains(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain()))
                 pv -= personnage.attaqueMur();
         }
         if (pv<=0)
-            getEnv().getTours().remove(this);
+            Environnement.getEnvironnement().getTours().remove(this);
     }
 
     @Override

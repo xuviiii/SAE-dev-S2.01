@@ -9,8 +9,8 @@ public class ZoneDeFlamme extends Projectile {
     private int compteur;
     private double multiplicateurDurer;
 
-    public ZoneDeFlamme(double x, double y, Environnement env, int degat, double multiplicateurDurer) {
-        super(x, y, 10, env, 64, degat);
+    public ZoneDeFlamme(double x, double y, int degat, double multiplicateurDurer) {
+        super(x, y, 10, 64, degat);
         compteur = 0;
         this.multiplicateurDurer = multiplicateurDurer;
     }
@@ -25,7 +25,7 @@ public class ZoneDeFlamme extends Projectile {
        super.action();
         compteur++;
         if (compteur == 200*multiplicateurDurer)
-            getEnv().getProjectiles().remove(this);
+            Environnement.getEnvironnement().getProjectiles().remove(this);
     }
 
 

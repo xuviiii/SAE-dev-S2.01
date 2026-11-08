@@ -7,8 +7,8 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 
 public class TourDeFleche extends TourProjectileLance{
 
-    public TourDeFleche(double x, double y, Environnement map) {
-        super(x, y, 30, map, 32, 100, 10, 100, false);
+    public TourDeFleche(double x, double y) {
+        super(x, y, 30, 32, 100, 10, 100, false);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class TourDeFleche extends TourProjectileLance{
         else {
             nbEnnemieAToucher = 2;
         }
-        return new Fleche(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),nbEnnemieAToucher);
+        return new Fleche(getX(),getY(),super.getDégât(),dx,dy,super.getPortee(),nbEnnemieAToucher);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TourDeFleche extends TourProjectileLance{
             case 3: augmenterVitesse(10);break;
             default: break;
         }
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

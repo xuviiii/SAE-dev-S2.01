@@ -11,8 +11,8 @@ public class Camp extends TourHorsChemin {
     private Cibleur cibleur;
     ArrayList<TourProjectile> toursBoostes;
 
-    public Camp(double x, double y, Environnement map) {
-        super(x, y, 1000, map, 32, 1000, 0, 150);
+    public Camp(double x, double y) {
+        super(x, y, 1000, 32, 1000, 0, 150);
         this.cibleur = new Cibleur(getPortee(), this);
         toursBoostes = new ArrayList<>();
     }
@@ -59,7 +59,7 @@ public class Camp extends TourHorsChemin {
 
     @Override
     public void ameliorer() {
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

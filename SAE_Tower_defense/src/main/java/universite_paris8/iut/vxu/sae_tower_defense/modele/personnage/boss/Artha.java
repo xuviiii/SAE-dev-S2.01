@@ -9,7 +9,7 @@ public class Artha extends Boss {
     private Invocation invocation;
 
     public Artha(Environnement env) {
-        super(500, 0.5, 20, 64, env, new Dijkstra(env), 1000);
+        super(500, 0.5, 20, 64, new Dijkstra(), 1000);
         invocation = new InvocationMultiple(200);
     }
 

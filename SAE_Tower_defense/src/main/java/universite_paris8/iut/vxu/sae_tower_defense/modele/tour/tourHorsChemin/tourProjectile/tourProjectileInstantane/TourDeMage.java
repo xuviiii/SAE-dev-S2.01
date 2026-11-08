@@ -10,14 +10,14 @@ public class TourDeMage extends TourProjectileInstantane {
 
     private EffetProjectile effetProjectile;
 
-    public TourDeMage(double x, double y, Environnement map) {
-        super(x, y, 10, map, 32, 500, 10, 150, false);
+    public TourDeMage(double x, double y) {
+        super(x, y, 10, 32, 500, 10, 150, false);
         effetProjectile = null;
     }
 
     @Override
     public void creerProjectile(double x, double y) {
-        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), 10, effetProjectile));
+        Environnement.getEnvironnement().getProjectiles().add(new Explosion(x, y, 10, effetProjectile));
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TourDeMage extends TourProjectileInstantane {
             case 1 -> effetProjectile = new EffetAntiCuirasse();
             case 2 -> effetProjectile = new EffetTeleportation(5);
         };
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

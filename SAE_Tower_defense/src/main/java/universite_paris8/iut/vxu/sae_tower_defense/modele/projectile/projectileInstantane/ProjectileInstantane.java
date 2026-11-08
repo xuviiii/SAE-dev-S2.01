@@ -8,8 +8,8 @@ public abstract class ProjectileInstantane extends Projectile {
 
     private int tailleMax;
 
-    public ProjectileInstantane(double x, double y, int vitesse, Environnement env, int degat, int tailleMax) {
-        super(x, y, vitesse, env, 20, degat);
+    public ProjectileInstantane(double x, double y, int vitesse, int degat, int tailleMax) {
+        super(x, y, vitesse, 20, degat);
         this.tailleMax = tailleMax;
     }
 
@@ -22,7 +22,7 @@ public abstract class ProjectileInstantane extends Projectile {
             setTaille(getTaille()+1);
         }
         else{
-            super.getEnv().getProjectiles().remove(this);
+            Environnement.getEnvironnement().getProjectiles().remove(this);
         }
     }
 

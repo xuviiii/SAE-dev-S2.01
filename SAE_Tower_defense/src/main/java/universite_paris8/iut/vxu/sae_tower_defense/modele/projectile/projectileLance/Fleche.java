@@ -9,8 +9,8 @@ public class Fleche extends ProjectileTranspercant{
 
     private int nbEnnemieMax;
 
-    public Fleche(double x, double y, Environnement env, int degat, double dx, double dy, int porteeTour, int nbEnnemieMax) {
-        super(x, y, 5, env, 10, degat, dx, dy, porteeTour);
+    public Fleche(double x, double y, int degat, double dx, double dy, int porteeTour, int nbEnnemieMax) {
+        super(x, y, 5, 10, degat, dx, dy, porteeTour);
         this.nbEnnemieMax = nbEnnemieMax;
     }
 
@@ -18,7 +18,7 @@ public class Fleche extends ProjectileTranspercant{
     public void enPlus(Personnage personnage) {
         getEnnemisTouches().add(personnage);
         if (getEnnemisTouches().size() == nbEnnemieMax)
-            super.getEnv().getProjectiles().remove(this);
+            Environnement.getEnvironnement().getProjectiles().remove(this);
 
     }
 
