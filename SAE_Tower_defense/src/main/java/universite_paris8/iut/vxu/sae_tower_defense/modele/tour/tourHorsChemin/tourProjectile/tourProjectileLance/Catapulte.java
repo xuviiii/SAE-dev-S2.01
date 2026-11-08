@@ -26,7 +26,7 @@ public class Catapulte extends TourProjectileLance {
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
         boolean enflamer = getNiveau()==1;
-        return new Rocher(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(), enflamer);
+        return new Rocher(getX(),getY(),super.getEnv(),super.vraiDegat(),dx,dy,super.getPortee(), enflamer);
     }
 
     @Override

@@ -22,6 +22,15 @@ public abstract class TourProjectile extends TourHorsChemin {
         this.peutciblerCamoufle = peutciblerCamoufle;
     }
 
+    @Override
+    public double vitesseAction() {
+        return getVitesse() * boostVitesse;
+    }
+
+    public int vraiDegat(){
+        return (int) (getDégât() * boostAttaque);
+    }
+
     public void setPeutciblerCamoufle(Boolean peutciblerCamoufle) {
         this.peutciblerCamoufle = peutciblerCamoufle;
     }

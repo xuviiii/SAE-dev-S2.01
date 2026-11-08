@@ -45,7 +45,11 @@ public abstract class Tour extends Entite {
             agir();
             compteurAction = 0;
         }
-        compteurAction += (int) getVitesse();
+        compteurAction += (int) vitesseAction();
+    }
+
+    public double vitesseAction() {
+        return getVitesse();
     }
 
     public abstract int prixAmelioration();

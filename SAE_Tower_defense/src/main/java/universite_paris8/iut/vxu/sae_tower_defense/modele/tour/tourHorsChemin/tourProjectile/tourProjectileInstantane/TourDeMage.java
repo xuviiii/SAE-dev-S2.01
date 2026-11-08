@@ -16,7 +16,7 @@ public class TourDeMage extends TourProjectileInstantane {
         enleverCuirasse = getNiveau() == 2;
         teleporte = getNiveau() == 3;
 
-        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), 10, enleverCuirasse,teleporte));
+        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), vraiDegat(), enleverCuirasse,teleporte));
     }
 
     @Override

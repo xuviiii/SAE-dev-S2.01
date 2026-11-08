@@ -44,6 +44,7 @@ public class Camp extends TourHorsChemin {
             if (getNiveau()>=2)
                 tourProjectile.setPeutciblerCamoufle(false);
         }
+        toursBoostes.clear();
     }
 
     @Override
@@ -64,6 +65,7 @@ public class Camp extends TourHorsChemin {
     @Override
     public void ameliorer() {
         getEnv().enleverArgent(prixAmelioration());
+        enleverBoost();
         gainNiveau();
     }
 
