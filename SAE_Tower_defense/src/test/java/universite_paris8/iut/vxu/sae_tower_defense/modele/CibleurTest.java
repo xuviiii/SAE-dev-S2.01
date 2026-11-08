@@ -22,7 +22,7 @@ class CibleurTest {
 
     @Test
     void ciblerEnnemie() {
-        Environnement env = new Environnement();
+        Environnement env = Environnement.getEnvironnement();
         Cibleur cibleur = new Cibleur(10, new TourDeFleche(20,20,env));
         ArrayList attendue= new ArrayList<>();
         assertEquals(attendue, cibleur.ciblerPerso(), "cas pas d'ennemie" );
@@ -39,7 +39,7 @@ class CibleurTest {
 
     @Test
     void ciblerAllie() {
-        Environnement env = new Environnement();
+        Environnement env = Environnement.getEnvironnement();
         Cibleur cibleur = new Cibleur(10, new Camp(20,20,env));
         ArrayList attendue= new ArrayList<>();
         assertEquals(attendue, cibleur.ciblerTour(), "cas pas d'alier" );
@@ -52,5 +52,6 @@ class CibleurTest {
         assertEquals(attendue, cibleur.ciblerTour(), "cas normal" );
         ajouterNvPersoEnv(env, 25, 25);;
         assertEquals(attendue, cibleur.ciblerTour(), "ennemie a porter" );
+
     }
 }
