@@ -1,6 +1,8 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
 
+import javafx.collections.ObservableList;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -45,54 +47,43 @@ public abstract class Deplacement {
 
     public static List<Integer> indicesCasesContigues(Environnement env, Integer indice, Predicate<Integer> predicate){
 
-        if (indice < 0 || indice > env.getTerrain().getMap().size() - 1){
+        Terrain terrain = env.getTerrain();
+        List<Integer> map = terrain.getMap();
+        int longueur = terrain.getLongueurMap();
+
+        if (indice < 0 || indice > map.size() - 1)
             throw new IllegalArgumentException();
-        }
 
         List<Integer> contigues = new ArrayList<>();
 
-        if(indice > env.getTerrain().getLongueurMap() - 1) {
+        boolean nord = indice > longueur - 1;
+        boolean sud = indice < map.size() - longueur;
+        boolean ouest = (indice % longueur != 0);
+        boolean est = ((indice + 1) % longueur != 0);
 
-            if (predicate.test(
-                    env.getTerrain().getMap().get(indice - env.getTerrain().getLongueurMap())
-            )) {
-                contigues.add(indice - env.getTerrain().getLongueurMap());
-            }
-            // adjacent nord/ouest
-//            if (indice % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap - 1))) {
-//                adjacents.add(indice - longueurMap - 1);
-//            }
-            // adjacent nord/est
-//            if ((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice - longueurMap + 1))) {
-//                adjacents.add(indice - longueurMap + 1);
-//            }
-        }
+        if(nord) ajouterContiguesCardinal(predicate,map,indice - longueur,contigues);
+        if(sud) ajouterContiguesCardinal(predicate,map,indice + longueur,contigues);
+        if(ouest) ajouterContiguesCardinal(predicate,map,indice-1,contigues);
+        if(est) ajouterContiguesCardinal(predicate,map,indice+1,contigues);
 
-        if(indice < env.getTerrain().getMap().size() - env.getTerrain().getLongueurMap()){
+        /*
+        if(nord && ouest && map.get(indice).equals(map.get(indice - longueur - 1)))
+            contigues.add(indice - longueur - 1);
+        if(nord && est && map.get(indice).equals(map.get(indice - longueur + 1)))
+            contigues.add(indice - longueur + 1);
+        if(sud && est && indice % longueur != 0 && map.get(indice).equals(map.get(indice + longueur - 1)))
+            contigues.add(indice + longueur - 1);
+        if(sud && est && (indice + 1) % longueur != 0 && map.get(indice).equals(map.get(indice + longueur + 1)))
+            contigues.add(indice + longueur + 1);
+        */
 
-            if(predicate.test(
-                    env.getTerrain().getMap().get(indice + env.getTerrain().getLongueurMap())
-            )){
-                contigues.add(indice + env.getTerrain().getLongueurMap());
-            }
-            // adjacent sud/ouest
-//            if(indice % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap - 1))){
-//                adjacents.add(indice + longueurMap - 1);
-//            }
-            // adjacent sud/est
-//            if((indice + 1) % longueurMap != 0 && map.get(indice).equals(map.get(indice + longueurMap + 1))){
-//                adjacents.add(indice + longueurMap + 1);
-//            }
-        }
-        if(indice % env.getTerrain().getLongueurMap() != 0
-                && predicate.test(env.getTerrain().getMap().get(indice - 1))){
-            contigues.add(indice - 1);
-        }
-        if((indice + 1) % env.getTerrain().getLongueurMap() != 0
-                && predicate.test(env.getTerrain().getMap().get(indice + 1))){
-            contigues.add(indice + 1);
-        }
         return contigues;
+    }
+
+    public static void ajouterContiguesCardinal (Predicate<Integer> predicate,List<Integer> map,int indice,List<Integer> contigues){
+        if (predicate.test(map.get(indice))) {
+            contigues.add(indice);
+        }
     }
 
     public static List<Integer> adjacents(Environnement env, int indice){
