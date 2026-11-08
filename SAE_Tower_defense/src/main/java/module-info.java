@@ -41,4 +41,6 @@ module universite_paris8.iut.vxu.sae_tower_defense {
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun to javafx.fxml;
     exports universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire;
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur to javafx.fxml;
 }

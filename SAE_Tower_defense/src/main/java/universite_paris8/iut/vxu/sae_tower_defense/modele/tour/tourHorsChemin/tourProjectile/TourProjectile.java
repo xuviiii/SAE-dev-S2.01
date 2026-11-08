@@ -1,7 +1,8 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Cibleur;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur.Cibleur;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur.CibleurPerso;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 
@@ -18,7 +19,7 @@ public abstract class TourProjectile extends TourHorsChemin {
         super(x, y, vitesse, map, taille, prix, dégât, portee);
         boostAttaque = 1;
         boostVitesse = 1;
-        this.cibleur = new Cibleur(getPortee(), this);
+        this.cibleur = new CibleurPerso(getPortee(), this);
         this.peutciblerCamoufle = peutciblerCamoufle;
     }
 
@@ -58,7 +59,7 @@ public abstract class TourProjectile extends TourHorsChemin {
         List<Personnage> ennemisCiblables;
         Personnage ennemiACible;
 
-        ennemisCiblables = cibleur.ciblerPerso();
+        ennemisCiblables = cibleur.cibler();
 
         if (ennemisCiblables.isEmpty())
             return null;
