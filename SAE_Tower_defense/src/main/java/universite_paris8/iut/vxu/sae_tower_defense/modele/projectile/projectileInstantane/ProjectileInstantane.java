@@ -21,6 +21,9 @@ public abstract class ProjectileInstantane extends Projectile {
         if (getTaille()<tailleMax){
             setTaille(getTaille()+1);
         }
+        else{
+            super.getEnv().getProjectiles().remove(this);
+        }
     }
 
 
