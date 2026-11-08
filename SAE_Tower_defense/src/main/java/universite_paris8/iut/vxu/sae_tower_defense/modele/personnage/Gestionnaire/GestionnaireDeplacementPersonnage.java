@@ -53,24 +53,10 @@ public class GestionnaireDeplacementPersonnage {
         double suivant_X = personnage.getEnv().getTerrain().positionXdepuisIndice(suivant);    //lorsqu'on aura un environnement avec un singleton on pourra modifié cette ligne
         double suivant_Y = personnage.getEnv().getTerrain().positionYdepuisIndice(suivant);
 
-        double dist_x = Math.abs(personnage.getX() - suivant_X);
-        double dist_y = Math.abs(personnage.getY() - suivant_Y);
+        double vitesse = personnage.getVitesse()/malusVitesse;
 
-        if(personnage.getX() > suivant_X){
-            personnage.setX(personnage.getX() - (Math.min(personnage.getVitesse()/malusVitesse, dist_x)));
-        }
-
-        if(personnage.getX() < suivant_X){
-            personnage.setX(personnage.getX() + (Math.min(personnage.getVitesse()/malusVitesse, dist_x)));
-        }
-
-        if(personnage.getY() > suivant_Y){
-            personnage.setY(personnage.getY() - (Math.min(personnage.getVitesse()/malusVitesse, dist_y)));
-        }
-
-        if(personnage.getY() < suivant_Y){
-            personnage.setY(personnage.getY() + (Math.min(personnage.getVitesse()/malusVitesse, dist_y)));
-        }
+        personnage.setX(avancer(personnage.getX(),suivant_X,vitesse));
+        personnage.setY(avancer(personnage.getY(),suivant_Y,vitesse));
 
         if(personnage.getX() == suivant_X && personnage.getY() == suivant_Y){
             indiceTerrain = suivant;
@@ -78,6 +64,14 @@ public class GestionnaireDeplacementPersonnage {
 
         malusVitesse = 1;
 
+    }
+
+    public double avancer(double pos, double suivant, double vitesse){
+        if (pos > suivant)
+            return Math.max(pos-vitesse,suivant);
+        if (pos < suivant)
+            return Math.min(pos+vitesse,suivant);
+        return pos;
     }
 
     public void reculer(int casse){
