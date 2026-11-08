@@ -49,13 +49,13 @@ public class Environnement {
     }
 
     public void ajouterArgent(int ajout) {
-        if(argent.get()+ajout > 0) {
+        if(ajout > 0) {
             argent.set(argent.get() + ajout);
         }
     }
 
     public void enleverArgent(int enlever) {
-        if(argent.get()-enlever >= 0) {
+        if(enlever > 0 && argent.get()-enlever >= 0) {
             argent.set(argent.get() - enlever);
         }
     }
