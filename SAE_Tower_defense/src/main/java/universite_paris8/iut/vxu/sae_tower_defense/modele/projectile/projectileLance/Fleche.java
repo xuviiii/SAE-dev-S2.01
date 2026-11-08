@@ -15,15 +15,11 @@ public class Fleche extends ProjectileTranspercant{
     }
 
     @Override
-    public void attaquer(Personnage personnage) {
-        if (!getEnnemisTouches().contains(personnage)) {
-            if (!personnage.getGestionnaireEffetPerso().isCuirasses()) {
-                personnage.subirDegat(super.getDegat());
-            }
-            getEnnemisTouches().add(personnage);
-            if (getEnnemisTouches().size() == nbEnnemieMax)
-                super.getEnv().getProjectiles().remove(this);
-        }
+    public void enPlus(Personnage personnage) {
+        getEnnemisTouches().add(personnage);
+        if (getEnnemisTouches().size() == nbEnnemieMax)
+            super.getEnv().getProjectiles().remove(this);
+
     }
 
     @Override

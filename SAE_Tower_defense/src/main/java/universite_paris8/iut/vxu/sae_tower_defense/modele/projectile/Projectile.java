@@ -19,6 +19,18 @@ public abstract class Projectile extends Entite {
 
     }
 
+    @Override
+    public void action() {
+        ArrayList<Personnage> personnageTouches = projectileTouche();
+        for (Personnage personnage : personnageTouches) {
+            personnage.subirDegat(getDegat());
+            enPlus(personnage);
+        }
+    }
+
+    public abstract void enPlus(Personnage personnage);
+
+
     public int getDegat() {
         return degat;
     }

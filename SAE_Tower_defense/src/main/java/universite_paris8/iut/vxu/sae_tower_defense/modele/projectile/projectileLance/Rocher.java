@@ -13,15 +13,13 @@ public class Rocher extends ProjectileTranspercant{
     }
 
     @Override
-    public void attaquer(Personnage personnage) {
-        if (!getEnnemisTouches().contains(personnage)){
-            personnage.subirDegat(super.getDegat());
-            if (enflamme) {
-                personnage.ajoutTempEnflamer(5);
-            }
-            getEnnemisTouches().add(personnage);
+    public void enPlus(Personnage personnage) {
+        super.enPlus(personnage);
+        if (enflamme) {
+            personnage.ajoutTempEnflamer(5);
         }
     }
+
 
 
 }

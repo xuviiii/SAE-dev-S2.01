@@ -18,8 +18,7 @@ public class TonneauDHuile extends ProjectileLance {
     }
 
     @Override
-    public void attaquer(Personnage personnage) {
-        personnage.subirDegat(super.getDegat());
+    public void enPlus(Personnage personnage) {
         super.getEnv().getProjectiles().remove(this);
         super.getEnv().getProjectiles().add(new ZoneDeFlamme(personnage.getX(), personnage.getY(), super.getEnv(),getDegat(), multiplicateurDurer));
     }

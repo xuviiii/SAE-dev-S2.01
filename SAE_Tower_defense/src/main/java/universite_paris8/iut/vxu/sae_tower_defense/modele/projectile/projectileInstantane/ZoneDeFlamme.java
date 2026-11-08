@@ -16,6 +16,11 @@ public class ZoneDeFlamme extends Projectile {
     }
 
     @Override
+    public void enPlus(Personnage personnage) {
+
+    }
+
+    @Override
     public void action() {
         for (Personnage ennemi : super.getEnv().getPersonnages())
             if (ennemi.estTouché(this) && !ennemi.getGestionnaireEffetPerso().isCuirasses())

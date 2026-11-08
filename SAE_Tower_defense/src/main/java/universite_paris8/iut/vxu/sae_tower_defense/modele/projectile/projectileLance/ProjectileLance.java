@@ -4,8 +4,6 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 
-import java.util.ArrayList;
-
 public abstract class ProjectileLance extends Projectile {
 
     private double dx;
@@ -35,14 +33,14 @@ public abstract class ProjectileLance extends Projectile {
 
     public double getAngle(){return Math.toDegrees(Math.atan2(dy, dx));}
 
-    public abstract void attaquer(Personnage personnage);
-
     @Override
     public void action() {
         avancer();
-        ArrayList<Personnage> personnageTouches = projectileTouche();
-        for (Personnage personnage : personnageTouches)
-            attaquer(personnage);
+        super.action();
+    }
+
+    @Override
+    public void enPlus(Personnage personnage) {
         if (horsPortee())
             super.getEnv().getProjectiles().remove(this);
     }

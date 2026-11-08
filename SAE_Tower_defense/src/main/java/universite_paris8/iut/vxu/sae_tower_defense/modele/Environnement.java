@@ -133,6 +133,8 @@ public class Environnement {
 
         for (int i=0;i<projectiles.size();i++)
             projectiles.get(i).action();
+
+        System.out.println(projectiles);
     }
 
 }

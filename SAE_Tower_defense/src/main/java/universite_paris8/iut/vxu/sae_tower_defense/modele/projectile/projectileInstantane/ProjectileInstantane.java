@@ -4,8 +4,6 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 
-import java.util.ArrayList;
-
 public abstract class ProjectileInstantane extends Projectile {
 
     private int tailleMax;
@@ -19,23 +17,13 @@ public abstract class ProjectileInstantane extends Projectile {
 
     @Override
     public void action() {
-        int alea = (int)(Math.random()*100)+1;
+        super.action();
         if (getTaille()<tailleMax){
             setTaille(getTaille()+1);
         }
-        else {
-            ArrayList<Personnage> personnageTouches = projectileTouche();
-            for (Personnage personnage : personnageTouches) {
-                personnage.subirDegat(super.getDegat());
-                faireEffet(personnage);
-            }
-            super.getEnv().getProjectiles().remove(this);
-        }
     }
 
-    public void faireEffet(Personnage personnage) {
-        //faire effet est nul car il ni a aucun effet pour les projectiles instantané mais seulement pour sa classe fille Explosion
-    }
+
 
     public int getTailleMax() {
         return tailleMax;

@@ -17,7 +17,7 @@ public class Explosion extends ProjectileInstantane {
 
 
     @Override
-    public void faireEffet(Personnage personnage) {
+    public void enPlus(Personnage personnage) {
         int alea = (int)(Math.random()*100)+1;
         if (effet != null && alea <= 10) {
             effet.effet(personnage);
