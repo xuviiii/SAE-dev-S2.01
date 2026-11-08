@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 
 public class vie_listener implements ChangeListener<Number> {
 
@@ -23,6 +24,7 @@ public class vie_listener implements ChangeListener<Number> {
         if(nv.intValue() <= 0){
             try {
                 Fin();
+                Environnement.finDePartie();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

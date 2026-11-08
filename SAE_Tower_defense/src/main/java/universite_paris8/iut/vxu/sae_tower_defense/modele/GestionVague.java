@@ -13,17 +13,16 @@ public class GestionVague {
     private static GestionVague uniqueInstance = null;
     private ArrayList<Personnage> caserne;
     private IntegerProperty numVague;
-    private Environnement env;
+    
 
-    private GestionVague(Environnement env) {
+    private GestionVague() {
         caserne = new ArrayList<>();
         numVague = new SimpleIntegerProperty(0);
-        this.env = env;
     }
 
     public static GestionVague getVague(){
         if (uniqueInstance == null){
-            uniqueInstance = new GestionVague(Environnement.getEnvironnement());
+            uniqueInstance = new GestionVague();
         }
         return uniqueInstance;
     }
@@ -48,7 +47,7 @@ public class GestionVague {
     }
 
     private boolean tousEnnemisMorts(){
-        return env.getPersonnages().isEmpty() && caserne.isEmpty();
+        return Environnement.getEnvironnement().getPersonnages().isEmpty() && caserne.isEmpty();
     }
 
     private boolean ennemisDansLaCaserne(){
@@ -59,7 +58,7 @@ public class GestionVague {
         Personnage en;
         numVague.set(numVague.get()+1);
         if (numVague.get()%20 == 0){
-            caserne.add(new Artha(env));
+            caserne.add(new Artha(Environnement.getEnvironnement()));
         }
         for (int i = 0; i < (10 * numVague.get()); i++) {
             en = creerEnnemi();
@@ -71,26 +70,30 @@ public class GestionVague {
         int alea = (int)(Math.random() * 100);
         int numero = numVague.get();
         if (alea < 25)
-            return new GobelinRouge(env);
+            return new GobelinRouge(Environnement.getEnvironnement());
         if (alea < 50)
-            return new GobelinNoir(env);
+            return new GobelinNoir(Environnement.getEnvironnement());
         if (alea < 55 && numero > 4)
-            return new Pretre(env);
+            return new Pretre(Environnement.getEnvironnement());
         if (alea < 60 && numero > 8)
-            return new ChevalDeTroie(env, 5);
+            return new ChevalDeTroie(Environnement.getEnvironnement(), 5);
         if (alea < 70 && numero > 11)
-            return new ChevaucheurDeSanglier(env);
-        return new GobelinVert(env);
+            return new ChevaucheurDeSanglier(Environnement.getEnvironnement());
+        return new GobelinVert(Environnement.getEnvironnement());
     }
 
     public void envoyerVague(){
         Personnage en;
         en = caserne.remove(0);
-        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
+        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(Environnement.getEnvironnement().getTerrain().genererIndiceDepartAlea());
         en.getGestionnaireDeplacementPersonnage().setIndiceDepart(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain());
-        en.setX(env.getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
-        en.setY(env.getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
-        env.ajouterPersonnage(en);
+        en.setX(Environnement.getEnvironnement().getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        en.setY(Environnement.getEnvironnement().getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        Environnement.getEnvironnement().ajouterPersonnage(en);
+    }
+
+    public static void finDePartie(){
+        uniqueInstance = null;
     }
 }
 

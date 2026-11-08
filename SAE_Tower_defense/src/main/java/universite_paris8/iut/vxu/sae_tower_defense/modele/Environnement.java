@@ -100,6 +100,11 @@ public class Environnement {
         tours.add(t);
     }
 
+    public static void finDePartie(){
+        envUnique = null;
+        GestionVague.finDePartie();
+    }
+
     public void faireUnTour(int temps){
 
         ArrayList<Personnage> aEnlever = new ArrayList<>();
