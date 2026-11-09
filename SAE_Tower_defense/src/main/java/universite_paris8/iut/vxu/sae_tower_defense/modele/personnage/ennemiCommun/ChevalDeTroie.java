@@ -12,7 +12,7 @@ public class ChevalDeTroie extends Personnage {
     private final Invocation invocation;
 
     public ChevalDeTroie(Environnement env, int nbPersonnages) {
-        super(30, 0.5, 10, 48, env, new Dijkstra(env), 5);
+        super(30, 0.5, 10, 48, new Dijkstra(), 5);
         invocation = new InvocationApresMort(new FabriqueGobelinVert(),nbPersonnages,getGestionnaireDeplacementPersonnage().getDeplacement().parcours(getGestionnaireDeplacementPersonnage().getIndiceTerrain()).size());
     }
 

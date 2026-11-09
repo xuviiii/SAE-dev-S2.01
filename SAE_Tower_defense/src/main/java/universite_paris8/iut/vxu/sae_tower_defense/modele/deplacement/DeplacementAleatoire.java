@@ -1,6 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,13 +12,13 @@ public class DeplacementAleatoire extends Deplacement {
 
     private IntSupplier indicePrecedentParent;
 
-    public DeplacementAleatoire(Environnement env, IntSupplier indicePrecedentParent){
-        super(env);
+    public DeplacementAleatoire( IntSupplier indicePrecedentParent){
+        super();
         this.indicePrecedentParent = indicePrecedentParent;
     }
     @Override
     public List<Integer> parcours(int source) {
-        return parcours(source, getEnv().getTerrain().getIndiceCible());
+        return parcours(source, Terrain.getTerrain().getIndiceCible());
     }
 
     @Override
@@ -44,14 +45,14 @@ public class DeplacementAleatoire extends Deplacement {
         List<Integer> indicesCroissement = new ArrayList<>();
         chemin.add(source);
 
-        List<Integer> adjacents = Deplacement.adjacents(getEnv(), source);
+        List<Integer> adjacents = Deplacement.adjacents( source);
 
-        if(adjacents.size() == 1 && getEnv().getTerrain().estIndiceDepart(source)){
+        if(adjacents.size() == 1 && Terrain.getTerrain().estIndiceDepart(source)){
             chemin.add(adjacents.get(0));
             setIndicePrecedent(source);
             setIndiceSuivant(adjacents.get(0));
         } else if(adjacents.size() > 1
-                && Deplacement.indicesCasesContigues(getEnv(), source, i -> i == -1).isEmpty()){
+                && Deplacement.indicesCasesContigues( source, i -> i == -1).isEmpty()){
             for (Integer adjacent: adjacents) {
                 if(adjacent != indicePrecedent){
                     indicesCroissement.add(adjacent);

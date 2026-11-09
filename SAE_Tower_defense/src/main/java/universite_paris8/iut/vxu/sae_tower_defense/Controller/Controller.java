@@ -7,13 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.GestionVague;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private Environnement map;
+
 
 
     private GameLoop loop;
@@ -54,26 +56,27 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        map = Environnement.getEnvironnement();
-        dragAndDrop = new DragAndDrop(map, terrainEntite, borderPane);
-        vueTerrain = new VueTerrain(tile, map.getTerrain());
-        loop=new GameLoop(map);
+        Environnement.getEnvironnement();
+        Terrain.getTerrain();
+        dragAndDrop = new DragAndDrop( terrainEntite, borderPane);
+        vueTerrain = new VueTerrain(tile);
+        loop=new GameLoop();
 
         // donne au terrainEntiter la taille de la map
-        terrainEntite.setMaxWidth(map.getTerrain().getLongueurMap()*map.getTerrain().getTailleTile());
-        terrainEntite.setMaxHeight(map.getTerrain().getHauteurMap()*map.getTerrain().getTailleTile());
+        terrainEntite.setMaxWidth(Terrain.getTerrain().getLongueurMap()*Terrain.getTerrain().getTailleTile());
+        terrainEntite.setMaxHeight(Terrain.getTerrain().getHauteurMap()*Terrain.getTerrain().getTailleTile());
 
-        map.getTours().addListener(new ObsTour(terrainEntite));
-        map.getProjectiles().addListener(new ObsProjectile(map,terrainEntite));
-        map.getPersonnages().addListener(new ObsPerso(terrainEntite));
+        Environnement.getEnvironnement().getTours().addListener(new ObsTour(terrainEntite));
+        Environnement.getEnvironnement().getProjectiles().addListener(new ObsProjectile(terrainEntite));
+        Environnement.getEnvironnement().getPersonnages().addListener(new ObsPerso(terrainEntite));
 
         //gère le drag and drop
         dragAndDrop.objetdrag(magasin);
 
-        map.argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
-        map.argentDeBase();
+        Environnement.getEnvironnement().argentProperty().addListener((ob,old,nv) -> labelArgent.setText(nv.toString()));
+        Environnement.getEnvironnement().argentDeBase();
 
-        map.getVague().numVagueProperty().addListener((ob,old,nv)-> labelVague.setText(nv.toString()));
+        GestionVague.getVague().numVagueProperty().addListener((ob, old, nv)-> labelVague.setText(nv.toString()));
         loop.vittesseProperty().addListener((ob,old,nv)-> labelVitesse.setText("x"+nv.toString()));
 
         loop.getGameLoop().statusProperty().addListener((ob,old,nv)-> {
@@ -85,16 +88,16 @@ public class Controller implements Initializable {
             }
         });
 
-        map.vieProperty().addListener(new vie_listener(loop, terrainEntite));
+        Environnement.getEnvironnement().vieProperty().addListener(new vie_listener(loop, terrainEntite));
 
-        map.vieProperty().addListener((ob,old,nv) -> labelVie.setText(nv.toString()));
-        map.vieDeBase();
+        Environnement.getEnvironnement().vieProperty().addListener((ob,old,nv) -> labelVie.setText(nv.toString()));
+        Environnement.getEnvironnement().vieDeBase();
 
         accelerer.setOnAction(e -> loop.changerVitesse());
         pause.setOnAction(e -> loop.mettrePause());
 
 
-        terrainEntite.setOnMouseClicked(new Menu(map,terrainEntite));
+        terrainEntite.setOnMouseClicked(new Menu(terrainEntite));
 
         loop.initLoop();
         loop.lancer();

@@ -5,7 +5,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.BFS;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class GobelinNoir extends Personnage {
-    public GobelinNoir( Environnement env){
-        super(20, 1, 15, 32, env, new BFS(env), 5);
+    public GobelinNoir(){
+        super(20, 1, 15, 32, new BFS(), 5);
     }
 }

@@ -12,10 +12,10 @@ public class DragAndDrop {
     private Placement achat;
     private AccepterDrop ad;
 
-    public DragAndDrop(Environnement env, Pane terrain, BorderPane borderPane) {
-        achat = new Placement(env);
+    public DragAndDrop( Pane terrain, BorderPane borderPane) {
+        achat = new Placement();
         drag = new Drag(terrain,achat);
-        drop = new Drop(achat,drag, env);
+        drop = new Drop(achat,drag);
         ad = new AccepterDrop(terrain);
         terrain.setOnDragDropped(e -> drop.handle(e));
         terrain.setOnDragOver(e -> ad.handle(e));

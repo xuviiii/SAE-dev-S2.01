@@ -6,7 +6,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class GobelinVert extends Personnage {
 
-    public GobelinVert( Environnement env){
-        super(10, 1, 10, 32, env, new BFS(env), 5);
+    public GobelinVert(){
+        super(10, 1, 10, 32, new BFS(), 5);
     }
 }

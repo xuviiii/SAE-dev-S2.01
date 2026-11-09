@@ -14,14 +14,13 @@ import java.util.*;
 public class Environnement {
 
     private static Environnement envUnique= null;
-    private Terrain terrain;
     private IntegerProperty argent;
     private IntegerProperty vie;
     private ObservableList<Integer> map;
     private ObservableList<Personnage> personnages;
     private ObservableList<Tour> tours;
     private ObservableList<Projectile> projectiles;
-    private Vague vague;
+
 
     private Environnement(){
 
@@ -30,8 +29,7 @@ public class Environnement {
         projectiles = FXCollections.observableArrayList();
         argent = new SimpleIntegerProperty();
         vie = new SimpleIntegerProperty();
-        terrain = new Terrain();
-        vague = new Vague(this);
+
     }
 
     public static Environnement getEnvironnement() {
@@ -60,9 +58,6 @@ public class Environnement {
         }
     }
 
-    public Vague getVague() {
-        return vague;
-    }
 
     public IntegerProperty vieProperty() {
         return vie;
@@ -70,10 +65,6 @@ public class Environnement {
 
     public int getArgent() {
         return argent.get();
-    }
-
-    public Terrain getTerrain() {
-        return terrain;
     }
 
     public IntegerProperty argentProperty() {
@@ -100,17 +91,22 @@ public class Environnement {
         tours.add(t);
     }
 
+    public static void finDePartie(){
+        envUnique = null;
+        GestionVague.finDePartie();
+    }
+
     public void faireUnTour(int temps){
 
         ArrayList<Personnage> aEnlever = new ArrayList<>();
 
         if (temps % 50 == 0) {
-            vague.libererVague();
+            GestionVague.getVague().libererVague();
         }
 
         for (int i=0;i<personnages.size();i++) {
             personnages.get(i).action();
-            if (personnages.get(i).getGestionnaireDeplacementPersonnage().getIndiceTerrain() == terrain.getIndiceCible()) {
+            if (personnages.get(i).getGestionnaireDeplacementPersonnage().getIndiceTerrain() == Terrain.getTerrain().getIndiceCible()) {
                 vie.set(vie.get() - 1);
                 aEnlever.add(personnages.get(i));
             }
@@ -128,6 +124,7 @@ public class Environnement {
 
         for (int i=0;i<projectiles.size();i++)
             projectiles.get(i).action();
+
     }
 
 }

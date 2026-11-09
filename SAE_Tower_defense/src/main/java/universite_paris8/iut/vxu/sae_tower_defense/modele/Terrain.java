@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import java.util.List;
 
 public class Terrain {
+    private static Terrain uniqueInstance = null;
     private int indiceCible = 25;
     private int[] indicesDepart = {28, 168, 398, 391};
     private int longueurMap;
@@ -13,7 +14,7 @@ public class Terrain {
     private ObservableList<Integer> map;
 
 
-    public Terrain() {
+    private Terrain() {
         map = FXCollections.observableArrayList(List.of(
                 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,
                 1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,0,
@@ -34,6 +35,13 @@ public class Terrain {
         longueurMap =28;
         hauteurMap=15;
         tailleTile = 60;
+    }
+
+    public static Terrain getTerrain (){
+        if (uniqueInstance == null){
+            uniqueInstance = new Terrain();
+        }
+        return uniqueInstance;
     }
 
     public double positionXdepuisIndice(int indiceTerrain){

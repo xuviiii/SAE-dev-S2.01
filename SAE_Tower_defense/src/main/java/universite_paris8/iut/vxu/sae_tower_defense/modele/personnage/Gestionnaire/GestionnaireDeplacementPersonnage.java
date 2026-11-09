@@ -1,5 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Deplacement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
@@ -50,8 +51,8 @@ public class GestionnaireDeplacementPersonnage {
 
         int suivant = deplacement.tileSuivante(indiceTerrain, cible);
 
-        double suivant_X = personnage.getEnv().getTerrain().positionXdepuisIndice(suivant);    //lorsqu'on aura un environnement avec un singleton on pourra modifié cette ligne
-        double suivant_Y = personnage.getEnv().getTerrain().positionYdepuisIndice(suivant);
+        double suivant_X = Terrain.getTerrain().positionXdepuisIndice(suivant);    //lorsqu'on aura un environnement avec un singleton on pourra modifié cette ligne
+        double suivant_Y = Terrain.getTerrain().positionYdepuisIndice(suivant);
 
         double vitesse = personnage.getVitesse()/malusVitesse;
 
@@ -78,8 +79,8 @@ public class GestionnaireDeplacementPersonnage {
         List<Integer> chemin = deplacement.parcours(indiceTerrain, indiceDepart);
         int indice = nbCassereculMax(casse, chemin.size());
         indiceTerrain = chemin.get(indice);
-        personnage.setX(personnage.getEnv().getTerrain().positionXdepuisIndice(indiceTerrain));
-        personnage.setY(personnage.getEnv().getTerrain().positionYdepuisIndice(indiceTerrain));
+        personnage.setX(Terrain.getTerrain().positionXdepuisIndice(indiceTerrain));
+        personnage.setY(Terrain.getTerrain().positionYdepuisIndice(indiceTerrain));
     }
     public int nbCassereculMax(int casse, int longueurChemin){
         for (int i=0; i < casse ; i++)

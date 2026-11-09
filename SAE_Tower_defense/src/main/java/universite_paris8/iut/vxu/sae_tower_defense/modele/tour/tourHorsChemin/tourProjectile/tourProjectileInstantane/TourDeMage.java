@@ -1,22 +1,23 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileInstantane;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetAntiCuirasse;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetProjectile;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetTeleportation;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileInstantane.Explosion;
 
 public class TourDeMage extends TourProjectileInstantane {
 
-    public TourDeMage(double x, double y, Environnement map) {
-        super(x, y, 10, map, 32, 500, 10, 150, false);
+    private EffetProjectile effetProjectile;
+
+    public TourDeMage(double x, double y) {
+        super(x, y, 10, 32, 500, 10, 150, false);
+        effetProjectile = null;
     }
 
     @Override
     public void creerProjectile(double x, double y) {
-        boolean enleverCuirasse;
-        boolean teleporte;
-        enleverCuirasse = getNiveau() == 2;
-        teleporte = getNiveau() == 3;
-
-        getEnv().getProjectiles().add(new Explosion(x, y, getEnv(), vraiDegat(), enleverCuirasse,teleporte));
+        Environnement.getEnvironnement().getProjectiles().add(new Explosion(x, y, raiDegat(), effetProjectile));
     }
 
     @Override
@@ -27,6 +28,12 @@ public class TourDeMage extends TourProjectileInstantane {
         }
         else
             getEnv().enleverArgent(prixAmelioration());
+        switch (getNiveau()) {
+            case 0 -> augmenterPortee(20);
+            case 1 -> effetProjectile = new EffetAntiCuirasse();
+            case 2 -> effetProjectile = new EffetTeleportation(5);
+        };
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

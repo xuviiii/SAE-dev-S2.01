@@ -9,15 +9,22 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommu
 
 import java.util.ArrayList;
 
-public class Vague {
+public class GestionVague {
+    private static GestionVague uniqueInstance = null;
     private ArrayList<Personnage> caserne;
     private IntegerProperty numVague;
-    private Environnement env;
+    
 
-    public Vague(Environnement env) {
+    private GestionVague() {
         caserne = new ArrayList<>();
         numVague = new SimpleIntegerProperty(0);
-        this.env = env;
+    }
+
+    public static GestionVague getVague(){
+        if (uniqueInstance == null){
+            uniqueInstance = new GestionVague();
+        }
+        return uniqueInstance;
     }
 
     public int getNumVague() {
@@ -40,7 +47,7 @@ public class Vague {
     }
 
     private boolean tousEnnemisMorts(){
-        return env.getPersonnages().isEmpty() && caserne.isEmpty();
+        return Environnement.getEnvironnement().getPersonnages().isEmpty() && caserne.isEmpty();
     }
 
     private boolean ennemisDansLaCaserne(){
@@ -51,7 +58,7 @@ public class Vague {
         Personnage en;
         numVague.set(numVague.get()+1);
         if (numVague.get()%20 == 0){
-            caserne.add(new Artha(env));
+            caserne.add(new Artha());
         }
         for (int i = 0; i < (10 * numVague.get()); i++) {
             en = creerEnnemi();
@@ -63,26 +70,30 @@ public class Vague {
         int alea = (int)(Math.random() * 100);
         int numero = numVague.get();
         if (alea < 25)
-            return new GobelinRouge(env);
+            return new GobelinRouge();
         if (alea < 50)
-            return new GobelinNoir(env);
+            return new GobelinNoir();
         if (alea < 55 && numero > 4)
-            return new Pretre(env);
+            return new Pretre();
         if (alea < 60 && numero > 8)
-            return new ChevalDeTroie(env, 5);
+            return new ChevalDeTroie(Environnement.getEnvironnement(), 5);
         if (alea < 70 && numero > 11)
-            return new ChevaucheurDeSanglier(env);
-        return new GobelinVert(env);
+            return new ChevaucheurDeSanglier();
+        return new GobelinVert();
     }
 
     public void envoyerVague(){
         Personnage en;
         en = caserne.remove(0);
-        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(env.getTerrain().genererIndiceDepartAlea());
+        en.getGestionnaireDeplacementPersonnage().setIndiceTerrain(Terrain.getTerrain().genererIndiceDepartAlea());
         en.getGestionnaireDeplacementPersonnage().setIndiceDepart(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain());
-        en.setX(env.getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
-        en.setY(env.getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
-        env.ajouterPersonnage(en);
+        en.setX(Terrain.getTerrain().positionXdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        en.setY(Terrain.getTerrain().positionYdepuisIndice(en.getGestionnaireDeplacementPersonnage().getIndiceTerrain()));
+        Environnement.getEnvironnement().ajouterPersonnage(en);
+    }
+
+    public static void finDePartie(){
+        uniqueInstance = null;
     }
 }
 

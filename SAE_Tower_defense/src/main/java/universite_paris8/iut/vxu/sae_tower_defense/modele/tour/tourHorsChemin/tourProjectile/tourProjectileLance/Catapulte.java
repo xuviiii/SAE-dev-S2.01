@@ -1,6 +1,8 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.tourProjectileLance;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetBrulure;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet.EffetProjectile;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Projectile;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.projectileLance.Rocher;
 
@@ -8,11 +10,13 @@ public class Catapulte extends TourProjectileLance {
 
     private double xCible;
     private double yCible;
+    private EffetProjectile effetProjectile;
 
-    public Catapulte(double x, double y, Environnement map, double xCible, double yCible) {
-        super(x, y, 15, map, 32, 300, 10, 10000, false);
+    public Catapulte(double x, double y, double xCible, double yCible) {
+        super(x, y, 15, 32, 300, 10, 10000, false);
         this.xCible = xCible;
         this.yCible = yCible;
+        effetProjectile = null;
     }
 
     public void setxCible(double xCible) {
@@ -25,8 +29,7 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public Projectile projectileALancer(double x,double y, double dx,double dy) {
-        boolean enflamer = getNiveau()==1;
-        return new Rocher(getX(),getY(),super.getEnv(),super.vraiDegat(),dx,dy,super.getPortee(), enflamer);
+        return new Rocher(getX(),getY(),super.vraiDegat(),dx,dy,super.getPortee(), effetProjectile);
     }
 
     @Override
@@ -36,7 +39,8 @@ public class Catapulte extends TourProjectileLance {
 
     @Override
     public void ameliorer() {
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
+        effetProjectile = new EffetBrulure(5);
         gainNiveau();
     }
 

@@ -43,4 +43,6 @@ module universite_paris8.iut.vxu.sae_tower_defense {
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Gestionnaire to javafx.fxml;
     exports universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur;
     opens universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur to javafx.fxml;
+    exports universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet;
+    opens universite_paris8.iut.vxu.sae_tower_defense.modele.projectile.Effet to javafx.fxml;
 }

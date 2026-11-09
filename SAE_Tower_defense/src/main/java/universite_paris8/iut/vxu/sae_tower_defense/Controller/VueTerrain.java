@@ -7,11 +7,9 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
 
 public class VueTerrain {
     private TilePane tile;
-    private Terrain terrain;
 
-    public VueTerrain(TilePane tile, Terrain terrain) {
+    public VueTerrain(TilePane tile) {
         this.tile = tile;
-        this.terrain = terrain;
         creeVueTerrain();
     }
 
@@ -20,12 +18,12 @@ public class VueTerrain {
         double aléatoire;
         ImageView sprite;
 
-        tile.setMinWidth(terrain.getLongueurMap() * terrain.getTailleTile());
-        tile.setMaxWidth(terrain.getLongueurMap() * terrain.getTailleTile());
-        for (int i = 0; i < terrain.getMap().size(); i++) {
+        tile.setMinWidth(Terrain.getTerrain().getLongueurMap() * Terrain.getTerrain().getTailleTile());
+        tile.setMaxWidth(Terrain.getTerrain().getLongueurMap() * Terrain.getTerrain().getTailleTile());
+        for (int i = 0; i < Terrain.getTerrain().getMap().size(); i++) {
             aléatoire = Math.random();
 
-            if (terrain.getMap().get(i) == 1)
+            if (Terrain.getTerrain().getMap().get(i) == 1)
                 if (aléatoire<0.5)
                     sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/chemin1.png")));
                 else
@@ -39,7 +37,7 @@ public class VueTerrain {
                 else
                     sprite = new ImageView(new Image(getClass().getResourceAsStream("/image/terrain/herbe3.png")));
             }
-            sprite.setFitHeight(terrain.getTailleTile());
+            sprite.setFitHeight(Terrain.getTerrain().getTailleTile());
             sprite.setPreserveRatio(true);
             tile.getChildren().add(sprite);
         }

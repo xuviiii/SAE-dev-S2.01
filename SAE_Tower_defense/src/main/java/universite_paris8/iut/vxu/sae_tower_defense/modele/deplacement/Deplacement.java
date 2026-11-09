@@ -9,21 +9,19 @@ import java.util.function.Predicate;
 
 public abstract class Deplacement {
 
-    private Environnement env;
+
     private int indicePrecedent;
     private int indiceSuivant;
     private int tmp;
 
-    public Deplacement(Environnement env){
-        this.env = env;
+    public Deplacement(){
+
         indicePrecedent = -1;
         indiceSuivant = -1;
         tmp = -1;
     }
 
-    public Environnement getEnv() {
-        return env;
-    }
+
 
     public int getIndicePrecedent() {
         return indicePrecedent;
@@ -45,11 +43,11 @@ public abstract class Deplacement {
 
     public abstract List<Integer> parcours(int source, int cible);
 
-    public static List<Integer> indicesCasesContigues(Environnement env, Integer indice, Predicate<Integer> predicate){
+    public static List<Integer> indicesCasesContigues( Integer indice, Predicate<Integer> predicate){
 
         Terrain terrain = env.getTerrain();
-        List<Integer> map = terrain.getMap();
-        int longueur = terrain.getLongueurMap();
+        List<Integer> map = Terrain.getTerrain().getMap();
+        int longueur = Terrain.getTerrain().getLongueurMap();
 
         if (indice < 0 || indice > map.size() - 1)
             throw new IllegalArgumentException();

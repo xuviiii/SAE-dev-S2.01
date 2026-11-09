@@ -15,7 +15,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 
 public class Menu implements EventHandler<MouseEvent> {
 
-    private Environnement map;
+
     private Pane terrain;
     private Pane menu;
     private Label stats;
@@ -26,8 +26,7 @@ public class Menu implements EventHandler<MouseEvent> {
     private VBox menuContenu;
     private Circle rayon;
 
-    public Menu(Environnement map, Pane terrain) {
-        this.map = map;
+    public Menu( Pane terrain) {
         this.terrain = terrain;
         stats = new Label("Stats");
         améliorer = new Button("Améliorer");
@@ -48,8 +47,8 @@ public class Menu implements EventHandler<MouseEvent> {
 
         terrain.getChildren().remove(menu);
 
-        while (i<map.getTours().size()&&!tourClique){
-            tour = map.getTours().get(i);
+        while (i<Environnement.getEnvironnement().getTours().size()&&!tourClique){
+            tour = Environnement.getEnvironnement().getTours().get(i);
             if (mouseEvent.getX()>=tour.getX()&&mouseEvent.getX()<=tour.getX()+tour.getTaille()&&mouseEvent.getY()>=tour.getY()&&mouseEvent.getY()<=tour.getY()+tour.getTaille()){
 
                 if (tour instanceof TourHorsChemin){
@@ -79,7 +78,7 @@ public class Menu implements EventHandler<MouseEvent> {
                 Tour finalTour = tour;
                 améliorer.setOnMouseClicked(e -> refreshMenu(finalTour));
 
-                vendre.setOnAction(new Vendre(map,tour,menu));
+                vendre.setOnAction(new Vendre(tour,menu));
 
                 if (tour instanceof Catapulte){
                     if (!menuContenu.getChildren().contains(choisirDirection))
@@ -110,7 +109,7 @@ public class Menu implements EventHandler<MouseEvent> {
         }
         else {
             améliorer.setDisable(false);
-            if (tour.getEnv().getArgent()>tour.prixAmelioration())
+            if (Environnement.getEnvironnement().getArgent()>tour.prixAmelioration())
                 stats.setText(tour+"\nPrix amélioration : "+tour.prixAmelioration());
             else
                 stats.setText(tour+"\nPrix amélioration : "+tour.prixAmelioration()+"\nPas assez d'argent");

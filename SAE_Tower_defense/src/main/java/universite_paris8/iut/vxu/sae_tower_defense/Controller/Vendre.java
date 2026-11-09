@@ -14,8 +14,7 @@ public class Vendre implements EventHandler<ActionEvent> {
     private Pane menu;
 
 
-    public Vendre(Environnement map, Tour tour, Pane menu) {
-        this.map = map;
+    public Vendre( Tour tour, Pane menu) {
         this.tour = tour;
         this.menu = menu;
     }
@@ -23,8 +22,8 @@ public class Vendre implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         menu.getChildren().clear();
-        map.getTours().remove(tour);
-        map.ajouterArgent(tour.getPrix()/2);
+        Environnement.getEnvironnement().getTours().remove(tour);
+        Environnement.getEnvironnement().ajouterArgent(tour.getPrix()/2);
         if (tour instanceof Camp)
             ((Camp)tour).enleverBoost();
     }
