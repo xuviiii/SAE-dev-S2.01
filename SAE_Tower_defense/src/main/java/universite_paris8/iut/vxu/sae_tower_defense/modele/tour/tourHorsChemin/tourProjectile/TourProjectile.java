@@ -52,11 +52,11 @@ public abstract class TourProjectile extends TourHorsChemin {
     }
 
     private boolean plusProcheDeLaFin(Personnage personnage, Personnage ennemiACible){
+        return parcoursSize(personnage) < parcoursSize(ennemiACible);
+    }
+
+    private int parcoursSize(Personnage personnage){
         return personnage
-                .getGestionnaireDeplacementPersonnage().getDeplacement()
-                .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
-                .size()
-                < ennemiACible
                 .getGestionnaireDeplacementPersonnage().getDeplacement()
                 .parcours(personnage.getGestionnaireDeplacementPersonnage().getIndiceTerrain(), getEnv().getTerrain().getIndiceCible())
                 .size();
@@ -71,23 +71,19 @@ public abstract class TourProjectile extends TourHorsChemin {
 
         if (ennemisCiblables.isEmpty())
             return null;
-        else{
-            ennemiACible = ennemisCiblables.get(0);
-            for (Personnage personnage : ennemisCiblables)
 
-                if ((ennemiACible.getGestionnaireEffetPerso().isCamoufles() && !peutciblerCamoufle)
-                        || (plusProcheDeLaFin(personnage, ennemiACible) && (!personnage.getGestionnaireEffetPerso().isCamoufles() || peutciblerCamoufle))) {
-                    ennemiACible = personnage;
-                }
-            if (ennemiACible.getGestionnaireEffetPerso().isCamoufles() && !peutciblerCamoufle) {
-                ennemiACible = null;
-            }
-            return ennemiACible;
-        }
+        ennemiACible = ennemisCiblables.get(0);
+        for (Personnage personnage : ennemisCiblables)
+            if (!peutCibler(ennemiACible) || (plusProcheDeLaFin(personnage, ennemiACible) && peutCibler(personnage)))
+                ennemiACible = personnage;
+        if (ennemiACible.getGestionnaireEffetPerso().isCamoufles() && !peutciblerCamoufle)
+            ennemiACible = null;
+        return ennemiACible;
     }
 
-
-
+    public boolean peutCibler(Personnage personnage){
+        return !personnage.getGestionnaireEffetPerso().isCamoufles() || peutciblerCamoufle;
+    }
 
     public abstract void creerProjectile(double x,double y);
 }
