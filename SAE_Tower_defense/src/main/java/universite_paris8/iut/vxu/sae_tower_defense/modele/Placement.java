@@ -55,8 +55,7 @@ public class Placement {
     }
 
     public boolean toursSuperposées(Tour tour1,Tour tour2){
-        return (tour1.getX()>= (tour2.getX()) &&  tour1.getX()<=(tour2.getX()+tour2.getTaille())||tour1.getX()+ tour1.getTaille()>= (tour2.getX()) &&  tour1.getX()+tour1.getTaille()<=(tour2.getX()+tour2.getTaille()))
-                && (tour1.getY()>= (tour2.getY()) && tour1.getY()<=(tour2.getY()+tour2.getTaille())||tour1.getY()+tour1.getTaille()>= (tour2.getY()) && tour1.getY()+tour1.getTaille()<=(tour2.getY()+tour2.getTaille()));
+        return tour1.estTouché(tour2);
     }
 
     // verifie si il n'y a pas de chemin au cordonner donner

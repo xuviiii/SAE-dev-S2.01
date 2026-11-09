@@ -20,14 +20,13 @@ public class TourDeFleche extends TourProjectileLance{
         else {
             nbEnnemieAToucher = 2;
         }
-        return new Fleche(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),nbEnnemieAToucher);
+        return new Fleche(getX(),getY(),super.getEnv(),super.vraiDegat(),dx,dy,super.getPortee(),nbEnnemieAToucher);
     }
 
     @Override
     public void agir() {
         Personnage cible = ennemiACible();
         double x,y;
-
         if (cible!=null){
             x = cible.getX()+ (double) cible.getTaille() /2;
             y = cible.getY()+ (double) cible.getTaille() /2;

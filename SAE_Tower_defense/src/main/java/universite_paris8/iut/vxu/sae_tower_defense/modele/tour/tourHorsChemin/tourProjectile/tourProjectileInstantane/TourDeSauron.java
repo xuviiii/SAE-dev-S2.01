@@ -12,7 +12,7 @@ public class TourDeSauron extends TourProjectileInstantane {
 
     @Override
     public void creerProjectile(double x, double y) {
-        getEnv().getProjectiles().add(new AttaqueSauron(x,y,getEnv(),100));
+        getEnv().getProjectiles().add(new AttaqueSauron(x,y,getEnv(),vraiDegat()));
     }
 
     @Override

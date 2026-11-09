@@ -75,13 +75,11 @@ public abstract class Entite {
         this.taille.set(taille);
     }
 
-    public boolean estTouché(Entite entite){
-        double yProjectileH,yProjectileB,xProjectileG,xProjectileD;
-        xProjectileG = entite.getX();
-        xProjectileD = entite.getX()+entite.getTaille();
-        yProjectileH = entite.getY();
-        yProjectileB = entite.getY()+entite.getTaille();
-        return x.get()<xProjectileD && x.get()+getTaille()>xProjectileG && y.get()<yProjectileB && y.get()+getTaille()>yProjectileH;
+    public boolean estTouché(Entite entite) {
+        return getX() <= entite.getX() + entite.getTaille()
+                && getX() + getTaille() >= entite.getX()
+                && getY() <= entite.getY() + entite.getTaille()
+                && getY() + getTaille() >= entite.getY();
     }
 
     public abstract void action();

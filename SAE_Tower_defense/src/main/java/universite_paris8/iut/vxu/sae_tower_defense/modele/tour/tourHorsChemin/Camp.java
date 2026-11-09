@@ -2,6 +2,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin;
 
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Cibleur;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.Tour;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.tourProjectile.TourProjectile;
 
 import java.util.ArrayList;
@@ -22,24 +23,28 @@ public class Camp extends TourHorsChemin {
         ArrayList<TourProjectile> toursABooster = cibleur.ciblerTour();
         for (TourProjectile tourProjectile : toursABooster)
             if (!toursBoostes.contains(tourProjectile)){
-                if (getNiveau()>=0)
-                    tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()*1.5);
-                if (getNiveau()>=1)
-                    tourProjectile.setBoostVitesse(tourProjectile.getBoostVitesse()*1.5);
-                if (getNiveau()>=2)
-                    tourProjectile.setPeutciblerCamoufle(true);
+                appliquerBoost(tourProjectile);
+                toursBoostes.add(tourProjectile);
             }
+    }
+
+    public void appliquerBoost(TourProjectile tourProjectile){
+        tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()*1.5);
+        if (getNiveau()>=1)
+            tourProjectile.setBoostVitesse(tourProjectile.getBoostVitesse()*1.5);
+        if (getNiveau()>=2)
+            tourProjectile.setPeutciblerCamoufle(true);
     }
 
     public void enleverBoost() {
         for (TourProjectile tourProjectile : toursBoostes){
-            if (getNiveau()>=0)
-                tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()/1.5);
+            tourProjectile.setBoostAttaque(tourProjectile.getBoostAttaque()/1.5);
             if (getNiveau()>=1)
                 tourProjectile.setBoostVitesse(tourProjectile.getBoostVitesse()/1.5);
             if (getNiveau()>=2)
                 tourProjectile.setPeutciblerCamoufle(false);
         }
+        toursBoostes.clear();
     }
 
     @Override
@@ -60,6 +65,7 @@ public class Camp extends TourHorsChemin {
     @Override
     public void ameliorer() {
         getEnv().enleverArgent(prixAmelioration());
+        enleverBoost();
         gainNiveau();
     }
 
