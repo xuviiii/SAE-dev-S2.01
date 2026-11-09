@@ -1,5 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Fabrique.FabriquePerso;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinVert;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
@@ -8,7 +9,8 @@ public class InvocationApresMort extends Invocation {
     private int nbPersonnages;
     private int distanceInit;
 
-    public InvocationApresMort(int nbPersonnages, int distanceInit) {
+    public InvocationApresMort(FabriquePerso fabrique, int nbPersonnages, int distanceInit) {
+        super(fabrique);
         this.nbPersonnages = nbPersonnages;
         this.distanceInit = distanceInit;
     }
@@ -25,15 +27,15 @@ public class InvocationApresMort extends Invocation {
 
     private void invoquer(Personnage invocateur) {
         int cible;
+        Personnage personnage;
         for (int i = 0; i < nbPersonnages; i++) {
-            cible = (i < nbPersonnages / 2)
-                    ? invocateur.getGestionnaireDeplacementPersonnage().getIndiceDepart()
-                    : invocateur.getEnv().getTerrain().getIndiceCible();
-
-            GobelinVert gobelin = new GobelinVert(invocateur.getEnv());
-            faireApparaitre(invocateur, gobelin);
+            if (i < nbPersonnages / 2)
+                cible = invocateur.getGestionnaireDeplacementPersonnage().getIndiceDepart();
+            else
+                cible = invocateur.getEnv().getTerrain().getIndiceCible();
+            personnage = faireApparaitre(invocateur);
             for (int j = 0; j < 8 * (i + 1); j++) {
-                gobelin.getGestionnaireDeplacementPersonnage().seDeplace(cible);
+                personnage.getGestionnaireDeplacementPersonnage().seDeplace(cible);
             }
         }
     }
