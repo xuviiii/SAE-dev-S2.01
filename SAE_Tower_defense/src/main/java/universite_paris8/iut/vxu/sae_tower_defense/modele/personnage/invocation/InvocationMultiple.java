@@ -1,6 +1,6 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommun.GobelinNoir;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Fabrique.FabriquePerso;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public class InvocationMultiple extends Invocation {
@@ -8,7 +8,8 @@ public class InvocationMultiple extends Invocation {
     private int tempsInvocation;
     private int compteur;
 
-    public InvocationMultiple(int tempsInvocation) {
+    public InvocationMultiple(FabriquePerso fabrique, int tempsInvocation) {
+        super(fabrique);
         this.tempsInvocation = tempsInvocation;
         this.compteur = 0;
     }
@@ -18,7 +19,7 @@ public class InvocationMultiple extends Invocation {
         compteur++;
         if (compteur >= tempsInvocation) {
             compteur = 0;
-            faireApparaitre(invocateur, new GobelinNoir(invocateur.getEnv()));
+            faireApparaitre(invocateur);
         }
     }
 }

@@ -19,7 +19,7 @@ public class TourDHuile extends TourProjectileLance {
             multiplicateurDurer = 1.5;
         else
             multiplicateurDurer = 1;
-        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.getDégât(),dx,dy,super.getPortee(),cible.getX(),cible.getY(), multiplicateurDurer);
+        return new TonneauDHuile(getX(),getY(),super.getEnv(),super.vraiDegat(),dx,dy,super.getPortee(),cible.getX(),cible.getY(), multiplicateurDurer);
     }
 
     @Override
