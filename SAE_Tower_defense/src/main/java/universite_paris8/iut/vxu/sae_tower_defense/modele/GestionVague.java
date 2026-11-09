@@ -58,7 +58,7 @@ public class GestionVague {
         Personnage en;
         numVague.set(numVague.get()+1);
         if (numVague.get()%20 == 0){
-            caserne.add(new Artha(Environnement.getEnvironnement()));
+            caserne.add(new Artha());
         }
         for (int i = 0; i < (10 * numVague.get()); i++) {
             en = creerEnnemi();

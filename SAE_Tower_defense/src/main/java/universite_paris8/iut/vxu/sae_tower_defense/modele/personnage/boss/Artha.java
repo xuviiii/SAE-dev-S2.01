@@ -8,7 +8,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation.
 public class Artha extends Boss {
     private Invocation invocation;
 
-    public Artha(Environnement env) {
+    public Artha() {
         super(500, 0.5, 20, 64, new Dijkstra(), 1000);
         invocation = new InvocationMultiple(200);
     }
