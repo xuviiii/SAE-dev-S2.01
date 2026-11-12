@@ -20,16 +20,9 @@ public abstract class Personnage extends Entite {
     private int compteurAttaque;
     private IntegerProperty tempEnflamer;
 
-
-    private boolean cuirasses;
-
     private GestionnaireDeplacementPersonnage gestionnaireDeplacementPersonnage;
 
     private int gains; //valeur pour les gold
-
-    private boolean camoufles;
-
-    private int compteurAction; //a changé de classe
 
     private GestionnaireEffetPerso gestionnaireEffetPerso;
 
@@ -42,11 +35,6 @@ public abstract class Personnage extends Entite {
         this.degat = degat;
         this.gestionnaireEffetPerso = new GestionnaireEffetPerso(this);
         this.gestionnaireDeplacementPersonnage = new GestionnaireDeplacementPersonnage(0,0,1,deplacement,this );
-//        malusVitesse = 1;
-//        this.indiceTerrain = 0;
-//        this.indiceDepart = 0;
-//        this.deplacement = deplacement;
-        compteurAction = 0;
         tempEnflamer = new SimpleIntegerProperty(0);
         this.gains = gains;
         gestionnaireEffetPerso.rendreCamoufles();
@@ -122,11 +110,10 @@ public abstract class Personnage extends Entite {
     }
 
     @Override
-    public void action(/*int temps*/) {
+    public void action() {
         gestionnaireDeplacementPersonnage.seDeplace(Terrain.getTerrain().getIndiceCible());
         degatEnflamer();
         compteurAttaque++;
-        compteurAction++;
     }
 
     @Override
