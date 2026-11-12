@@ -25,10 +25,4 @@ public abstract class ProjectileInstantane extends Projectile {
             Environnement.getEnvironnement().getProjectiles().remove(this);
         }
     }
-
-
-
-    public int getTailleMax() {
-        return tailleMax;
-    }
 }

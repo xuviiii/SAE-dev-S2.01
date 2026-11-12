@@ -33,7 +33,6 @@ public abstract class Cibleur {
 
     public abstract ArrayList<Entite> getListAInspecter();
 
-
     public Boolean estAPorter(Entite entiteCible){
         return Math.hypot(entite.getX()-entiteCible.getX(),entite.getY()-entiteCible.getY())<portee;
     }

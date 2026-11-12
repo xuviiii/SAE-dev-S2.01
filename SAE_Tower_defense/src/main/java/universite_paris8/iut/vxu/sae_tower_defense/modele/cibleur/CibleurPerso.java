@@ -15,7 +15,7 @@ public class CibleurPerso extends  Cibleur{
 
 
     @Override
-    public void ajouterAuCibleur(ArrayList ennemisCiblables, Entite entite) {
+    public void ajouterAuCibleur(ArrayList ennemisCiblables, Entite entite) { //modifié pour avoir une condition et ne pas dupliquer le add
         ennemisCiblables.add(entite);
     }
 

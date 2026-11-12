@@ -16,7 +16,7 @@ public class CibleurTourProjectile extends Cibleur{
     @Override
     public void ajouterAuCibleur(ArrayList ennemisCiblables, Entite entite) {
         if (entite instanceof TourProjectile) {
-            ennemisCiblables.add((TourProjectile) entite);
+            ennemisCiblables.add( entite);
         }
     }
 

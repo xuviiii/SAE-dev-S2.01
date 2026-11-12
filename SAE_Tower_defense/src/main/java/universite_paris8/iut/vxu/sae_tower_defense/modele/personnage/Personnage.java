@@ -86,13 +86,6 @@ public abstract class Personnage extends Entite {
         setPv(0);
     }
 
-    public int nbCassereculMax(int casse, int longueurChemin){
-        for (int i=0; i < casse ; i++)
-            if ( casse-i < longueurChemin)
-                return casse-i;
-        return 0;
-    }
-
 
     private void degatEnflamer(){
         if (tempEnflamer.get() > 0){
