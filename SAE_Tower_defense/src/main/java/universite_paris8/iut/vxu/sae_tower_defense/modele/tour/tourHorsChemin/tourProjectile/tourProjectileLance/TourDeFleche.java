@@ -20,7 +20,7 @@ public class TourDeFleche extends TourProjectileLance{
         else {
             nbEnnemieAToucher = 2;
         }
-        return new Fleche(getX(),getY(),super.vraiDégât(),dx,dy,super.getPortee(),nbEnnemieAToucher);
+        return new Fleche(getX(),getY(),super.vraiDegat(),dx,dy,super.getPortee(),nbEnnemieAToucher);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TourDeFleche extends TourProjectileLance{
             case 3: augmenterVitesse(10);break;
             default: break;
         }
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

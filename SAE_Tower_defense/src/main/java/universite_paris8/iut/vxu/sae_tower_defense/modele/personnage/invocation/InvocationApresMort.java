@@ -37,7 +37,7 @@ public class InvocationApresMort extends Invocation {
                 cible = Terrain.getTerrain().getIndiceCible();
             personnage = faireApparaitre(invocateur);
             for (int j = 0; j < 8 * (i + 1); j++) {
-                gobelin.getGestionnaireDeplacementPersonnage().seDeplace(cible);
+                personnage.getGestionnaireDeplacementPersonnage().seDeplace(cible);
             }
         }
     }

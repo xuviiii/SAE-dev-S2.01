@@ -17,17 +17,17 @@ public class TourDeMage extends TourProjectileInstantane {
 
     @Override
     public void creerProjectile(double x, double y) {
-        Environnement.getEnvironnement().getProjectiles().add(new Explosion(x, y, raiDegat(), effetProjectile));
+        Environnement.getEnvironnement().getProjectiles().add(new Explosion(x, y, vraiDegat(), effetProjectile));
     }
 
     @Override
     public void ameliorer() {
         if (getNiveau() == 0) {
             augmenterPortee(20);
-            getEnv().enleverArgent(prixAmelioration());
+            Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         }
         else
-            getEnv().enleverArgent(prixAmelioration());
+            Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         switch (getNiveau()) {
             case 0 -> augmenterPortee(20);
             case 1 -> effetProjectile = new EffetAntiCuirasse();

@@ -16,7 +16,7 @@ public abstract class Invocation {
     public abstract void action(Personnage invocateur);
 
     public Personnage faireApparaitre(Personnage invocateur) {
-        Personnage invoque = fabrique.créerPerso(invocateur.getEnv());
+        Personnage invoque = fabrique.créerPerso();
         int indice = invocateur.getGestionnaireDeplacementPersonnage().getIndiceTerrain();
         invoque.getGestionnaireDeplacementPersonnage().setIndiceDepart(invocateur.getGestionnaireDeplacementPersonnage().getIndiceDepart());
         invoque.getGestionnaireDeplacementPersonnage().setIndiceTerrain(indice);

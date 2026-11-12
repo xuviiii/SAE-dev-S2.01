@@ -49,7 +49,7 @@ public class Mur extends TourSurChemin {
     public void ameliorer() {
         if (getNiveau() == 0){
             pv = 250;
-            getEnv().enleverArgent(prixAmelioration());
+            Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         }
         gainNiveau();
     }

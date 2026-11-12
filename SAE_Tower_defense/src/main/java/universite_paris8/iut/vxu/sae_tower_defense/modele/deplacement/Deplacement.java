@@ -45,7 +45,6 @@ public abstract class Deplacement {
 
     public static List<Integer> indicesCasesContigues( Integer indice, Predicate<Integer> predicate){
 
-        Terrain terrain = env.getTerrain();
         List<Integer> map = Terrain.getTerrain().getMap();
         int longueur = Terrain.getTerrain().getLongueurMap();
 
@@ -84,8 +83,8 @@ public abstract class Deplacement {
         }
     }
 
-    public static List<Integer> adjacents(Environnement env, int indice){
-        return indicesCasesContigues(env, indice, i -> i > 0);
+    public static List<Integer> adjacents(int indice){
+        return indicesCasesContigues(indice, i -> i > 0);
     }
 
     public List<Integer> cheminVersCible(Map<Integer, Integer> predecesseurs,  int cible) {

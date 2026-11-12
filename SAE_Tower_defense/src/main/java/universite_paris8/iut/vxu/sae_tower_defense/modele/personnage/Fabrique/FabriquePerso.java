@@ -5,6 +5,6 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 
 public interface FabriquePerso {
 
-    public Personnage créerPerso(Environnement environnement);
+    public Personnage créerPerso();
 
 }

@@ -1,7 +1,7 @@
 package universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.boss;
 
-import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.deplacement.Dijkstra;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Fabrique.FabriqueGobelinNoir;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation.Invocation;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.invocation.InvocationMultiple;
 

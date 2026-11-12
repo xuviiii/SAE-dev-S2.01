@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CibleurTest {
 
     private void ajouterNvPersoEnv(Environnement env, double x, double y){
-        Personnage ennemie = new GobelinVert(env);
+        Personnage ennemie = new GobelinVert();
         ennemie.setX(x);
         ennemie.setY(y);
         env.ajouterPersonnage(ennemie);
@@ -26,7 +26,7 @@ class CibleurTest {
     @Test
     void ciblerEnnemie() {
         Environnement env = Environnement.getEnvironnement();
-        Cibleur cibleur = new CibleurPerso(10, new TourDeFleche(20,20,env));
+        Cibleur cibleur = new CibleurPerso(10, new TourDeFleche(20,20));
         ArrayList attendue= new ArrayList<>();
         assertEquals(attendue, cibleur.cibler(), "cas pas d'ennemie" );
         ajouterNvPersoEnv(env, 35, 35);
@@ -36,24 +36,26 @@ class CibleurTest {
             attendue.add(env.getPersonnages().get(env.getPersonnages().size()-1));
         }
         assertEquals(attendue, cibleur.cibler(), "cas normal" );
-        env.ajouterTour(new TourDeFleche(25,25,env));
+        env.ajouterTour(new TourDeFleche(25,25));
         assertEquals(attendue, cibleur.cibler(), "alier a porter" );
+        Environnement.finDePartie();
     }
 
     @Test
     void ciblerAllie() {
         Environnement env = Environnement.getEnvironnement();
-        Cibleur cibleur = new CibleurTourProjectile(10, new Camp(20,20,env));
+        Cibleur cibleur = new CibleurTourProjectile(10, new Camp(20,20));
         ArrayList attendue= new ArrayList<>();
         assertEquals(attendue, cibleur.cibler(), "cas pas d'alier" );
-        env.ajouterTour(new TourDeFleche(35,35,env));
+        env.ajouterTour(new TourDeFleche(35,35));
         assertEquals(attendue, cibleur.cibler(), "alier hors-porter" );
         for(int i=0; i<3; i++){
-            env.ajouterTour(new TourDeFleche(27+i,20,env));
+            env.ajouterTour(new TourDeFleche(27+i,20));
             attendue.add(env.getTours().get(env.getTours().size()-1));
         }
         assertEquals(attendue, cibleur.cibler(), "cas normal" );
         ajouterNvPersoEnv(env, 25, 25);;
         assertEquals(attendue, cibleur.cibler(), "ennemie a porter" );
+        Environnement.finDePartie();
     }
 }

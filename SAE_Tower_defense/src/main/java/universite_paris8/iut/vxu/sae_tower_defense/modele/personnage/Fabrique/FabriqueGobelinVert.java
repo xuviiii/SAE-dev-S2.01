@@ -7,7 +7,7 @@ import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.ennemiCommu
 public class FabriqueGobelinVert implements FabriquePerso{
 
     @Override
-    public Personnage créerPerso(Environnement environnement) {
-        return new GobelinVert(environnement);
+    public Personnage créerPerso() {
+        return new GobelinVert();
     }
 }

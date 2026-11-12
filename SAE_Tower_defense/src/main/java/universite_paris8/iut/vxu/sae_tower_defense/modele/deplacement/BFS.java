@@ -25,7 +25,7 @@ public class BFS extends Algorithme {
             Integer courant = fifo.poll();
             parcours.add(courant);
 
-            for(Integer adjacent : Deplacement.adjacents( courant)){
+            for(Integer adjacent : Deplacement.adjacents(courant)){
 
                 if(!parcours.contains(adjacent)){
                     parcours.add(adjacent);

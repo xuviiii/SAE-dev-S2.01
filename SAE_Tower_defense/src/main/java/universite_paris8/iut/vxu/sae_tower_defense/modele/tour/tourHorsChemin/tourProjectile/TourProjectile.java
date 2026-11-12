@@ -3,6 +3,7 @@ package universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.t
 import universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur.Cibleur;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Environnement;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.Terrain;
+import universite_paris8.iut.vxu.sae_tower_defense.modele.cibleur.CibleurPerso;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.personnage.Personnage;
 import universite_paris8.iut.vxu.sae_tower_defense.modele.tour.tourHorsChemin.TourHorsChemin;
 

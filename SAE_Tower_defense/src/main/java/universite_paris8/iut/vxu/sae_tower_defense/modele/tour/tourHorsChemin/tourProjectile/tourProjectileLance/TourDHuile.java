@@ -27,7 +27,7 @@ public class TourDHuile extends TourProjectileLance {
         if (getNiveau() == 0) {
             augmenterDegat(5);
         }
-        getEnv().enleverArgent(prixAmelioration());
+        Environnement.getEnvironnement().enleverArgent(prixAmelioration());
         gainNiveau();
     }
 

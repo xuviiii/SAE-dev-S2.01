@@ -45,7 +45,7 @@ public class DeplacementAleatoire extends Deplacement {
         List<Integer> indicesCroissement = new ArrayList<>();
         chemin.add(source);
 
-        List<Integer> adjacents = Deplacement.adjacents( source);
+        List<Integer> adjacents = Deplacement.adjacents(source);
 
         if(adjacents.size() == 1 && Terrain.getTerrain().estIndiceDepart(source)){
             chemin.add(adjacents.get(0));

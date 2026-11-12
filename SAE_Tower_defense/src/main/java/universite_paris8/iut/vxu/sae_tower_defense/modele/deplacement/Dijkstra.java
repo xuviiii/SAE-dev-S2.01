@@ -27,7 +27,7 @@ public class Dijkstra extends Algorithme {
 
             Integer courant = fifo.poll().getIndice();
 
-            for (Integer adjacent : Deplacement.adjacents( courant)) {
+            for (Integer adjacent : Deplacement.adjacents(courant)) {
 
                 int cout = couts.get(courant) + Terrain.getTerrain().getMap().get(adjacent);
 
